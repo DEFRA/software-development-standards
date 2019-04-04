@@ -45,3 +45,20 @@ There are a number of factors that can influence the decision to adopt a particu
 > We don't try to do too much at once
 
 - It's better to have one thing that can be used than many that can't
+
+### Be reasonable
+
+> We understand that standards represent a snapshot of our best understanding at a point in time and we
+explicitly articulate this in all of our standards
+
+- This allows us to make sensible, value-based judgements about when it is appropriate to retro-fit standards
+- It ensures clarity by mandating that all standards must define the period of time that they are effective
+- It encourages the adoption of the standards by allowing people to reference the version of the standard that is
+effective at the time without needing to consider any and all possible future changes to that standard
+
+### Be helpful
+
+> We include the use of appropriate tools and techniques when we design our standards
+
+- Automation makes it easier for people to adopt the standards
+- This makes the standards more likely to be adopted and the benefits more likely to be realised
