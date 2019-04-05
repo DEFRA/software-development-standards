@@ -25,11 +25,15 @@ Create a branch with a brief but descriptive name e.g. `add-more-details-for-con
 
 Start committing your changes and **push** straight away rather than when finished. We don't want your work to get lost!
 
-When you are ready for feedback create the pull request and announce your PR in our [slack channel](https://defra-digital.slack.com/messages/development/) in **Slack**.
+When you are ready for feedback create the pull request. Take the time to give it a meaningful title and detailed description as this will help those reviewing it understand what you've done.
 
-Also assign yourself to the PR so folks know who created it, and request a review from [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
+> Pro tip! If you create the PR straight after your first commit, GitHub will automatically populate the title and description for the new PR from the commit message.
 
-Consider also assigning a label to the PR. These can help potential reviewers quickly see the nature of the it.
+Also assign yourself to the PR so folks know who created it and consider adding a label to the PR. These can help potential reviewers quickly see the nature of the it.
+
+When you are ready request a review from [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
+
+Finally announce your PR in our [slack channel](https://defra-digital.slack.com/messages/development/) in **Slack** to make sure no one can say they didn't know about it 😀.
 
 ## Getting feedback
 
