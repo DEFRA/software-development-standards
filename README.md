@@ -4,6 +4,7 @@ This is the temporary home for standards and guidance relating to software devel
 
 ## Contents
 
+- [Guides](/guides)
 - [Standards](/standards)
 
 ## About
