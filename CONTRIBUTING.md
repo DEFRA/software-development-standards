@@ -41,6 +41,12 @@ Feedback will be provided within the PR. Decisions will be documented and reason
 
 We want to encourage all to contribute and suggest ways we can improve. Anyone providing feedback should be positive and professional with any comments made about your contribution, but let us know if you feel we failed.
 
+## Approval
+
+Those that review your contribution when happy with it will leave a commit indicating so e.g. 👍, 🚢, LGTM.
+
+It will formally be approved however by the Head of Standards, or in their absence one of the Principal Developers. This will be done [via the GitHub UI](https://help.github.com/en/articles/approving-a-pull-request-with-required-reviews).
+
 ## Finishing up
 
 When your contribution has been accepted, you can go ahead and merge it using the GitHub UI for the pull request. If you have multiple commits on your branch it will squash them, and ask you to confirm what the final single commit message should be.
