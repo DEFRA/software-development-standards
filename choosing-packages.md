@@ -49,3 +49,5 @@ Is there a thorough README or a Wiki? It should be clear how you can install and
 ## Is the package compatible with our licence?
 
 Our open source applications should use the [Open Government Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). So any packages they include should be compatible with this licence.
+
+The National Archives has more [guidance about open software licences](http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/open-software-licences/).
