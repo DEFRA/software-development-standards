@@ -23,9 +23,13 @@ If in doubt speak to [Alan Cruikshanks](https://github.com/cruikshanks) or [Ben 
 
 Create a branch with a brief but descriptive name e.g. `add-more-details-for-contributors`.
 
-Start committing your changes and **push** straight away rather than when finished.
+Start committing your changes and **push** straight away rather than when finished. We don't want your work to get lost!
 
 When you are ready for feedback create the pull request and announce your PR in our [slack channel](https://defra-digital.slack.com/messages/development/) in **Slack**.
+
+Also assign yourself to the PR so folks know who created it, and request a review from [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
+
+Consider also assigning a label to the PR. These can help potential reviewers quickly see the nature of the it.
 
 ## Getting feedback
 
