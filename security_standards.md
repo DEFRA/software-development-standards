@@ -61,7 +61,7 @@ For more detailed information on the above principals see here:
 
 Coding security standards are defined in this document:
 
-- [OWASP Secure Coding Practices](/owasp_secure_coding_practices)
+- [OWASP Secure Coding Practices](/owasp_secure_coding_practices.md)
 
 It is taken from the OWASP here:
 
