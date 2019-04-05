@@ -1,46 +1,48 @@
 # Selecting packages and dependencies
 
-We use a lot of packages and dependencies in our services. If you have a problem to solve or a feature to implement, it can often be easier to use an established package than to hand-crank your own solution - provided that package meets certain criteria.
+We use a lot of packages and dependencies in our services. Using an established package can be a great way to fix a problem or add a feature. It can be quicker and easier than writing the code from scratch. And it can make your application more consistent with other Defra services and industry standards.
 
-When you are picking a package or a dependency to include in your project, there are a number of things to consider:
+When you are picking a package or a dependency to include in your project, there are some things to consider:
 
 ## What have other Defra services used?
 
 Is there an agreed-upon standard package for this purpose? If there is, use it.
 
-For example, Hapi is our Node.js framework of choice. So if you're starting a new Node project and need a web framework, you should use Hapi over alternatives like Express.
+For example, Hapi is our Node.js framework of choice. So if you're starting a new Node project and need a web framework, use Hapi over alternatives like Express.
 
-Even if there's no official standard, you should still consider what similar services have used in the past. Using the same packages across services makes our codebases more consistent and easier to maintain. You may also find it quicker to put the package into use because you can reuse code from our other services, or talk to developers who already know how to use it.
+If there's no official standard, you should still consider what similar services use. Codebases can be more consistent and easier to maintain if they use the same packages.
+
+It can also be quicker to introduce an already-used package to your project. You can reuse code from our other services, or learn from developers who have worked with it.
 
 ## What are the most popular solutions?
 
-If you're looking for a package which performs a common function (like logging or user authentication), there will probably be a lot of packages that could meet your needs.
+If you're looking for a package for a common function (like logging or user authentication), there may be many potential candidates.
 
-When in doubt, go for the most commonly used package, especially if it's so popular as to become the industry standard.
+When in doubt, go for the most used package, especially if it's become the industry standard.
 
 You can compare how popular packages are by looking at the number of downloads they have on package manager sites (like [NPM](https://www.npmjs.com/) or [RubyGems](https://rubygems.org/)). You can also check how many times the repository has been watched or starred on GitHub.
 
 A well-established package will usually have a lot more guidance and support. There will be more blog posts, more questions on Stack Overflow, and other projects you can refer to.
 
-If a package is an industry standard, it will also make it easier to introduce new developers to your service, as it's more likely they'll be familiar with it.
+It also makes it easier to introduce new developers to your service, as it's more likely they'll be familiar with an industry standard.
 
-This isn't a hard rule - if the most popular package doesn't meet your needs, or has clear issues with security or maintainability, then it's OK to go for an alternative. But if you're choosing between one package with a thousand downloads and another with a million downloads, you should probably go for the second one.
+This isn't a hard rule. If the most popular package doesn't meet your needs, or has clear issues with security or maintainability, then it's OK to go for an alternative. But if you're choosing between one package with a thousand downloads and another with a million downloads, you should go for the second one.
 
 ## Is the package maintained?
 
 Check the package history. How often is it updated? Who is updating it?
 
-Poorly maintained packages are more likely to have security problems, or may not be upgraded to work with newer versions of your language, framework and other dependencies.
+Poorly maintained packages are more likely to have security problems. They may not be upgraded to work with newer versions of your language, framework and other dependencies.
 
-A package with a single maintainer is also a much riskier choice than one which is managed by a team.
+A package with a single maintainer is also a much riskier choice than one managed by a team.
 
-If the package has a GitHub issues section, or a forum, have a look to see if the maintainers are responding to problems. If reported issues never get fixed, or even responded to, then it's probably time to consider alternatives.
+If the package has a GitHub issues section, or a forum, check if the maintainers respond to problems. If reported issues never get fixed, then it's time to consider alternatives.
 
 ## Is the package secure?
 
-Check the package history. Is there evidence that the maintainers have applied security fixes, or regularly updated their dependencies?
+Check the package history. Is there evidence that the maintainers have applied security fixes? Do they regularly update their dependencies?
 
-Many GitHub repositories will have badges in their READMEs showing any security CI tools. Check to see if there are any warnings or known security issues.
+Many GitHub repositories will have READMEs with badges for their security CI tools. Check to see if there are any warnings or known security issues.
 
 ## Is the package documented?
 
