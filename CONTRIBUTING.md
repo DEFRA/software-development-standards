@@ -43,7 +43,7 @@ We want to encourage all to contribute and suggest ways we can improve. Anyone p
 
 ## Approval
 
-Those that review your contribution when happy with it will leave a commit indicating so e.g. 👍, 🚢, LGTM.
+Those that review your contribution when happy with it will leave a comment indicating so e.g. 👍, 🚢, LGTM.
 
 It will formally be approved however by the Head of Standards, or in their absence one of the Principal Developers. This will be done [via the GitHub UI](https://help.github.com/en/articles/approving-a-pull-request-with-required-reviews).
 
