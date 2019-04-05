@@ -4,7 +4,7 @@ This is the temporary home for standards and guidance relating to software devel
 
 ## Contents
 
-TBC!
+- [Standards](/standards)
 
 ## About
 
