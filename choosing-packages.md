@@ -18,6 +18,8 @@ If you're looking for a package which performs a common function (like logging o
 
 When in doubt, go for the most commonly used package, especially if it's so popular as to become the industry standard.
 
+You can compare how popular packages are by looking at the number of downloads they have on package manager sites (like [NPM](https://www.npmjs.com/) or [RubyGems](https://rubygems.org/)). You can also check how many times the repository has been watched or starred on GitHub.
+
 A well-established package will usually have a lot more guidance and support. There will be more blog posts, more questions on Stack Overflow, and other projects you can refer to.
 
 If a package is an industry standard, it will also make it easier to introduce new developers to your service, as it's more likely they'll be familiar with it.
