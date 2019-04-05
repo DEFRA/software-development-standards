@@ -49,6 +49,8 @@ It will formally be approved however by the Head of Standards, or in their absen
 
 ## Finishing up
 
-When your contribution has been accepted, you can go ahead and merge it using the GitHub UI for the pull request. If you have multiple commits on your branch it will squash them, and ask you to confirm what the final single commit message should be.
+When your contribution has been approved, you can go ahead and merge it using the GitHub UI for the pull request.
+
+> **IMPORTANT** If you have multiple commits on your branch it will squash them, and ask you to confirm what the final single commit message should be. Rewrite the message so it reflects the final change you've made (feedback may have changed your original intent) and why.
 
 With that done sit back, have a 🍹, and ponder your next contribution!
