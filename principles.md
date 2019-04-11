@@ -53,8 +53,11 @@ explicitly articulate this in all of our standards
 
 - This allows us to make sensible, value-based judgements about when it is appropriate to retro-fit standards
 - It ensures clarity by mandating that all standards must define the period of time that they are effective
-- It encourages the adoption of the standards by allowing people to reference the version of the standard that is
-effective at the time without needing to consider any and all possible future changes to that standard
+and how they have changed over time
+- It encourages uptake by allowing people to safely adopt the standards that are effective at the time without
+being committed to any and all possible future changes to those standards
+- It helps people clearly describe and manage their divergence from standards over time and the work required
+for convergence
 
 ### Be helpful
 
