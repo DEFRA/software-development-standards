@@ -9,9 +9,9 @@ version control practice.
 
 ### Teams
 
-When managing access to version control repositories, it is good practice to create permission groups that
-represent wider teams grouped around an entire product or service rather than individual repositories or groups
-consisting of 'everyone'.
+Avoid putting everything related to your project in a single repository.
+Put each component (application, package, library, etc) into its own repository, and use teams to manage
+access to them.
 
-This prevents individual repositories being used for multiple, distinct components that should each have their own
-version management, whilst also ensuring that access to the repositories is appropriately controlled.
+This makes it easy to apply version control to each component individually, whilst also ensuring that access
+to the repositories is simple to control.
