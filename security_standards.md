@@ -59,11 +59,8 @@ For more detailed information on the above principals see here:
 
 ## Standards
 
-Coding security standards are defined in this document:
+Coding security standards can be found and are maintained at the below link from the OWASP:
 
-- [OWASP Secure Coding Practices](/owasp_secure_coding_practices.md)
-
-It is taken from the OWASP here:
 
 [https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_-_Quick_Reference_Guide](https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_-_Quick_Reference_Guide)
 
