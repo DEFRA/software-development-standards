@@ -77,16 +77,15 @@ Example: The Customers table has an ID column. The Orders table should have a Cu
 - Return multiple result sets from one stored procedure to avoid trips from the application server to SQL server
 - Avoid unnecessary use of temporary tables
 	- Use 'Derived tables' or CTE (Common Table Expressions) wherever possible, as they perform better<sup>6</sup>
-- Avoid using `<>` as a comparison operator
-	- Use `ID IN(1,3,4,5)` instead of `ID <> 2`
+- Avoid using `<>` as a comparison operator where possible
+	- Consider using `ID IN(1,3,4,5)` instead of `ID <> 2`
 - Use `SET NOCOUNT ON` at the beginning of stored procedures<sup>7</sup>
 - Do not use cursors or application loops to do inserts<sup>8</sup>
 	- Instead, use `INSERT INTO`
 - Fully qualify tables and column names in JOINs
 - Fully qualify all stored procedure and table references in stored procedures.
-- Do not define default values for parameters.
-	- If a default is needed, the front end will supply the value.
-- Do not use the `RECOMPILE` option for stored procedures.
+- Consider not defining default values for parameters.
+	- If a default is needed, the front end should supply the value where possible.
 - Place all `DECLARE` statements before any other code in the procedure.
 - Do not use column numbers in the `ORDER BY` clause.
 - Do not use `GOTO`.
@@ -113,7 +112,7 @@ Example: The Customers table has an ID column. The Orders table should have a Cu
 - When a result set is not needed, use syntax that does not return a result set.<sup>13</sup>
 - Avoid rules, database level defaults that must be bound or user-defined data types. While these are legitimate database constructs, opt for constraints and column defaults to hold the database consistent for development and conversion coding.
 - Constraints that apply to more than one column must be defined at the table level.
-- Use the `CHAR` data type for a column only when the column is non-nullable.<sup>14</sup>
+- Where the `CHAR` data type is appropriate for a column. Only use it when the column is non-nullable.<sup>14</sup>
 - Do not use white space in identifiers.
 - The `RETURN` statement is meant for returning the execution status only, but not data.
 
@@ -139,7 +138,7 @@ Products_Mexico
 5) Use the graphical execution plan in Query Analyzer or `SHOWPLAN_TEXT` or `SHOWPLAN_ALL` commands to analyze your queries. Make sure your queries do an "Index seek" instead of an "Index scan" or a "Table scan." A table scan or an index scan is a highly undesirable and should be avoided where possible.
 
 6) Consider the following query to find the second highest offer price from the Items table:  
-`SELECT MAX(Price)`  
+`SELECT MIN(Price)`  
 `FROM Products`  
 `WHERE ID IN`  
 `(`  
@@ -148,7 +147,7 @@ Products_Mexico
 `ORDER BY Price Desc`  
 `)`  
 The same query can be re-written using a derived table, as shown below, and it performs generally twice as fast as the above query:  
-`SELECT MAX(Price)`  
+`SELECT MIN(Price)`  
 `FROM`  
 `(`  
 `SELECT TOP 2 Price`  
