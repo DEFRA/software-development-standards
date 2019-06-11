@@ -5,16 +5,18 @@ This is the temporary home for standards and guidance relating to software devel
 ## Contents
 
 - [Guides](/guides)
-- [Principles](principles.md)
+- [Principles](/principles)
+  - [Coding principles](/principles/coding_principles.md)
 - [Processes](/processes)
 - [Standards](/standards)
+  - [Common coding standards](/standards/common_coding_standards.md)
   - [Ruby coding standards](/standards/ruby-coding-standards.md)
 
 ## About
 
 These standards are part of our efforts to keep our work consistent and of a high quality across the services and projects we build and maintain.
 
-They are based on an agreed [set of principles](principles.md).
+They are based on an agreed [set of principles](/principles/README.md).
 
 It has been produced as a series of markdown files to make the process of adding and maintaining the documentation as simple as possible. Nothing is fixed and anything documented here is open to change.
 
@@ -30,7 +32,7 @@ We encourage everyone to contribute to these standards!
 
 We only ask that contributions are made using pull requests, where they can then be discussed and approved by the [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
 
-Please ensure you have read our [principles](principles.md) first, and then [contribution guidelines](/CONTRIBUTING.md) for details on how to get started.
+Please ensure you have read our [principles](/principles/README.md) first, and then [contribution guidelines](/CONTRIBUTING.md) for details on how to get started.
 
 ## License
 
