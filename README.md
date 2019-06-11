@@ -22,7 +22,11 @@ It is heavily inspired by the work of [ThoughtBot](https://github.com/thoughtbot
 
 ## Contributing to this project
 
-Please read the [contribution guidelines](/CONTRIBUTING.md) before submitting a pull request.
+We encourage everyone to contribute to these standards!
+
+We only ask that contributions are made using pull requests, where they can then be discussed and approved by the [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
+
+Please read the [contribution guidelines](/CONTRIBUTING.md) first for more details.
 
 ## License
 
