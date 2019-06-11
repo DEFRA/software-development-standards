@@ -5,7 +5,7 @@ When working with Git most teams use one of two different workflows depending on
 - [Feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) (also known as [GitHub flow](https://guides.github.com/introduction/flow/))
 - [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-Though FBW is the simpler of the two, it should be used by teams that are confident whenever they change the **master** branch it still remains ready for production ([Master is always shippable](https://github.com/DEFRA/dst-guides/blob/master/principles/master_is_always_shippable.md)).
+Though FBW is the simpler of the two, it should be used by teams that are confident whenever they change the **master** branch it still remains ready for production ([Master is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/principles/coding_principles.md#master-is-always-shippable)).
 
 Gitflow is useful for teams that like the space to combine multiple features, or are working on a large feature, before then shipping to production.
 
@@ -31,11 +31,11 @@ In all cases when the branch is created it should be pushed up to the **origin**
 
 Using this workflow it means our branches have specific uses
 
-- **Master** is the version of code that is in production (see the principle [Master is always shippable](https://github.com/DEFRA/dst-guides/blob/master/principles/master_is_always_shippable.md))
+- **Master** is the version of code that is in production (see the principle [Master is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/principles/coding_principles.md#master-is-always-shippable))
 
 - We create a **Hotfix** branch when we need to make a change to production code because of a critical error. When finished we merge the change back into Master, but also Develop
 
-- **Develop** is the main branch the developers work from. It represents the current version of the code, including new features we’ve completed but not yet released
+- **Develop** is the main branch the developers work from. It represents the current version of the code, including new features we’ve completed but not yet released. You should make this the [default branch](https://help.github.com/en/articles/setting-the-default-branch) in GitHub
 
 - A **Feature** branch is started each time we want to add to, update or fix something in the code. We branch off Develop when creating the feature, and once complete merge it back into Develop
 
