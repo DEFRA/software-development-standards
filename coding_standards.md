@@ -12,7 +12,7 @@ Mostly these follow common [programming principles](https://en.wikipedia.org/wik
 
 ### All code is open
 
-Whilst we acknowledge that there are cases where it may be necessary for code to not be open, this standard ensure that those cases are amanged as exceptions.
+Whilst we acknowledge that there are cases where it may be necessary for code to not be open, this standard ensures that those cases are managed as exceptions.
 
 ### All coding is done on a branch
 
