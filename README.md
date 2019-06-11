@@ -9,6 +9,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Coding principles](/principles/coding_principles.md)
 - [Processes](/processes)
 - [Standards](/standards)
+  - [Common coding standards](/standards/common_coding_standards.md)
   - [Ruby coding standards](/standards/ruby-coding-standards.md)
 
 ## About

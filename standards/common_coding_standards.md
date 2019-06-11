@@ -1,4 +1,4 @@
-# Coding standards
+# Common coding standards
 
 These are common standards that apply to coding.
 
@@ -17,6 +17,7 @@ Whilst we acknowledge that there are cases where it may be necessary for code to
 ### All coding is done on a branch
 
 No code changes are made directly to the master branch.
+
 This reflects the 'golden' state of the branch and mirrors the general standard that changes are never made directly to production services.
 
 ### All code is checked for correct coding style
@@ -25,7 +26,7 @@ Language-dependent
 
 ### All branches have CI
 
-Covering code style, security checking, dependency checking, build and unit test
+Covering code style, security checking, dependency checking, build and unit tests.
 
 ### Unit test coverage is at least 90%
 
@@ -49,7 +50,7 @@ Avoid basic errors such as
 
 Other than that when considering the name for a method, class, module etc try not to approach it from what makes sense to you, but instead what best describes the intent of the thing, and what will help the person who comes after you.
 
-Stick to the conventions and naming standards of the language or framework you are using
+Stick to the conventions and naming standards of the language or framework you are using.
 
 Aim to write readable code that does not require comments.
 
