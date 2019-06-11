@@ -1,4 +1,4 @@
-# Pull request
+# Pull requests
 
 The following outlines how to make changes to a repo. The goals are
 
@@ -11,7 +11,7 @@ We also want to respect the time and effort of those reviewing the work. Keeping
 
 ## Always on a branch
 
-No matter how small the change, all changes should be done on a branch and never directly to `master`. This is to support the principle of [Master is always shippable](https://github.com/DEFRA/dst-guides/blob/master/principles/master_is_always_shippable.md)
+No matter how small the change, all changes should be done on a branch and never directly to `master`. This is to support the principle of [Master is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/principles/coding_principles.md#master-is-always-shippable)
 
 Clone the repo then create your new branch. For example `git checkout -b add-ea-admin-area-lookup`.
 

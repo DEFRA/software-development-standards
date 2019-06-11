@@ -10,6 +10,7 @@ This is the temporary home for standards and guidance relating to software devel
 - [Principles](/principles)
   - [Coding principles](/principles/coding_principles.md)
 - [Processes](/processes)
+  - [Pull requests](/processes/pull_requests.md)
 - [Standards](/standards)
   - [Common coding standards](/standards/common_coding_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
