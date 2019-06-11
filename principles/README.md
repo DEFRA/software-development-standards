@@ -1,6 +1,10 @@
 # Principles for software development standards
 
-These are general principles that underpin the software development guidance and standards.
+This folder contains details on principles related to specific areas, and below general principles that underpin all our guidance and standards.
+
+## Contents
+
+- [Coding principles](coding_principles.md)
 
 ## Background
 
