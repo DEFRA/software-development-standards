@@ -5,7 +5,8 @@ This is the temporary home for standards and guidance relating to software devel
 ## Contents
 
 - [Guides](/guides)
-  - [Version control guidance](/principles/version_control_guidance.md)
+  - [Choosing packages](/guides/choosing_packages.md)
+  - [Version control guidance](/guides/version_control_guidance.md)
 - [Principles](/principles)
   - [Coding principles](/principles/coding_principles.md)
 - [Processes](/processes)
