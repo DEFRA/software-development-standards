@@ -33,7 +33,7 @@ Also assign yourself to the PR so folks know who created it and consider adding 
 
 When you are ready request a review from [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
 
-Finally announce your PR in our [slack channel](https://defra-digital.slack.com/messages/development/) in **Slack** to make sure no one can say they didn't know about it 😀.
+Finally announce your PR in our [slack channel](https://defra-digital.slack.com/messages/development-standards/) in **Slack** to make sure no one can say they didn't know about it 😀.
 
 ## Getting feedback
 
