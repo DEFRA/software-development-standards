@@ -2,8 +2,7 @@
 
 These standards define how version control is applied to our code.
 
-Wherever possible these standards follow built-in versioning facilities for the languages,
-tools or frameworks we are using.
+Wherever possible these standards follow built-in versioning facilities for the languages, tools or frameworks we are using.
 
 ## Rationale
 
@@ -24,15 +23,11 @@ This ensures that no change can be directly applied to production without approp
 
 ### All releases are tagged in the version control system before deployment
 
-This enables easy identification of the specific commits that form a release and a simple way for developers
-to checkout the code for a specific release for fault analysis purposes.
+This enables easy identification of the specific commits that form a release and a simple way for developers to checkout the code for a specific release for fault analysis purposes.
 
 ### All releases have their version number included in the source code
 
-Language dependent. (Include here or in the individual standards for each language?)
-
-All releases must include a commit that updates the version number text in the source code.
-This ensures that the correct version can be identified in any published code.
+All releases must include a commit that updates the version number (language dependent) in the source code. This ensures that the correct version can be identified in any published code.
 
 ### Releases use semantic versioning
 
