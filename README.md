@@ -7,6 +7,7 @@ This is the temporary home for standards and guidance relating to software devel
 - [Guides](/guides)
 - [Processes](/processes)
 - [Standards](/standards)
+  - [Ruby coding standards](/standards/ruby-coding-standards.md)
 
 ## About
 
