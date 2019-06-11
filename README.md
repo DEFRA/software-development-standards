@@ -12,6 +12,7 @@ This is the temporary home for standards and guidance relating to software devel
 - [Processes](/processes)
 - [Standards](/standards)
   - [Common coding standards](/standards/common_coding_standards.md)
+  - [C# coding standards](/standards/csharp_coding_standards.md)
   - [Ruby coding standards](/standards/ruby_coding_standards.md)
   - [Version control standards](/standards/version_control_standards.md)
 
