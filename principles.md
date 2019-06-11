@@ -48,16 +48,12 @@ There are a number of factors that can influence the decision to adopt a particu
 
 ### Be reasonable
 
-> We understand that standards represent a snapshot of our best understanding at a point in time and we
-explicitly articulate this in all of our standards
+> We understand that standards represent a snapshot of our best understanding at a point in time and we explicitly articulate this in all of our standards
 
 - This allows us to make sensible, value-based judgements about when it is appropriate to retro-fit standards
-- It ensures clarity by mandating that all standards must define the period of time that they are effective
-and how they have changed over time
-- It encourages uptake by allowing people to safely adopt the standards that are effective at the time without
-being committed to any and all possible future changes to those standards
-- It helps people clearly describe and manage their divergence from standards over time and the work required
-for convergence
+- It ensures clarity by mandating that all standards must define the period of time that they are effective and how they have changed over time
+- It encourages uptake by allowing people to safely adopt the standards that are effective at the time without being committed to any and all possible future changes to those standards
+- It helps people clearly describe and manage their divergence from standards over time and the work required for convergence
 
 ### Be helpful
 
