@@ -1,4 +1,4 @@
-# Selecting packages and dependencies
+# Choosing packages and dependencies
 
 We use a lot of packages and dependencies in our services. Using an established package can be a great way to fix a problem or add a feature. It can be quicker and easier than writing the code from scratch. And it can make your application more consistent with other Defra services and industry standards.
 
