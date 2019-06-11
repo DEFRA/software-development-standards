@@ -5,6 +5,11 @@ These are common standards that apply to coding when using C# and are designed t
 
  - Ensure consistent C# code and styling across all projects
 
+### Resource
+
+Microsoft's standard conventions: -
+
+- https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions
 
 ### Naming Conventions
 
