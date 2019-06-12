@@ -12,7 +12,7 @@ This guidance will help you understand the security implications of modern code 
 
 ## Standards
 
-Coding security standards can be found and are maintained at the below link from the OWASP - we are using version 2:
+Coding security standards can be found and are maintained at the below link from the OWASP - We are using version 2:
 
 
 [https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_-_Quick_Reference_Guide](https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_-_Quick_Reference_Guide)
