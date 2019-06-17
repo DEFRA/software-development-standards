@@ -1,44 +1,44 @@
-# TSQL and SQL Server database standards
+# SQL Server Database Coding Standards and Guidelines
 
 ## Naming
 
-**Tables:**
-Rules: Pascal notation; end with an ‘s’
+**Tables:**  
+Rules: Pascal notation; end with an ‘s’  
 Examples: Products, Customers. Group related table names<sup>1</sup>
 
-**Stored Procs:**
-Rules: sp\<App Name>\_[\<Group Name >_]\<Action><table/logical instance>
+**Stored Procs:**  
+Rules: sp\<App Name>\_[\<Group Name >_]\<Action><table/logical instance>  
 Examples: spOrders_GetNewOrders, spProducts_UpdateProduct
 
-**Triggers:**
-Rules: TR_\<TableName>_\<action>
-Examples: TR_Orders_UpdateProducts
+**Triggers:**  
+Rules: TR_\<TableName>_\<action>  
+Examples: TR_Orders_UpdateProducts  
 Notes: The use of triggers is discouraged
 
-**Indexes:**
-Rules: IX_\<TableName>_\<columns separated by _>
+**Indexes:**  
+Rules: IX_\<TableName>_\<columns separated by _>  
 Examples: IX_Products_ProductID
 
-**Primary Keys:**
-Rules: PK_\<TableName>
+**Primary Keys:**  
+Rules: PK_\<TableName>  
 Examples: PK_Products
 
-**Foreign Keys:**
-Rules: FK_\<TableName1>_\<TableName2>
+**Foreign Keys:**  
+Rules: FK_\<TableName1>_\<TableName2>  
 Example: FK_Products_Orderss
 
-**Defaults:**
-Rules: DF_\<TableName>_\<ColumnName>
+**Defaults:**  
+Rules: DF_\<TableName>_\<ColumnName>  
 Example: DF_Products_Quantity
 
-**Columns:**
-If a column references another table’s column, name it \<table name>ID
+**Columns:**  
+If a column references another table’s column, name it \<table name>ID  
 Example: The Customers table has an ID column. The Orders table should have a CustomerID column
 
-**General Rules:**
-- Do not use spaces in the name of database objects
-- Do not use SQL keywords as the name of database objects. In cases where this is necessary, surround the object name with brackets, such as [Year]
-- Do not prefix stored procedures with ‘sp_’<sup>2</sup>
+**General Rules:**  
+- Do not use spaces in the name of database objects  
+- Do not use SQL keywords as the name of database objects. In cases where this is necessary, surround the object name with brackets, such as [Year]  
+- Do not prefix stored procedures with ‘sp_’<sup>2</sup>  
 - Prefix table names with the owner name<sup>3</sup>
 
 ## Structure
@@ -59,7 +59,7 @@ Example: The Customers table has an ID column. The Orders table should have a Cu
 	- Use single-line comment markers(`--`)
 	- Reserve multi-line comments (`/*.. ..*/`) for blocking out sections of code
 - Use single quote characters to delimit strings.
-	- Nest single quotes to express a single quote or apostrophe within a string
+	- Nest single quotes to express a single quote or apostrophe within a string 
 		- For example, `SET @sExample = 'SQL''s Authority'`
 - Use parentheses to increase readability
 	- `WHERE (color=’red’ AND (size = 1 OR size = 2))`
@@ -117,42 +117,42 @@ Example: The Customers table has an ID column. The Orders table should have a Cu
 - The `RETURN` statement is meant for returning the execution status only, but not data.
 
 ## Reference:
-1) Group related table names:
-Products_UK
-Products_India
+1) Group related table names:  
+Products_UK  
+Products_India  
 Products_Mexico
 
 2) The prefix sp_ is reserved for system stored procedures that ship with SQL Server. Whenever SQL Server encounters a procedure name starting with sp_, it first tries to locate the procedure in the master database, then it looks for any qualifiers (database, owner) provided, then it tries dbo as the owner. Time spent locating the stored procedure can be saved by avoiding the "sp_" prefix.
 
 3) This improves readability and avoids unnecessary confusion. Microsoft SQL Server Books Online states that qualifying table names with owner names helps in execution plan reuse, further boosting performance.
 
-4) **False code:**
-`SELECT *`
-`FROM Table1, Table2`
-`WHERE Table1.d = Table2.c`
-**True code:**
-`SELECT *`
-`FROM Table1`
+4) **False code:**  
+`SELECT *`  
+`FROM Table1, Table2`  
+`WHERE Table1.d = Table2.c`  
+**True code:**  
+`SELECT *`  
+`FROM Table1`  
 `INNER JOIN Table2 ON Table1.d = Table2.c`
 
 5) Use the graphical execution plan in Query Analyzer or `SHOWPLAN_TEXT` or `SHOWPLAN_ALL` commands to analyze your queries. Make sure your queries do an "Index seek" instead of an "Index scan" or a "Table scan." A table scan or an index scan is a highly undesirable and should be avoided where possible.
 
-6) Consider the following query to find the second highest offer price from the Items table:
-`SELECT MIN(Price)`
-`FROM Products`
-`WHERE ID IN`
-`(`
-`SELECT TOP 2 ID`
-`FROM Products`
-`ORDER BY Price Desc`
-`)`
-The same query can be re-written using a derived table, as shown below, and it performs generally twice as fast as the above query:
-`SELECT MIN(Price)`
-`FROM`
-`(`
-`SELECT TOP 2 Price`
-`FROM Products`
-`ORDER BY Price DESC`
+6) Consider the following query to find the second highest offer price from the Items table:  
+`SELECT MIN(Price)`  
+`FROM Products`  
+`WHERE ID IN`  
+`(`  
+`SELECT TOP 2 ID`  
+`FROM Products`  
+`ORDER BY Price Desc`  
+`)`  
+The same query can be re-written using a derived table, as shown below, and it performs generally twice as fast as the above query:  
+`SELECT MIN(Price)`  
+`FROM`  
+`(`  
+`SELECT TOP 2 Price`  
+`FROM Products`  
+`ORDER BY Price DESC`  
 `)`
 
 7) This suppresses messages like '**(1 row(s) affected)**' after executing `INSERT`, `UPDATE`, `DELETE` and `SELECT` statements. Performance is improved due to the reduction of network traffic.
@@ -171,8 +171,8 @@ The same query can be re-written using a derived table, as shown below, and it p
 
 12) You might need the length of a string variable in many places of your procedure, but don't call the `LEN` function whenever it's needed. Instead, call the `LEN` function once and store the result in a variable for later use.
 
-13) `IF EXISTS (SELECT 1 FROM Products WHERE ID = 50)`
-**Instead Of:**
+13) `IF EXISTS (SELECT 1 FROM Products WHERE ID = 50)`  
+**Instead Of:**  
 `IF EXISTS (SELECT COUNT(ID) FROM Products WHERE ID = 50)`
 
 14) `CHAR(100)`, when `NULL`, will consume 100 bytes, resulting in space wastage. Preferably, use `VARCHAR(100)` in this situation. Variable-length columns have very little processing overhead compared with fixed-length columns.
