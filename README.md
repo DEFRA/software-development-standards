@@ -18,8 +18,8 @@ This is the temporary home for standards and guidance relating to software devel
   - [Common coding standards](/standards/common_coding_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
   - [Ruby coding standards](/standards/ruby_coding_standards.md)
-  - [TSQL and SQL Server database standards](/standards/tsql_coding_standards.md)
   - [Security standards](/standards/security_standards.md)
+  - [TSQL and SQL Server database standards](/standards/tsql_coding_standards.md)
   - [Version control standards](/standards/version_control_standards.md)
 
 ## About
