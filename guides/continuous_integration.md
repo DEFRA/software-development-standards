@@ -1,5 +1,7 @@
 # Continuous integration
 
+NOTE: This guidance only applies to repositories and projects which are public on GitHub and can therefore take advantage of several free integrations. We intend to expand upon this guide in the future to cover the rest of our ecosystem.
+
 > Continuous Integration (CI) is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early.
 >
 > [ThoughtWorks](https://www.thoughtworks.com/continuous-integration)
