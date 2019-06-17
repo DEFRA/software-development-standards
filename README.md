@@ -11,6 +11,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Version control guidance](/guides/version_control_guidance.md)
 - [Principles](/principles)
   - [Coding principles](/principles/coding_principles.md)
+  - [Security principles](/principles/security_principles.md)
 - [Processes](/processes)
   - [Pull requests](/processes/pull_requests.md)
 - [Standards](/standards)
@@ -18,6 +19,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [C# coding standards](/standards/csharp_coding_standards.md)
   - [Ruby coding standards](/standards/ruby_coding_standards.md)
   - [TSQL and SQL Server database standards](/standards/tsql_coding_standards.md)
+  - [Security standards](/standards/security_standards.md)
   - [Version control standards](/standards/version_control_standards.md)
 
 ## About
