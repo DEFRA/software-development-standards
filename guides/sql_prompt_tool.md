@@ -14,4 +14,4 @@ Follow these links for SQL Prompt's [Documentation](https://documentation.red-ga
 
 Myself and another developer have trialed SQL Prompt over 2 weeks and have found it very good at tidying up code and making it consistent. We also found that's it's other features made writing T-SQL quicker & easier. Although we were happy with it's settings straight out of the box these can be changed and shared easily.
 
-More trialing by other T-SQL developers would be useful before any decisions are made. 
+More trialing by other T-SQL developers would be useful before any decisions are made.
