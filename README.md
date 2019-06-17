@@ -7,6 +7,7 @@ This is the temporary home for standards and guidance relating to software devel
 - [Guides](/guides)
   - [Choosing packages](/guides/choosing_packages.md)
   - [Developer workflows](/guides/developer_workflows.md)
+  - [SQL Prompt](/guides/version_control_guidance.md)
   - [Version control guidance](/guides/version_control_guidance.md)
 - [Principles](/principles)
   - [Coding principles](/principles/coding_principles.md)
