@@ -37,38 +37,39 @@ these standards) is essential.
 ### Use Block and Label coding for loops and anonymous blocks within procedures.
 
 For example:
+```PLSQL
+ CREATE OR REPLACE PROCEDURE my\_proc
+ 
+ IS
+ 
+ BEGIN
+ 
+    <<Block1>>
+ 
+    DECLARE
+ 
+       ………….
+ 
+       <<yearly_analysis>
+ 
+       FOR y_count IN yearly_analysis LOOP
+ 
+          <<monthly_analysis>>
+ 
+          FOR m_count IN monthly_analysis LOOP
+ 
+             …………statements….
+ 
+          END LOOP monthly_analysis;
+ 
+          …………statements…………
+ 
+       END LOOP yearly_analysis;
+ 
+    END Block1
 
-> CREATE OR REPLACE PROCEDURE my\_proc
-> 
-> IS
-> 
-> BEGIN
-> 
-> \<\<Block1\>\>
-> 
-> DECLARE
-> 
-> ………….
-> 
-> \<\<yearly\_analysis\>
-> 
-> FOR y\_count IN yearly\_analysis LOOP
-> 
-> \<\<monthly\_analysis\>\>
-> 
-> FOR m\_count IN monthly\_analysis LOOP
-> 
-> …………statements….
-> 
-> END LOOP monthly\_analysis;
-> 
-> …………statements…………
-> 
-> END LOOP yearly\_analysis;
-> 
-> END Block1
-
-END my\_proc;
+ END my_proc;
+```
 
 ### Use a single EXIT point for loops.
 
@@ -88,34 +89,40 @@ This allows creation of aliases for existing data types that cannot be
 anchored to the database. These should be declared in a separate
 package, for example:
 
-CREATE OR REPLACE PACKAGE my\_vars
+```PLSQL
+ CREATE OR REPLACE PACKAGE my_vars
 
-IS
+ IS
 
-SUBTYPE counter IS INTEGER (10);\*\*
+    SUBTYPE counter IS INTEGER (10);**
 
 Then in the DECLARATION section of the code:
 
-DECLARE
+ DECLARE
 
-v\_counter my\_vars.counter;
+    v_counter my_vars.counter;
+```
 
-\*\* This is the only place in the code where a hard-coded value is
+** This is the only place in the code where a hard-coded value is
 used.
 
 ### Use CONSTANT declaration for variables that do not change, and declare these in a CONSTANTS package. For example:
 
-DECLARE OR REPLACE PACKAGE my\_constants
+```PLSQL
+ DECLARE OR REPLACE PACKAGE my_constants
 
-IS
+ IS
 
-C\_max\_hours\_per\_day CONSTANT NUMBER (2) := 24;
+    C_max_hours_per_day CONSTANT NUMBER (2) := 24;
+```
 
 Then in the declaration section of a procedure
 
-DECLARE
+```PLSQL
+ DECLARE
 
-V\_full\_day my\_constants.c\_max\_hoursper\_day;
+    V_full_day my_constants.c_max_hoursper_day;
+```
 
 ### Global variables should never be more than “package-wide”.
 
@@ -125,29 +132,31 @@ V\_full\_day my\_constants.c\_max\_hoursper\_day;
 
 For example:
 
-> CREATE OR REPLACE PROCEDURE my\_proc
-> 
-> IS
-> 
-> BEGIN
-> 
-> BEGIN
-> 
-> DECLARE
-> 
-> BEGIN
-> 
-> EXCEPTION
-> 
-> END;
-> 
-> EXCEPTION
-> 
-> END;
+```PLSQL
+ CREATE OR REPLACE PROCEDURE my_proc
+ 
+ IS
+ 
+ BEGIN
+ 
+    BEGIN
+ 
+       DECLARE
+ 
+       BEGIN
+ 
+       EXCEPTION
+ 
+       END;
+ 
+    EXCEPTION
+ 
+    END;
 
-EXCEPTION
+ EXCEPTION
 
-END my\_proc;
+ END my_proc;
+```
 
 ### When performing bulk data operations (usually as some form of “batch” job) all tables should have a corresponding error table and all bulk update/insert/delete/merge statements should be suffixed with a LOG ERRORS statement referencing the errors table to prevent simple data errors terminating program execution.
 
@@ -188,47 +197,49 @@ for Oracle Application Developers”)” for an example of how to do this.
 
 ### Layout examples:
 
-BEGIN
+```PLSQL
+ BEGIN
 
-a := 1;
+    a := 1;
 
-d := 1;
+    d := 1;
 
-b := 2;
+    b := 2;
 
-WHILE TRUE
+    WHILE TRUE
 
-LOOP
+    LOOP
 
-a := 1;
+       a := 1;
 
-b := 2;
+       b := 2;
 
-IF a \> b
+       IF a > b
 
-THEN
+       THEN
 
-c := d;
+          c := d;
 
-END IF;
+       END IF;
 
-END LOOP;
+    END LOOP;
 
-x := 1;
+    x := 1;
 
-c := d;
+    c := d;
 
-END;
+ END;
 
-CREATE PROCEDURE myproc
+ CREATE PROCEDURE myproc
 
-AS
+ AS
 
-BEGIN
+ BEGIN
 
-NULL;
+    NULL;
 
-END;
+ END;
+```
 
 ## Case and Lists
 
@@ -236,56 +247,60 @@ END;
 
 For example:
 
-SELECT aaa
+```PLSQL
+ SELECT aaa
 
-, bbb
+ , bbb
 
-, cccc
+ , cccc
 
-, SIN (x)
+ , SIN (x)
 
-FROM mytab;
+ FROM mytab;
+```
 
 ### Where you have lists, e.g. a list of column names or values, place each item on its own line, with commas, where needed, placed at the start of the line with a following space.
 
 This makes it far easier to make changes, such as inserting new items
 into the list, without losing track of the commas. For example:
 
-CREATE TABLE my\_table1
+```PLSQL
+ CREATE TABLE my\_table1
 
-(
+ (
 
-my\_num1 NUMBER
+ my\_num1 NUMBER
 
-, my\_num2 NUMBER
+ , my\_num2 NUMBER
 
-);
+ );
 
-INSERT INTO building\_blocks (aaaaaaaaaaaaaaaa
+ INSERT INTO building\_blocks (aaaaaaaaaaaaaaaa
 
-, bbbbbbbbbbbbbb
+ , bbbbbbbbbbbbbb
 
-, cccccccccccccccc
+ , cccccccccccccccc
 
-, ddddddddddddddddd
+ , ddddddddddddddddd
 
-, eeeeeeeeeeeee)
+ , eeeeeeeeeeeee)
 
-SELECT aaaaaaaaaaaaaaaa
+ SELECT aaaaaaaaaaaaaaaa
 
-, bbbbbbbbbbbbbbbbbbb
+ , bbbbbbbbbbbbbbbbbbb
 
-, cccccccccccccccccc
+ , cccccccccccccccccc
 
-, dddddddddddddddd
+ , dddddddddddddddd
 
-, eeeeeeeeeeeeeee
+ , eeeeeeeeeeeeeee
 
-, fffffffffffffffff
+ , fffffffffffffffff
 
-FROM mytab, histab, hertab
+ FROM mytab, histab, hertab
 
-WHERE histab.col1 = hertab.col2;
+ WHERE histab.col1 = hertab.col2;
+```
 
 # APPENDIX: An Example of Automatically Formatting PL/SQL Code Using TOAD (the “Tool for Oracle Application Developers”)
 
