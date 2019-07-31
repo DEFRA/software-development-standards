@@ -1,4 +1,4 @@
-# Containerisation
+# Deployment standards
 
 ## We use Docker containers for delivery of all bespoke software being deployed to AWS and Azure
 Where we develop bespoke software, we default to using a Docker container as the deployable item.
@@ -14,7 +14,7 @@ Therefore, we will seek to minimise or eliminate this duplication by _always_ pr
 
 Containerisation also allows us to better manage a diverse application estate as it somewhat mitigates the need for across the board standardisation and large, coordinated upgrade projects, allowing instead for more nuanced decision-making.
 
-## We use AWS Lambda and Azure Functions where it is justified
+## We deploy code rather than containers to AWS Lambda and Azure Functions where their use is formally justified
 There are cases where it will make sense to use a serverless platform rather than a containerised solution, but these _must_ be individually justified and recorded as formal architectural decisions.
 
 Additionally, justifications for using serverless platforms can _only_ be considered for Javascript or C# functions.
@@ -26,7 +26,7 @@ They also represent some vendor lock-in that, whilst minimal, is still not prefe
 ## We regularly review our use of serverless platforms
 In particular, we will ensure that:
 - Vendor lock-in doesn't increase
-- We identify opportunities to use "serverless containers"
+- We identify opportunities to rationalise these standards to use, effectively, "serverless containers"
 
 ### Rationale
 As serverless platforms are still relatively immature, we will need to ensure that our standards are still appropriate.
