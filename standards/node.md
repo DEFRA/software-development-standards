@@ -24,13 +24,3 @@
 * Our standard framework is currently [Hapi](https://hapijs.com/).
 * Our current standard version is Hapi 18.
 * At a minimum projects should be running Hapi 16.
-
-### Security
-* Use HTTPS.
-* Validate inputs on the server, [even when you are performing validation on the client](https://stackoverflow.com/questions/15855770/why-do-we-need-both-client-side-and-server-side-validation#15855799).
-* Understand your [cookie flags](https://techblog.topdesk.com/security/cookie-security/). Use secure cookie, use HTTP only when appropriate and consider the use of samesite.
-* Be careful when using Cookies for authentication. Consider switching to another method or implementing additional security features such as a XSRF token submitted via a header or hidden field. Be aware that it isn't just POST and PUT endpoints that may be vulnerable to XSRF.
-* For more guidance see the OWASP [cheat sheets](https://github.com/OWASP/CheatSheetSeries).
-* Avoid publishing sensitive API keys in your code. Use environment variable sourced from a separate private repo.
-* Use either a vulnerability scanner such as [GreenKeeper](https://greenkeeper.io/) or an update tool such as (dependabot)[https://dependabot.com/].
-

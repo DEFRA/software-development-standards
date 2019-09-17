@@ -7,12 +7,6 @@
 * Think about how you will collect information about errors on the client and consider the use of a tool such as [airbrake-js](https://github.com/airbrake/airbrake-js).
 
 ### Security
-
-* Use HTTPS.
 * Understand and mitigate the risks of XSS and XSI attacks on your service. See the OWASP [cheat sheets](https://github.com/OWASP/CheatSheetSeries) for an introduction to these issues.
 * Protect against XSS attacks by ensuring that you encode inputs to your service on both the client and server. You should also perform additional validation on incoming parameters where necessary. Depending on the library you are using you may need to JS encode and HTML encode to do this.
-*  Validate inputs on the server, [even when you are performing validation on the client](https://stackoverflow.com/questions/15855770/why-do-we-need-both-client-side-and-server-side-validation#15855799).
-* Understand your [cookie flags](https://techblog.topdesk.com/security/cookie-security/). Use secure cookie, use HTTP only when appropriate and consider the use of samesite.
-* Avoid exposing sensitive API keys in your code. Consider a token or pass through based approach.
-* Use either a vulnerability scanner such as [GreenKeeper](https://greenkeeper.io/) or an update tool such as (dependabot)[https://dependabot.com/].
-
+* Validate inputs on the [client and the server](https://stackoverflow.com/questions/15855770/why-do-we-need-both-client-side-and-server-side-validation#15855799).
