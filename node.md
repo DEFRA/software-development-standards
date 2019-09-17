@@ -1,15 +1,15 @@
-## Draft Node.js Guidelines
+## Draft Node.js Standards
 
 ### General
-* Use [Standard JS](https://standardjs.com/) to lint your code. A conistent approach to code layout, spacing and formatting to code makes it easier to switch between projects. By [adding it as a dev dependency](https://standardjs.com/index.html#install) it can be easily used in the terminal, [Webstorm](https://blog.jetbrains.com/webstorm/2017/04/using-javascript-standard-style/), and [Visual Studio](https://marketplace.visualstudio.com/items?itemName=chenxsan.vscode-standardjs).
-* Session state should not be stored on the node app server
+* Node.js code is JS code and should follow the [JS standards](javascript.md)
+* Session state should not be stored on the node app server. Don't tie a session to a particular node server instance. Usie a distributed cache or document storage database and not something like express-session. 
 * Avoid blocking the [main event loop and the worker pool](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/). In short "you shouldn't do too much work for any client in any single callback or task." and consider passing CPU intensive tasks off to another service.
 * Prefer await over callbacks and avoid nested callbacks. This is easily done in [Node 8 and above](https://nodejs.org/api/util.html#util_util_promisify_original).
 
 ### Versions
 
 * Be aware of the Node.js [support timeline](https://nodejs.org/en/about/releases).
-* Aim to keep on Active LTS (10.x at the time of writing).
+* Keep on Active LTS (10.x at the time of writing).
 * Don't drop behind Maintenance LTS (8.x at the time of writing).
 * Don't progress beyond Active LTS.
 
@@ -21,12 +21,9 @@
 * Update your version number inline with the [semantic versioning standard](https://semver.org/).
 
 ### Server framework
-* Our preferred framework is currently [Hapi](https://hapijs.com/).
-* As a minimum projects using Hapi should aim to be using Hapi 16 or higher.
-
-### HTTP
-* Make use of standard http operations e.g. post for create, get for read, put for update, delete for delete.
-* Make use of HTTP codes e.g. 1xx informational, 2xx success, 3xx redirection, 4xx client errors, 5xx server errors.
+* Our standard framework is currently [Hapi](https://hapijs.com/).
+* Our current standard version is Hapi 18.
+* At a minimum projects should be running Hapi 16.
 
 ### Security
 * Use HTTPS.
