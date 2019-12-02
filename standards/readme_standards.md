@@ -12,7 +12,7 @@ The README should include the following (if they apply):
 - **How to run in development** – how to locally run the application in development mode after setup
 - **How to run tests** – how to run the test suite, broken into different categories if relevant (unit, integration, acceptance)
 - **Contributing to the project** - what to know before you submit your first pull request (this could also be in the form of a `CONTRIBUTING.md` file)
-- **License information** – what license the repo uses (in addition to your `LICENSE.md` file)
+- **Licence information** – what licence the repo uses (in addition to your `LICENSE` file)
 
 The file should be in Markdown format (.md).
 
@@ -39,7 +39,7 @@ If this documentation is too lengthy or complex, it doesn't have to be in the RE
 ```
 # name-of-repo
 
-The "Register your dinosaur" service allows customers to apply online for a dinosaur license.
+The "Register your dinosaur" service allows customers to apply online for a dinosaur licence.
 
 This application handles the backend dinosaur processing.
 
@@ -59,7 +59,7 @@ This application handles the backend dinosaur processing.
 
 Please read the [contribution guidelines](/CONTRIBUTING.md) before submitting a pull request.
 
-## License
+## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
 
@@ -67,9 +67,9 @@ THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE
 
 The following attribution statement MUST be cited in your products and applications when using this information.
 
->Contains public sector information licensed under the Open Government license v3
+>Contains public sector information licensed under the Open Government licence v3
 
-### About the license
+### About the licence
 
 The Open Government Licence (OGL) was developed by the Controller of Her Majesty's Stationery Office (HMSO) to enable information providers in the public sector to license the use and re-use of their information under a common open licence.
 
