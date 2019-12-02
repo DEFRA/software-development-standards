@@ -13,6 +13,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Coding principles](/principles/coding_principles.md)
   - [Security principles](/principles/security_principles.md)
 - [Processes](/processes)
+  - [Credential exposure](/processes/credential_exposure.md)
   - [Pull requests](/processes/pull_requests.md)
 - [Standards](/standards)
   - [Common coding standards](/standards/common_coding_standards.md)
