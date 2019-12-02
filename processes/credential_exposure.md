@@ -34,7 +34,7 @@ You will then follow this with a `git push -f`.
 
 If it was the last commit on master, you can get away a `git commit --amend` and a `git push -f` if you have the rights.
 
-Else you will need to follow a much more involved strategy. GitHub provide a [guide](https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository). If you are unsure contact the development community or speak to our principle developers.
+Else you will need to follow a much more involved strategy. GitHub provide a [guide](https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository). If you are unsure contact the development community or speak to our principal developers.
 
 ## Remove caches
 
