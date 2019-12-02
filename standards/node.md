@@ -2,7 +2,7 @@
 
 ### General
 * Node.js code is JS code and should follow the [JS standards](javascript.md)
-* Session state should not be stored on the node app server. Don't tie a session to a particular node server instance. Usie a distributed cache or document storage database and not something like express-session. 
+* Session state should not be stored on the node app server. Don't tie a session to a particular node server instance. Use a distributed cache or document storage database and not something like express-session. 
 * Avoid blocking the [main event loop and the worker pool](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/). In short "you shouldn't do too much work for any client in any single callback or task." and consider passing CPU intensive tasks off to another service.
 * Prefer await over callbacks and avoid nested callbacks. This is easily done in [Node 8 and above](https://nodejs.org/api/util.html#util_util_promisify_original).
 
