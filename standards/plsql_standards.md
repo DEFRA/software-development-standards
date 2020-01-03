@@ -7,17 +7,6 @@ Environment Agency and Rural Payments Agency over many years. As such
 they are mature, comprehensive while also being reasonably lightweight
 and follow standard industry practice.
 
-## Important Recommendation: Refer to these Standards by Version as well as Name.
-
-These standards are likely to be updated on an ongoing basis. Anything
-using these standards should therefore refer to these standards not only
-be name (“PL/SQL Coding Standards”) but also by version (“1.0”). It
-should not be assumed that established products will be continually
-retrospectively updated to always reflect the very latest iteration of
-these standards: therefore recording which specific version of these
-standards has been adopted (and keeping all the preceding versions of
-these standards) is essential.
-
 # General Conventions
 
 ## Structure
