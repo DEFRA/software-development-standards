@@ -1,17 +1,5 @@
 ﻿# PL/SQL Coding Standards
 
-## Rationale
-
-This document is intended to present the standards to which all PL/SQL
-code produced by, or on behalf of, DEFRA should adhere. PL/SQL coding
-standards are intended to:
-
-  - Make the produced code more easily read and understood.
-
-  - Make the code more easily maintainable.
-
-  - Make the code more reliable.
-
 ## The Derivation of these Standards
 
 These standards have been derived from hands-on experience at the
