@@ -1,12 +1,5 @@
 ﻿# PL/SQL Coding Standards
 
-## The Derivation of these Standards
-
-These standards have been derived from hands-on experience at the
-Environment Agency and Rural Payments Agency over many years. As such
-they are mature, comprehensive while also being reasonably lightweight
-and follow standard industry practice.
-
 # General Conventions
 
 ## Structure
