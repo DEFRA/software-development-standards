@@ -2,6 +2,12 @@
 
 This folder contains all current standards for software development.
 
+Our standards are intended to:
+
+- Make the produced code more easily read and understood
+- Make the code more easily maintainable
+- Make the code more reliable
+
 ## Contents
 
 - [Common coding standards](common_coding_standards.md)
