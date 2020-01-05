@@ -265,31 +265,3 @@ This makes it far easier to make changes, such as inserting new items into the l
 
  WHERE histab.col1 = hertab.col2;
 ```
-
-# APPENDIX: An Example of Automatically Formatting PL/SQL Code Using TOAD (the “Tool for Oracle Application Developers”)
-
-## Software Used in this Example
-
-TOAD version 11.6.1.6 was used to “prove” these instructions.
-
-## The Formatter Options File
-
-These instructions use a formatter options file called
-defra\_plsql\_toad\_fmt\_v1\_0.opt that should be co-located with these
-standards.
-
-Note that the version number of these standards has been included in
-that file-name. As these standards are updated it is recommended that
-updated versions of the formatter options file are created similarly
-named after later versions of these standards.
-
-The tool used (“toad”) has also been included in the file name, as this
-file is specific to TOAD. Should similar code style files be created for
-other tools, it is recommended that the name of the target tool is also
-included in those file names.
-
-## Setting up Automatic Code Formatting
-
-### To import these formatting preferences within TOAD, open an Editor window. Right click on the editor pane and select Formatting Tools \> Formatting Options. Select the file open icon at the top left of the screen (“Load options from file” is the tool tip) and then browse to where you have located a copy of the defra\_plsql\_toad\_fmt\_v1\_0.opt file. Select the file. Then hit “Apply”. Then hit “OK” to close the formatter options window.
-
-### To apply the formatter options to any SQL or PL/SQL code open the code in the Editor Window, right click and then select Formatting Tools\>Format.
