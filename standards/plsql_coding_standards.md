@@ -154,6 +154,18 @@ for Oracle Application Developers”)” for an example of how to do this.
 
 ## Layout
 
+PL/SQL is often written using a tool called [Toad](https://en.wikipedia.org/wiki/Toad_(software)) in Defra. It includes the ability to automatically format code using imported `.opt` files.
+
+We'll be adding guidance on how to do this soon. In the meantime an `.opt` that follows the layout standards defined below just needs to contain
+
+```text
+
+[Qp5FormatterOptions]
+Version=145
+CommaStyle=2
+Tagline=0
+```
+
 - Indents should be 3 characters wide. All code within loops and if statements should be so indented with one such indent for each level of nesting within if statements or loops
 
 - `THEN` should be positioned on the next line, in-line with the related `IF`
