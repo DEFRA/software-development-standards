@@ -4,6 +4,7 @@ This folder contains various guides to help those working in software developmen
 
 ## Contents
 
+- [Browser code](browser_code.md)
 - [Choosing packages](choosing_packages.md)
 - [Developer workflows](developer_workflows.md)
 - [SQL Prompt](sql_prompt.md)
