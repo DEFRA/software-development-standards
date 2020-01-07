@@ -10,7 +10,7 @@ Our standards are intended to:
 
 ## Versioning
 
-Our standards are updated on an ongoing basis. Anything using these standards should therefore refer to these standards not only be name, for example **C# coding standards**, but also by version, for example **1.0**.
+Our standards are updated on an ongoing basis. Anything using these standards should therefore refer to these standards not only by name, for example **C# coding standards**, but also by version, for example **1.0**.
 
 It should not be assumed that established products will be continually retrospectively updated to always reflect the very latest iteration of these standards: therefore recording which specific version of these standards has been adopted (and keeping all the preceding versions of these standards) is essential.
 
