@@ -8,10 +8,11 @@
 
 ### Versions
 
-* Be aware of the Node.js [support timeline](https://nodejs.org/en/about/releases).
-* Keep on Active LTS (10.x at the time of writing).
-* Don't drop behind Maintenance LTS (8.x at the time of writing).
-* Don't progress beyond Active LTS.
+* Be aware of the [Node.js support timeline](https://nodejs.org/en/about/releases).
+* Keep on Active LTS versions.
+* Don't drop behind Maintenance LTS versions. Projects older than this will be considered unmaintainable and
+  unsupportable until brought up to an appropriate version.
+* Don't progress beyond Active LTS versions.
 
 ### Package Management
 * Use NPM.
@@ -21,6 +22,8 @@
 * Update your version number inline with the [semantic versioning standard](https://semver.org/).
 
 ### Server framework
-* Our standard framework is currently [Hapi](https://hapijs.com/).
-* Our current standard version is Hapi 18.
-* At a minimum projects should be running Hapi 16.
+* Our standard framework is [Hapi](https://hapijs.com/).
+* Be aware of the [Hapi support timeline](https://hapi.dev/support/#plans).
+* Keep on the current major Hapi version.
+* Don't drop behind the lowest version available through Hapi commercial support. Projects older than this will be
+  considered unmaintainable and unsupportable until brought up to an appropriate version.
