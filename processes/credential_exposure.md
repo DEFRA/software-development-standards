@@ -52,4 +52,4 @@ You can get the cache of your commit removed by contacting [GitHub support](http
 
 The [Ruby services team](https://github.com/DEFRA/ruby-services-team) report a turn around of less than an hour when they made this request.
 
-Inform web-ops once the request is processed.
+Inform the relevant operations team once the request is processed.
