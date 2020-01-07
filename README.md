@@ -4,11 +4,30 @@ This is the temporary home for standards and guidance relating to software devel
 
 ## Contents
 
-TBC!
+- [Guides](/guides)
+  - [Choosing packages](/guides/choosing_packages.md)
+  - [Developer workflows](/guides/developer_workflows.md)
+  - [SQL Prompt](/guides/version_control_guidance.md)
+  - [Version control guidance](/guides/version_control_guidance.md)
+- [Principles](/principles)
+  - [Coding principles](/principles/coding_principles.md)
+  - [Security principles](/principles/security_principles.md)
+- [Processes](/processes)
+  - [Pull requests](/processes/pull_requests.md)
+- [Standards](/standards)
+  - [Common coding standards](/standards/common_coding_standards.md)
+  - [C# coding standards](/standards/csharp_coding_standards.md)
+  - [PL/SQL coding standards](/standards/plsql_coding_standards.md)
+  - [Ruby coding standards](/standards/ruby_coding_standards.md)
+  - [Security standards](/standards/security_standards.md)
+  - [TSQL and SQL Server database standards](/standards/tsql_coding_standards.md)
+  - [Version control standards](/standards/version_control_standards.md)
 
 ## About
 
 These standards are part of our efforts to keep our work consistent and of a high quality across the services and projects we build and maintain.
+
+They are based on an agreed [set of principles](/principles/README.md).
 
 It has been produced as a series of markdown files to make the process of adding and maintaining the documentation as simple as possible. Nothing is fixed and anything documented here is open to change.
 
@@ -20,7 +39,11 @@ It is heavily inspired by the work of [ThoughtBot](https://github.com/thoughtbot
 
 ## Contributing to this project
 
-Please read the [contribution guidelines](/CONTRIBUTING.md) before submitting a pull request.
+We encourage everyone to contribute to these standards!
+
+We only ask that contributions are made using pull requests, where they can then be discussed and approved by the [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
+
+Please ensure you have read our [principles](/principles/README.md) first, and then [contribution guidelines](/CONTRIBUTING.md) for details on how to get started.
 
 ## License
 
