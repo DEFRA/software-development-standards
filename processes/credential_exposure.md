@@ -12,9 +12,11 @@ This process will take you through what to do if that happens. The key point is
 
 No matter the speed with which you rectify the situation, or how little you think the chance is for people to see it. Treat it as compromised.
 
-## Contact web-ops
+## Contact operations
 
-The first step is to call [David Blackburn](https://github.com/davidblackburn) or [Tom Tant](https://github.com/TTEA1990).
+The first step is to make contact with the team responsible for your production environment.
+
+For example if your service is hosted in AWS, you should call someone from the AWS web-ops team ([David Blackburn](https://github.com/davidblackburn) or [Tom Tant](https://github.com/TTEA1990)).
 
 We cannot post contact numbers here. But they are available using our internal systems.
 
