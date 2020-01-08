@@ -46,15 +46,11 @@
 
 - Anchor variables to Database data types
 
-That way if table/column changes are made, the code does not to be
-updated to reflect the changes: Variables should never be designated as
-a standard data type (e.g. `VARCHAR2 (200)`, `NUMBER (10)`, etc.
+That way if table/column changes are made, the code does not to be updated to reflect the changes: Variables should never be designated as a standard data type (e.g. `VARCHAR2 (200)`, `NUMBER (10)`, etc.
 
 - Use `SUBTYPE` to standardise application-specific data types
 
-This allows creation of aliases for existing data types that cannot be
-anchored to the database. These should be declared in a separate
-package, for example:
+This allows creation of aliases for existing data types that cannot be anchored to the database. These should be declared in a separate package, for example:
 
 ```sql
  CREATE OR REPLACE PACKAGE my_vars
@@ -72,8 +68,7 @@ Then in the DECLARATION section of the code:
     v_counter my_vars.counter;
 ```
 
-**This is the only place in the code where a hard-coded value is
-used.**
+**This is the only place in the code where a hard-coded value is used.**
 
 - Use CONSTANT declaration for variables that do not change, and declare these in a CONSTANTS package
 
@@ -134,7 +129,6 @@ Then in the declaration section of a procedure
 PL/SQL is often written using a tool called [Toad](https://en.wikipedia.org/wiki/Toad_(software)) in Defra. It includes the ability to automatically format code using imported `.opt` files.
 
 Guidance on how to do this ("PL/SQL Auto-format with TOAD"), and an `.opt` file that applies the layout conventions described below, is provided in the guidance section of this repository.
-
 
 - Indents should be 3 characters wide. All code within loops and if statements should be so indented with one such indent for each level of nesting within if statements or loops
 
