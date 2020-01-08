@@ -12,7 +12,7 @@ Our standards are intended to:
 
 Our standards are updated on an ongoing basis. Anything using these standards should therefore refer to these standards not only by name, for example **C# coding standards**, but also by date, for example **as at 2020-01-08**.
 
-It should not be assumed that established products will be continually retrospectively updated to always reflect the very latest iteration of these standards: therefore recording which specific version of these standards has been adopted (and keeping all the preceding versions of these standards) is essential.
+Whilst we always endeavour to keep code consistent with the latest standards, not all projects are active. This means as standards change some projects will no longer meet them. Having a reference to when the standard was last applied, will help when determining the effort to update a project
 
 ## Contents
 
