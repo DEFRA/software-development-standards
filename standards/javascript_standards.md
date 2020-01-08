@@ -1,4 +1,4 @@
-## JavaScript Standards
+## JavaScript standards
 
 ### Use [Standard JS](https://standardjs.com/) to lint your code
 
