@@ -5,7 +5,7 @@
 > Use `Block` and `Label` coding for loops and anonymous blocks within procedures
 
 ```sql
- CREATE OR REPLACE PROCEDURE my\_proc
+ CREATE OR REPLACE PROCEDURE my_proc
 
  IS
 
@@ -127,7 +127,7 @@ Then in the declaration section of a procedure
 
 - When performing bulk data operations (usually as some form of "batch" job) all tables should have a corresponding error table and all bulk update/insert/delete/merge statements should be suffixed with a LOG ERRORS statement referencing the errors table to prevent simple data errors terminating program execution
 
-- A standard error procedure should be used that records, in addition to user-defined information such as table name, `DBMS\_UTILITY.FORMAT\_CALL\_STACK`, `DBMS\_UTILITY.FORMAT\_ERROR\_STACK` and `DBMS\_UTILITY.FORMAT\_ERROR\_BACKTRACE`
+- A standard error procedure should be used that records, in addition to user-defined information such as table name, `DBMS_UTILITY.FORMAT_CALL_STACK`, `DBMS_UTILITY.FORMAT_ERROR_STACK` and `DBMS_UTILITY.FORMAT_ERROR_BACKTRACE`
 
 ## Formatting Code
 
@@ -156,15 +156,8 @@ for Oracle Application Developers”)” for an example of how to do this.
 
 PL/SQL is often written using a tool called [Toad](https://en.wikipedia.org/wiki/Toad_(software)) in Defra. It includes the ability to automatically format code using imported `.opt` files.
 
-We'll be adding guidance on how to do this soon. In the meantime an `.opt` that follows the layout standards defined below just needs to contain
+Guidance on how to do this ("PL/SQL Auto-format with TOAD"), and an `.opt` file that applies the layout conventions described below, is provided in the guidance section of this repository.
 
-```text
-
-[Qp5FormatterOptions]
-Version=145
-CommaStyle=2
-Tagline=0
-```
 
 - Indents should be 3 characters wide. All code within loops and if statements should be so indented with one such indent for each level of nesting within if statements or loops
 
