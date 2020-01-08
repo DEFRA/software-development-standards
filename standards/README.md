@@ -6,8 +6,11 @@ This folder contains all current standards for software development.
 
 - [Common coding standards](common_coding_standards.md)
 - [C# coding standards](csharp_coding_standards.md)
+- [Deployment standards](deployment_standards.md)
+- [Javascript standards](javascript_standards.md)
+- [Node standards](node_standards.md)
+- [README standards](readme_standards.md)
 - [Ruby coding standards](ruby_coding_standards.md)
 - [Security standards](security_standards.md)
-- [TSQL and SQL Server database standards](tsql_coding_standards.md)
+- [TSQL and SQL Server database standards](tsql_and_sqldb_standards.md)
 - [Version control standards](version_control_standards.md)
-- [Deployment standards](deployment_standards.md)

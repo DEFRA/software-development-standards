@@ -6,6 +6,7 @@ This is the temporary home for standards and guidance relating to software devel
 
 - [Guides](/guides)
   - [Choosing packages](/guides/choosing_packages.md)
+  - [Continuous integration](/guides/continuous_integration.md)
   - [Developer workflows](/guides/developer_workflows.md)
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
   - [SQL Prompt](/guides/version_control_guidance.md)
@@ -18,9 +19,13 @@ This is the temporary home for standards and guidance relating to software devel
 - [Standards](/standards)
   - [Common coding standards](/standards/common_coding_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
+  - [Deployment standards](/standards/deployment_standards.md)
+  - [Javascript standards](/standards/javascript_standards.md)
+  - [Node standards](/standards/node_standards.md)
+  - [README standards](/standards/readme_standards.md)
   - [Ruby coding standards](/standards/ruby_coding_standards.md)
   - [Security standards](/standards/security_standards.md)
-  - [TSQL and SQL Server database standards](/standards/tsql_coding_standards.md)
+  - [TSQL and SQL Server database standards](/standards/tsql_and_sqldb_standards.md)
   - [Version control standards](/standards/version_control_standards.md)
 
 ## About
