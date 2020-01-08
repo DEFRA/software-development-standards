@@ -4,4 +4,5 @@ This folder contains documents which cover any processes related to software dev
 
 ## Contents
 
+- [Credential exposure](credential_exposure.md)
 - [Pull requests](pull_requests.md)
