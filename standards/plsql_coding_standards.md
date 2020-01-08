@@ -129,29 +129,6 @@ Then in the declaration section of a procedure
 
 - A standard error procedure should be used that records, in addition to user-defined information such as table name, `DBMS_UTILITY.FORMAT_CALL_STACK`, `DBMS_UTILITY.FORMAT_ERROR_STACK` and `DBMS_UTILITY.FORMAT_ERROR_BACKTRACE`
 
-## Formatting Code
-
-## Important Recommendation: Do This Automatically
-
-Well formatted code greatly facilitates readability, maintainability and
-reliability. However, formatting code is also a chore: difficult and
-tedious to remember, time consuming to manually apply and difficult to
-police. Many code formatting rules, taken individually rather than as an
-entirety, will not individually add sufficiently to code readability,
-maintainability and reliability for their adoption to offset that cost.
-
-The way out of this to dilemma is to adopt tools that automatically
-format code. Indeed, unless the benefits of adopting any individual code
-formatting rule are very significant, or the costs and risks of not
-adopting such a rule are equally significant, a reasonable rule of thumb
-is that the only code formatting rules that should be adopted are those
-that can be applied automatically.
-
-In this spirit, all the code formatting rules described in this section
-are those that can be applied automatically in TOAD. See “APPENDIX: An
-Example of Automatically Formatting PL/SQL Code Using TOAD (the “Tool
-for Oracle Application Developers”)” for an example of how to do this.
-
 ## Layout
 
 PL/SQL is often written using a tool called [Toad](https://en.wikipedia.org/wiki/Toad_(software)) in Defra. It includes the ability to automatically format code using imported `.opt` files.
