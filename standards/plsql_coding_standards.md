@@ -128,7 +128,7 @@ Then in the declaration section of a procedure
 
 PL/SQL is often written using a tool called [Toad](https://en.wikipedia.org/wiki/Toad_(software)) in Defra. It includes the ability to automatically format code using imported `.opt` files.
 
-Guidance on how to do this ("PL/SQL Auto-format with TOAD"), and an `.opt` file that applies the layout conventions described below, is provided in the guidance section of this repository.
+We have [guidance on how to do this](/guides/plsql_auto_format_toad.md), and [defra_plsql_toad_fmt.opt](/guides/defra_plsql_toad_fmt.opt) that applies the layout conventions described below.
 
 - Indents should be 3 characters wide. All code within loops and if statements should be so indented with one such indent for each level of nesting within if statements or loops
 
