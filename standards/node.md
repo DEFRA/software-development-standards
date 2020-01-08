@@ -17,7 +17,8 @@
 ### Package Management
 * Use NPM.
 * Use a package.json and package-lock.json for repeatable builds.
-* Use either a vulnerability scanner such as GreenKeeper or an update tool such as dependabot.
+* Use an automated checker such as GreenKeeper or Dependabot to ensure that your dependencies are up to date with the
+  latest patches.
 * Separate dependencies and dev dependencies.
 * Update your version number inline with the [semantic versioning standard](https://semver.org/).
 
