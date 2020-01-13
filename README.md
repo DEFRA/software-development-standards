@@ -21,6 +21,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Common coding standards](/standards/common_coding_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
   - [Deployment standards](/standards/deployment_standards.md)
+  - [Java coding standards](/standards/java_coding_standards.md)
   - [JavaScript standards](/standards/javascript_standards.md)
   - [Node.js standards](/standards/node_standards.md)
   - [PL/SQL coding standards](plsql_coding_standards.md)
