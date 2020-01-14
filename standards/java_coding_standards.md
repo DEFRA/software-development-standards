@@ -1,5 +1,7 @@
 ﻿# Java Coding Standards
 
+These standards are a slightly updated version of the standards used in practice for many years in the Environment Agency during the period when Java was defined as the strategic programming language. As such they are comprehensive, mature and follow standard industry practice.
+
 ## Rationale
 
 This document is intended to present the standards to which all Java
@@ -11,13 +13,6 @@ standards are intended to:
   - Make the code more easily maintainable.
 
   - Make the code more reliable.
-
-## The Derivation of these Standards
-
-These standards are a slightly updated version of the standards used in
-practice for many years in the Environment Agency during the period when
-Java was defined as the strategic programming language. As such they are
-comprehensive, mature and follow standard industry practice.
 
 # General Conventions
 
