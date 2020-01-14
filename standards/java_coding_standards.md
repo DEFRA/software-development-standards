@@ -2,18 +2,6 @@
 
 These standards are a slightly updated version of the standards used in practice for many years in the Environment Agency during the period when Java was defined as the strategic programming language. As such they are comprehensive, mature and follow standard industry practice.
 
-## Rationale
-
-This document is intended to present the standards to which all Java
-code produced by, or on behalf of, DEFRA should adhere. Java coding
-standards are intended to:
-
-  - Make the produced code more easily read and understood.
-
-  - Make the code more easily maintainable.
-
-  - Make the code more reliable.
-
 # General Conventions
 
 ## Naming, Structure and Declarations
