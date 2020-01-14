@@ -38,7 +38,7 @@ byte[] fileBytes
 
 - Where methods are overloaded they should appear next to each other in the class
 
-- Objects should be initialised to null at declaration time
+- Objects should be initialised to `null` at declaration time
 
 - Accessor and Mutator methods (gets and sets) should follow the Javabeans naming conventions
 
@@ -46,7 +46,7 @@ For example the variable `licenceCount` would be accessed by the method `getLice
 
 - All classes and interfaces should belong to an explicit package
 
-- All packages should be prefixed by uk.gov.defra. Package identifiers should all be singular i.e. should not contain plurals
+- All packages should be prefixed by `uk.gov.defra`. Package identifiers should all be singular i.e. should not contain plurals
 
 - Packages should not be imported in their entirety by using the wildcard notation
 
@@ -57,29 +57,6 @@ If using an IDE such as Eclipse this, plus removing any unwanted imports, ought 
 For example reference `IOException` rather than `java.util.IOException`.
 
 - Constructors should appear as the first methods in any class, followed by the finalize() method if overridden, followed by static methods and then any other methods and finally any inner classes
-
-# Formatting Code
-
-## Important Recommendation: Do This Automatically
-
-Well formatted code greatly facilitates readability, maintainability and
-reliability. However, formatting code is also a chore: difficult and
-tedious to remember, time consuming to manually apply and difficult to
-police. Many code formatting rules, taken individually rather than as an
-entirety, will not individually add sufficiently to code readability,
-maintainability and reliability for their adoption to offset that cost.
-
-The way out of this to dilemma is to adopt tools that automatically
-format code. Indeed, unless the benefits of adopting any individual code
-formatting rule are very significant, or the costs and risks of not
-adopting such a rule are equally significant, a reasonable rule of thumb
-is that the only code formatting rules that should be adopted are those
-that can be applied automatically.
-
-In this spirit, all the code formatting rules described in this section
-are those that can be applied automatically (indeed merely on code
-“save”) in the Eclipse IDE. See “APPENDIX: An Example of Automatic
-Java Code Formatting” for an example of how to do this.
 
 ## Statements and Expressions
 
@@ -214,17 +191,15 @@ for (i = 0; i <= 12; i++)
 j = j + i;
 ```
 
-The important thing is that the content of the loop is clearly
-distinguished, either by the braces or, in the case of a single line and
-only a single line, that line being separately indented.
+The important thing is that the content of the loop is clearly distinguished, either by the braces or, in the case of a single line and only a single line, that line being separately indented.
 
-### Indentation should be used to indicate enclosed statements in loops and conditionals.
+- Indentation should be used to indicate enclosed statements in loops and conditionals
 
 ## Class, Interface and Method Declaration
 
-### Classes and interfaces should be declared, if possible, on a single line. Where this is not possible indentation should be used to aid the reading of the class declaration as follows.
+- Classes and interfaces should be declared, if possible, on a single line. Where this is not possible indentation should be used to aid the reading of the class declaration as follows
 
-```JAVA
+```java
 public class MySpecialisedClass extends MyGenericClass
  implements Serializable
 {
@@ -232,10 +207,9 @@ public class MySpecialisedClass extends MyGenericClass
 }
 ```
 
-### Methods should be declared, if possible, on a single line.
+- Methods should be declared, if possible, on a single line
 
-Where this is not possible indentation should be used to aid the reading
-of the method declaration as follows.
+Where this is not possible indentation should be used to aid the reading of the method declaration as follows.
 
 ```JAVA
 public myIOMethod(String param1, Integer param2) throws IOException,
@@ -245,23 +219,19 @@ public myIOMethod(String param1, Integer param2) throws IOException,
 }
 ```
 
-# Commenting and Documentation
+## Commenting and Documentation
 
-See the Coding Standards for the general standards and guidance on
-commenting code.
+See the [Common coding standards](common_coding_standards.md) for the general standards and guidance on commenting code.
 
-## JavaDoc
+### JavaDoc
 
-### All classes and interfaces should include JavaDocs comments as a header.
+- All classes and interfaces should include JavaDocs comments as a header
 
-The comments should explain in plain English what the purpose of the
-class or interface is, where that purpose is not obvious from the name.
-The JavaDoc header should be placed below the package name and import
-list and above the class definition.
+The comments should explain in plain English what the purpose of the class or interface is, where that purpose is not obvious from the name. The JavaDoc header should be placed below the package name and import list and above the class definition.
 
-### The following header format should be used:
+- The following header format should be used
 
-```JAVA
+```java
 /**
 *  Original Author: @author
 */
@@ -272,23 +242,13 @@ list and above the class definition.
 */
 ```
 
-(Note that any information about the class history, beyond the
-identity of the original author, is not included here, as such
-information should be included in the version control system.
-Attempting to maintain such information in the class comments
-themselves is not only duplicate effort but is likely to result in the
-two sources of information becoming confusingly inconsistent).
+Note that any information about the class history, beyond the identity of the original author, is not included here, as such information should be included in the version control system. Attempting to maintain such information in the class comments themselves is not only duplicate effort but is likely to result in the two sources of information becoming confusingly inconsistent.
 
-### All methods should be preceded by JavaDoc comments.
+- All methods should be preceded by JavaDoc comments
 
-Comments must state in plain English what the purpose of the method is,
-what effect it has on any referenced objects and any pre or post
-conditions that apply to the method's use. The comment should also
-indicate if the method overrides an inherited method. The javadoc should
-include entries for @param, @return and @exception, where-ever those are
-appropriate. For example:
+Comments must state in plain English what the purpose of the method is, what effect it has on any referenced objects and any pre or post conditions that apply to the method's use. The comment should also indicate if the method overrides an inherited method. The javadoc should include entries for `@param`, `@return` and `@exception`, wherever those are appropriate.
 
-```JAVA
+```java
 /** Method To return a count of the outstations associated with the location
 *    @param locID, the locationID to search on
 *    @return Integer, number of outstations, null if none are found
@@ -298,37 +258,8 @@ appropriate. For example:
 
 Other javadocs tags can be used as required.
 
-## Other Comments
+### Other Comments
 
-### Both multi-line (/\* \*/) and single line (//) comments may be used.
+- Both multi-line (`\* */`) and single line (`//`) comments may be used
 
-### Comments within the method body should, wherever possible, be restricted to single line comments.
-
-# APPENDIX: An Example of Automatic Java Code Formatting
-
-## Software Used in this Example
-
-Java 11 and Eclipse version 2018-12, the latest versions at the time of
-writing, were used to “prove” the following instructions. However, these
-instructions have remained consistent for many versions of Eclipse, and
-so hopefully are likely to remain largely valid in the future. Also, the
-Eclipse checkstyle integration has evolved into an unofficial standard
-and many IDE's can support it (sometimes using plugins), including
-Microsoft’s Visual Studio Code.
-
-## The Code Style File
-
-These instructions use a code style file called
-defra\_java\_eclipse\_code\_style\_v1\_1.xml, that should be co-located
-with these standards.
-
-Note that the version number of these standards has been included in
-that file-name. As these standards are updated it is recommended that
-updated versions of the code style file are created similarly named
-after later versions of these standards.
-
-## Setting up Automatic Code Formatting
-
-To import these formatting preferences within Eclipse: Windows\> Preferences \> Java \> Code Style \> Formatter \> Import.
-
-To allow Eclipse to automatically apply these preferences on Save: Windows \> Preferences \> Java \> Editor \> Save Actions then check “perform the selected actions on save” and “format source code”.
+- Comments within the method body should, wherever possible, be restricted to single line comments
