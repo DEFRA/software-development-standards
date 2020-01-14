@@ -6,68 +6,57 @@ These standards are a slightly updated version of the standards used in practice
 
 ## Naming, Structure and Declarations
 
-### English descriptors should be used for all variables and classes such that they define the purpose of the object they describe.
+- English descriptors should be used for all variables and classes such that they define the purpose of the object they describe
 
-The only allowable exceptions to this rule are firstly where local
-variables are used as iteration counters where i is the accepted
-standard. Where multiple counters are required they should start
-alphabetically at i then j etc. Secondly exceptions may be abbreviated
-for example in the catch clause of a programmatic block and exception
-may be called e.
+The only allowable exceptions to this rule are firstly where local variables are used as iteration counters where `i` is the accepted standard. Where multiple counters are required they should start alphabetically at `i` then `j` etc. Secondly exceptions may be abbreviated for example in the catch clause of a programmatic block an exception may be called `e`.
 
-### All variables should start with a lower case letter and the initialof any non-leading word should be capitalised.
+- All variables should start with a lower case letter and the initial of any non-leading word should be capitalised
 
-For example fishingLicense, dataElement. This rule should ensure that
-variable names do not differ only in case. One exception to this rule is
-where a name includes a word which is commonly capitalised such as an
-acronym. An example of this would be userID or serialUID.
+For example `fishingLicense`, `dataElement`. This rule should ensure that variable names do not differ only in case. One exception to this rule is where a name includes a word which is commonly capitalised such as an acronym. An example of this would be `userID` or `serialUID`.
 
-### Do not use leading or trailing underscores.
+- Do not use leading or trailing underscores
 
-### Local variables should not share the same name as a variable with greater scope.
- The only exception to this is in a setter, where the
-    passed in parameter name should match the name of the instance
-    variable.
+- Local variables should not share the same name as a variable with greater scope
 
-### Class and interface names should begin with a capital letter and the initial of any non-leading word should be capitalised.
+The only exception to this is in a setter, where the passed in parameter name should match the name of the instance variable.
 
-For example FishingLicenceComparator, ValueObjectEngineer.
+- Class and interface names should begin with a capital letter and the initial of any non-leading word should be capitalised
 
-### Static final variables should be named with capitalised names and should have words separated by an underscore.
+For example `FishingLicenceComparator`, `ValueObjectEngineer`.
 
-For example
-```JAVA
+- Static final variables should be named with capitalised names and should have words separated by an underscore
+
+```java
 SALMON_LICENCE_TYPE
 ```
-###  Arrays should be declared using the bracket notation after the datatype not the variable.
 
-For example
-```JAVA
+-  Arrays should be declared using the bracket notation after the datatype not the variable
+
+```java
 byte[] fileBytes
 ```
-### Where methods are overloaded they should appear next to each other in the class.
 
-### Objects should be initialised to null at declaration time.
+- Where methods are overloaded they should appear next to each other in the class
 
-### Accessor and Mutator methods (gets and sets) should follow the Javabeans naming conventions.
+- Objects should be initialised to null at declaration time
 
-For example the variable licenceCount would be accessed by the method
-getLicenceCount().
+- Accessor and Mutator methods (gets and sets) should follow the Javabeans naming conventions
 
-### All classes and interfaces should belong to an explicit package.
+For example the variable `licenceCount` would be accessed by the method `getLicenceCount()`.
 
-### All packages should be prefixed by uk.gov.defra. Package identifiers should all be singular i.e. should not contain plurals.
+- All classes and interfaces should belong to an explicit package
 
-### Packages should not be imported in their entirety by using the wildcard notation.
- (If using an IDE such as Eclipse this, plus
-    removing any unwanted imports, ought to be the default behaviour of
-    the IDE).
+- All packages should be prefixed by uk.gov.defra. Package identifiers should all be singular i.e. should not contain plurals
 
-### Where possible methods and variables should be referenced without using full name qualification.
+- Packages should not be imported in their entirety by using the wildcard notation
 
-For example reference IOException rather than java.util.IOException.
+If using an IDE such as Eclipse this, plus removing any unwanted imports, ought to be the default behaviour of the IDE.
 
-### Constructors should appear as the first methods in any class, followed by the finalize() method if overridden, followed by static methods and then any other methods and finally any inner classes.
+- Where possible methods and variables should be referenced without using full name qualification
+
+For example reference `IOException` rather than `java.util.IOException`.
+
+- Constructors should appear as the first methods in any class, followed by the finalize() method if overridden, followed by static methods and then any other methods and finally any inner classes
 
 # Formatting Code
 
@@ -94,30 +83,29 @@ Java Code Formatting” for an example of how to do this.
 
 ## Statements and Expressions
 
-### A single line should not contain multiple statements.
+- A single line should not contain multiple statements
 
-### When using unary operators no space should be left between the variable and the operator.
+- When using unary operators no space should be left between the variable and the operator
 
-For example:
-```JAVA
+```java
 Licences++;
 ```
-### For readability, equality operator must always be wrapped in spaces.
 
-For example:
-```JAVA
+- For readability, equality operator must always be wrapped in spaces
+
+```java
 licenceType == 2
 ```
-### For readability assignment operators must be wrapped in spaces.
 
-For example:
-```JAVA
+- For readability assignment operators must be wrapped in spaces
+
+```java
 LicenceType = 3;
 ```
-### For readability, arrow (lambda) operators must be wrapped in spaces.
 
-For example:
-```JAVA
+- For readability, arrow (lambda) operators must be wrapped in spaces
+
+```java
 interface NumericTest
 {
   boolean computeTest(int n);
@@ -126,22 +114,23 @@ interface NumericTest
 NumericTest isNegative = (n) -> (n < 0);
 ```
 
-### Logic and binary operators should be wrapped in spaces.
+- Logic and binary operators should be wrapped in spaces
 
-For example:
-```JAVA
+```java
 payAward += 4;
 
 (payAward >= 1000);
 ```
-### The semicolon closing a statement should immediately follow the statement and should not be preceded by a space.
 
-### A single blank line should appear between a method end and the next method's leading comments.
+- The semicolon closing a statement should immediately follow the statement and should not be preceded by a space
 
-### Indents should be 2 characters wide
+- A single blank line should appear between a method end and the next method's leading comments
 
-### Opening and closing braces should be aligned and not appear on the same line. For example:
-```JAVA
+- Indents should be 2 characters wide
+
+- Opening and closing braces should be aligned and not appear on the same line
+
+```java
 try
 {
   // some actions
@@ -152,26 +141,28 @@ catch (Exception e)
 }
 ```
 
-### Lambda expressions should ideally be single line, in which case the entire expression should where-ever possible be kept to the same line (i.e. unless forced to wrap as the line exceeds the maximum specified line length).
+- Lambda expressions should ideally be single line, in which case the entire expression should wherever possible be kept to the same line (i.e. unless forced to wrap as the line exceeds the maximum specified line length).
 
 For example, assuming this functional interface:
-```JAVA
+
+```java
 interface NumericTest
 {
   boolean computeTest(int n);
 }
 ```
+
 A correctly formatted lambda expression could look like:
 
-```JAVA
+```java
 NumericTest isNegative = (n) -> (n < 0);
 ```
 
-### Where a lambda expression spans many lines, the braces surrounding those lines should follow the same rules as all other braces.
+- Where a lambda expression spans many lines, the braces surrounding those lines should follow the same rules as all other braces
 
 For example, assuming this functional interface:
 
-```JAVA
+```java
 interface NumericTest
 {
   boolean computeTest(int n);
@@ -180,7 +171,7 @@ interface NumericTest
 
 A correctly formatted lambda expression could look like:
 
-```JAVA
+```java
 NumericTest isNotEven = (n) ->
 {
   n++;
@@ -190,11 +181,9 @@ NumericTest isNotEven = (n) ->
 
 ## Loops and Conditionals
 
-### Loops and conditionals should be blocked out in the following manner unless the content is a single line statement.
+- Loops and conditionals should be blocked out in the following manner unless the content is a single line statement
 
-Examples:
-
-```JAVA
+```java
 for (int i=0; i<maxValue; i++)
 {
   // loop body goes in here
@@ -217,10 +206,9 @@ switch (licenceCode)
 }
 ```
 
-For single line statements either the above approach or the following is
-permissible:
+For single line statements either the above approach or the following is permissible.
 
-```JAVA
+```java
 for (i = 0; i <= 12; i++)
 
 j = j + i;
