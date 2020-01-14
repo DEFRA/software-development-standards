@@ -19,17 +19,6 @@ practice for many years in the Environment Agency during the period when
 Java was defined as the strategic programming language. As such they are
 comprehensive, mature and follow standard industry practice.
 
-## Important Recommendation: Refer to these Standards by Version as well as Name.
-
-These standards are likely to be updated on an ongoing basis. Anything
-using these standards should therefore refer to these standards not only
-be name (“DDTS Java Coding Standards”) but also by version (“1.1”). It
-should not be assumed that established products will be continually
-retrospectively updated to always reflect the very latest iteration of
-these standards: therefore recording which specific version of these
-standards has been adopted (and keeping all the preceding versions of
-these standards) is essential.
-
 # General Conventions
 
 ## Naming, Structure and Declarations
@@ -124,19 +113,19 @@ Java Code Formatting” for an example of how to do this.
 
 ### A single line should not contain multiple statements.
 
-### When using unary operators no space should be left between the variable and the operator. 
+### When using unary operators no space should be left between the variable and the operator.
 
 For example:
 ```JAVA
 Licences++;
 ```
-### For readability, equality operator must always be wrapped in spaces. 
+### For readability, equality operator must always be wrapped in spaces.
 
 For example:
 ```JAVA
 licenceType == 2
 ```
-### For readability assignment operators must be wrapped in spaces. 
+### For readability assignment operators must be wrapped in spaces.
 
 For example:
 ```JAVA
@@ -150,7 +139,7 @@ interface NumericTest
 {
   boolean computeTest(int n);
 }
- 
+
 NumericTest isNegative = (n) -> (n < 0);
 ```
 
@@ -159,7 +148,7 @@ NumericTest isNegative = (n) -> (n < 0);
 For example:
 ```JAVA
 payAward += 4;
- 
+
 (payAward >= 1000);
 ```
 ### The semicolon closing a statement should immediately follow the statement and should not be preceded by a space.
@@ -188,10 +177,10 @@ interface NumericTest
 {
   boolean computeTest(int n);
 }
-``` 
+```
 A correctly formatted lambda expression could look like:
 
-```JAVA 
+```JAVA
 NumericTest isNegative = (n) -> (n < 0);
 ```
 
@@ -205,10 +194,10 @@ interface NumericTest
   boolean computeTest(int n);
 }
 ```
- 
+
 A correctly formatted lambda expression could look like:
 
-```JAVA 
+```JAVA
 NumericTest isNotEven = (n) ->
 {
   n++;
@@ -232,7 +221,7 @@ if (licenceType == 1)
 {
   // conditional body goes in here
 }
- 
+
 switch (licenceCode)
 {
   case F172:
@@ -292,7 +281,7 @@ commenting code.
 
 ## JavaDoc
 
-### All classes and interfaces should include JavaDocs comments as a header. 
+### All classes and interfaces should include JavaDocs comments as a header.
 
 The comments should explain in plain English what the purpose of the
 class or interface is, where that purpose is not obvious from the name.
@@ -302,13 +291,13 @@ list and above the class definition.
 ### The following header format should be used:
 
 ```JAVA
-/** 
-*  Original Author: @author 
+/**
+*  Original Author: @author
 */
 
-/** 
+/**
 *     Brief description of what MyClass does.
-*     
+*
 */
 ```
 
