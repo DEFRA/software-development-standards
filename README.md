@@ -9,6 +9,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Continuous integration](/guides/continuous_integration.md)
   - [Developer workflows](/guides/developer_workflows.md)
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
+  - [What "Reuse" means](/guides/reuse.md)
   - [SQL Prompt](/guides/version_control_guidance.md)
   - [Version control guidance](/guides/version_control_guidance.md)
 - [Principles](/principles)

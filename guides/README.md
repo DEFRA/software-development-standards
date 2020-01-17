@@ -8,6 +8,7 @@ This folder contains various guides to help those working in software developmen
 - [Continuous integration](continuous_integration.md)
 - [Developer workflows](developer_workflows.md)
 - [PL/SQL auto-format with TOAD](plsql_auto_format_toad.md)
+- [What "Reuse" means](reuse.md)
 - [SQL Prompt](sql_prompt_tool.md)
 - [Version control guidance](version_control_guidance.md)
 
