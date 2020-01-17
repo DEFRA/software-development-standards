@@ -11,6 +11,7 @@ This folder contains all current standards for software development.
 - [Node.js standards](node_standards.md)
 - [PL/SQL coding standards](plsql_coding_standards.md)
 - [README standards](readme_standards.md)
+- [RESTful API standards](restful_api_standards.md)
 - [Ruby coding standards](ruby_coding_standards.md)
 - [Security standards](security_standards.md)
 - [TSQL and SQL Server database standards](tsql_and_sqldb_standards.md)

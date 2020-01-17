@@ -25,6 +25,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Node.js standards](/standards/node_standards.md)
   - [PL/SQL coding standards](plsql_coding_standards.md)
   - [README standards](/standards/readme_standards.md)
+  - [RESTful API standards](/standards/restful_api_standards.md)
   - [Ruby coding standards](/standards/ruby_coding_standards.md)
   - [Security standards](/standards/security_standards.md)
   - [TSQL and SQL Server database standards](/standards/tsql_and_sqldb_standards.md)
