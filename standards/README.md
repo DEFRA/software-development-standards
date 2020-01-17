@@ -4,6 +4,7 @@ This folder contains all current standards for software development.
 
 ## Contents
 
+- [Browser portability standards](browser_portability_standard.md)
 - [Common coding standards](common_coding_standards.md)
 - [C# coding standards](csharp_coding_standards.md)
 - [Deployment standards](deployment_standards.md)

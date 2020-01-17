@@ -18,6 +18,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Credential exposure](/processes/credential_exposure.md)
   - [Pull requests](/processes/pull_requests.md)
 - [Standards](/standards)
+  - [Browser portability standards](/standards/browser_portability_standard.md)
   - [Common coding standards](/standards/common_coding_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
   - [Deployment standards](/standards/deployment_standards.md)
