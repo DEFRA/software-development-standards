@@ -2,7 +2,7 @@
 
 These standards are a slightly updated version of the standards used in practice for many years in the Environment Agency during the period when Java was defined as the strategic programming language. As such they are comprehensive, mature and follow standard industry practice.
 
-For users of [Eclipse](https://en.wikipedia.org/wiki/Eclipse_(software)) we have [guidance on how to auto-format your code](/guides/plsql_auto_format_toad.md) that applies the standards described below.
+For users of [Eclipse](https://en.wikipedia.org/wiki/Eclipse_(software)) we have [guidance on how to auto-format your code](/guides/defra_java_eclipse_code_style.xml) that applies the standards described below.
 
 ## Naming, Structure and Declarations
 
