@@ -22,7 +22,7 @@ Default acceptance criteria for new stories:
 * No obvious performance issues (most transactions under 1 second, avoid transactions over 10 seconds)
 * No existing functionality has regressed
 
-Negative scenarios are just as important as positive ones. For example, "an admin user can export data" implies that "a standard user cannot export data".
+Negative scenarios are just as important as positive ones. For example, "an admin user can export data" implies that "a standard user cannot export data". Routinely check errors in manual and automated tests.
 
 ## Accessibility
 
@@ -60,9 +60,22 @@ By default, use [Jira](https://www.atlassian.com/software/jira) to manage bugs a
 
 ## Code quality testing
 
-Automated test code must meet Defra [software development standards](https://github.com/DEFRA/software-development-standards).
+Automated test code must meet Defra [common coding standards](https://github.com/DEFRA/software-development-standards/blob/master/standards/common_coding_standards.md) wherever applicable.
 
 All development and test code must undergo regular linting to check that it meets minimum standards.
+
+## Compliance checking
+
+Ensure your service's compliance with the following:
+
+* [Accessibility statements](https://www.gov.uk/guidance/make-your-website-or-app-accessible-and-publish-an-accessibility-statement)
+* [Assisted digital support](https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction)
+* [Cookie policies](https://www.gov.uk/service-manual/technology/working-with-cookies-and-similar-technologies)
+* [General Data Protection Regulations (GDPR)](https://www.gov.uk/government/publications/guide-to-the-general-data-protection-regulation)
+* [GOV.UK content styles](https://www.gov.uk/guidance/content-design/writing-for-gov-uk)
+* [GOV.UK design system](https://design-system.service.gov.uk/)
+* [Privacy policies](https://www.gov.uk/service-manual/design/collecting-personal-information-from-users) - especially when communicating with third parties such as Google for analytics
+* [Progressive enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement), in particular that your service is usable without Cascading Style Sheets (CSS) and Javascript
 
 ## Continuous integration (pipeline)
 
@@ -112,16 +125,34 @@ Any performance test should include the following by default:
 * **Soak** - can the service deal with high load for a prolonged period without memory leakage?
 * **Stress** - what is the service's breaking point, and how does it recover?
 
+## Reporting
+
+The minimum standards for agile test reporting are to:
+
+* ensure the team is aware of major testing risks, for example through daily stand ups
+* produce a test completion report before a major release.
+
+However, certain key metrics are recommended to get a picture of quality over time, such as:
+
+* list of any gaps in testing and associated risks
+* number of outstanding bugs by priority
+* RAG (red/amber/green) status against each test type in the test plan
+* unit test coverage % (via code coverage tools)
+* user interface (UI) test coverage % (for example, by % of screens with test coverage)
+* user satisfaction % (if already live)
+
 ## Risk management
 
 Share any risks that originate from QA activity with your product manager and ensure that you have sight of the team risk register.
 
 ## Unit and API testing
 
-Maintain visibility of the unit and API test approach, and test coverage.
+Maintain visibility of the unit and API test approach, and test coverage, such as via code quality metrics.
 
-## Usability
+As a team, adopt the testing pyramid: aim to find the most defects at the lowest levels (unit and API) and fewer defects at the levels where it's slower to test (automated and manual user interface tests).
 
-Maintain sight of the team's user research - the recommendation is to be involved for [2 hours every 6 weeks](https://www.gov.uk/service-manual/user-research/how-user-research-improves-service-design).
+## User needs and usability
+
+Ensure that all features map back to user needs by joining the team's user research and usability testing. The recommendation is to be involved for [2 hours every 6 weeks](https://www.gov.uk/service-manual/user-research/how-user-research-improves-service-design).
 
 [Test your service with users with disabilities](https://www.gov.uk/service-manual/user-research/running-research-sessions-with-people-with-disabilities).
