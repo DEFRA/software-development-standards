@@ -43,7 +43,7 @@ The default test technologies for new projects are:
 
 [More test automation information and guides](https://github.com/DEFRA/qa-test/wiki/Automation)
 
-Use GitHub to publish test code in the open, but **never** publish any passwords or other sensitive data.
+Use GitHub to publish test code in the open, but **never** publish any passwords or other sensitive data. Passwords can be stored in private files or repositories (for example hiding a file using `.gitignore`), or via local environment variables.
 
 ## Browser testing
 
