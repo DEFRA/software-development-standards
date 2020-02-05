@@ -6,6 +6,7 @@ This folder contains details on principles related to specific areas, and below 
 
 - [Coding principles](coding_principles.md)
 - [Security principles](security_principles.md)
+- [Agile delivery](agile_delivery.md)
 
 ## Background
 
