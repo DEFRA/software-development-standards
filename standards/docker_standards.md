@@ -37,7 +37,7 @@ Parent Dockerfiles should be hosted in GitHub and be deployed to a container reg
 - set the `ASPNETCORE_ENVIRONMENT` environment variable to production
 - run as the `www-data` user and not `root`
 - ensure the working directory is owned by the www-data user - e.g. /app
-- a remote debugger should be added to the SDK file
+- a remote debugger should be added to the SDK file to aid development and testing
   ```
   RUN apt-get update \
   && apt-get install -y --no-install-recommends unzip \
