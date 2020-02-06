@@ -13,6 +13,30 @@ Different parent images should be created in line with each framework's best pra
 
 Parent Dockerfiles should be hosted in GitHub and be deployed to a container registry via CI/CD.
 
+Example Node.js parent image:
+```
+ARG NODE_VERSION=10.18.0
+FROM node:$NODE_VERSION-alpine
+ARG NODE_VERSION
+ARG VERSION=1.0.0
+
+# We need a basic init process to handle signals and reap zombie processes, tini handles that
+RUN apk update && apk add --no-cache tini=0.18.0-r0
+ENTRYPOINT ["/sbin/tini", "--"]
+
+# Never run as root, use the node user from the alpine image
+USER node
+# Default workdir for all the containers that use this image
+WORKDIR /home/node
+
+ENV NODE_ENV production
+# Set global npm dependancies to be stored under the node user directory
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
+      uk.gov.defra.ffc-node-base.node-version=$NODE_VERSION
+```
+
 #### Node.js
 - extend a minimal Node base image - e.g. node:alpine
 - set a fixed major version of the base image
