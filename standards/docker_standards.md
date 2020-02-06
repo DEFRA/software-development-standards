@@ -40,7 +40,7 @@ LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
 #### Node.js
 - extend a minimal Node base image - e.g. node:alpine
 - set a fixed major version of the base image
-- set the `NODE_ENV` environment variable to production
+- set the `NODE_ENV` environment variable to production in parent
 - set global NPM dependencies to be stored under the node user directory:
   ```
   ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
@@ -58,7 +58,7 @@ LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
 - a parent image should exist for both the .Net Core SDK and the .Net Core Runtime
 - extend a minimal .Net Core base image
 - set a fixed major version of the base image
-- set the `ASPNETCORE_ENVIRONMENT` environment variable to production
+- set the `ASPNETCORE_ENVIRONMENT` environment variable to production in parent
 - run as the `www-data` user and not `root`
 - ensure the working directory is owned by the www-data user - e.g. /app
 - a remote debugger should be added to the SDK file to aid development and testing
