@@ -30,7 +30,7 @@ USER node
 WORKDIR /home/node
 
 ENV NODE_ENV production
-# Set global npm dependancies to be stored under the node user directory
+# Set global npm dependencies to be stored under the node user directory
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
@@ -56,7 +56,7 @@ LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
 
 #### .Net Core
 - a parent image should exist for both the .Net Core SDK and the .Net Core Runtime
-- extend a minimal .Net Core base image
+- extend minimal .Net Core base image
 - set a fixed major version of the base image
 - set the `ASPNETCORE_ENVIRONMENT` environment variable to production in parent
 - run as the `www-data` user and not `root`
@@ -192,13 +192,6 @@ This can be achieved with the `-p` switch when calling docker compose on the com
 and to run the tests
 
 `docker-compose -p ffc-demo-service-test up -f docker-compose.yaml -f docker-compose.test.yaml`
-
-## Avoid conflicts with unique container names
-The docker container name should be unique in override files if they may be run simultaneously. 
-
-If the `docker-compose.yaml` and the `docker-compose.test.yaml` had the same name conflicts will occur if tearing down and rebuilding the container happens while both containers are in use.
-
-An example of setting the container name can be seen in the sample yaml in [Use override files to reduce duplication](#use-override-files-to-reduce-duplication).
 
 ## Use environment variables to guarantee unique projects and containers
 When running on a build server a combination of the `-p` switch and environment variables can be used to ensure each build and test has unique project and container names.
