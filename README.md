@@ -8,6 +8,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Choosing packages](/guides/choosing_packages.md)
   - [Continuous integration](/guides/continuous_integration.md)
   - [Developer workflows](/guides/developer_workflows.md)
+  - [Java auto-format with Eclipse](/guides/java_auto_format_eclipse.md)
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
   - [SQL Prompt](/guides/version_control_guidance.md)
   - [Version control guidance](/guides/version_control_guidance.md)
