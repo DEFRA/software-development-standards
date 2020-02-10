@@ -10,6 +10,7 @@
 - Linux containers are preferred
 - containers should not be run using root user
 - containers should be scanned regularly for vulnerabilities
+- running containers should be regularly scanned for vulnerabilities
 
 ### Parent images
 We should create Dockerfiles that are extended from a minimal Defra created parent images.  This will allow us to benefit from improved security and more efficient builds as we will not have to repeat steps that are common to all Dockerfiles.
@@ -72,13 +73,6 @@ LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
   && apt-get install -y --no-install-recommends unzip \
   && curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
   ```
-
-## Container scanning
-Container scanning tools collate vulnerability reports from a number of sources to determine security issues within operating system kernels, libraries, and software packages.
-
-Containers should be regularly scanned using tools such as Clair, Anchore Engine, Aqua Trivy or JFrog XRay.
-
-A comparison of the different tools is available in [Confluence](https://eaflood.atlassian.net/wiki/spaces/FPS/pages/1408172407/Container+Image+Scanning+Tools)
 
 ## Multi stage builds
 Dockerfiles should implement multi stage builds to allow different build stages to be targetted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
