@@ -128,7 +128,7 @@ CMD [ "node", "app/index" ]
 ```
 
 ## Docker Compose
-Docker compose is the standard for local development and within a CI/CD pipeline to build docker containers.
+Docker compose is the standard for local development and within a CI pipeline to build docker containers.
 
 ### Use override files to reduce duplication
 Additional settings can be applied to a docker compose file by using override files.
@@ -199,7 +199,7 @@ and to run the tests
 `docker-compose -p ffc-demo-service-test up -f docker-compose.yaml -f docker-compose.test.yaml`
 
 ## Use environment variables to guarantee unique projects and containers
-When running on a build server a combination of the `-p` switch and environment variables can be used to ensure each build and test has unique project and container names.
+When running through CI, a combination of the `-p` switch and environment variables can be used to ensure each build and test has unique project and container names.
 
 For example using Jenkins, the following compose files can be started via:
 
