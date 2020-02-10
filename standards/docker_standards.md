@@ -2,7 +2,7 @@
 
 ### General
 - all containers should be created using Docker
-- Linux containers should be used
+- Linux containers are preferred
 - containers should not be run using root user
 - containers should be scanned regularly for vulnerabilities
 
