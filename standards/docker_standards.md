@@ -128,7 +128,7 @@ CMD [ "node", "app/index" ]
 ```
 
 ## Docker Compose
-Docker compose can be used for local development and within a CI/CD pipeline to build docker containers.
+Docker compose is the standard for local development and within a CI/CD pipeline to build docker containers.
 
 ### Use override files to reduce duplication
 Additional settings can be applied to a docker compose file by using override files.
