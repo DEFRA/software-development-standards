@@ -11,7 +11,7 @@ We should create Dockerfiles that are extended from a minimal Defra created pare
 
 Different parent images should be created in line with each framework's best practice.  Eg, Node.js, .Net Core, Ruby etc.
 
-Parent Dockerfiles should be hosted in GitHub and be deployed to a container registry via CI/CD.
+The Dockerfiles parent images are build from should be hosted in GitHub and be deployed to a container registry via CI/CD.
 
 Example Node.js parent image:
 ```
@@ -76,7 +76,7 @@ Containers should be regularly scanned using tools such as Clair, Anchore Engine
 A comparison of the different tools is available in [Confluence](https://eaflood.atlassian.net/wiki/spaces/FPS/pages/1408172407/Container+Image+Scanning+Tools)
 
 ## Multi stage builds
-Dockerfiles should implement multi stage builds to allow different container configuration and behaviour to be created for development, test and production.
+Dockerfiles should implement multi stage builds to allow different build stages to be targetted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
 Below is an example multi stage build which is intended to use the Future Farming and Countryside (FFC) Node.js parent image.
 
@@ -85,7 +85,7 @@ Below is an example multi stage build which is intended to use the Future Farmin
 ARG REGISTRY=562955126301.dkr.ecr.eu-west-2.amazonaws.com
 ARG BASE_VERSION=1.0.0
 ARG DEV_VERSION=1.0.0
-FROM $REGISTRY/ffc-node-base:$BASE_VERSION as base
+FROM $REGISTRY/ffc-node-parent:$BASE_VERSION as base
 ARG PORT=3000
 ENV PORT ${PORT}
 USER node
