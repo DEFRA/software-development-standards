@@ -1,104 +1,99 @@
-# Application development languages
+# Development languages
 
-## Purpose
-This position statement lays out the default technical approach as agreed by the DDTS digital development community.
+This standard defines the development languages we use.
 
-It should be used as a guide for all new digital development within Defra and forms a technical standard for all new
-development work undertaken by or on behalf of DDTS.
+The standard has come from delivering digital services that tend to follow this pattern:
+- A bespoke online digital service that is specifically built to meet well-researched user needs
+- One or more common Defra core IT systems that support our business
+- Pursuing a Cloud first agenda and giving equal consideration to open source software
  
-## Scope
-This position statement covers the choice of development languages used for digital development.
+## We use more than one development language
+We recognise the value of choosing the right tool for the job so we do not specify one single development language
+for everything we deliver.
 
-It is based on an architectural pattern for Defra digital services that focuses on:
-- Delivering highly user-focused online digital services to our customers
-- Delivering common IT platforms to support pan-Defra alignment of services and maximise the value of our investment
-- Following the Government Technology Code of Practice, in particular pursuing a Cloud first agenda and giving equal
-  consideration to open source software
+The advantages of this approach are:
+- it increases our ability to rapidly respond to changing business needs
+- we can more easily adopt new developments in the IT industry
+- vendor and product selection is less constrained
+- it strengthens our supplier management capability
+- reduced development cost
+- better opportunities for re-use of external code, libraries, products and best practice
+- happier developers!
+
+There are some disadvantages, such as the following, but these are out-weighed by the advantages:
+- staff recruitment, retention and work allocation is more difficult
+- there are fewer opportunities to share internal code and best practice
+- it can be difficult to maintain enough capability with only a small number of developers
+- it adds extra complexity to technology choices
  
-## Position
+## We build on open platforms whenever possible
+The government
+[Technology Code of Practice](https://www.gov.uk/government/publications/technology-code-of-practice/technology-code-of-practice)
+states that you must:
+- Be open and use open source
+- Make use of open standards
 
-### We maintain capability in more than one application development language
-Whilst there are benefits from standardising on a single technology platform, these are outweighed by the advantages to
-be gained from having the ability to choose the right tool for the job.
-
-Pros:
-- Increased business agility
-- Easier adoption of developments in the IT industry
-- Less constrained vendor and product selection
-- Stronger supplier management capability
-- Reduced development cost
-- Better opportunities for re-use of external code, libraries, products and best practice
-- Happier developers!
-
-Cons:
-- More difficult resourcing
-- Fewer opportunities to share internal code and best practice
-- Difficult to achieve with only a small number of developers
-- Complicates technology choices
+The simplest way to achieve this is by using open platforms by default.
  
-### We build on open platforms whenever possible
-The government technology code of practice mandates:
-- giving equal consideration to free or open source software when you choose technology - taking account of the total
-  cost of ownership of the service, including exit and transition costs
-- making all new source code open by default
-- using open standards, complying with any that are compulsory for use in government, unless you've been granted an
-  exemption
+## Our primary development platforms are Microsoft's .Net framework and Node.js
+There are two key areas within Defra where we need to write custom code.
 
-The simplest way to achieve this is by considering open platforms first.
+We build bespoke online digital services using standard government libraries and frameworks.
+For these we have identified Node.js as the most suitable platform.
+
+We also build solutions on top of commercial software products, where we have to use the platform that the vendor
+provides.
+Many of those products are from Microsoft, which means that we use .Net for this.
+
+These two platforms provide a wide range of capabilities so we can use them for most of the applications we
+develop.  We benefit from the flexibility of having two distinct platforms to choose from but also limit the
+diversity to a level that is appropriate for a medium-sized team of developers
+
+However, these two technologies alone will not _always_ be the solution to every problem and we also have a range of
+existing applications within Defra that are built using other platforms. So, we still need to maintain some limited
+capability in many other technologies such as Java, Python, R, Ruby and VBA.
  
-### Our primary development platforms are Microsoft's .Net framework and Node.js
-Defra is engaging on a two-fold approach to its IT application architecture: the use of common commodity products and
-the development of highly user-centric online digital services.
+## We develop online digital services in Node.js
+The world of online digital development is dominated by open source technologies so there are many freely available
+frameworks, libraries and tools to support it.
 
-This creates a need to be able to engage with both commercial products, which are often based around Microsoft's
-technology stack, and the open development community.
+These kind of services change rapidly, which has led to the rise of rapid development frameworks and a preference for
+dynamic languages.
 
-By focusing on these two key technologies, we benefit from the flexibility that it provides whilst also constraining
-diversity to a level that is appropriate for a medium-sized team of developers.
+Building for the Web means that developers already need a knowledge of Javascript, so using Node.js eases the
+burden on developers to maintain capability in multiple languages. Also, Node.js has proven to deliver good
+application performance in most Web-facing scenarios.
 
-Other technology options are available, but .Net (specifically C#) and Node.js are the two platforms that fit the need
-best whilst also already having sufficient support in the Defra software development teams.
-
-Because some aspects of certain problems require a small use of additional technologies or because of ongoing need to
-support an existing service, DDTS still needs to maintain some limited capability in a number of other technologies,
-such as Java, R, Python, Ruby, VBA, etc, but .Net and Node.js are preferred.
- 
-### We develop online digital services in Node.js
-The online digital development community is largely comprised of developers from the open source community, who produce
-and share many freely available frameworks, libraries and tools.
-
-Consequently, development of this kind can best achieve the necessary levels of agility by making use of those same
-technologies.
 This can be seen across government as well, in particular the GDS front end community tend to publish their products
 so that they can be easily used in Ruby and Node.js, in particular.
  
-### We use the Hapi framework to develop in Node.js
+## We use the Hapi framework to develop in Node.js
 Hapi is already in use in Defra digital services and has provided a productive level of standardisation across
 development teams and has proven to be robust and reliable.
  
-### We extend commodity platforms by building bespoke capability in such a way that it can be surfaced in the products
-Although our target enterprise architecture is based around the use of commodity platforms, an equally important part
-of that architecture is the part played by bespoke capabilities that those platforms do not provide, or could not
-provide without inappropriate levels of customisation.
+## We minimise the customisation inside commodity platforms
+Our enterprise architecture is based around commodity platforms, but these often require customisation
+to meet our needs.
 
-Where this is the case, we build that capability in such a way that it can be surfaced within those commodity products,
-either as back end services or "at the glass" integration.
+This customisation leads to a maintainability burden, so we prefer to deliver custom capability _outside_ of the
+platform itself. To do this, we build bespoke functionality but provide a mechanism to include that functionality
+in the user interface of the product. Most of the products we use have some way of doing this built in.
 
-Doing this means that we decouple the bespoke capability from the product, thus making it easier to perform changes and
-upgrades, but also make it possible to deliver a coherent user interface.
+Taking this approach means that we decouple the bespoke capability from the core product, making it easier to perform
+changes and upgrades, but we also provide a coherent user interface.
  
-### We use .Net to customise and extend commodity products
+## We use .Net to customise and extend commodity products
 Many of our commodity products come from Microsoft and so provide a .Net customisation platform.
 
 In addition, they will often provide highly capable .Net libraries and SDKs that enable integration with the products,
 including add-in functionality such as SharePoint Provider Hosted Add-Ins.
  
-### We use C# as our .Net development language
+## We use C# as our .Net development language
 C# is the de facto standard language for .Net development and owing to its similarity to Java provides a level of
 familiarity and cross-fertilisation with other language communities.
 
 It is also the language that is best supported in open source .Net frameworks.
  
-### We use .Net Core wherever practical in preference to standard .Net
+## We use .Net Core wherever practical in preference to standard .Net
 .Net Core is Microsoft's strategic direction for the .Net framework and gives all the benefits of being open source,
 including growing community support.
