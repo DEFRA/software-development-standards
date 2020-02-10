@@ -144,7 +144,7 @@ Note however that:
 
 will **not** apply the docker `docker-compose.override.yaml` file, only the file specified.
 
-One use case is for testing - common settings can be put into the base `docker-compose.yaml` file, while changes to the command and container names can be placed in override files.
+One use case is for running tests in CI - common settings can be put into the base `docker-compose.yaml` file, while changes to the command and container names can be placed in override files.
 
 The below example demonstrates changing the command and container name for testing:
 
