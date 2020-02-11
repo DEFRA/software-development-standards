@@ -227,3 +227,48 @@ services:
     command: npm run test
     container_name: ffc-demo-service-test-${PR_NUMBER}-${BUILD_NUMBER}
 ```
+
+# Composing multiple repositories for local development
+For scenarios where multiple containers need to be created across multiple repositories, it is recommended to create a "development" repo.
+
+The development repository should:
+- clone all necessary repositories
+- builds images from Dockerfiles in each repository by referencing Docker Compose files in those repositories
+- run containers based on those images in a single Docker network by referencing Docker Compose files in those repositories
+- run single containers for any shared dependencies across repositories such as message queues or databases
+
+To facilitate this, each repository with a potentially shared dependency will need it's Docker Compose override files to be setup in such a way that dependency containers can be isolated.  This will allow those repository services to run both in isolation and as part of wider service depending on development needs.
+
+For example, let's say we have two repositories, **ServiceA** and **ServiceB**.  **ServiceA** communicates with **ServiceB** via an ActiveMQ message queue. **ServiceB** has a PostgreSQL database.
+
+**ServiceA**'s Docker Compose files could be structured as follows.
+
+`docker-compose.yaml` - builds image and runs **ServiceA**
+`docker-compose.override.yaml` - runs Artemis ActiveMQ container
+`docker-compose.link.yaml` - runs **ServiceA** in a named Docker network
+
+**ServiceB**'s Docker Compose files could be structured as follows.
+
+`docker-compose.yaml` - builds image and runs **ServiceB** and PostgreSQL container
+`docker-compose.override.yaml` - runs Artemis ActiveMQ container
+`docker-compose.link.yaml` - runs **ServiceB** in a named Docker network
+
+**ServiceA** and **ServiceB** can be run in isolation by running the following commands in each repository.
+
+`docker-compose build`
+`docker-compose up`
+
+The development repository would contain the following.
+
+`docker-compose.yaml` - runs Artemis ActiveMQ container in named Docker network
+
+A script which would run the following commands:
+
+```
+if [ -z "$(docker network ls --filter name=^`NETWORK_NAME`$ --format={{.Name}})" ]; then
+  docker network create `NETWORK_NAME`
+fi
+docker-compose up
+docker-compose -f path/to/ServiceA/docker-compose.yaml -f path/to/ServiceA/docker-compose.link.yaml up --detach
+docker-compose -f path/to/ServiceB/docker-compose.yaml -f path/to/ServiceB/docker-compose.link.yaml up --detach
+```
