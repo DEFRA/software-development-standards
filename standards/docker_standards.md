@@ -265,8 +265,8 @@ The development repository would contain the following.
 A script which would run the following commands:
 
 ```
-if [ -z "$(docker network ls --filter name=^`NETWORK_NAME`$ --format={{.Name}})" ]; then
-  docker network create `NETWORK_NAME`
+if [ -z "$(docker network ls --filter name=^NETWORK_NAME$ --format={{.Name}})" ]; then
+  docker network create NETWORK_NAME
 fi
 docker-compose up
 docker-compose -f path/to/ServiceA/docker-compose.yaml -f path/to/ServiceA/docker-compose.link.yaml up --detach
