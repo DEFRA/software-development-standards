@@ -264,8 +264,6 @@ Other javadocs tags can be used as required.
 
 - Comments within the method body should, wherever possible, be restricted to single line comments
 
-## Standard applied
+## Status
 
-This standard was first agreed on 10 Feb 2020.
-
-This standard was last updated on 10 Feb 2020.
+This standard was formally adopted on 20 Feb 2021.
