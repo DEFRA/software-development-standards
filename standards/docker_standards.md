@@ -1,9 +1,9 @@
 ## Docker standards
 
 ### Terminology
-`Dockerfile` - set of instructions for building a docker image
-`Image` - a constructed set of layered docker instructions
-`Container` - a running instance of an image
+`Dockerfile` - set of instructions for building a docker image  
+`Image` - a constructed set of layered docker instructions  
+`Container` - a running instance of an image  
 
 ### General
 - all containers should be created using Docker
@@ -11,9 +11,11 @@
 - containers should not be run using root user
 - containers should be scanned regularly for vulnerabilities
 - running containers should be regularly scanned for vulnerabilities
+- containers should be signed
+- containers should be built from apline images
 
 ### Parent images
-We should create Dockerfiles that are extended from a minimal Defra created parent images.  This will allow us to benefit from improved security and more efficient builds as we will not have to repeat steps that are common to all Dockerfiles.
+For large microservice architectures it may be beneficial to create Dockerfiles that are extended from a minimal Defra created parent images.  This will allow us to benefit from improved security and more efficient builds as we will not have to repeat steps that are common to all Dockerfiles.
 
 Different parent images should be created in line with each framework's best practice.  Eg, Node.js, .Net Core, Ruby etc.
 
@@ -21,26 +23,45 @@ The Dockerfiles parent images are build from should be hosted in GitHub and be d
 
 Example Node.js parent image:
 ```
-ARG NODE_VERSION=10.18.0
-FROM node:$NODE_VERSION-alpine
+# Set default values for build arguments
+ARG IMAGE_VERSION=1.0.0
+ARG NODE_VERSION=12.16.0
+
+FROM node:$NODE_VERSION-alpine AS production
+
 ARG NODE_VERSION
-ARG VERSION=1.0.0
+ARG IMAGE_VERSION
+
+ENV NODE_ENV production
+
+# Set global npm dependencies to be stored under the node user directory
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
 
 # We need a basic init process to handle signals and reap zombie processes, tini handles that
 RUN apk update && apk add --no-cache tini=0.18.0-r0
 ENTRYPOINT ["/sbin/tini", "--"]
 
-# Never run as root, use the node user from the alpine image
+# Never run as root, default to the node user (created by the base Node image)
 USER node
-# Default workdir for all the containers that use this image
+
+# Default workdir should be owned by the default user
 WORKDIR /home/node
 
-ENV NODE_ENV production
-# Set global npm dependencies to be stored under the node user directory
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=$PATH:/home/node/.npm-global/bin
-LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
-      uk.gov.defra.ffc-node-base.node-version=$NODE_VERSION
+# Label images to aid searching
+LABEL uk.gov.defra.ffc-node.node-version=$NODE_VERSION \
+      uk.gov.defra.ffc-node.version=$IMAGE_VERSION
+
+FROM production AS development
+
+ENV NODE_ENV development
+
+# node-gyp is a common requirement for NPM packages. It must be installed as root.
+USER root
+RUN apk update && \
+    apk add --no-cache git=2.24.1-r0 && \
+    apk add --no-cache --virtual .gyp python=2.7.16-r3 make=4.2.1-r2 g++=9.2.0-r3
+USER node
 ```
 
 #### Node.js
@@ -61,7 +82,8 @@ LABEL uk.gov.defra.ffc-node-base.version=$VERSION \
   ```
 
 #### .Net Core
-- a parent image should exist for both the .Net Core SDK and the .Net Core Runtime
+- build a project using the .Net Core SDK image
+- production image should be built from .Net Core Runtime image
 - extend minimal .Net Core base image
 - set a fixed major version of the base image
 - set the `ASPNETCORE_ENVIRONMENT` environment variable to production in parent
@@ -80,45 +102,38 @@ Dockerfiles should implement multi stage builds to allow different build stages 
 Below is an example multi stage build which is intended to use the Future Farming and Countryside (FFC) Node.js parent image.
 
 ```
-# Base stage installs production dependencies
-ARG REGISTRY=562955126301.dkr.ecr.eu-west-2.amazonaws.com
-ARG BASE_VERSION=1.0.0
-ARG DEV_VERSION=1.0.0
-FROM $REGISTRY/ffc-node-parent:$BASE_VERSION as base
+ARG PARENT_VERSION=1.0.0-node12.16.0-pr5
 ARG PORT=3000
-ENV PORT ${PORT}
-USER node
-WORKDIR /home/node
-COPY --chown=node:node package*.json ./
-RUN npm ci
+ARG PORT_DEBUG=9229
+ARG REGISTRY=171014905211.dkr.ecr.eu-west-2.amazonaws.com
 
-# Development stage installs devDependencies, builds app from source and declares a file watcher as the default command
-FROM $REGISTRY/ffc-node-development:$DEV_VERSION AS development
-EXPOSE ${PORT} 9229 9230
-USER node
-WORKDIR /home/node
-COPY --from=base --chown=node:node /home/node/package*.json ./
-COPY --from=base --chown=node:node /home/node/node_modules ./node_modules
+# Development
+FROM ${REGISTRY}/ffc-node-development:${PARENT_VERSION} AS development
+ARG PARENT_VERSION
+ARG REGISTRY
+LABEL uk.gov.defra.ffc.parent-image=${REGISTRY}/ffc-node-development:${PARENT_VERSION}
+ARG PORT
+ENV PORT ${PORT}
+ARG PORT_DEBUG
+EXPOSE ${PORT} ${PORT_DEBUG}
+COPY --chown=node:node package*.json ./
 RUN npm install
 COPY --chown=node:node app/ ./app/
 RUN npm run build
 CMD [ "npm", "run", "start:watch" ]
 
-# Test stage copied in Jest configuration and declares the test task as the default command
-FROM development AS test
-USER node
-WORKDIR /home/node
-COPY --chown=node:node jest.config.js ./jest.config.js
-COPY --chown=node:node test/ ./test/
-CMD [ "npm", "run", "test" ]
-
-# Production stage exposes service port, copies in built app code and declares the Node app as the default command
-FROM base AS production
-USER node
-WORKDIR /home/node
+# Production
+FROM ${REGISTRY}/ffc-node:${PARENT_VERSION} AS production
+ARG PARENT_VERSION
+ARG REGISTRY
+LABEL uk.gov.defra.ffc.parent-image=${REGISTRY}/ffc-node:${PARENT_VERSION}
+ARG PORT
+ENV PORT ${PORT}
 EXPOSE ${PORT}
 COPY --from=development /home/node/app/ ./app/
-CMD [ "node", "app/index" ]
+COPY --from=development /home/node/package*.json ./
+RUN npm ci
+CMD [ "node", "app" ]
 ```
 
 ## Docker Compose
