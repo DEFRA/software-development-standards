@@ -15,3 +15,4 @@ This folder contains all current standards for software development.
 - [Security standards](security_standards.md)
 - [TSQL and SQL Server database standards](tsql_and_sqldb_standards.md)
 - [Version control standards](version_control_standards.md)
+- [Kubernetes standards](kubernetes_standards.md)

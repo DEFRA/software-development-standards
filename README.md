@@ -29,6 +29,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Security standards](/standards/security_standards.md)
   - [TSQL and SQL Server database standards](/standards/tsql_and_sqldb_standards.md)
   - [Version control standards](/standards/version_control_standards.md)
+  - [Kubernetes standards](/standards/kubernetes_standards.md)
 
 ## About
 
