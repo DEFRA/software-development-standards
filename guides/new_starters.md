@@ -35,12 +35,19 @@ Developer community of practice meetups are a chance to meet other developers, s
 
 Participating in the community of practice is considered part of your core job, so we encourage both permanent and contract devs to come along.
 
-The Bristol developer community of practice meets every other Monday at 2pm in Temple Quay House.
+Meetups usually happen in our four hub offices, but developers from any office are welcome to attend.
 
-To find out when it’s on:
+#### North East meetup
 
-- Visit the #development channel in [defra-digital Slack](https://defra-digital.slack.com/)
-- Talk to organiser Alan Cruikshanks ([@Cruikshanks](https://github.com/Cruikshanks))
+- Meets every other Thursday at 2pm in Foss House, York
+- Organised by John Watson ([@johnwatson484](https://github.com/johnwatson484))
+- Check the #york-dev-test-cop channel in [defra-digital Slack](https://defra-digital.slack.com/) for updates
+
+#### South West meetup
+
+- Meets every other Monday at 2pm in Temple Quay House, Bristol
+- Organised by Alan Cruikshanks ([@Cruikshanks](https://github.com/Cruikshanks))
+- Check the #development channel in [defra-digital Slack](https://defra-digital.slack.com/) for updates
 
 ## Tech and tools
 
