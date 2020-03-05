@@ -43,6 +43,11 @@ Meetups usually happen in our four hub offices, but developers from any office a
 - Organised by John Watson ([@johnwatson484](https://github.com/johnwatson484))
 - Check the #york-dev-test-cop channel in [defra-digital Slack](https://defra-digital.slack.com/) for updates
 
+#### North West meetup
+
+- Meets every Monday at 1pm in Richard Fairclough House, Warrington
+- Organised by Paul Shaw ([@pmshaw15](https://github.com/pmshaw15)) and Lynne Farrow
+
 #### South West meetup
 
 - Meets every other Monday at 2pm in Temple Quay House, Bristol
