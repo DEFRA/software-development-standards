@@ -10,6 +10,7 @@ This folder contains various guides to help those working in software developmen
 - [Java auto-format with Eclipse](java_auto_format_eclipse.md)
 - [PL/SQL auto-format with TOAD](plsql_auto_format_toad.md)
 - [SQL Prompt](sql_prompt_tool.md)
+- [Style guide for standards](style_guide_for_standards.md)
 - [Version control guidance](version_control_guidance.md)
 
 ## General guidance
