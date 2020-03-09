@@ -1,4 +1,4 @@
-## Docker standards
+## Docker guidance
 
 ### Terminology
 `Dockerfile` - set of instructions for building a docker image  
