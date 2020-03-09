@@ -5,7 +5,7 @@
 `Image` - a constructed set of layered docker instructions  
 `Container` - a running instance of an image
 
-### General
+### Standards
 - images should be created using Docker
 - Linux containers are preferred
 - containers should be built from alpine base images
