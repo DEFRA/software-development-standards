@@ -1,11 +1,11 @@
-## Docker standards
+# Docker standards
 
-### Terminology
+## Terminology
 `Dockerfile` - set of instructions for building a docker image  
 `Image` - a constructed set of layered docker instructions  
 `Container` - a running instance of an image
 
-### Standards
+## Standards
 - images should be created using Docker
 - Linux containers are preferred
 - containers should be built from alpine base images
