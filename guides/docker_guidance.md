@@ -111,7 +111,7 @@ The tests can be run by providing the `docker-compose.test.yaml` file with a `-f
 
 Further documentation on docker-compose can be found at https://docs.docker.com/compose/reference/overview/#specifying-multiple-compose-files.
 
-## Use projects to provide unique volumes and networks
+### Use projects to provide unique volumes and networks
 To avoid conflicts when running different permutations of docker files, projects should be specified to segregate the volumes and networks.
 
 This can be achieved with the `-p` switch when calling docker compose on the command line.
@@ -124,7 +124,7 @@ and to run the tests
 
 `docker-compose -p ffc-demo-service-test up -f docker-compose.yaml -f docker-compose.test.yaml`
 
-## Use environment variables to guarantee unique projects and containers
+### Use environment variables to guarantee unique projects and containers
 When running through CI, a combination of the `-p` switch and environment variables can be used to ensure each build and test has unique project and container names.
 
 For example using Jenkins, the following compose files can be started via:
@@ -160,7 +160,7 @@ services:
     container_name: ffc-demo-service-test-${PR_NUMBER}-${BUILD_NUMBER}
 ```
 
-## Composing multiple repositories for local development
+### Composing multiple repositories for local development
 For scenarios where multiple containers need to be created across multiple repositories, it is recommended to create a "development" repo.
 
 The development repository should:
@@ -204,3 +204,20 @@ docker-compose up
 docker-compose -f path/to/ServiceA/docker-compose.yaml -f path/to/ServiceA/docker-compose.link.yaml up --detach
 docker-compose -f path/to/ServiceB/docker-compose.yaml -f path/to/ServiceB/docker-compose.link.yaml up --detach
 ```
+
+### Binding volumes to container
+To aide local development, the local workspace can be bound to a Docker volume.  This allows code changes to be automatically picked up within the container without the need to rebuild the image or restart the container.  
+
+To best support this, workspaces should be structured so it is simple to determine which files should be bound to Docker volumes as it would not be appropriate to bind everything.  For example, it would not be beneficial to bind `node_modules` or a `README`.  
+
+Example of Docker compose file with volume binding.  
+
+```
+volumes:
+  - ./app/:/home/node/app/
+  - ./test/:/home/node/test/
+  - ./test-output/:/home/node/test-output/
+  - ./package.json:/home/node/package.json
+```
+
+Changes to any of the directories listed above would automatically be picked up in the running container.
