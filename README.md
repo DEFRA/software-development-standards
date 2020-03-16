@@ -11,6 +11,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Java auto-format with Eclipse](/guides/java_auto_format_eclipse.md)
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
   - [SQL Prompt](/guides/version_control_guidance.md)
+  - [Style guide for standards](/guides/style_guide_for_standards.md)
   - [Version control guidance](/guides/version_control_guidance.md)
 - [Principles](/principles)
   - [Coding principles](/principles/coding_principles.md)
