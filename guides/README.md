@@ -8,6 +8,7 @@ This folder contains various guides to help those working in software developmen
 - [Continuous integration](continuous_integration.md)
 - [Developer workflows](developer_workflows.md)
 - [Java auto-format with Eclipse](java_auto_format_eclipse.md)
+- [New starters](new_starters.md)
 - [PL/SQL auto-format with TOAD](plsql_auto_format_toad.md)
 - [SQL Prompt](sql_prompt_tool.md)
 - [Style guide for standards](style_guide_for_standards.md)
