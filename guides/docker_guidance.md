@@ -5,15 +5,6 @@
 `Image` - a constructed set of layered docker instructions  
 `Container` - a running instance of an image
 
-## Parent images
-For large microservice architectures it may be beneficial to create Dockerfiles that are extended from a minimal Defra created parent images.  This will allow us to benefit from improved security and more efficient builds as we will not have to repeat steps that are common to all Dockerfiles.
-
-Different parent images should be created in line with each framework's best practice.  Eg, Node.js, .Net Core, Ruby etc.
-
-Example Dockerfiles to build parent images can be found in the below repositories:
-- https://github.com/DEFRA/ffc-docker-node
-- https://github.com/DEFRA/ffc-docker-dotnetcore
-
 ## Multi stage builds
 Dockerfiles should implement multi stage builds to allow different build stages to be targetted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
