@@ -6,14 +6,15 @@
 `Container` - a running instance of an image
 
 ## Standards
-- images should be created using Docker
-- Linux containers are preferred
-- containers should be built from alpine base images
-- containers should not be run using root user
-- containers should be scanned regularly for vulnerabilities
-- images should be signed
-- images should be tagged using semantic versioning
+- images are created using Docker
+- Docker Compose is used for defining container builds
+- Linux containers are used if the service to be containerised can run on Linux
+- containers are built from alpine base images
+- containers are not run using root user
+- containers are scanned regularly for vulnerabilities
+- images are be signed
+- images are tagged using semantic versioning
 - images are self contained and carry all runtime dependencies
 - production images should be immutable and once built do not change but can be configured
-- images should have well defined APIs to expose functionality
-- containers should run as a single process 
+- images have well defined APIs to expose functionality
+- containers run as a single process
