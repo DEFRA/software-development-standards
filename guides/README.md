@@ -14,6 +14,7 @@ This folder contains various guides to help those working in software developmen
 - [SQL Prompt](sql_prompt_tool.md)
 - [Style guide for standards](style_guide_for_standards.md)
 - [Version control guidance](version_control_guidance.md)
+- [Docker guidance](docker_guidance.md)
 
 ## General guidance
 
