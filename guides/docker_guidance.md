@@ -97,7 +97,9 @@ services:
 
 The tests can be run by providing the `docker-compose.test.yaml` file with a `-f` parameter:
 
-`docker-compose up -f docker-compose.yaml -f docker-compose.test.yaml`
+`docker-compose up -f docker-compose.yaml -f docker-compose.test.yaml`  
+
+It is also recommended not to expose any ports through Docker Compose used in CI as they may conflict with other ports already in use in the build agent.  
 
 Further documentation on docker-compose can be found at https://docs.docker.com/compose/reference/overview/#specifying-multiple-compose-files.
 
