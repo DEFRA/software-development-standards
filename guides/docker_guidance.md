@@ -51,7 +51,7 @@ Additional settings can be applied to a docker compose file by using override fi
 
 Override files can be applied by listing the files after the `docker-compose` command with the `-f` parameter, i.e.
 
-`docker-compose up -f docker-compose.yaml -f docker-compose.override.yaml`
+`docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up`
 
 Note that the above is equivalent to running the command:
 
@@ -65,7 +65,7 @@ Note however that:
 
 will **not** apply the docker `docker-compose.override.yaml` file, only the file specified.
 
-One use case is for running tests in CI - common settings can be put into the base `docker-compose.yaml` file, while changes to the command and container names can be placed in override files.
+One use case is for running tests in CI - common settings can be put into the base `docker-compose.yaml` file, while changes to the command and containers needed in local development can be placed in override files.
 
 The below example demonstrates changing the command and container name for testing:
 
@@ -108,22 +108,22 @@ This can be achieved with the `-p` switch when calling docker compose on the com
 
  i.e. to start the service
 
-`docker-compose -p ffc-demo-service up -f docker-compose.yaml`
+`docker-compose -p ffc-demo-service -f docker-compose.yaml up`
 
 and to run the tests
 
-`docker-compose -p ffc-demo-service-test up -f docker-compose.yaml -f docker-compose.test.yaml`
+`docker-compose -p ffc-demo-service-test -f docker-compose.yaml -f docker-compose.test.yaml up`
 
 ### Use environment variables to guarantee unique projects and containers
-When running through CI, a combination of the `-p` switch and environment variables can be used to ensure each build and test has unique project and container names.
+When running through CI, a combination of the `-p` switch and environment variables can be used to ensure each build and test has unique project and container names.  This will prevent conflicts with other build pipelines when using tools such as a single node Jenkins.
 
 For example using Jenkins, the following compose files can be started via:
 
-`docker-compose -p ffc-demo-service-$PR_NUMBER-$BUILD_NUMBER up -f docker-compose.yaml`
+`docker-compose -p ffc-demo-service-$PR_NUMBER-$BUILD_NUMBER -f docker-compose.yaml up`
 
 and tested with
 
-`docker-compose -p ffc-demo-service-test-$PR_NUMBER-$BUILD_NUMBER up -f docker-compose.yaml -f docker-compose.test.yaml`
+`docker-compose -p ffc-demo-service-test-$PR_NUMBER-$BUILD_NUMBER -f docker-compose.yaml -f docker-compose.test.yaml up`
 
 using `PR_NUMBER` and `BUILD_NUMBER` environment variables to isolate build tasks.
 
@@ -151,9 +151,9 @@ services:
 ```
 
 ### Composing multiple repositories for local development
-For scenarios where multiple containers need to be created across multiple repositories, it is recommended to create a "development" repo.
+For scenarios where multiple containers need to be created across multiple repositories, it might be advantageous to create a "development" repo.
 
-The development repository should:
+The development repository would:
 - clone all necessary repositories
 - builds images from Dockerfiles in each repository by referencing Docker Compose files in those repositories
 - run containers based on those images in a single Docker network by referencing Docker Compose files in those repositories
@@ -211,3 +211,5 @@ volumes:
 ```
 
 Changes to any of the directories listed above would automatically be picked up in the running container.
+
+Binding also allows developers to take advantage of file watching in running and testing applications.  Changes made to code locally will automatically be reflected in the running container.
