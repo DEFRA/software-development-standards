@@ -8,19 +8,18 @@
 ## Multi stage builds
 Dockerfiles should implement multi stage builds to allow different build stages to be targetted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
-Below is an example multi stage build which is intended to use the Future Farming and Countryside (FFC) Node.js parent image.
+Below is an example multi stage build which is intended to use the Defra Node.js base image.
 
 ```
 ARG PARENT_VERSION=1.0.0-node12.16.0
 ARG PORT=3000
 ARG PORT_DEBUG=9229
-ARG REGISTRY=171014905211.dkr.ecr.eu-west-2.amazonaws.com
 
 # Development
-FROM ${REGISTRY}/ffc-node-development:${PARENT_VERSION} AS development
+FROM defradigital/node-development:${PARENT_VERSION} AS development
 ARG PARENT_VERSION
 ARG REGISTRY
-LABEL uk.gov.defra.ffc.parent-image=${REGISTRY}/ffc-node-development:${PARENT_VERSION}
+LABEL uk.gov.defra.parent-image=defradigital/node-development:${PARENT_VERSION}
 ARG PORT
 ENV PORT ${PORT}
 ARG PORT_DEBUG
@@ -32,10 +31,10 @@ RUN npm run build
 CMD [ "npm", "run", "start:watch" ]
 
 # Production
-FROM ${REGISTRY}/ffc-node:${PARENT_VERSION} AS production
+FROM defradigital/node:${PARENT_VERSION} AS production
 ARG PARENT_VERSION
 ARG REGISTRY
-LABEL uk.gov.defra.ffc.parent-image=${REGISTRY}/ffc-node:${PARENT_VERSION}
+LABEL uk.gov.defra.parent-image=defradigital/node:${PARENT_VERSION}
 ARG PORT
 ENV PORT ${PORT}
 EXPOSE ${PORT}
