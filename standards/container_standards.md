@@ -22,7 +22,7 @@ Underlying container hosts can only host either Linux or Windows containers.  A 
 
 Containers are not trust boundaries and therefore should never be run as root for security reasons.
 
-- images are signed
+- public images are signed
 
 A digital fingerprint should be added to each image.  This enables consumers of images to verify the source and trust levels of the image they are consuming.
 
