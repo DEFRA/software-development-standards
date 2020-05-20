@@ -6,29 +6,29 @@
 `Container` - a running instance of an image
 
 ## Standards
-- images are created using Docker
-- Docker Compose is used for defining container builds
+### Images are created using Docker
+### Docker Compose is used for defining container builds
 
 Using a consistent containerisation tool will help enforce standards and better promote developer mobility.
  
-- Linux containers are used if the service to be containerised can run on Linux  
+### Linux containers are used if the service to be containerised can run on Linux  
 
 Underlying container hosts can only host either Linux or Windows containers.  A model of consistenty would reduce the number of underlying hosts.  Windows containers can only be run on Windows hosts which typically have greater licensing costs vs Linux.
 
 *Note that services built using .Net Framework vs .Net Core cannot be run using Linux containers.  Defra's position is .Net Core should be preferred over .Net Framework but there may be some use cases if containerising legacy services*
 
-- images are built using Defra base images (see below)
-- containers are not run using root user
+### Images are built using Defra base images (see below)
+### Containers are not run using root user
 
 Containers are not trust boundaries and therefore should never be run as root for security reasons.
 
-- public images are signed
+# Public images are signed
 
 A digital fingerprint should be added to each image.  This enables consumers of images to verify the source and trust levels of the image they are consuming.
 
-- production images should be immutable and once built do not change but can be configured
-- images are tagged using semantic versioning
-- images are self contained and carry all runtime dependencies
+### Production images should be immutable and once built do not change but can be configured
+### Images are tagged using semantic versioning
+### Images are self contained and carry all runtime dependencies
 
 Images should not be dependent on their host infrastructure for any application dependency.  This enables them to be freely deployed and orchestrated anywhere capable of running containers.
 
