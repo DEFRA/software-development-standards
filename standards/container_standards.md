@@ -40,7 +40,10 @@ Containers are not trust boundaries and therefore should never be run as root fo
 ### Public images are signed
 A digital fingerprint should be added to each image.  This enables consumers of images to verify the source and trust levels of the image they are consuming.
 
-### Production images should be immutable and once built do not change but can be configured
 ### Images are tagged using semantic versioning
+
+### Production images should be immutable and once built do not change but can be configured
+Immutable images do not change once created which gives the a versioned image predictability and portability.
+
 ### Images are self contained and carry all runtime dependencies
 Images should not be dependent on their host infrastructure for any application dependency.  This enables them to be freely deployed and orchestrated anywhere capable of running containers.
