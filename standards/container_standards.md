@@ -43,7 +43,7 @@ A digital fingerprint should be added to each image.  This enables consumers of 
 ### Images are tagged using semantic versioning
 [Version control standards](version_control_standards.md)  
 
-For simplicity, it is beneficial to keep the image and application version in sync if the team's release process supports it.
+For simplicity, it is beneficial to keep the image and containerised application version in sync.
 
 ### Production images should be immutable and once built do not change but can be configured
 Immutable images do not change once created which gives the a versioned image predictability and portability.
