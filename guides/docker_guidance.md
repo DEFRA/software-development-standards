@@ -11,7 +11,7 @@ A container is a standard unit of software that packages up code and all it's de
 `Container` - a running instance of an image
 
 ## Multi stage builds
-Dockerfiles should implement multi stage builds to allow different build stages to be targetted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
+Dockerfiles should implement multi stage builds to allow different build stages to be targeted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
 Below is an example multi stage build which is intended to use the Defra Node.js base image.
 
