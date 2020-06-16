@@ -1,5 +1,10 @@
 # Docker guidance
 
+A container is a standard unit of software that packages up code and all it's dependencies so the application runs quickly and reliably across multiple environments.  Docker is a tool to build and run these containers.
+
+## More information
+[Docker introduction on docker.com](https://www.docker.com/resources/what-container)
+
 ## Terminology
 `Dockerfile` - set of instructions for building a docker image  
 `Image` - a constructed set of layered docker instructions  
