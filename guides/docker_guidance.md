@@ -166,7 +166,7 @@ The development repository would:
 - run containers based on those images in a single Docker network by referencing Docker Compose files in those repositories
 - run single containers for any shared dependencies across repositories such as message queues or databases
 
-To facilitate this, each repository with a potentially shared dependency will need it's Docker Compose override files to be setup in such a way that dependency containers can be isolated.  This will allow those repository services to run both in isolation and as part of wider service depending on development needs.
+To facilitate this, each repository with a potentially shared dependency will need its Docker Compose override files to be setup in such a way that dependency containers can be isolated.  This will allow those repository services to run both in isolation and as part of wider service depending on development needs.
 
 For example, let's say we have two repositories, **ServiceA** and **ServiceB**.  **ServiceA** communicates with **ServiceB** via an ActiveMQ message queue. **ServiceB** has a PostgreSQL database.
 
