@@ -29,7 +29,7 @@ Docker is the de facto industry standard in most enterprises.
 Using a consistent containerisation tool will help enforce standards and better promote developer mobility.
  
 ### Linux containers are used if the service to be containerised can run on Linux
-Underlying container hosts can only host either Linux or Windows containers.  A model of consistenty would reduce the number of underlying hosts.  Windows containers can only be run on Windows hosts which typically have greater licensing costs vs Linux.
+Underlying container hosts can only host either Linux or Windows containers.  A model of consistency would reduce the number of underlying hosts.  Windows containers can only be run on Windows hosts which typically have greater licensing costs vs Linux.
 
 *Note that services built using .Net Framework vs .Net Core cannot be run using Linux containers.  Defra's position is .Net Core should be preferred over .Net Framework but there may be some use cases if containerising legacy services*
 
