@@ -33,7 +33,7 @@ Underlying container hosts can only host either Linux or Windows containers.  A 
 
 *Note that services built using .Net Framework cannot be run using Linux containers, but services built using .Net Core can.  Defra's position is .Net Core should be preferred over .Net Framework but there may be some use cases if containerising legacy services*
 
-### Images are built using Defra base images (see below)
+### Images are built using Defra base images (see above)
 ### Containers are not run using root user
 Containers are not trust boundaries and therefore should never be run as root for security reasons.
 
