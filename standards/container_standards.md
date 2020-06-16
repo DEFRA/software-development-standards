@@ -31,7 +31,7 @@ Using a consistent containerisation tool will help enforce standards and better 
 ### Linux containers are used if the service to be containerised can run on Linux
 Underlying container hosts can only host either Linux or Windows containers.  A model of consistenty would reduce the number of underlying hosts.  Windows containers can only be run on Windows hosts which typically have greater licensing costs vs Linux.
 
-*Note that services built using .Net Framework vs .Net Core cannot be run using Linux containers.  Defra's position is .Net Core should be preferred over .Net Framework but there may be some use cases if containerising legacy services*
+*Note that services built using .Net Framework cannot be run using Linux containers, but services built using .Net Core can.  Defra's position is .Net Core should be preferred over .Net Framework but there may be some use cases if containerising legacy services*
 
 ### Images are built using Defra base images (see below)
 ### Containers are not run using root user
