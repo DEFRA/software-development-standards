@@ -8,13 +8,13 @@ This is the temporary home for standards and guidance relating to software devel
   - [Choosing packages](/guides/choosing_packages.md)
   - [Continuous integration](/guides/continuous_integration.md)
   - [Developer workflows](/guides/developer_workflows.md)
+  - [Docker guidance](/guides/docker_guidance.md)
   - [Java auto-format with Eclipse](/guides/java_auto_format_eclipse.md)
   - [New starters](/guides/new_starters.md)
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
   - [SQL Prompt](/guides/version_control_guidance.md)
   - [Style guide for standards](/guides/style_guide_for_standards.md)
   - [Version control guidance](/guides/version_control_guidance.md)
-  - [Docker guidance](/guides/docker_guidance.md)
 - [Principles](/principles)
   - [Coding principles](/principles/coding_principles.md)
   - [Security principles](/principles/security_principles.md)
@@ -23,6 +23,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Pull requests](/processes/pull_requests.md)
 - [Standards](/standards)
   - [Common coding standards](/standards/common_coding_standards.md)
+  - [Container standards](/standards/container_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
   - [Deployment standards](/standards/deployment_standards.md)
   - [Java coding standards](/standards/java_coding_standards.md)
@@ -35,7 +36,6 @@ This is the temporary home for standards and guidance relating to software devel
   - [Security standards](/standards/security_standards.md)
   - [TSQL and SQL Server database standards](/standards/tsql_and_sqldb_standards.md)
   - [Version control standards](/standards/version_control_standards.md)
-  - [Docker standards](/standards/docker_standards.md)
 
 ## About
 
