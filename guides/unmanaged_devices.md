@@ -33,7 +33,9 @@ this happen, but we're not there yet.
 This guidance applies for _all_ unmanaged devices.
 
 ### Who can you talk to about this?
-If you have any questions, comments or criticisms then please contact me.
+If you have any questions then please contact your line manager.
+
+For suggestions feel free to create an Issue or raise a PR with your suggested changes.
 
 ### What is different for unmanaged devices?
 The main difference is that **you must apply all the necessary security controls to the device yourself**.
@@ -44,8 +46,6 @@ It may be best to return the unmanaged device and replace it with a managed devi
 ### What are the security controls you need to apply?
 The precise controls that you need to apply will vary depending on the type of device that you have and how you need
 to use it.
-
-These controls are outlined in the following sections.
 
 However, there are some common controls that you must apply in all cases and these are described first.
 
@@ -82,14 +82,17 @@ You should normally apply all patches and updates immediately.  The only excepti
 maintain older versions of software to do compatibility testing.
 
 #### Ensure that you are using official online resources
-One of the main reasons for having unmanaged devices is to be able to make use of online resources, but this can be a
-significant threat leading to the compromise of devices.
+One of the main reasons for having unmanaged devices is to be able to make use of online resources.
+However, this freedom of access can also be a threat that may cause devices to be compromised or leak official
+information.
 
-For this reason, only officially approved online resources should be accessed.
+For this reason, only officially approved online resources should be accessed from unmanaged devices.
 
-Any legitimate online resources that you are likely to encounter will be approved for your access.
+In reality, any resource that you access for legitimate work is likely to be "offically approved", but you are
+responsible for all of your online activity and will be accountable for any incidents resulting from inappropriate
+access.
 
-If you are not sure whether an online resource is officially approved then speak to your line manager.
+If you are not sure whether an online resource is considered to be officially approved then speak to your line manager.
 
 #### Do not compromise the organisation's corporate network
 Under normal circumstances you must never connect your device to the organisation's internal corporate network.
@@ -98,10 +101,47 @@ However, for some work it may be appropriate to use the device on the corporate 
 officially approved then you must ensure that the network is not compromised.
 
 #### Keep the device physically secure
+Unmanaged devices are generally portable and often highly valuable, so you must take appropriate steps to keep the
+device physically secure.
 
+In particular, you should:
+ - keep the device hidden whenever it is being transported or stored
+ - ensure the device is stored in a secure, locked location
+ - ensure the device is adequately protected from damage at all times
 
+Cases, bags or other containers can be provided by your line manager.
 
-### Controls for Wintel laptops (Linux or Windows)
+#### Use the device safely
+Unmanaged devices often have different physical characteristics than standard-issue equipment.
+
+You must make sure that you complete an assessment of how to use the device in a way that does not cause strain or
+long-term injury.
+
+Some specific areas to look out for are:
+ - screen size, graphics resolution and text size may not be optimal in the default configuration
+ - on-screen or built-in keyboards, touchpads or trackpads are often not suitable for long periods of use
+ - default operating system or software configuration can often not be suitable for long periods of use
+ - devices may not have the necessary connectivity options for external equipment
+
+Additional equipment or guidance can be provided by your line manager.
+
+#### Backup and secure data
+Using unmanaged devices often requires the creation of data outside of our secure, corporate repositories.
+
+You must ensure that any unique content you create is backed up to alternative persistent storage in accordance with
+the information management procedures that apply.
+
+Additional equipment such as encrypted hard drives or online services such as OneDrive can be provided by your
+line manager.
+
+#### Returning devices
+When you return your device, you must ensure that it has been treated to remove all official information and is
+ready to be used by someone else.
+
+This usually just means performing a factory reset, although in some cases
+additional steps may be required.
+
+### Controls for Windows laptops
 
 #### Don't set a BIOS password
 BIOS passwords don't add any greater security to the device and primarily only help to prevent accidental
@@ -110,83 +150,75 @@ mis-configuration.
 Setting such passwords can make it more difficult to reuse the device so do not set a BIOS password.
 
 #### Use the latest stable desktop operating system
-Windows 10 Enterprise
-Linux Mint 18.2
-Ubuntu 16.04
+The device is likely to come with a suitable version of Windows 10 pre-installed, but if not then you should ensure
+that Windows 10 Professional or Enterprise is installed on it, but do not remove any existing recovery partition.
 
-Don't use server versions of operating systems.
+Guidance on this can be provided by your line manager.
 
-If you need to work with a different version then use a virtualisation technology.
+You must ensure that the device has the latest stable version.
 
-#### Don't use dual boot
-Pick a preferred operating system and use that.
+Do not use server versions or different operating systems, e.g. any Linux distribution.
 
-### Controls for Linux laptops
+If you need to work with a different operating system then you must use a virtualisation technology.
 
 #### User accounts
-Create a personal user account for you.
-Use your Environment Agency username.
-Use a strong password.
-Create
-Password strength
+Your device should be supplied relatively factory-fresh, without existing user accounts.
+
+You need to create a local device account for yourself, not linked to a Microsoft account, to use as a local
+administrator account.  You should use your corporate network username for this account so that it can be
+unambiguously identified.
+
+Secure this account with a password.
 
 #### Disc encryption
+You must activate BitLocker disc encryption on your device, with a minimum 8-digit PIN.
 
-#### Screen lock
-
-#### Virtualisation
-
-### Controls for Windows laptops
-
-#### User accounts
-
-#### Disc encryption
-
-#### Screen lock
+You must supply the recovery key and disc identifier to your line manager so they can keep a record of them.
 
 #### Virtualisation
+Most development work should be undertaken in a dedicated virtual machine as this helps to protect the integrity of
+the host device.
 
-#### Backup data
+Commercial virtualisation software can be provided by your line manager if required.
+
+#### Corporate resources access
+Whilst most corporate resources sit inside entirely private networks, it is possible for some of our online
+services to be accessed from an unmanaged device. To do this, additional controls can be applied to the device.
+
+To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune. This
+facility can be requested through your line manager.
+
+If you enrol your device, you will need to use your corporate account, which will become registered as a new account
+on the device in addition to the local account you have already created. You will need to secure this account with
+a PIN.
+
+#### Cloud development environment access (VPN)
+Dedicated development environments and services can be accessed via VPN. You should install the VPN client on your
+device according to instructions provided by the operations team.
+
+VPN client connections should be made from the host device, not from virtual machines.
 
 ### Controls for Macbooks
 
 #### Don't set a firmware password
 
-#### Operating system
+#### Use the latest general release operating system version
 
 #### User accounts
 
 #### Disc encryption
-
-#### Screen lock
 
 #### Virtualisation
+Most development work will be done in the native operating system, but you may also wish to create virtual
+machines.
 
-#### Backup data
+#### Corporate resources access
+Whilst most corporate resources sit inside entirely private networks, it is possible for some of our online
+services to be accessed from an unmanaged device. To do this, additional controls can be applied to the device.
 
-### Controls for iOS devices
+To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune. This
+facility can be requested through your line manager.
 
-#### User accounts
-Don't use personal Apple IDs.
-
-#### Use disc encryption
-Set password for account.
-
-#### Set short screen lock timeout
-
-#### Don't root it
-
-#### Don't use iCloud
-
-### Controls for Android devices
-
-#### User accounts
-Don't use personal Google IDs.
-
-#### Disc encryption
-
-#### Set short screen lock timeout
-
-#### Storage cards
-
-#### Don't root it
+#### Cloud development environment access (VPN)
+Dedicated development environments and services can be accessed via VPN. You should install the VPN client on your
+device according to instructions provided by the operations team.
