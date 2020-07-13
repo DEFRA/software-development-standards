@@ -78,8 +78,8 @@ to audit equipment for security compliance.
 Whatever device you are using, you will not be receiving updates distributed by your organisation so you will need to
 apply these yourself.
 
-You should normally apply all patches and updates immediately.  The only exception to this is where you need to
-maintain older versions of software to do compatibility testing.
+You should normally apply all patches and updates immediately.
+The only exception to this is where you need to maintain older versions of software to do compatibility testing.
 
 #### Ensure that you are using official online resources
 One of the main reasons for having unmanaged devices is to be able to make use of online resources.
@@ -138,8 +138,8 @@ line manager.
 When you return your device, you must ensure that it has been treated to remove all official information and is
 ready to be used by someone else.
 
-This usually just means performing a factory reset, although in some cases
-additional steps may be required.
+This usually just means performing a factory reset, although in some cases additional steps may be required.
+You must ensure that there are no online accounts linked to the device, such as Microsoft or Apple IDs.
 
 ### Controls for Windows laptops
 
@@ -161,12 +161,18 @@ Do not use server versions or different operating systems, e.g. any Linux distri
 
 If you need to work with a different operating system then you must use a virtualisation technology.
 
+#### Keep the operating system and applications patched and up to date
+Windows 10 quality updates must be applied automatically and not paused.
+
+Feature updates to new versions should be applied as soon as they are available for your device, but may be
+deferred for a month or two if you have specific software compatibility issues.
+
 #### User accounts
 Your device should be supplied relatively factory-fresh, without existing user accounts.
 
 You need to create a local device account for yourself, not linked to a Microsoft account, to use as a local
-administrator account.  You should use your corporate network username for this account so that it can be
-unambiguously identified.
+administrator account.
+You should use your corporate network username for this account so that it can be unambiguously identified.
 
 Secure this account with a password.
 
@@ -183,30 +189,65 @@ Commercial virtualisation software can be provided by your line manager if requi
 
 #### Corporate resources access
 Whilst most corporate resources sit inside entirely private networks, it is possible for some of our online
-services to be accessed from an unmanaged device. To do this, additional controls can be applied to the device.
+services to be accessed from an unmanaged device.
+To do this, additional controls can be applied to the device.
 
-To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune. This
-facility can be requested through your line manager.
+To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune.
+This facility can be requested through your line manager.
 
 If you enrol your device, you will need to use your corporate account, which will become registered as a new account
-on the device in addition to the local account you have already created. You will need to secure this account with
-a PIN.
+on the device in addition to the local account you have already created.
+You will need to secure this account with a PIN.
 
 #### Cloud development environment access (VPN)
-Dedicated development environments and services can be accessed via VPN. You should install the VPN client on your
-device according to instructions provided by the operations team.
+Dedicated development environments and services can be accessed via VPN.
+You should install the VPN client on your device according to instructions provided by the operations team.
 
 VPN client connections should be made from the host device, not from virtual machines.
 
 ### Controls for Macbooks
 
 #### Don't set a firmware password
+Firmware passwords offer minimal additional protection and are easily lost or forgotten, which can only be fixed by
+an authorised Apple representative.
 
 #### Use the latest general release operating system version
+It can sometimes take a while for application vendors to support new macOS versions and there's no going back, so you
+can allow yourself a month or two before moving to the latest macOS operating system.
+But you should upgrade as soon as it is safe to do so.
+
+If you have a device that will not support the latest version of the operating system then you should talk to your
+line manager to arrange an alternative.
+
+You must not install any other operating system such as Windows or a Linux distribution.
+
+If you need to work with a different operating system then you must use a virtualisation technology.
+
+#### Keep the operating system and applications patched and up to date
+You must ensure that your device is configured to automatically check for updates and you should regularly install
+macOS and app updates so that you are using current features.
+
+Most importantly, you must ensure that your device is configured to automatically install system and security updates.
 
 #### User accounts
+Your device should be supplied relatively factory-fresh, without existing user accounts.
+
+You need to create a local device account for yourself to use as a local administrator account.
+You should use your corporate network username for this account so that it can be unambiguously identified.
+
+Secure this account with a password.
+
+You will also need to create an Apple ID registered to your corporate email address if you don't already have one.
+This account can be used for the App Store and can be linked to your work iPhone if you have one, which is useful
+for enabling two-factor authentication.
+
+However, you should not use this account to synchronise content across devices.
 
 #### Disc encryption
+You must enable FileVault on the disc of your device and create a local recovery key.
+Do **not** use your iCloud account or store the recovery key with Apple.
+
+You must supply the recovery key and disc identifier to your line manager so they can keep a record of them.
 
 #### Virtualisation
 Most development work will be done in the native operating system, but you may also wish to create virtual
@@ -214,11 +255,12 @@ machines.
 
 #### Corporate resources access
 Whilst most corporate resources sit inside entirely private networks, it is possible for some of our online
-services to be accessed from an unmanaged device. To do this, additional controls can be applied to the device.
+services to be accessed from an unmanaged device.
+To do this, additional controls can be applied to the device.
 
-To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune. This
-facility can be requested through your line manager.
+To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune.
+This facility can be requested through your line manager.
 
 #### Cloud development environment access (VPN)
-Dedicated development environments and services can be accessed via VPN. You should install the VPN client on your
-device according to instructions provided by the operations team.
+Dedicated development environments and services can be accessed via VPN.
+You should install the VPN client on your device according to instructions provided by the operations team.
