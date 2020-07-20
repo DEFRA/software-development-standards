@@ -35,7 +35,7 @@ states that you must:
 
 The simplest way to achieve this is by using open platforms by default.
  
-## Our primary development platforms are Microsoft's .Net framework and Node.js
+## Our primary development platforms are Microsoft's .NET and Node.js
 There are two key areas within Defra where we need to write custom code.
 
 We build bespoke online digital services using standard government libraries and frameworks.
@@ -43,7 +43,7 @@ For these we have identified Node.js as the most suitable platform.
 
 We also build solutions on top of commercial software products, where we have to use the platform that the vendor
 provides.
-Many of those products are from Microsoft, which means that we use .Net for this.
+Many of those products are from Microsoft, which means that we use .NET for this.
 
 These two platforms provide a wide range of capabilities so we can use them for most of the applications we
 develop.  We benefit from the flexibility of having two distinct platforms to choose from but also limit the
@@ -82,18 +82,18 @@ in the user interface of the product. Most of the products we use have some way 
 Taking this approach means that we decouple the bespoke capability from the core product, making it easier to perform
 changes and upgrades, but we also provide a coherent user interface.
  
-## We use .Net to customise and extend commodity products
-Many of our commodity products come from Microsoft and so provide a .Net customisation platform.
+## We use .NET to customise and extend commodity products
+Many of our commodity products come from Microsoft and so provide a .NET customisation platform.
 
-In addition, they will often provide highly capable .Net libraries and SDKs that enable integration with the products,
+In addition, they will often provide highly capable .NET libraries and SDKs that enable integration with the products,
 including add-in functionality such as SharePoint Provider Hosted Add-Ins.
  
-## We use C# as our .Net development language
-C# is the de facto standard language for .Net development and owing to its similarity to Java provides a level of
+## We use C# as our .NET development language
+C# is the de facto standard language for .NET development and owing to its similarity to Java provides a level of
 familiarity and cross-fertilisation with other language communities.
 
-It is also the language that is best supported in open source .Net frameworks.
+It is also the language that is best supported in open source .NET managed frameworks.
  
-## We use .Net Core wherever practical in preference to standard .Net
-.Net Core is Microsoft's strategic direction for the .Net framework and gives all the benefits of being open source,
+## We use .NET Core wherever practical in preference to .NET Framework
+.NET Core is Microsoft's strategic direction for .NET and gives all the benefits of being open source and cross platform,
 including growing community support.
