@@ -159,7 +159,8 @@ You must ensure that the device has the latest stable version.
 
 Do not use server versions or different operating systems, e.g. any Linux distribution.
 
-If you need to work with a different operating system then you must use a virtualisation technology.
+If you need to work with a different operating system then you must use a virtualisation technology,
+or you could consider using the Windows Subsystem for Linux.
 
 #### Keep the operating system and applications patched and up to date
 Windows 10 quality updates must be applied automatically and not paused.
@@ -227,7 +228,8 @@ If you need to work with a different operating system then you must use a virtua
 You must ensure that your device is configured to automatically check for updates and you should regularly install
 macOS and app updates so that you are using current features.
 
-Most importantly, you must ensure that your device is configured to automatically install system and security updates.
+Most importantly, you must ensure that your device is configured to automatically install system data files and
+security updates, which only covers the built-in anti-malware software and its configuration.
 
 #### User accounts
 Your device should be supplied relatively factory-fresh, without existing user accounts.
