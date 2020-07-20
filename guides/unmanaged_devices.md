@@ -6,7 +6,7 @@ A guide for everyone that needs to use unmanaged devices.
 This guide is about the appropriate steps you should take when using devices that are not managed by the normal
 organisational IT controls.
 
-Primarily that means developer's laptops.
+That means "off-network" laptops used, for example, by developers, testers and designers on digital services.
 
 ### Does it apply to you?
 Most people are issued with devices have been pre-configured with the organisation's standard IT controls in place.
@@ -81,14 +81,6 @@ apply these yourself.
 You should normally apply all patches and updates immediately.
 The only exception to this is where you need to maintain older versions of software to do compatibility testing.
 
-#### Ensure all the built-in threat protections are enabled
-Modern operating systems have highly capable firewall and anti-malware software, you must ensure that these remain
-enabled on your device.
-
-Very occasionally, it can be necessary to temporarily disable some of the threat protections, for example real-time
-file scanning can sometimes prevent certain legitimate software from installing properly.
-However, whenever you do this you must re-enable them once the operation has completed.
-
 #### Ensure that you are using official online resources
 One of the main reasons for having unmanaged devices is to be able to make use of online resources.
 However, this freedom of access can also be a threat that may cause devices to be compromised or leak official
@@ -96,7 +88,7 @@ information.
 
 For this reason, only officially approved online resources should be accessed from unmanaged devices.
 
-In reality, any resource that you access for legitimate work is likely to be "offically approved", but you are
+In reality, any resource that you access for legitimate work is likely to be "officially approved", but you are
 responsible for all of your online activity and will be accountable for any incidents resulting from inappropriate
 access.
 
@@ -132,6 +124,15 @@ Some specific areas to look out for are:
  - devices may not have the necessary connectivity options for external equipment
 
 Additional equipment or guidance can be provided by your line manager.
+
+#### Fix any faults
+If your device develops any hardware faults it could represent a safety or security issue.
+
+These devices are not managed by the normal corporate IT support functions so you should contact your line manager
+immediately to have any faults fixed.
+
+It may be possible to get certain repairs done under warranty, which could involve contacting the support desk or our
+equipment suppliers, but even so you should still speak to your line manager first.
 
 #### Backup and secure data
 Using unmanaged devices often requires the creation of data outside of our secure, corporate repositories.
@@ -185,10 +186,22 @@ You should use your corporate network username for this account so that it can b
 
 Secure this account with a password.
 
+#### Ensure all the built-in threat protections are enabled
+Modern Windows versions have highly capable firewall and anti-malware software, you must ensure that these remain
+enabled on your device.
+
+Very occasionally, it can be necessary to temporarily disable some of the threat protections, for example real-time
+file scanning can sometimes prevent certain legitimate software from installing properly.
+However, whenever you do this you must re-enable them once the operation has completed.
+
 #### Disc encryption
 You must activate BitLocker disc encryption on your device, with a minimum 8-digit PIN.
 
 You must supply the recovery key and disc identifier to your line manager so they can keep a record of them.
+
+#### Public networks
+When you connect to public networks, ensure that you identify them as such to Windows so that it does not share
+resources from your device.
 
 #### Virtualisation
 Most development work should be undertaken in a dedicated virtual machine as this helps to protect the integrity of
@@ -252,6 +265,16 @@ This account can be used for the App Store and can be linked to your work iPhone
 for enabling two-factor authentication.
 
 However, you should not use this account to synchronise content across devices.
+
+#### Install dedicated anti-malware software
+Although Gatekeeper provides good protection for applications, it does not provide equivalent controls for other
+files.
+
+You must install a commercial anti-malware product, which can be obtained from your line manager.
+
+Very occasionally, it can be necessary to temporarily disable some of the threat protections, for example real-time
+file scanning can sometimes prevent certain legitimate software from installing properly.
+However, whenever you do this you must re-enable them once the operation has completed.
 
 #### Disc encryption
 You must enable FileVault on the disc of your device and create a local recovery key.
