@@ -81,6 +81,14 @@ apply these yourself.
 You should normally apply all patches and updates immediately.
 The only exception to this is where you need to maintain older versions of software to do compatibility testing.
 
+#### Ensure all the built-in threat protections are enabled
+Modern operating systems have highly capable firewall and anti-malware software, you must ensure that these remain
+enabled on your device.
+
+Very occasionally, it can be necessary to temporarily disable some of the threat protections, for example real-time
+file scanning can sometimes prevent certain legitimate software from installing properly.
+However, whenever you do this you must re-enable them once the operation has completed.
+
 #### Ensure that you are using official online resources
 One of the main reasons for having unmanaged devices is to be able to make use of online resources.
 However, this freedom of access can also be a threat that may cause devices to be compromised or leak official
