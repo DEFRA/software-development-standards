@@ -94,6 +94,14 @@ access.
 
 If you are not sure whether an online resource is considered to be officially approved then speak to your line manager.
 
+#### Use public networks securely
+You should be aware whenever you are connecting to open, public networks as these can represent an information
+security risk.
+In particular, the captive portals typically found in cafes and hotels that require a username and password may not
+provide secure end-to-end encryption.
+
+Whenever you are connecting to a public network, you must ensure that you first evaluate whether it is safe to do so.
+
 #### Do not compromise the organisation's corporate network
 Under normal circumstances you must never connect your device to the organisation's internal corporate network.
 
