@@ -114,6 +114,8 @@ Given all the alternative approaches, and the significant disadvantages of devel
 
 ## Extra considerations for testing mobile apps
 
+This section further supports the general testing guidance on the [Defra quality assurance and test wiki](https://github.com/DEFRA/qa-test/wiki).
+
 ### Mobile apps must be tested on a representative range of platforms and devices
 
 **Mobile Apps must be tested on a representative range of platforms and devices.** That range of platforms and devices will obviously depend on the intended use of the app: for example, it can include the Apple platform and associated devices for an internal app, but for an app intended for use beyond the Defra family will include at least both the Apple and Android platforms and associated devices.
