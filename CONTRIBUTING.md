@@ -21,6 +21,8 @@ If in doubt speak to [Alan Cruikshanks](https://github.com/cruikshanks) or [Ben 
 
 ## Getting started
 
+Read the [style guide for standards](/guides/style_guide_for_standards.md).
+
 Create a branch with a brief but descriptive name e.g. `add-more-details-for-contributors`.
 
 Start committing your changes and **push** straight away rather than when finished. We don't want your work to get lost!

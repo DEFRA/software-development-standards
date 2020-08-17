@@ -85,7 +85,9 @@ The path to reuse starts with module/namespacing. When the need for reuse is con
 
 ### All code is checked for quality
 
-All repos are connected to a quality analysis tool (such as CodeClimate or SonarQube) and the tool's maximum quality rating is maintained.
+All repos are connected to a quality analysis tool and the tool's maximum quality rating is maintained.
+
+All repos on GitHub and Azure Repos are connected to our SonarCloud organisation.
 
 ### All code is checked for security
 
@@ -94,3 +96,11 @@ All repos are connected to a security tool to monitor for vulnerabilities in the
 ### All code has dependency checking
 
 No out of date dependencies or libraries with known vulnerabilities.
+
+## Status
+
+This standard was formally adopted on 1 July 2019.
+
+## Significant changes
+
+SonarCloud was adopted as our standard quality analysis tool on 1 April 2020.
