@@ -1,13 +1,10 @@
-Mobile Application Guidance
-===========================
+# Mobile application guidance
 
-Introduction
-------------
+## Introduction
 
 The huge increase in the use of mobile devices means that mobile application development is now of critical interest to the Defra family, even more so given the amount of field-work being carried out by workers within the Defra family.
 
-Scope
------
+## Scope
 
 This guidance applies to mobile application in-house development and management.
 
@@ -15,17 +12,15 @@ This guidance is intended to cover all forms of mobile application: from fully "
 
 This document should be read in conjunction with the Mobile Application Standards (**[Mobile Application Standards](/standards/mobile_app_standards.md)**).
 
-Caveats
--------
+## Caveats
 
 This is a fast moving area involving multiple platforms and diverse technology stacks: this guidance is early and provisional.
 
-Extra Security Guidance
------------------------
+## Extra security guidance
 
 Please ensure that you have read the "Extra Security Considerations" of the **[Mobile Application Standards](/standards/mobile_app_standards.md)** before reading this section.
 
-### Application Wrappers
+### Application wrappers
 
 The Mobile Application Standards refer to various mechanisms for encrypting traffic going to and from the app over usually public networks: specifically HTTPS/Transport Layer Security, use of Virtual Private Networks or use of an in-built application security wrapper. The potential use of in-built application security wrappers requires some further guidance. This technique, often called "application wrapping", is a service commonly offered by Mobile Device Management (MDM) software suites. It involves using the MDM suite in some way to allow the MDM software to add an extra layer of security to your application bundle, such as encryption for data traffic (based on standard transport layer security/secure sockets, i.e. shared and verifiable certificates) or locally stored application data (with that encryption usually based on a secret known only to the user, such as their device passcode). Another important advantage of application wrapping is to lock-down access, either to data stored on the device or remote systems, on a per app basis.
 
@@ -35,18 +30,17 @@ App wrapping should therefore only be adopted if it is deemed really necessary a
 
 Conversely the degree of protection offered by Android app sandboxing is version dependent and regarded as less secure, so, for an app using Android devices, there is a possible case for wrapping, if, in this instance, the wrapper technology actually adds value and the data in scope requires it.
 
-### Protecting Data at Rest on the Device
+### Protecting data at rest on the device
 
 Mobile applications and associated data held locally on devices will be subject to exactly the same heightened physical security risks as the devices on which the apps are running. Mobile devices are relatively easily lost or stolen. This means **it is very important to consult the latest security standards as to how data stored on the device should be protected, and, if the application is intended for internal use on a managed device, that you consult with the Cloud Mobile Services team in Group Infrastructure and Operations to find out what the Mobile Device Management (MDM) software used to manage the device may mean for how you should implement your app.** For example, you may discover "out of the box" Mobile Device Management features that can be utilised to better protect your app's data, such as the ability to force users of managed devices to set more secure passcodes before they can log into the device and decrypt its data.
 
-### Authenticating External Users
+### Authenticating external users
 
 Mobile apps are increasingly being used by organisations as a way to provide publicly accessible services. Sometimes, such publicly accessible apps also need to support a form of authentication. This is likely to be more challenging than adopting authentication for systems built for internal use, where internal authentication systems and associated business processes are likely to be well established. Furthermore, any authentication mechanisms adopted by the mobile app must be capable of operating securely within one of the most insecure contexts conceivable: on an unmanaged mobile device used by any member of the general public. **Developers and application architects must therefore research, consult and very carefully decide as to the authentication mechanisms the application will need to adopt.**
 
 To that end, bear in mind the following points. Authentication that is established by linking the user to, say, a real email address, by sending the user an email to that address and making the user respond, is relatively easy to implement, but be aware that, if the user is required to prove their actual identity, that can be much more problematic and involved. Please consult the latest security standards, and bear in mind that even already available verification services such as gov.uk.Verify are not without their own very significant challenges. Implementing reliable ways of allowing someone to prove their real identity is simply a very difficult task. Given this fact it would be worth considering if, in reality, an app currently considered to be for use by the "general public" is really intended to be used by parties already known to the Defra family, such as contracted companies or suppliers, or regulated entities who already hold licences issued by the Defra family. In such a scenario, where the target users are already known, a "by invitation" pattern of establishing authentication by sending details to an already officially recorded email or physical address may provide sufficient assurance that we know the real identity of the user with whom we have engaged.
 
-Extra Guidance on Progressive Web Apps
---------------------------------------
+## Extra guidance on Progressive Web Apps
 
 Unfortunately, the Defra family mandating of Apple devices does have some negative implications for Progressive Web Apps, of which we need to be aware. Apple force the use of the Safari/WebKit browser on all iOS/iPad OS devices, and, of all the major browsers, Safari has the most limited support for Progressive Web Apps. There is no way around this as even other browser apps in the Apple app store, such as Chrome, are merely wrappers for WebKit. The most notable restrictions are likely to be around size of storage (though, in January 2020, and if using IndexedDB, which is usually the most functional local storage option in any case, over 1 GB was found to be available on a Defra iPad), persistence of stored data (as of July 2020 you can depend on IndexedDB data being retained for at least a month, and possibly much longer, even if an app is completely unused, and data has been observed to survive an iPad OS and Safari update. This therefore seems to be a diminishing issue, though one of which you should be aware.) and the fact that, in Safari on iOS or iPad OS, the way you install an app on the home screen is still currently non-standard.
 
@@ -54,8 +48,7 @@ It is possible to build a perfectly useful PWA that runs on Safari, including be
 
 Of course, PWAs are storing data locally: otherwise they cannot work offline. That means that you will also need to consider the security of the data at rest on the device. These considerations are slightly different for PWAs than for other apps, as the data is being retained in the browser. If, as is likely and recommended, you are using IndexedDB to store your data, then all browsers compliant with the W3C spec, such as Safari, will only allow JavaScript from the same origin as the PWA that has created the database to access that data. Also, your data will be protected by your device's normal data encryption: for example, for an internally managed Defra iPad where the setting of a passcode is enforced, that means the data will be encrypted whenever the device is turned off, and only decrypted when the user re-enters the correct passcode. That means "reasonably" secure, but most likely not as secure as Apple's app sandboxing, and this should be borne in mind when assessing whether or not a PWA is appropriate, given the sensitivity, or not, of the data it will be handling, and the general security features of the devices where the app will be in use.
 
-Building Cross-Platform Apps
-----------------------------
+## Building cross-platform apps
 
 It is possible that, having run through the hierarchy of Mobile Application development options as specified in the Mobile Application Standards the decision will have been reached to build a mobile app using a cross platform technology stack. These stacks are ways of using the same, or very close to the same, code-base but still build the app in ways that can allow it to run on multiple platforms and multiple devices. Otherwise a completely different code base, using a different language and development framework, is needed to build an app for each platform.
 
