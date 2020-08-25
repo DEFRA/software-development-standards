@@ -11,6 +11,7 @@ This folder contains all current standards for software development.
 - [Development languages](development_language_standards.md)
 - [Java coding standards](java_coding_standards.md)
 - [JavaScript standards](javascript_standards.md)
+- [Mobile application standards](mobile_app_standards.md)
 - [Node.js standards](node_standards.md)
 - [PL/SQL coding standards](plsql_coding_standards.md)
 - [Quality assurance and test standards](quality_assurance_standards.md)
@@ -19,3 +20,4 @@ This folder contains all current standards for software development.
 - [Security standards](security_standards.md)
 - [TSQL and SQL Server database standards](tsql_and_sqldb_standards.md)
 - [Version control standards](version_control_standards.md)
+

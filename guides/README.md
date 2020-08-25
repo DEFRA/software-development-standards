@@ -9,6 +9,7 @@ This folder contains various guides to help those working in software developmen
 - [Developer workflows](developer_workflows.md)
 - [Docker guidance](docker_guidance.md)
 - [Java auto-format with Eclipse](java_auto_format_eclipse.md)
+- [Mobile application guidance](mobile_app_guidance.md)
 - [New starters](new_starters.md)
 - [PL/SQL auto-format with TOAD](plsql_auto_format_toad.md)
 - [SQL Prompt](sql_prompt_tool.md)
