@@ -263,3 +263,7 @@ Other javadocs tags can be used as required.
 - Both multi-line (`\* */`) and single line (`//`) comments may be used
 
 - Comments within the method body should, wherever possible, be restricted to single line comments
+
+## Status
+
+This standard was formally adopted on 20 Feb 2021.
