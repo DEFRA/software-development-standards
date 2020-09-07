@@ -10,6 +10,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Developer workflows](/guides/developer_workflows.md)
   - [Docker guidance](/guides/docker_guidance.md)
   - [Java auto-format with Eclipse](/guides/java_auto_format_eclipse.md)
+  - [Kubernetes](/guides/kubernetes.md)
   - [Mobile application guidance](/guides/mobile_app_guidance.md)
   - [New starters](/guides/new_starters.md)
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
@@ -31,6 +32,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Development languages](/standards/development_language_standards.md)
   - [Java coding standards](/standards/java_coding_standards.md)
   - [JavaScript standards](/standards/javascript_standards.md)
+  - [Kubernetes standards](/standards/kubernetes_standards.md)
   - [Mobile application standards](/standards/mobile_app_standards.md)
   - [Node.js standards](/standards/node_standards.md)
   - [PL/SQL coding standards](/standards/plsql_coding_standards.md)
@@ -40,7 +42,6 @@ This is the temporary home for standards and guidance relating to software devel
   - [Security standards](/standards/security_standards.md)
   - [TSQL and SQL Server database standards](/standards/tsql_and_sqldb_standards.md)
   - [Version control standards](/standards/version_control_standards.md)
-  - [Kubernetes standards](/standards/kubernetes_standards.md)
 
 ## About
 
