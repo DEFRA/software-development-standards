@@ -1,5 +1,11 @@
 # Kubernetes standards
 
+## Standards
+### Use a managed Kubernetes service
+Managed Kubernetes services such as Azure Kubernetes Service (AKS) in Azure or Elastic Kubernetes Service (EKS) in AWS are used as opposed to any IaaS Kubernetes implementation.
+
+This is because managed Kubernetes services abstract the maintainence and configuration of master nodes to the cloud provider, meaning teams only need to support the worker nodes.
+
 # Configuration
 Configuration for an application running in a pod should be passed to the pod via a `ConfigMap` Kubernetes resource.
 
