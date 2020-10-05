@@ -10,7 +10,7 @@ This document defines the standards to be followed when implementing RESTful API
 This section provides the design principles to be applied when building RESTful APIs.  They are presented broadly in
 order of importance.
 
-###Principle 1 - User Need
+### Principle 1 - User Need
 Service APIs will be designed around a proper understanding of the user need.  Specifically, there is an explicit
 distinction made between public Open Data services, services where the user needs to transact with Government directly
 and services that support re-use.
@@ -49,7 +49,7 @@ Implications:
    outlined in this document specifically account for different styles
    of implementation so as to provide consistency without uniformity.
 
-###Principle 2 - Open Services
+### Principle 2 - Open Services
 Services will be as open as possible by default.
 
 Benefits:
@@ -62,7 +62,7 @@ Implications:
  - User needs must clearly articulate the balance between openness and security.
  - Additional effort will be required in order to make services more open.
 
-###Principle 3 - Secure
+### Principle 3 - Secure
 Services will be precisely as secure as necessary and will use industry standard security mechanism and protocols.
 
 Benefits:
@@ -73,7 +73,7 @@ Implications:
 
  - The information security requirements of the service must be properly understood.
 
-###Principle 4 - RESTful
+### Principle 4 - RESTful
 Services will be RESTful, not REST-ish.  Specifically, correct use of hypermedia is an essential part of the service
 implementation.
 
@@ -99,7 +99,7 @@ Implications:
 
  - Services require more implementation effort in the short term.
 
-###Principle 5 - Consistent
+### Principle 5 - Consistent
 Services will be consistent in their implementation.  This is, essentially, the purpose of this standards document and
 forms the basis for the remaining principles.
 
@@ -114,7 +114,7 @@ Implications:
 
 ## Design Standards
 
-###Standard 0 - Start with Best Practice Standards
+### Standard 0 - Start with Best Practice Standards
 Read this document:
 
 https://github.com/tfredrich/RestApiTutorial.com/raw/master/media/RESTful%20Best%20Practices-v1_2.pdf
@@ -123,7 +123,7 @@ As it is principally a catalogue of current industry practice, it is almost exac
 should be.  There are some areas of difference, however, particularly where the industry remains divided in terms
 of *best* practice.
 
-###Standard 1 - Authentication
+### Standard 1 - Authentication
 Level 4 Open Data services must not require authentication or identification of any sort, whereas Level 3 Open Services
 must require exactly one of shared token or user-principal authentication, depending on the identified user need.
 
@@ -133,14 +133,14 @@ authentication is required.
 It is essential that any API that has no such implicit trust arrangement implements a Level 3 Open Service with all the
 necessary security controls.
 
-###Standard 2 - Identification
+### Standard 2 - Identification
 Where actor identification is required, this will be in line with standard Government identification mechanisms.
 In practice, this means the use of email addresses for unverified identities and use of the Government Verify service
 where verification is required.
 
 >Details TBD
 
-###Standard 3 - OAuth 2.0
+### Standard 3 - OAuth 2.0
 See https://tools.ietf.org/html/rfc6749
 
 Secured APIs take the role of an OAuth 2.0 Resource Server and mandate the use of the **Authorization** header with
@@ -148,11 +148,11 @@ a **Bearer** token (see https://tools.ietf.org/html/rfc6750 and http://self-issu
 
 > Further details TBD - what are we doing about client authentication, beyond Verify?
 
-###Standard 4 - API Keys
+### Standard 4 - API Keys
 
 > Details TBD - how can API keys be securely managed?  How do we use API keys on non-secured resources?
 
-###Standard 5 - Naming
+### Standard 5 - Naming
 To avoid coupling API implementation with technology constraints, API names will appear as the root in the URI path
 rather than necessarily as a domain name, i.e.:
 
@@ -172,7 +172,7 @@ So, the following are all acceptable:
 > http://permitservice.gov.uk/applicationservice
 > http://permitservice.gov.uk/renewalservice
 
-###Standard 6 - Versioning
+### Standard 6 - Versioning
 Level 2 Business Services and Level 3 Open Services will provide versioned URIs, whereas Level 1 Entity Services and
 Level 4 Open Data will not.
 
@@ -234,7 +234,7 @@ the API, as clients would have no way of understanding these custom content type
 
  > Guidance Note: Adopt v1 at public beta, maintain n-2 versions.
 
-###Standard 7 - HTTP Methods
+### Standard 7 - HTTP Methods
 HTTP methods will be correctly implemented and available according to the specification.
 
 Open Data services will only support GET, HEAD and OPTIONS methods.
@@ -274,7 +274,7 @@ will always perform the expected operation.
 
 
 
-###Standard 8 - Resource Identifiers
+### Standard 8 - Resource Identifiers
 Resource identifiers will follow best practice naming conventions, compliant with Environment Agency data standards.
 
 Resource identifiers for Open Data services will be persistent and specifically are expected to persist beyond
@@ -286,7 +286,7 @@ Resource identifiers for transactional services may be transient between service
 
 Resource names will consistently use plural nouns.
 
-###Standard 9 - Representations
+### Standard 9 - Representations
 Services will provide a default representation appropriate to the resource, which for APIs will always be JSON.
 
 Services will provide alternative representations according to user need.
@@ -333,7 +333,7 @@ Implications:
  - Services will need to implement appropriate logic for content negotiation.
  - Clients will have to implement mechanisms to support content negotiation.
 
-###Standard 10 - JSON
+### Standard 10 - JSON
 API services will always return and expect a single JSON object.
 
 Where lists of values are required, these will be encapsulated inside a container object.
@@ -354,7 +354,7 @@ i.e. there will be no use of custom content types or novel parameters such as ve
 
  > TODO: Is there any need to support Content-Language headers?
 
-###Standard 11 - XML
+### Standard 11 - XML
 XML should be considered a non-preferred representation and only provided where there is a demonstrable user need.
 
 Where a specific XML representation is required from an API then this must be namespace and context free, in the manner
@@ -474,7 +474,7 @@ Would be represented as:
 
 
 
-###Standard 12 - Other Representations
+### Standard 12 - Other Representations
 Representations other than JSON or XML will only be provided where there is a clear user need, in practice this is
 likely to mean binary representations.
 
@@ -483,7 +483,7 @@ service's inherent discoverability and usability.
 
 Again, standard content type identifiers will be used, with no custom parameters.
 
-###Standard 13 - Hypermedia
+### Standard 13 - Hypermedia
 Resources will provide standard hypermedia references through an embedded **links** element, each with a **rel** and
 **href** element.
 
@@ -493,7 +493,7 @@ As a minimum each resource should have a **self** link.
 
  > TODO: What about content types that aren't JSON or XML?
 
-###Standard 14 - Error Handling and HTTP Response Codes
+### Standard 14 - Error Handling and HTTP Response Codes
 Standard HTTP response codes will be used to indicate success or failure of an operation.
 
 Where an operation has failed, the server may return a response that provides additional information on the nature of
@@ -512,14 +512,14 @@ The responses should contain the elements identified in the best practice docume
 
  > TODO: Copy these in here?
 
-###Standard 15 - HTTP Headers
+### Standard 15 - HTTP Headers
 Only standard HTTP headers will be used in API implementations.
 
  > TODO: Specify these here?
 
  > TODO: What headers will the authorisation facilities require? Do these need to be stated here?
 
-###Standard 16 - Pagination
+### Standard 16 - Pagination
 Where large result sets are returned by a service, they will be paginated.
 
 Pagination will be automatically applied and included in hypermedia links, so a standard isn't strictly necessary.
@@ -534,7 +534,7 @@ generally be appropriate.
 Where a known client need exists for larger, unpaginated result sets then this may be implemented but will be carefully
 assessed beforehand to ensure that a RESTful API is the most appropriate technical solution.
 
-###Standard 17 - Querying
+### Standard 17 - Querying
 Query string structure will be defined according to user need.
 
 Where resource querying or filtering is required, then a simple mechanism using URI query parameters will be provided,
@@ -552,11 +552,11 @@ There is no industry standard for the syntax of resource query expressions and i
 querying capability can be a complex, time-consuming and resource-hungry exercise.
 The need for such a capability should be carefully assessed before being implemented.
 
-###Standard 18 - Caching
+### Standard 18 - Caching
 
  > TBC - this probably only needs covering for Open Data APIs
 
-###Standard 19 - API Definitions
+### Standard 19 - API Definitions
 There are competing standards for REST API definition, the most convincing rationale for selection of any one of them
 being that it is built into an API management product that you use.
 
@@ -570,7 +570,7 @@ Implementation Checklist
 ------------------------
 This section provides a summary list of features to be provided in an API.
 
-###All APIs
+### All APIs
 
  1. Root path: http://hostname.gov.uk/{my-api-name}
  2. GET, HEAD, OPTIONS methods
@@ -583,14 +583,14 @@ This section provides a summary list of features to be provided in an API.
  9. Hypermedia "self" links
  10. Error response messages
 
-###Open Data APIs
+### Open Data APIs
 
  1. Pagination using _offset and _limit parameters, with hypermedia "first", "last", "previous" and "next" links
  2. Defined pagination hard limit
  3. Querying supported using _query parameter
  4. ETags and cache control headers
 
-###Transactional APIs
+### Transactional APIs
 
  1. Versioned path: http://hostname.gov.uk/{my-api-name}/v1
  2. _version parameter: http://hostname.gov.uk/{my-api-name}/{my-resource-name}/{id}?_version=v1
