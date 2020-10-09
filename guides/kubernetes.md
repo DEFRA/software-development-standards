@@ -123,3 +123,14 @@ New nodes are added to clusters.
 Consequently, there might be several pods scheduled on less desired nodes in a cluster. Descheduler, based on its policy, finds pods that can be moved and evicts them.
 
 Descheduler can be installed Helm as described [here](https://github.com/kubernetes-sigs/descheduler#install-using-helm)
+
+## Autoscaling
+Kubernetes pods and nodes can be automatically scaled on demand.  See below resources for usage.
+
+[Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+
+[Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
+
+[Cluster autoscaling (AKS)](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+
+[Cluster autoscaling (EKS)](https://aws.amazon.com/premiumsupport/knowledge-center/eks-cluster-autoscaler-setup/)
