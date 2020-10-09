@@ -4,45 +4,28 @@
 ### Use a managed Kubernetes service
 Managed Kubernetes services such as Azure Kubernetes Service (AKS) in Azure or Elastic Kubernetes Service (EKS) in AWS are used as opposed to any IaaS Kubernetes implementation.
 
-This is because managed Kubernetes services abstract the maintainence and configuration of master nodes to the cloud provider, meaning teams only need to support the worker nodes.
+This is because managed Kubernetes services abstract the maintainence and configuration of master nodes to the cloud provider, meaning teams only need to support the worker nodes where services run.  Maintaining a full Kubernetes cluster can be very complicated and requires a high level of in depth Kubernetes and networking knowledge which can be a barrier to entry for some teams.  Using a managed service significantly reduces this complexity.
 
-# Configuration
+### Use Helm for packaging deployments
+[Helm](https://helm.sh/) is a tool to bundle individual Kubernetes configuration files into single deployable packages.  This significantly reduces the complexity of configuring a cluster and deploying applications to it.
+
+Helm 3 must be used and teams should never use Helm 2 due to security risk introduced by Tiller in a cluster.
+
+Teams are also encouraged to use a Helm Library chart to reduce duplication of Helm charts across multiple services.  Such as [this one](https://github.com/DEFRA/ffc-helm-library) used by the Future Farming and Countryside Programme (FFC).
+
+### Use ConfigMaps for configuration
 Configuration for an application running in a pod should be passed to the pod via a `ConfigMap` Kubernetes resource.
 
-The configuration values should be stored in Azure Application Configuration and injected via CI.
+Sensitive or environment specific values should be overriden during the Helm deployment.
 
-# Helm chart
-Helm charts allow multiple Kubenetes resource definitions to be deployed and undeployed as a single unit.
-
-Helm version 3 is used within FFC.  
-
-Helm 2 should never be used due to security risk introduced by Tiller in a cluster.
-
-## Source control
-- Helm charts are source controlled in the same repository as the microservice they relate to
-
-- Helm charts are saved in a `helm` directory and named the same as the repository. For example a chart referencing the ELM Payment Service would be stored in the `./helm/elm-payment-service` directory
-
-- Helm chart versions are automatically updated by CI in line with the application version
-
-## Helm chart library
-- to keep Helm charts DRY, the [FFC Helm Chart Library](https://github.com/DEFRA/ffc-helm-library) is used as a base for all resource definitions
-
-- consuming Helm charts only need to define where there is variation from the base Helm chart
-
-## Helm chart repository
-- Helm charts are published to a Helm chart repository using Azure Container Registry
-
-- Helm charts for in flight Pull Requests are not published
-
-# Labels
+### Labels
 Labels are intended to be used to specify identifying attributes of objects that are meaningful and relevant to users, but do not directly imply semantics to the core system. 
 
 Labels can be used to organise and to select subsets of objects. Labels can be attached to objects at creation time and subsequently added and modified at any time. Each object can have a set of key/value labels defined. Each Key must be unique for a given object.
 
 In order to take full advantage of using labels, they should be applied on every resource object within a Helm chart. i.e. all deployments, services, ingresses etc.
 
-## Required labels
+#### Required labels
 Each Helm chart templated resource should have the below labels. Example placeholders are provided for values.
 
 ```
@@ -61,7 +44,7 @@ metadata:
 
 **Note** `Deployment` resource objects should have two sets of labels, one for the actual deployment and another for the pod template the deployment manages.
 
-## Selectors
+### Selectors
 Services selectors should be matched by app and name. Selectors should be consistent otherwise updates to Helm charts will be rejected.
 ```
 selector:
@@ -69,72 +52,48 @@ selector:
   app.kubernetes.io/name: {{ quote .Values.name }}
 ```
 
-## Further reading
-More information is available in [Confluence](https://eaflood.atlassian.net/wiki/spaces/FPS/pages/1618214984/Kubernetes+labels)
-
-# Pod priority
+### Pod priority
 Kubernetes Pods can have priority levels. Priority indicates the importance of a pod relative to other pods. If a pod cannot be scheduled, the scheduler tries to preempt (evict) lower priority pods to make scheduling of the pending pod possible.
 
 In the event of over utilisation of a cluster, Kubernetes will start to kill lower priorty pods first to maintain stability.
 
-## Priority levels available to FFC pods
-There are three defined pod priority levels available within an FFC cluster.  A deployment must specify one of these levels.
+Clusters should include pod priority classes that teams can consume based on their service needs.  The below gives examples of the Pod Priorty classes available in FFC clusters.
 
-### High (1000) 
+#### High (1000) 
 Reserved primarily for customer facing or critical workload pods.
 
-### Default (600)
+#### Default (600)
 Default option suitable for most pods.
 
-### Low (200)
+#### Low (200)
 For pods where downtime is more tolerable.
 
 The `priorityClass` definitions that relate to these levels can be viewed in the [ffc-kubernetes-configuration](https://github.com/DEFRA/ffc-kubernetes-configuration/tree/master/priority-classes) repository.
 
-## Resource profile impact
+#### Resource profile impact
 In the event a cluster has to make a choice between killing one of two services sharing the same priority level, the [resource profile](resource-usage.md) configuration will influence which is killed.
 
-## Further reading
-More information is available in [Confluence](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/)
-
-# Probes
-To increase the stability and predicatability of a Kubernetes cluster, services should make use of both readiness and liveness probes unless there is a significant reason not to.
-
-Probe end points should follow the convention of `healthy` for readiness probes and `healthz` for liveness probes.
-
-# Role Based Access Control (RBAC)
-FFC clusters enable RBAC through `RoleBinding` Kubernetes resources.
-
-Each delivery team will have it's own Rolebinding so permissions can be permitted or denied on a team level.
-
-## Development cluster
-- Platform team developers have Cluster Admin role allowing them full access to the cluster
-
-- Delivery team developers are restricted to only namespaces they own
-
-# Resource usage
+### Resource usage
 Predictable demands are important to help Kubernetes find the right place for a pod within a cluster. When it comes to resources such as a CPU and memory, understanding the resource needs of a pod will help Kubernetes allocate the pod to the most appropriate node and generally improve the stability of the cluster.
 
-## Declaring a profile
+#### Declaring a profile
 - all pods declare both a `request` and `limit` value for CPU and memory
 - production clusters do not contain any `best-effort` pods
 - pods with consistent usage patterns are run as`guaranteed` pods (i.e. equal `request` and `limit values`)
 - pods with spiky usage patterns can be run as `burstable` but effort should be taken to understand why performance is not consistent and whether the service is doing too much
 
-## Resource quotas
-FFC clusters will limit available resources within a namespace using a `resourceQuota`. This quota can be viewed in the [ffc-kubernetes-configuration](https://github.com/DEFRA/ffc-kubernetes-configuration/tree/master/resource-quotas) repository.
-
-Services which require an exception to this limit should raise a request with the Platform Services team.
-
-## Resource profiling
+#### Resource profiling
 Performance testing a pod is the only way to understand it's resource utilisation pattern and needs. Performance testing should take place on all pods to accurately understand their usage before they can be deployed to production.
 
-# Further reading
-More information is available in [Confluence](https://eaflood.atlassian.net/wiki/spaces/FPS/pages/1616576613/Pod+resource+usage)
+### Resource quotas
+Clusters will limit available resources within a namespace using a `resourceQuota` to improve cluster stability. An example quota can be viewed in the [ffc-kubernetes-configuration](https://github.com/DEFRA/ffc-kubernetes-configuration/tree/master/resource-quotas) repository.
 
-# Secrets
-Where possible, secrets should not be stored within an application or Kubernetes pod.  Instead, clusters should use [AAD Pod Identity](https://github.com/Azure/aad-pod-identity) as per Microsoft recommendation.
+### Probes
+To increase the stability and predicatability of a Kubernetes cluster, services should make use of both readiness and liveness probes unless there is a significant reason not to.
 
-When secrets in a pod are unavoidable, for example when a third party API key is needed, secrets should be stored in Azure Key Vault and injected into Kubernetes `Secret` resources via CI.
+Probe end points should follow the convention of `healthy` for readiness probes and `healthz` for liveness probes.
 
-**Note** The approach for unavoidable secrets is under review and it is likely that the programme will adopt a tool such as [Kubernetes Secrets Store CSI Driver](https://github.com/kubernetes-sigs/secrets-store-csi-driver).
+### Secrets
+Where possible, secrets should not be stored within an application or Kubernetes pod.  Instead, clusters should use [AAD Pod Identity](https://github.com/Azure/aad-pod-identity) in Azure or [IAM role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) in AWS.
+
+When secrets in a pod are unavoidable, for example when a third party API key is needed, secrets should be injected into pods as the pod is created.
