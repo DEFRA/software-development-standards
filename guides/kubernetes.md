@@ -1,36 +1,34 @@
 # Kubernetes guidance
 
-# Configure NGINX Ingress Controller
+## Configure NGINX Ingress Controller
 An [Ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) is an application that runs in a Kubernetes cluster and configures an HTTP load balancer according to Ingress resources.
 
 In the case of NGINX, the Ingress controller is deployed in a pod along with
 the load balancer.
 
-## Installation
+### Installation
 The documentation for [NGINX's chart](https://github.com/helm/charts/blob/master/stable/nginx-ingress/README.md) includes details on how to install it.
 
 *TL;DR:*
 
 `helm install stable/nginx-ingress --name nginx-ingress`
 
-# Creating a workstream namespace
-Each workstream delivery team in FFC will have their own dedicated namespace in each cluster.
+### Creating a namespace for a service
+Each service in a cluster will have their own dedicated namespace in each cluster.
 
 This allows logical separation between services as well as the enabling simpler implementation of monitoring, RBAC and stability mechanisms.
 
 ## Requirements
-The following are the required outcomes of a workstream namespace.#
-- namespace follows the naming convention `ffc-WORKSTREAM` eg. `ffc-elm`
+The following are the suggested outcomes of a namespace.
 - `ResourceQuota` resource to limit resource usage
 - `RoleBinding` resource to restrict interaction to delivery team
 
-## Process
-Full instructions are included in the [FFC Kubernetes Configuration](https://github.com/DEFRA/ffc-kubernetes-configuration) repository.
+Example setup instructions are included in the [FFC Kubernetes Configuration](https://github.com/DEFRA/ffc-kubernetes-configuration) repository.
 
-# Install Kubernetes dashboard
+## Install Kubernetes dashboard
 The Kubernetes dashboard is a web-based Kubernetes user interface.
 
-## Installation
+### Installation
 Install the dashboard to a Kubernetes cluster using the `kubectl apply` command specified in the **Deploying the dashboard UI** section in the below link.
 
 https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
@@ -38,20 +36,18 @@ https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 Example:
 `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml`
 
-### Create default user and access token
+#### Create default user and access token
 Follow the guide in the below link.
 https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
 
-### Run dashboard
+#### Run dashboard
 1. Run terminal command `kubectl proxy`
 1. Access dashboard at http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-# Interact with cluster
+## Interact with cluster
 `kubectl` is used to interact with the cluster.  In order to use `kubectl` with an FFC cluster, a `kubeconfig` file for the cluster is required.
 
-A cluster can only be accessed when connected to VPN.
-
-## Acquiring a Kubeconfig file for a cluster
+### Acquiring a Kubeconfig file for a cluster in AKS
 To acquire a Kubeconfig, a subscription Id is needed along with the name of the cluster and the resource group in which it resides.  This information can be acquired via the Azure Portal or from CSC.
 
 `az account set --subscription SUBSCRIPTION_ID`
@@ -60,25 +56,22 @@ To acquire a Kubeconfig, a subscription Id is needed along with the name of the 
 
 **Note** if the file parameter is not passed, the Kubeconfig will be merged with the users default configuration file stored at `~/.kube/config`.
 
-## Productivity
+## Productivity Tools
 Developers may find it more productive to use tools such as [k9s](https://github.com/derailed/k9s) or [kubectl-aliases](https://github.com/ahmetb/kubectl-aliases) to avoid needing to regularly type long terminal commands to interact with the cluster.
 
-# AAD Pod Identity
+## AAD Pod Identity
 AAD Pod Identity enables Kubernetes applications to access cloud resources securely with Azure Active Directory (AAD).
 
 Using Kubernetes primitives, administrators configure identities and bindings to match pods. Then your containerized applications can leverage any resource in the cloud that depends on AAD as an identity provider.
 
-## Further reading
-More information is available in [Confluence](https://eaflood.atlassian.net/wiki/spaces/FPS/pages/2014937292/Using+AKS+Pod+Identity) 
-
-# Probes
+## Probes
 Kubernetes has two types of probes, readiness and liveness.
 
 Kubernetes uses readiness probes to know when a container is ready to start accepting traffic.
 
 Kubernetes uses liveness probes to know when to restart a container.
 
-## Configuring probes
+### Configuring probes
 Probes can be configured in the Helm chart on a `Deployment` resource, under the container node.
 
 The above is a simple example of an Http readiness and liveness probes.
@@ -107,7 +100,7 @@ If it receives three successive status codes other than 200 for the liveness pro
 
 **Note** that a liveness probe works in conjunction with the restartPolicy value. In order to restart the restartPolicy must be set to Always or OnFailure.
 
-## Values
+#### Values
 `path`: the URL route the liveness probe should sent a response to.
 
 `port`: the port on which the service is exposing
@@ -119,4 +112,3 @@ If it receives three successive status codes other than 200 for the liveness pro
 `failureThreshold`: how many probe failures before the pod is automatically restarted
 
 As well as Http probes, there are also command and TCP based probes, full details can be found in the documentation https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
-
