@@ -96,4 +96,6 @@ Probe end points should follow the convention of `healthy` for readiness probes 
 ### Secrets
 Where possible, secrets should not be stored within an application or Kubernetes pod.  Instead, clusters should use [AAD Pod Identity](https://github.com/Azure/aad-pod-identity) in Azure or [IAM role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) in AWS.
 
-When secrets in a pod are unavoidable, for example when a third party API key is needed, secrets should be injected into pods as the pod is created.
+When secrets in a pod are unavoidable, for example when a third party API key is needed, secrets should be injected into pods during deployment.
+
+The Kubernetes `Secrets` resource type must not be used as data is only Base64 encrypted.
