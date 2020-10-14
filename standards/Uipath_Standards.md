@@ -5,7 +5,6 @@
 ## General
 
  - Use Similuate Clicks where possible when interacting with web pages to help processes run in the background
- - Use simulate clicks where possible when interacting with web pages to help processes run in the background
  - Never hardcode values especially credentials, use a config where possible
  - The only value that will be hardcoded is the file path to the Config File
  - Update the Common Components document with any new applications automated
