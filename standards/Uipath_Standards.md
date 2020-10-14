@@ -30,12 +30,11 @@
  - ‘Main’ Workflow only runs the Config Reader and Proxy Main
  - Main handles the overall result of the process whether it is successful, or an exception has been thrown
  - Default layout for all workflows:
-   
-       - Log start of workflow
-       -  Get IN Args
-       - Run the main logic of the workflow, either in another workflow or a sequence (does not always need to be another workflow, can just be steps within the existing workflow
-       -Set OUT Args
-       -Log end of workflow
+     - Log start of workflow
+     -  Get IN Args
+     - Run the main logic of the workflow, either in another workflow or a sequence (does not always need to be another workflow, can just be steps within the existing workflow
+     -Set OUT Args
+     -Log end of workflow
  - Start up applications needed for the process at the start of Proxy Main
  - Break workflows down into small reusable chunks
  - Avoid nesting activities where possible
@@ -71,11 +70,10 @@
 ## Notes and Naming Convention
 
  - Add annotation to every workflow describing what it does:
-   
-       - Description of process
-       - Who created the process
-       - Version number and when it was last updated
-       - Date of last code review for workflow
+   - Description of process
+   - Who created the process
+   - Version number and when it was last updated
+   - Date of last code review for workflow
  - Name variables using Camel case with the variable type as the prefix i.e. strVariableName
  - Name all activities in a meaningful manner
 
