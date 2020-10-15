@@ -4,7 +4,7 @@
 
 ## General
 
- - Use Similuate Clicks where possible when interacting with web pages to help processes run in the background
+ - Use Simulate Clicks where possible when interacting with web pages to help processes run in the background
  - Never hardcode values especially credentials, use a config where possible
  - The only value that will be hardcoded is the file path to the Config File
  - Update the Common Components document with any new applications automated
@@ -95,5 +95,4 @@ Prefix all arguments with IN, OUT or IO
 
  - [https://docs.uipath.com/studio/docs/project-organization](https://docs.uipath.com/studio/docs/project-organization)
 
- - [https://forum.uipath.com/t/uipath-best-practices-wiki/139278](https://forum.uipath.com/t/uipath-best-practices-wiki/139278
-
+ - [https://forum.uipath.com/t/uipath-best-practices-wiki/139278](https://forum.uipath.com/t/uipath-best-practices-wiki/139278)
