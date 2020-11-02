@@ -74,7 +74,7 @@ Kubernetes uses liveness probes to know when to restart a container.
 ### Configuring probes
 Probes can be configured in the Helm chart on a `Deployment` resource, under the container node.
 
-The above is a simple example of an Http readiness and liveness probes.
+The above is a simple example of an HTTP readiness and liveness probes.
 
 ```
 readinessProbe:
@@ -111,7 +111,7 @@ If it receives three successive status codes other than 200 for the liveness pro
 
 `failureThreshold`: how many probe failures before the pod is automatically restarted
 
-As well as Http probes, there are also command and TCP based probes, full details can be found in the documentation https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+As well as HTTP probes, there are also command and TCP based probes, full details can be found in the documentation https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 
 ## Descheduler
 Scheduling in Kubernetes is the process of binding pending pods to nodes, and is performed by a component of Kubernetes called kube-scheduler. The scheduler's decisions, whether or where a pod can or can not be scheduled, are guided by its configurable policy which comprises of set of rules, called predicates and priorities. The scheduler's decisions are influenced by its view of a Kubernetes cluster at that point of time when a new pod appears for scheduling. As Kubernetes clusters are very dynamic and their state changes over time, there may be desire to move already running pods to some other nodes for various reasons:
