@@ -105,7 +105,7 @@ If it receives three successive status codes other than 200 for the liveness pro
 **Note** that a liveness probe works in conjunction with the restartPolicy value. In order to restart the restartPolicy must be set to Always or OnFailure.
 
 #### Values
-`path`: the URL route the liveness probe should sent a response to.
+`path`: the URL route the liveness probe should sent a response to
 
 `port`: the port on which the service is exposing
 
