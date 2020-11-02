@@ -57,7 +57,8 @@ To acquire a Kubeconfig, a subscription Id is needed along with the name of the 
 
 `az aks get-credentials --resource-group RESOURCE_GROUP --name CLUSTER --file WHERE_TO_SAVE_KUBECONFIG`
 
-**Note** if the file parameter is not passed, the Kubeconfig will be merged with the users default configuration file stored at `~/.kube/config`.
+**Warning** if the file parameter is not passed, the Kubeconfig will be merged with the users default configuration file stored at `~/.kube/config`.
+This can result in the file becoming corrupted due to the nature of the merge.
 
 ## Productivity Tools
 Developers may find it more productive to use tools such as [k9s](https://github.com/derailed/k9s) or [kubectl-aliases](https://github.com/ahmetb/kubectl-aliases) to avoid needing to regularly type long terminal commands to interact with the cluster.
