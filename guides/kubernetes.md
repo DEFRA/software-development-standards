@@ -7,11 +7,14 @@ In the case of NGINX, the Ingress controller is deployed in a pod along with
 the load balancer.
 
 ### Installation
-The documentation for [NGINX's chart](https://github.com/helm/charts/blob/master/stable/nginx-ingress/README.md) includes details on how to install it.
+The documentation for [NGINX's chart](https://github.com/kubernetes/ingress-nginx) includes details on how to install it.
 
 *TL;DR:*
 
-`helm install stable/nginx-ingress --name nginx-ingress`
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install my-release ingress-nginx/ingress-nginx
+```
 
 ### Creating a namespace for a service
 Each service in a cluster will have their own dedicated namespace in each cluster.
