@@ -4,7 +4,7 @@
 ### Use a managed Kubernetes service
 Managed Kubernetes services such as Azure Kubernetes Service (AKS) in Azure or Elastic Kubernetes Service (EKS) in AWS are used as opposed to any IaaS Kubernetes implementation.
 
-This is because managed Kubernetes services abstract the maintainence and configuration of master nodes to the cloud provider, meaning teams only need to support the worker nodes where services run.  Maintaining a full Kubernetes cluster can be very complicated and requires a high level of in depth Kubernetes and networking knowledge which can be a barrier to entry for some teams.  Using a managed service significantly reduces this complexity.
+This is because managed Kubernetes services abstract the maintenence and configuration of master nodes to the cloud provider, meaning teams only need to support the worker nodes where services run.  Maintaining a full Kubernetes cluster can be very complicated and requires a high level of in depth Kubernetes and networking knowledge which can be a barrier to entry for some teams.  Using a managed service significantly reduces this complexity.
 
 ### Use Helm for packaging deployments
 [Helm](https://helm.sh/) is a tool to bundle individual Kubernetes configuration files into single deployable packages.  This significantly reduces the complexity of configuring a cluster and deploying applications to it.
