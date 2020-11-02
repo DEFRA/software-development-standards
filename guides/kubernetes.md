@@ -126,7 +126,7 @@ Scheduling in Kubernetes is the process of binding pending pods to nodes, and is
 - new nodes are added to clusters.
 - consequently, there might be several pods scheduled on less desired nodes in a cluster. Descheduler, based on its policy, finds pods that can be moved and evicts them.
 
-Descheduler can be installed Helm as described [here](https://github.com/kubernetes-sigs/descheduler#install-using-helm)
+Descheduler can be installed using Helm as described [here](https://github.com/kubernetes-sigs/descheduler#install-using-helm)
 
 ## Autoscaling
 Kubernetes pods and nodes can be automatically scaled on demand.  See below resources for usage.
