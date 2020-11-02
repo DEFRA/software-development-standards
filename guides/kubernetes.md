@@ -118,13 +118,21 @@ If it receives three successive status codes other than 200 for the liveness pro
 As well as HTTP probes, there are also command and TCP based probes, full details can be found in the documentation https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 
 ## Descheduler
-Scheduling in Kubernetes is the process of binding pending pods to nodes, and is performed by a component of Kubernetes called kube-scheduler. The scheduler's decisions, whether or where a pod can or can not be scheduled, are guided by its configurable policy which comprises of set of rules, called predicates and priorities. The scheduler's decisions are influenced by its view of a Kubernetes cluster at that point of time when a new pod appears for scheduling. As Kubernetes clusters are very dynamic and their state changes over time, there may be desire to move already running pods to some other nodes for various reasons:
+Scheduling in Kubernetes is the process of binding pending pods to nodes, and is performed by a component of Kubernetes called kube-scheduler. 
 
-- some nodes are under or over utilised.
-- the original scheduling decision does not hold true any more, as taints or labels are added to or removed from nodes, pod/node affinity requirements are not satisfied any more.
-- some nodes failed and their pods moved to other nodes.
-- new nodes are added to clusters.
-- consequently, there might be several pods scheduled on less desired nodes in a cluster. Descheduler, based on its policy, finds pods that can be moved and evicts them.
+The scheduler's decisions, whether or where a pod can or can not be scheduled, are guided by its configurable policy which comprises of set of rules, called predicates and priorities. 
+
+The scheduler's decisions are influenced by its view of a Kubernetes cluster at that point of time when a new pod appears for scheduling. 
+
+As Kubernetes clusters are very dynamic and their state changes over time, there may be desire to move already running pods to some other nodes for various reasons:
+
+- some nodes are under or over utilised
+- the original scheduling decision does not hold true any more, as taints or labels are added to or removed from nodes, pod/node affinity requirements are not satisfied any more
+- some nodes failed and their pods moved to other nodes
+- new nodes are added to clusters
+- consequently, there might be several pods scheduled on less desired nodes in a cluster
+
+Descheduler, based on its policy, finds pods that can be moved and evicts them
 
 Descheduler can be installed using Helm as described [here](https://github.com/kubernetes-sigs/descheduler#install-using-helm)
 
