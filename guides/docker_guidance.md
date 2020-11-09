@@ -202,6 +202,20 @@ docker-compose -f path/to/ServiceA/docker-compose.yaml -f path/to/ServiceA/docke
 docker-compose -f path/to/ServiceB/docker-compose.yaml -f path/to/ServiceB/docker-compose.link.yaml up --detach
 ```
 
+#### Avoiding docker-compose.yaml in the development repository
+If it is preferred to avoid the need for an additional `docker-compose.yaml` file in the development repository itself, an alternative approach would be to explicity declare the shared resources are not started in subsequent `override` files in the start up script.
+
+For example:
+
+```
+if [ -z "$(docker network ls --filter name=^NETWORK_NAME$ --format={{.Name}})" ]; then
+  docker network create NETWORK_NAME
+fi
+docker-compose up
+docker-compose -f path/to/ServiceA/docker-compose.yaml -f path/to/ServiceA/docker-compose.override.yaml -f path/to/ServiceA/docker-compose.link.yaml up --detach
+docker-compose -f path/to/ServiceB/docker-compose.yaml -f path/to/ServiceB/docker-compose.override.yaml -f path/to/ServiceB/docker-compose.link.yaml up --detach --scale SERVICE_NAME=0
+```
+
 ### Binding volumes to container
 To aide local development, the local workspace can be bound to a Docker volume.  This allows code changes to be automatically picked up within the container without the need to rebuild the image or restart the container.  
 
@@ -219,4 +233,90 @@ volumes:
 
 Changes to any of the directories listed above would automatically be picked up in the running container.
 
-Binding also allows developers to take advantage of file watching in running and testing applications.  Changes made to code locally will automatically be reflected in the running container.
+Binding also allows developers to take advantage of file watching in testing applications.  Changes made to code locally will automatically be reflected in the running container supporting a TDD approach.
+
+### .dockerignore
+A `.dockerignore` file is a way of preventing local files being copied into an image during build.
+
+For example, if a repository contains the following files.
+
+```
+app/index.js
+app/config.js
+node_modules
+index.js
+README.md
+LICENCE
+Dockerfile
+```
+
+The `Dockerfile` in this repository includes the following layer which would copy all local files to the container.
+
+```
+COPY . .
+```
+
+When the image is built then all files in the repository are copied to the image.  In this scenario, it is not ideal for performance and disk space reasons to copy the `node_modules`, `LICENCE`, `Dockerfile` or `README.md` to the image.
+
+To prevent this a `.dockerignore` file should be added with the following content.
+
+```
+node_modules
+Dockerfile
+LICENCE
+README.md
+```
+
+### Container and image names using Docker Compose
+If an image name or container name is not specified in a Docker Compose file, then Docker Compose will determine it's own based on the service name.  This can result in duplication in the name and unpredictabilty in futher container interaction.
+
+#### Set image and container name
+
+```
+version: '3.7'
+services:
+  my-service:
+    image: my-service
+    container_name: my-service
+```
+
+### Preserving database volumes during test runs
+In many scenarios it is beneficial to utilise Docker to run local integration tests against a containerised dependency such as a database or message broker.
+
+These tests would typically write and delete data during test execution.  In order to prevent this impacting on local development data and still avoid duplication in Docker Compose definitions, volumes should be declared separate to the database definition.
+
+For example, if you have the following Docker Compose files
+
+- `docker-compose.yaml` - base definition used in all scenarios
+- `docker-compose.override.yaml` - applied when running locally only
+- `docker-compose.test.yaml` - applied when running tests only
+
+Then using a Postgres image as an example each definition should contain the following.
+
+#### docker-compose.yaml
+```
+version: '3.7'
+services:
+  my-postgres-service:
+    image: postgres:11.4-alpine
+    environment:
+      POSTGRES_DB: my_database
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres      
+```
+
+#### docker-compose.override.yaml
+```
+version: '3.7'
+services:
+  ffc-demo-claim-postgres:
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: {}
+```
+
+Then volume and port bindings are only used during local development and any local tests runs will not impact development data.
