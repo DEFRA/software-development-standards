@@ -1,5 +1,7 @@
 # Kubernetes guidance
 
+This guidance is aimed at those deploying to and supporting Kubernetes clusters and includes helpful how to guides for common Kubernetes tasks and lessons learned.
+
 ## Configure NGINX Ingress Controller
 An [Ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) is an application that runs in a Kubernetes cluster and configures an HTTP load balancer according to Ingress resources.
 
@@ -63,10 +65,32 @@ This can result in the file becoming corrupted due to the nature of the merge.
 ## Productivity Tools
 Developers may find it more productive to use tools such as [k9s](https://github.com/derailed/k9s) or [kubectl-aliases](https://github.com/ahmetb/kubectl-aliases) to avoid needing to regularly type long terminal commands to interact with the cluster.
 
-## AAD Pod Identity
+## Authenticating with cloud resources
+Both Azure and AWS' managed Kubernetes service, AKS and EKS respectively offer mechanisms to authenticate with cloud resources without the need for credential management in applications.
+
+### AAD Pod Identity (Azure)
+With this approach, Pod Identity pods are deployed to a cluster.
+Applications code then uses these resources to request tokens to use in subsequent authentication requests to Azure resources.  Identity mappings are also deployed to he cluster.
+
+Token lifecycle is managed within the application itself, some Azure resources have official SDKs that manage this lifecycle, but others the developer must handle the token refresh themselves.
+
+See full setup details in the [official documentation](https://github.com/Azure/aad-pod-identity).
+
+### IAM role for Service Accounts (AWS)
+With this approach, only an identity mapping resource is required and the cluster will automatically ensure a valid token is available to the application.
+
+As token lifecycle is managed outside of the application, this approach results in less complex application code than the Azure implementation.
+
+See full setup details in the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html)
+
+### Azure - AAD Pod Identity
 AAD Pod Identity enables Kubernetes applications to access cloud resources securely with Azure Active Directory (AAD).
 
 Using Kubernetes primitives, administrators configure identities and bindings to match pods. Then your containerized applications can leverage any resource in the cloud that depends on AAD as an identity provider.
+
+See Kubernetes [Secret standards](../standards/kubernetes_standards.md) for more information.
+
+
 
 ## Probes
 Kubernetes has two types of probes, readiness and liveness.
