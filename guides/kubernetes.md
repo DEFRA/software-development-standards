@@ -70,7 +70,7 @@ Both Azure and AWS' managed Kubernetes service, AKS and EKS respectively offer m
 
 ### AAD Pod Identity (Azure)
 With this approach, Pod Identity pods are deployed to a cluster.
-Applications code then uses these resources to request tokens to use in subsequent authentication requests to Azure resources.  Identity mappings are also deployed to he cluster.
+Application code then uses these resources to request tokens to use in subsequent authentication requests to Azure resources.  Identity mappings are also deployed to the cluster.
 
 Token lifecycle is managed within the application itself, some Azure resources have official SDKs that manage this lifecycle, but others the developer must handle the token refresh themselves.
 
@@ -88,9 +88,7 @@ AAD Pod Identity enables Kubernetes applications to access cloud resources secur
 
 Using Kubernetes primitives, administrators configure identities and bindings to match pods. Then your containerized applications can leverage any resource in the cloud that depends on AAD as an identity provider.
 
-See Kubernetes [Secret standards](../standards/kubernetes_standards.md) for more information.
-
-
+See Kubernetes [Secret standards](../standards/kubernetes_standards.md) for standards for secret management when Pod Identity is not suitable.
 
 ## Probes
 Kubernetes has two types of probes, readiness and liveness.
@@ -102,7 +100,7 @@ Kubernetes uses liveness probes to know when to restart a container.
 ### Configuring probes
 Probes can be configured in the Helm chart on a `Deployment` resource, under the container node.
 
-The above is a simple example of an HTTP readiness and liveness probes.
+The below is a simple example of an HTTP readiness and liveness probes.
 
 ```
 readinessProbe:
