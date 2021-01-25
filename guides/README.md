@@ -13,6 +13,7 @@ This folder contains various guides to help those working in software developmen
 - [Mobile application guidance](mobile_app_guidance.md)
 - [New starters](new_starters.md)
 - [PL/SQL auto-format with TOAD](plsql_auto_format_toad.md)
+- [Schedule an ECS Fargate Task using Step Functions with Terraform](schedule_ecs_fargate_task.md)
 - [SQL Prompt](sql_prompt_tool.md)
 - [Style guide for standards](style_guide_for_standards.md)
 - [Using unmanaged devices](unmanaged_devices.md)

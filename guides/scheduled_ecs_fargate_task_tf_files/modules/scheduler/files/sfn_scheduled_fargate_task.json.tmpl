@@ -1,0 +1,76 @@
+{
+  "Comment": "Step function to manage execution of the ${task_definition_arn} Fargate task.",
+  "StartAt": "Execute Scheduled Job",
+  "States": {
+    "Execute Scheduled Job": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::ecs:runTask.sync",
+      "Parameters": {
+        "LaunchType": "FARGATE",
+        "Cluster": "${cluster_arn}",
+        "TaskDefinition": "${task_definition_arn}",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "SecurityGroups": ${jsonencode(security_groups)},
+            "Subnets": ${jsonencode(subnets)},
+            "AssignPublicIp": "${assign_public_ip}"
+          }
+        }
+      },
+      "TimeoutSeconds": ${timeout},
+      "Next": "Execution Succeeded",
+      "ResultPath": "$.executionResult",
+      "Retry": [
+          {
+              "ErrorEquals": [ "States.Permissions", "ECS.AccessDeniedException" ],
+              "MaxAttempts": 0
+          },
+          {
+              "ErrorEquals": [ "States.ALL" ],
+              "IntervalSeconds": ${retry_interval},
+              "MaxAttempts": ${max_attempts},
+              "BackoffRate": ${backoff_rate}
+          }
+      ],
+      "Catch": [
+          {
+            "ErrorEquals": [ "States.ALL" ],
+            "Next": "Send Failure Notification",
+            "ResultPath": "$.error"
+          }
+      ]
+    },
+    "Execution Succeeded": {
+      "Type": "Succeed"
+    },
+    "Send Failure Notification": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "${failure_sns_topic_arn}",
+        "Subject": "Failed: ${task_definition_arn}",
+        "Message.$": "$.error",
+        "MessageAttributes": {
+          "Execution_Id": {
+            "DataType": "String",
+            "StringValue.$": "$$.Execution.Id"
+          },
+          "Execution_Start_Time": {
+            "DataType": "String",
+            "StringValue.$": "$$.Execution.StartTime"
+          },
+          "State_Machine_Id": {
+            "DataType": "String",
+            "StringValue.$": "$$.StateMachine.Id"
+          }
+        }
+      },
+      "Next": "Execution Failed"
+    },
+    "Execution Failed": {
+      "Type": "Fail",
+      "Cause": "Failed: ${task_definition_arn}",
+      "Error": "The Fargate task could not be executed or returned a non-zero exit code."
+    }
+  }
+}
