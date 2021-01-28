@@ -28,6 +28,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Common coding standards](/standards/common_coding_standards.md)
   - [Container standards](/standards/container_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
+  - [Data standards](/standards/data_standards.md)
   - [Deployment standards](/standards/deployment_standards.md)
   - [Development languages](/standards/development_language_standards.md)
   - [Java coding standards](/standards/java_coding_standards.md)
