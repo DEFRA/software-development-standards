@@ -16,7 +16,7 @@ No matter the speed with which you rectify the situation, or how little you thin
 
 The first step is to make contact with the team responsible for your production environment.
 
-For example if your service is hosted in AWS, you should call someone from the AWS web-ops team ([David Blackburn](https://github.com/davidblackburn) or [Tom Tant](https://github.com/TTEA1990)).
+For example if your service is hosted in AWS, you should call someone from the AWS web-ops team such as ([David Blackburn](https://github.com/davidblackburn) or Vikram Choudermet.
 
 We cannot post contact numbers here. But they are available using our internal systems.
 

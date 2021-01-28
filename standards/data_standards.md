@@ -19,6 +19,8 @@ Working in the open means we need to be especially careful with customer data. T
 
 Do not share any environment passwords or login credentials such as Browserstack access keys. Instead, either set up local environment variables containing these passwords (on a Mac, this will usually be in your `.zshrc` file) or include them in a file which is hidden using `.gitignore` .
 
+If data does get compromised then follow the [credential exposure process](../processes/credential_exposure.md).
+
 ## Links
 
 [General Data Protection Regulations (GDPR)](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/)
