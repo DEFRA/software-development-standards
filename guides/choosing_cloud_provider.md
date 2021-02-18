@@ -119,3 +119,78 @@ A workload built as an Azure Logic App will need to be entirely re-written and r
 
 The key issue here being that skills and knowledge in this area on one platform don't necessarily translate onto
 the other platform, so it can be difficult for a single team to maintain both.
+
+## Decision factors
+
+Having established that there are some significant differences between the two platforms and that it does matter
+where a particular workload runs, what are the factors that can influence the decision?
+
+### Proximity
+
+This tends to be cited as the number one reason for choosing a provider for a particular workload - the proximity to
+other, related workloads.
+If my data is sitting in Azure and my web application is in Azure, why would I implement my middleware in AWS?
+
+The problem with this simplistic approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution is to minimise the proximity problem by providing high-throughput, low-latency, secure connectivity
+between providers as an enterprise capability.
+
+### Skills
+
+The other main reason for selecting a particular provider is often familiarity.
+It is pretty much impossible for anyone to maintain a high level of proficiency in all the different technical
+areas across two quite different cloud platforms.
+
+Using a single cloud provider for an entire service, team or programme makes it possible to maintain a single,
+consolidated skill set.
+This will generally make delivery teams more efficient and effective.
+
+The problem with this approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution is to make enterprise decisions regarding the most appropriate platform for different types of workload.
+This prevents people needing to maintain capability in equivalent platform services.
+
+### Compatibility
+
+Another factor that often drives decision-making is compatibility - a lot of the time a platform's services will
+"just work" with other services on that platform, whereas utilising similar services on the other platform can
+be complex.
+
+Using a single cloud provider for an entire service makes it possible to more easily deliver a set of integrated
+workloads.
+This will generally make delivery teams more efficient and effective.
+
+The problem with this approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution is to implement enterprise interoperability solutions on both platforms.
+
+### Strategic commercial relationships
+
+The final factor that should drive decision-making is consideration of strategic relationships with vendors
+and prudent government procurement approaches.
+
+Such considerations are more likely to apply at the corporate level, influencing enterprise principles rather
+than individual, local decisions. But such higher-level decisions can still have knock-on impacts, partly due
+to the other factors identified above.
+
+### Technical suitability
+
+As a result of the above, the technical suitability of a particular workload for one or other of the platforms
+ends up being the poor relation in the decision-making process.
+
+However, the technical suitability _does matter_, for all the reasons outlined at the start of this guidance.
+
+The problem with this approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution to this is two-fold:
+
+- implement enterprise solutions to mitigate the impacts of the other decision factors
+- provide a governance framework for cloud provider selection
+
+The reality is that enterprise solutions of this nature are not quick or cheap to come by, so a decision-making
+mechanism to support a governance framework is required.
