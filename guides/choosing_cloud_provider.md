@@ -194,3 +194,49 @@ The solution to this is two-fold:
 
 The reality is that enterprise solutions of this nature are not quick or cheap to come by, so a decision-making
 mechanism to support a governance framework is required.
+
+## Decision steps
+
+Bearing in mind all of the above, the following are the steps to take when making a decision.
+
+### 1. Define the scope of the decision - be honest!
+
+As discussed above, the decision to locate an individual workload with a specific provider does not exist in
+isolation.
+
+So the first step is to clearly articulate the scope of the decision - doing so may identify unintended impacts.
+Be honest about the implications of the decision and consult with technical experts to ensure that these are
+properly understood.
+
+A decision by a large programme to adopt a particular cloud provider for all of its services is obviously different
+to a local decision to make use of just one cloud platform feature for a specific purpose, but the consequences can
+sometimes be just as great.
+
+### 2. Define the workload's security context in detail
+
+Ensure that you have looked at how users, services and processes will be authenticated and authorised in your
+solution.
+Capture all the steps that are necessary for each cloud provider.
+
+### 3. Capture any movement of data
+
+Identify anywhere that data will move into or out of workloads, in particular as it crosses security boundaries.
+Capture volumes and sensitivity.
+
+Then work out what contextual information needs to travel with the data and how this will be provided for each of
+the cloud platforms.
+This context will often be security-related and so may already be covered under authorisation, but there is usually
+additional information that is often just assumed.
+
+### 4. _Now_ compare the two options based on functionality
+
+Where you have two broadly equivalent options available, you should now have a reasonable basis for comparison.
+Even if you have a very clear indication that proximity, skills or compatibility are likely to be deciding factors,
+it is still worth comparing features as there may be a compelling technical reason why one option is clearly preferable
+over another.
+
+### 5. Apply proximity, skills and compatibility factors
+
+Having identified which of the providers would be the preferred option in an ideal world, then assess the value of
+the proximity, skills and compatibility factors.
+Measure this against the value of choosing the preferred option, if it's different.
