@@ -110,3 +110,12 @@ where everything "just works" (when it does).
 The implications of this are that some workloads will just fit better on one platform or the other because of their
 authorisation needs and functionality, but also that any code written in this area is unlikely to be portable
 across vendors.
+
+### Proprietary higher-level platform services
+
+It seems like an obvious point, but the higher up the stack of platform services you go, the more proprietary those
+services become.
+A workload built as an Azure Logic App will need to be entirely re-written and re-designed to be an AWS Step Function.
+
+The key issue here being that skills and knowledge in this area on one platform don't necessarily translate onto
+the other platform, so it can be difficult for a single team to maintain both.
