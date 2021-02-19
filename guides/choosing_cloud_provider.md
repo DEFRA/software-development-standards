@@ -240,3 +240,24 @@ over another.
 Having identified which of the providers would be the preferred option in an ideal world, then assess the value of
 the proximity, skills and compatibility factors.
 Measure this against the value of choosing the preferred option, if it's different.
+
+## Decision guide
+
+All this guidance amounts to little more than an instruction to think carefully about your decision - which you were
+going to do anyway.
+So far, so unhelpful.
+
+Hopefully, this section will redress that slightly by capturing some specific preferences between the two platforms,
+based on experience to date from actual delivery.
+
+As ever with cloud platforms, you should bear in mind that things change very rapidly so these experiences may no
+longer be valid.
+
+Capability | Choice | Reason
+---|---|---
+e.g. ... | 
+Low code | Microsoft Power Apps | Corporately available
+Virtual machines | AWS EC2 | More configurable, as expected for a server
+VDI | Microsoft Windows Virtual Desktop | Provides corporate Active Directory identity
+Container management | AWS ECS Fargate | Ease of deployment
+etc... |
