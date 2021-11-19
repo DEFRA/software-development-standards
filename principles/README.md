@@ -20,7 +20,7 @@ There are a number of factors that can influence the decision to adopt a particu
 - This accords with the general [principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment)
 - It saves us effort
 
-### Do the minimum necessary
+### Keep solutions simple
 
 > We only develop guidance and standards where there is a rationale for it
 
