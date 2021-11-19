@@ -1,6 +1,6 @@
 # Software development standards
 
-This is the temporary home for standards and guidance relating to software development in [Defra](https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs).
+This is the home for standards and guidance relating to software development in [Defra](https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs).
 
 ## Contents
 
