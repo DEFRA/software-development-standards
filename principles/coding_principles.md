@@ -40,3 +40,12 @@ They will not have the understanding and context you do at the time of writing i
 ### Code securely
 
 > We incorporate good security practice in all our code
+
+### Test your code
+
+> When writing code, tests can act as good documentation as well as avoiding bugs and regression issues.
+
+- It is usually self documenting
+- Increases quality
+- Provides confidence in the implementation
+- For low code platforms, Integration testing often adds more value
