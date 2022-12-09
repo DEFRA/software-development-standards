@@ -4,8 +4,10 @@ The purpose of this guide is demonstrate how to use AWS Session Manager to gain 
 
 ## Prerequisites
 
-- You will need an AWS account and your user must be part of the relevant developer group/s. Contact the CCoE AWS WebOps team if you need assistance with this.
-- You must either have access to the AWS console, or have [installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) the AWS CLI. If using the AWS CLI, you will also need to install the [Session Manager plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html).
+- You will need an AWS account and your user must be part of the relevant developer group/s.
+- You must either have access to the AWS console, or have installed the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and [Session Manager plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html). You will then need to [configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html). 
+
+If you need any assistance, don't hesitate to contact the CCoE AWS WebOps team.
 
 ## User permissions
 When initiating a session, you will be logging into the server as the `developer` user. This user has limited permissions and is intended for basic investigative work only. You won't be able to:
