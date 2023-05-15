@@ -16,6 +16,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
   - [SQL Prompt](/guides/version_control_guidance.md)
   - [Style guide for standards](/guides/style_guide_for_standards.md)
+  - [Using AWS session manager](/guides/aws_session_manager.md)
   - [Using unmanaged devices](/guides/unmanaged_devices.md)
   - [Version control guidance](/guides/version_control_guidance.md)
 - [Principles](/principles)
