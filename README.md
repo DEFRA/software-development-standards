@@ -24,6 +24,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [Security principles](/principles/security_principles.md)
 - [Processes](/processes)
   - [Credential exposure](/processes/credential_exposure.md)
+  - [GitHub access](/processes/github_access.md)
   - [Pull requests](/processes/pull_requests.md)
 - [Standards](/standards)
   - [Common coding standards](/standards/common_coding_standards.md)
