@@ -6,11 +6,11 @@ This is the home for standards and guidance relating to software development in 
 
 These form part of the software development standards policy for Defra and apply to all software development undertaken on behalf of the Defra group whether by staff, contingent workers or suppliers.
 
-Any divergence from these published standards must be treated as an exception within Defra's architectural goverance forum (TDA/ADA).
-
 All developers working on behalf of Defra need to be aware of their obligation to follow these standards.
 
-We maintain these standards on GitHub to ensure they have the greatest visiblity to all developers and are readily available in a familiar environment. To aid readability, you can refer to the [GitHub documentation on managing accessibility settings](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-accessibility-settings).
+Any deviation must be managed as an exception under Defra's architectural goverance processes.
+
+We maintain these standards on GitHub to ensure they have the greatest visibility to all developers and are readily available in a familiar environment. To aid readability, you can refer to the [GitHub documentation on managing accessibility settings](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-accessibility-settings).
 
 ## Principles
 
@@ -22,6 +22,8 @@ The standards and guidance provided here a based on an agreed set of principles.
 
 
 ## Standards
+
+These are the standards that must be followed for all software development undertaken on behalf of the Defra group.
 
 - [List of all standards (A-Z)](/standards/README.md)
 
@@ -49,6 +51,8 @@ The standards and guidance provided here a based on an agreed set of principles.
   - [Ruby coding standards](/standards/ruby_coding_standards.md)
 
 ## Processes and guides
+
+These guides provide additional support for meeting and working with the standards.
 
 - [Processes](/processes/README.md)
   - [Credential exposure](/processes/credential_exposure.md)
