@@ -6,6 +6,8 @@ This is the home for standards and guidance relating to software development in 
 
 These form part of the software development standards policy for Defra and apply to all software development undertaken on behalf of the Defra group whether by staff, contingent workers or suppliers.
 
+Any divergence from these published standards must be treated as an exception within Defra's architectural goverance forum (TDA/ADA).
+
 All developers working on behalf of Defra need to be aware of their obligation to follow these standards.
 
 We maintain these standards on GitHub to ensure they have the greatest visiblity to all developers and are readily available in a familiar environment. To aid readability, you can refer to the [GitHub documentation on managing accessibility settings](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-accessibility-settings).
