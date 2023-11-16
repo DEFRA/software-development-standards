@@ -22,7 +22,7 @@ Environment specific values should be overriden during the Helm deployment.
 Sensitive values should never be passed to a `ConfigMap`.
 
 ### Secrets
-Where possible, secrets should not be stored within an application or Kubernetes pod.  Instead, when communicating with supported cloud infrastructure, clusters should use [AAD Pod Identity](https://github.com/Azure/aad-pod-identity) in Azure or [IAM role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) in AWS.
+Where possible, secrets should not be stored within an application or Kubernetes pod.  Instead, when communicating with supported cloud infrastructure, clusters should use [Entra ID Workload Identities](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=dotnet) in Azure or [IAM role for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) in AWS.
 
 When secrets in a pod are unavoidable, for example when a third party API key is needed, secrets should be injected into pods during deployment.
 
