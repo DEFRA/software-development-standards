@@ -1,0 +1,263 @@
+# Choosing a cloud provider - Azure or AWS?
+
+In Defra we have a strategic relationship with both Amazon and Microsoft, and we use both of their cloud platforms.
+
+Many of the solutions we implement will use a combination of the two along with other government and commercial platforms.
+However, we will often find ourselves asking the following question:
+
+> For this particular workload should I be targeting Azure or AWS?
+
+## Does it matter?
+
+***Yes.***
+
+Viewed from a certain level, the different cloud providers offer broadly similar services that are subject to
+market competition, so the largest differentiator is simply cost.
+
+Whilst there is some truth in this and it _is_ possible to acquire very similar services in some areas,
+in reality there are far more differences than similarities.
+
+Some of the main considerations to be aware of, and why it _really does matter_ are:
+
+- Some things are just _much_ easier to do on one platform compared to the other.
+  This is often underestimated as a deciding factor, partly because it requires detailed up front knowledge of all
+  the complications of a certain implementation, which can be extremely difficult when the platforms are
+  changing all the time. But this issue can translate into weeks of additional effort.
+  
+- Some platform features are entirely proprietary and do not translate to features available from the other provider.
+  This means that choosing the wrong provider to start with will require a complete re-build and re-write.
+  
+- Vendor lock-in is real. Choosing to use a particular feature of one platform can easily _require_ you to use other
+  features of the platform, even though you would ideally want to deploy a certain workload on the other provider's
+  platform.
+  
+- The benefit of using cloud platforms is clear - they save us a lot of effort and enable us to do things quickly if
+  we use them correctly. By choosing the right platform for the job, we can deliver better services.
+
+## Key differences
+
+It is worth establishing that, despite the many similarities, there are some key fundamental differences between
+the two platforms.
+
+### Philosophy
+
+Amazon started as an Internet shopping platform, whereas Microsoft have always been a software vendor.
+This difference in origin is reflected right through into their current cloud platforms in a number of ways:
+
+- AWS has always been about providing a way for you to run services _at Internet scale_ - robustness and security
+  are baked into the product from the outset.
+  The advantage of this is that you can be pretty confident that your services are ready for production use in the
+  real world on the public Internet. This also equates to greater reliability of the entire platform.
+  The disadvantage is that it can require quite a lot of effort just to try something out.
+  
+- Azure, on the other hand, is all about getting software into the hands of your users as quickly as possible.
+  In some ways you the developer are not really the customer for Azure, it's your end user.
+  This tends to mean that Azure services are on the public Internet by default, so additional security aspects
+  will need to be considered before something can be ready for production use.
+  
+- Microsoft are not just competing with Amazon for your cloud dollar - they are also looking for you to buy their
+  other software, such as Office 365, where they are more directly in competition with the likes of Google.
+  As a first-party software vendor, they can make it very easy for you to integrate your Azure-based services
+  with their own software.
+  
+- AWS provides a very wide range of low-level services that you are free, as a developer, to configure as required
+  and to assemble into solutions as you see fit.
+  Azure has fewer services overall and they tend to provide more of an entire solution, with fewer options for
+  low-level configuration of their behaviour.
+  
+- Microsoft will more readily implement new, experimental features into their platform, much like with their software,
+  because new features sell products.
+  This can provide opportunties but also means that features can quickly become deprecated or even never make it
+  past public preview.
+  By contrast, most features that are implemented in AWS tend to remain supported for longer and have longer change
+  cycles with better backwards-compatibility.
+  
+- Microsoft will engage you with consultants and third-party providers to help identify opportunities to use their
+  ~~software~~ products in your organisation.
+  Amazon tends more towards providing fully-featured and comprehensively-documented APIs so that you can decide for
+  yourself how best to use their platform.
+
+### Technology
+
+One of the key things to understand about the big three cloud platform suppliers is that
+_they all use their own proprietary technology_.
+
+Whilst smaller vendors might make use of the likes of OpenStack or vCloud on commodity hardware, this is not the
+case with AWS and Azure.
+
+Most of the time, this will be invisible to a developer, as a virtualised Linux distro on one platform looks much like
+it does on another, but sometimes it can cause surprises and unexpected behaviours.
+
+Sometimes the only implication of this is that some things are easier to do on one platform than the other, but the
+key point is that something that is tested and shown to work on one platform cannot ever be considered as being able
+to work on the other until proven to do so.
+
+### Authorisation and access control
+
+Coming from its Windows heritage, Azure expects you to use its Active Directory services to control access to the
+workloads that you deploy on there.
+Authorisation decisions will inevitably involve the use of Active Directory identities and associated roles and
+permissions.
+If the workload that you are deploying doesn't already integrate with Active Directory then you should expect to have
+to do some work to make it aware of its Active Directory security context.
+
+AWS has its own, very fine-grained permissions model that is defined and configured as part of the process of
+commissioning its services.
+This can free developers from needing to establish and manage the security context for every workload, but it does
+mean that a certain amount of configuration work is required on the platform, as opposed to the Azure approach
+where everything "just works" (when it does).
+
+The implications of this are that some workloads will just fit better on one platform or the other because of their
+authorisation needs and functionality, but also that any code written in this area is unlikely to be portable
+across vendors.
+
+### Proprietary higher-level platform services
+
+It seems like an obvious point, but the higher up the stack of platform services you go, the more proprietary those
+services become.
+A workload built as an Azure Logic App will need to be entirely re-written and re-designed to be an AWS Step Function.
+
+The key issue here being that skills and knowledge in this area on one platform don't necessarily translate onto
+the other platform, so it can be difficult for a single team to maintain both.
+
+## Decision factors
+
+Having established that there are some significant differences between the two platforms and that it does matter
+where a particular workload runs, what are the factors that can influence the decision?
+
+### Proximity
+
+This tends to be cited as the number one reason for choosing a provider for a particular workload - the proximity to
+other, related workloads.
+If my data is sitting in Azure and my web application is in Azure, why would I implement my middleware in AWS?
+
+The problem with this simplistic approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution is to minimise the proximity problem by providing high-throughput, low-latency, secure connectivity
+between providers as an enterprise capability.
+
+### Skills
+
+The other main reason for selecting a particular provider is often familiarity.
+It is pretty much impossible for anyone to maintain a high level of proficiency in all the different technical
+areas across two quite different cloud platforms.
+
+Using a single cloud provider for an entire service, team or programme makes it possible to maintain a single,
+consolidated skill set.
+This will generally make delivery teams more efficient and effective.
+
+The problem with this approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution is to make enterprise decisions regarding the most appropriate platform for different types of workload.
+This prevents people needing to maintain capability in equivalent platform services.
+
+### Compatibility
+
+Another factor that often drives decision-making is compatibility - a lot of the time a platform's services will
+"just work" with other services on that platform, whereas utilising similar services on the other platform can
+be complex.
+
+Using a single cloud provider for an entire service makes it possible to more easily deliver a set of integrated
+workloads.
+This will generally make delivery teams more efficient and effective.
+
+The problem with this approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution is to implement enterprise interoperability solutions on both platforms.
+
+### Strategic commercial relationships
+
+The final factor that should drive decision-making is consideration of strategic relationships with vendors
+and prudent government procurement approaches.
+
+Such considerations are more likely to apply at the corporate level, influencing enterprise principles rather
+than individual, local decisions. But such higher-level decisions can still have knock-on impacts, partly due
+to the other factors identified above.
+
+### Technical suitability
+
+As a result of the above, the technical suitability of a particular workload for one or other of the platforms
+ends up being the poor relation in the decision-making process.
+
+However, the technical suitability _does matter_, for all the reasons outlined at the start of this guidance.
+
+The problem with this approach is that it ignores the fundamental differences between the providers, the
+result of which is the implementation of workloads in sub-optimal ways.
+
+The solution to this is two-fold:
+
+- implement enterprise solutions to mitigate the impacts of the other decision factors
+- provide a governance framework for cloud provider selection
+
+The reality is that enterprise solutions of this nature are not quick or cheap to come by, so a decision-making
+mechanism to support a governance framework is required.
+
+## Decision steps
+
+Bearing in mind all of the above, the following are the steps to take when making a decision.
+
+### 1. Define the scope of the decision - be honest!
+
+As discussed above, the decision to locate an individual workload with a specific provider does not exist in
+isolation.
+
+So the first step is to clearly articulate the scope of the decision - doing so may identify unintended impacts.
+Be honest about the implications of the decision and consult with technical experts to ensure that these are
+properly understood.
+
+A decision by a large programme to adopt a particular cloud provider for all of its services is obviously different
+to a local decision to make use of just one cloud platform feature for a specific purpose, but the consequences can
+sometimes be just as great.
+
+### 2. Define the workload's security context in detail
+
+Ensure that you have looked at how users, services and processes will be authenticated and authorised in your
+solution.
+Capture all the steps that are necessary for each cloud provider.
+
+### 3. Capture any movement of data
+
+Identify anywhere that data will move into or out of workloads, in particular as it crosses security boundaries.
+Capture volumes and sensitivity.
+
+Then work out what contextual information needs to travel with the data and how this will be provided for each of
+the cloud platforms.
+This context will often be security-related and so may already be covered under authorisation, but there is usually
+additional information that is often just assumed.
+
+### 4. _Now_ compare the two options based on functionality
+
+Where you have two broadly equivalent options available, you should now have a reasonable basis for comparison.
+Even if you have a very clear indication that proximity, skills or compatibility are likely to be deciding factors,
+it is still worth comparing features as there may be a compelling technical reason why one option is clearly preferable
+over another.
+
+### 5. Apply proximity, skills and compatibility factors
+
+Having identified which of the providers would be the preferred option in an ideal world, then assess the value of
+the proximity, skills and compatibility factors.
+Measure this against the value of choosing the preferred option, if it's different.
+
+## Decision guide
+
+All this guidance amounts to little more than an instruction to think carefully about your decision - which you were
+going to do anyway.
+So far, so unhelpful.
+
+Hopefully, this section will redress that slightly by capturing some specific preferences between the two platforms,
+based on experience to date from actual delivery.
+
+As ever with cloud platforms, you should bear in mind that things change very rapidly so these experiences may no
+longer be valid.
+
+Capability | Choice | Reason
+---|---|---
+e.g. ... | 
+Low code | Microsoft Power Apps | Corporately available
+Virtual machines | AWS EC2 | More configurable, as expected for a server
+VDI | Microsoft Windows Virtual Desktop | Provides corporate Active Directory identity
+Container management | AWS ECS Fargate | Ease of deployment
+etc... |

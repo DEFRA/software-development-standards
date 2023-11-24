@@ -5,6 +5,7 @@ This is the temporary home for standards and guidance relating to software devel
 ## Contents
 
 - [Guides](/guides)
+  - [Choosing cloud provider](/guides/choosing_cloud_provider.md)
   - [Choosing packages](/guides/choosing_packages.md)
   - [Continuous integration](/guides/continuous_integration.md)
   - [Developer workflows](/guides/developer_workflows.md)
