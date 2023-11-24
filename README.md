@@ -27,6 +27,7 @@ This is the temporary home for standards and guidance relating to software devel
   - [GitHub access](/processes/github_access.md)
   - [Pull requests](/processes/pull_requests.md)
 - [Standards](/standards)
+  - [Browser portability standards](/standards/browser_portability_standard.md)
   - [Common coding standards](/standards/common_coding_standards.md)
   - [Container standards](/standards/container_standards.md)
   - [C# coding standards](/standards/csharp_coding_standards.md)
