@@ -8,6 +8,7 @@ This folder contains all current standards for software development.
 - [C# coding standards](csharp_coding_standards.md)
 - [Container standards](container_standards.md)
 - [Deployment standards](deployment_standards.md)
+- [Design standards](design_standards.md)
 - [Development languages](development_language_standards.md)
 - [Java coding standards](java_coding_standards.md)
 - [JavaScript standards](javascript_standards.md)
