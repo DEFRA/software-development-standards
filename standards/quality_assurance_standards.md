@@ -6,7 +6,7 @@ All digital services must meet the [GOV.UK service standard](https://www.gov.uk/
 
 Government Digital Service guidance on testing services is available on the [technology page of the service manual](https://www.gov.uk/service-manual/technology).
 
-Further QA & Test guidance is available on the [Defra QA & Test wiki](https://github.com/DEFRA/qa-test/wiki).
+The QA & Test team monitor these standards through an [assurance checklist](https://github.com/DEFRA/qa-test/wiki/Assurance-checklist). Further QA & Test guidance is available on the [Defra QA & Test wiki](https://github.com/DEFRA/qa-test/wiki).
 
 ## Acceptance criteria
 
