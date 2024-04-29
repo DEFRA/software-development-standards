@@ -87,7 +87,7 @@ The path to reuse starts with module/namespacing. When the need for reuse is con
 
 All repos are connected to a quality analysis tool and the tool's maximum quality rating is maintained.
 
-All repos on GitHub and Azure Repos are connected to our SonarCloud organisation.
+All repos on GitHub and Azure Repos are connected to our SonarCloud organisation and the Defra standard quality gate is met.
 
 ### All code is checked for security
 
