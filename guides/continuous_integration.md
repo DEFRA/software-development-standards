@@ -16,7 +16,7 @@ This automated build can check several things, including:
 
 Many services can integrate with GitHub and automatically respond to new commits or pull requests. So every time you push code to GitHub, it will trigger the build and report the status.
 
-[Travis CI](https://travis-ci.org/) is free to use for open source GitHub repositories.
+[GitHub Actions](https://github.com/features/actions/) is free to use for open source GitHub repositories.
 
 You can configure your repository to always require certain checks when merging to protected branches (like `master`). If a required check fails, it will block merging until the problem is fixed.
 
@@ -35,15 +35,15 @@ These tools are free to use for open source GitHub repositories.
 
 ### Maintainability and test coverage
 
-[CodeClimate](https://codeclimate.com/)'s quality check performs static analysis on your code. It gives your repository a maintainability grade, and estimates the time it would take to deal with any technical debt.
+Defra has a [SonarCloud](https://www.sonarsource.com/products/sonarcloud/) organisation, which should be used to perform static quality analysis checks on your code.
+It provides a rating for the security, reliability and maintainability of your code and estimates the time it would take to deal with any technical debt.
 
-If you include CodeClimate in your CI, it will flag problems it spots in your code, like duplication or complexity.
+You should include SonarCloud in your CI so that it flags problems it spots in your code, like duplication or complexity.
 
-You can also configure your build tool (like Travis) to report unit test coverage to CodeClimate. CodeClimate's CI will then report the test coverage for your changes and for the entire repository.
+You can also configure your build tool (like GitHub Actions) to report unit test coverage to SonarCloud.
+SonarCloud will then include your test coverage in its assessment of your code.
 
-You can set thresholds for your required test coverage. If your changes don't have proper test coverage, CodeClimate's CI will fail.
-
-CodeClimate's quality check is free to use for open source GitHub repositories.
+SonarCloud is free to use for open source GitHub repositories.
 
 ## CI with Jenkins
 
