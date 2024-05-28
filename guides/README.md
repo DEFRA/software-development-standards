@@ -4,6 +4,7 @@ This folder contains various guides to help those working in software developmen
 
 ## Contents
 
+- [Choosing between a mono repo and a multi repo](choosing_mono_or_multi_repo.md)
 - [Choosing packages](choosing_packages.md)
 - [Continuous integration](continuous_integration.md)
 - [Developer workflows](developer_workflows.md)
