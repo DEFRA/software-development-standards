@@ -56,7 +56,7 @@ However mono repos may also tightly coupled collaboration needs across independe
 
 Multi repos are more difficult to collaborate as data is distributed across multiple repositories.  This can mean key data is missed which leads to risk.
 
-If multiple teams support different components then a mono repository should not be used.
+If multiple teams support different components then a mono repository should not be used.  Similarly if individuals within a team are responsible for different components such as frontend and backend, then a mono repository should not be used.
 
 ### Versioning and release process
 
