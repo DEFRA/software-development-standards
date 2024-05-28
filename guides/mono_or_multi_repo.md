@@ -105,7 +105,7 @@ Multi repos allow for more granular access control.
 
 Mono repos work when a single team owns all the code and is expected to maintain it.
 
-Multi repos support multiple teams own different parts of the codebase to avoid tight coupling different delivery strategies.
+Multi repos support multiple teams owning different parts of the codebase.
 
 ## Conclusion
 
