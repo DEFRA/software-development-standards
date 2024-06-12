@@ -103,4 +103,5 @@ This standard was formally adopted on 1 July 2019.
 
 ## Significant changes
 
-SonarCloud was adopted as our standard quality analysis tool on 1 April 2020.
+- SonarCloud was adopted as our standard quality analysis tool on 1 April 2020.
+- The addition of Azure Entra ID 'Workload Identities' for AKS was aded to the Kubernetes Standards in November 2023. AAD 'Pod' Identity was deprecated.
