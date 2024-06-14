@@ -70,6 +70,7 @@ These guides provide additional support for meeting and working with the standar
   - [Mobile application guidance](/guides/mobile_app_guidance.md)
   - [New starters](/guides/new_starters.md)
   - [PL/SQL auto-format with TOAD](/guides/plsql_auto_format_toad.md)
+  - [Schedule an ECS Fargate Task using Step Functions with Terraform](/guides/schedule_ecs_fargate_task.md)
   - [SQL Prompt](/guides/version_control_guidance.md)
   - [Style guide for standards](/guides/style_guide_for_standards.md)
   - [Using AWS session manager](/guides/aws_session_manager.md)
