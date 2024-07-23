@@ -124,22 +124,3 @@ Try to reduce the number of variables used. It is difficult to track information
 
 #### Using delay activity
 Try to keep the delay activity as a last resort. You should be able to use find element as a wait which will stop waiting as soon as confirmation is received e.g. click followed by a find element. Consider also reducing the delays in the activities to speed up your code.
-
-## Sources
-
-*Some of the practices set on this document were set by DEFRA’s development standards whilst others were contributed by individuals based on experience. Below are some of the resources from where some of these practices originated:*
-
-- [https://github.com/DEFRA/software-development-standards](https://github.com/DEFRA/software-development-standards)
-
-- [https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable)
-
-- [https://www.gov.uk/government/publications/open-source-guidance/when-code-should-be-open-or-closed](https://www.gov.uk/government/publications/open-source-guidance/when-code-should-be-open-or-closed)
-
-- [https://docs.uipath.com/studiox/docs/automation-best-practices](https://docs.uipath.com/studiox/docs/automation-best-practices)
-  [https://docs.uipath.com/studio/docs/workflow-design](https://docs.uipath.com/studio/docs/workflow-design)
-
-- [https://docs.uipath.com/studio/docs/ui-automation](https://docs.uipath.com/studio/docs/ui-automation)
-
-- [https://docs.uipath.com/studio/docs/project-organization](https://docs.uipath.com/studio/docs/project-organization)
-
-- [https://forum.uipath.com/t/uipath-best-practices-wiki/139278](https://forum.uipath.com/t/uipath-best-practices-wiki/139278)
