@@ -126,9 +126,8 @@ Try to reduce the number of variables used. It is difficult to track information
 Try to keep the delay activity as a last resort. You should be able to use find element as a wait which will stop waiting as soon as confirmation is received e.g. click followed by a find element. Consider also reducing the delays in the activities to speed up your code.
 
 ## Status
-
 This revised standard was formally adopted on 23 July 2024
 
 ## Significant changes
-Original version adopted October 2020.
+Original version adopted October 2020.\
 Re-write July 2024 based on the revised ways of working implemented from 2021 onwards.
