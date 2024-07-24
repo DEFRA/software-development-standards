@@ -127,8 +127,8 @@ Try to keep the delay activity as a last resort. You should be able to use find 
 
 ## Status
 
-This standard was formally adopted on 23 July 2024.
+This revised standard was formally adopted on 23 July 2024
 
 ## Significant changes
 
-Re-write of UiPath best practices based upon the ways of working implemented 2021 onwards.
+Re-write July 2024 based on the revised ways of working implemented from 2021 onwards.
