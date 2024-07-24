@@ -1,88 +1,133 @@
 ﻿# Uipath Best Practices
 
 
+## Developer Best Practices
 
-## General
+### Do
 
-- Use simulate click/type where possible.
-- Never hardcode values especially credentials, use a config where possible
-- The only value that can be hardcoded is the file path to the Config File.
-- Ensure you enter the network path when adding file paths.
-- Update the Common Components document with any new applications automated.
-- Unit testing is more valuable than you think.
-- Variable scope should be the minimum it can be.
-- Avoid selector attributes becoming just wildcards (E.g. “*”).
-- Avoid relying on id attributes.
-- Image based automaton should be your last resort.
-- Don’t publish your workflows with development-specific activities still in it.
-- Validate that all screen changes have behaved as expected.
-- Logging level should be left as the default.
-- If it’s set to verbose, the files will build up over time in the client’s machine causing storage issues
-- Only compare clean data; ensure the same cleansing is done to all variables for comparison.
-- Don’t reinvent the wheel, we might have already solved the problem you’re about to tackle.
+#### Check if a library component already exists for your need before you start development. If you find a component that almost meets the requirement amend the component as required.
+This helps save time, prevents duplication of components, and helps keep the components library up to date.
 
+#### If your code has a loop ensure there is an infinite loop failsafe within it.
+E.g. you can build in a counter in your loop to keep track of how many loops have taken place. You can then throw an exception or escape the loop at this point. This will prevent the automation from getting stuck.
 
+#### If users will have sight of exception messages then try catch specific errors and reword them to be more user friendly.
+This may reduce the number of MyIT tickets raised for our team. If possible add in a solution to the error message. E.g. “The Excel file is already open. Please close the file then restart the robot.”
 
-## Workflow
+#### Please follow the 3/4 letter prefix and Hungarian case naming conventions.
+E.g. strStringVariable, boolBooleanVariable, arrArrayVariable, dictDictionaryVariable. Give variables descriptive names. This ensures the code is easier to navigate and read.
 
-- Choose the correct layout type for the scope of your work.
-   - Templates are there for a reason.
-- Start applications needed for the process before you need them.
-- Break workflows down, if it takes more than a sentence to define a container then there’s too much in it.
-- Avoid nesting activities.
-- Don’t allow lines to cross in flow charts.
-- When using logic, make sure True=True and the positive outcome follows the True path.
+#### Prefix all arguments with in, out, or io.
+E.g. io_dictConfig
 
-## Error Handling
+#### Use the 64-bit Template with modern design experience.
+Some applications may not be compatible with 64-bit framework – in which case there is a 32-bit template available.
 
-- Catch errors explicitly when you can.
-- Catch them generically when you can’t.
-- Don’t let errors disappear without being logged.
-- Retrying is the default error-handling.
-- Don’t retry forever.
-- Keep in mind that error messages are for the end-user.
+#### Annotate complicated code or any code requiring additional information.
+Comment activity is also available to add text to.
 
+#### Ensure activities have descriptive names.
+E.g. Assign – Initialise Dictionary
 
-## File Storage and Access
+### Documentation
 
-- All scripts and related technical documentation to be stored on Github.
-- Each project/workpackage should have its own repository. Naming convention – [Agency][Workpackage Name] i.e. EA-Waste-Tonnage-Returns
-- All generic files need to be stored under the DRACoE repository.
-- When working on a new application, please ensure that you get the same level of access to all team members.
-- Use the development SharePoint or any other internal method of sharing files only. External file sharing platforms are not permitted unless prior approval has been obtained by the Service Owner. i.e. Dropbox
-- Since all the work on Github is public, please ensure that no sensitive data has been stored i.e. credentials, sensitive data on informative screenshots
-- Before committing a change to an existing activity in DRACoE repository, check the reusable components for dependencies and then communicate with relevant colleagues to ensure other processes aren’t impacted negatively.
+#### When working on a new application please ensure that you grant the same level of access to all team members.
+This helps reallocate work in case additional support work is required or there is unplanned leave.
 
+#### Each project/work package should have its own repository. Naming convention to be used – [Agency][Workpackage Name] i.e. EA-Waste-Tonnage-Returns
+Email Ben Sagar to create the repository.
 
-## Notes and Naming Convention
+#### Upon completion of a project – please book a technical video handover with 2 Developers.
+Please upload this to our SharePoint Handover Videos. Remember to add the link URL into the Technical Developer document.
 
-- Add the below annotations to every workflow you create:
-   - Description of process
-   - Your name
-   - Live Version number and when it was last updated
-   - Date of last code review
-- Name variables using Camel case with the variable type as the prefix i.e. strVariableName
-- Name all activities in a meaningful way
-- Name all containers (sequences, flowcharts, loops etc) to describe what they do
-   - Where that’s not possible use an annotation
-   - If your annotation is an essay, consider breaking up that container into smaller parts.
-- Prefix all arguments with IN, OUT or IO
+#### Convert useful code into library components.
+You may create some useful reusable code for a new project. Please try to convert it into a library and book a share and learn with the team.
 
-## Sources
+#### Create guides and add them to Guides.
+You may have to do some configuration or set up a new application as part of a project or be given some RnD to complete. Please create a step-by-step guide with screenshots for anything that will be useful for the development team.
 
-*Some of the practices set on this document were set by DEFRA’s development standards whilst others were contributed by individuals based on experience. Below are some of the resources from where some of these practices originated:*
+#### Work from the OneDrive folder and provide the development team with access to that folder.
+Where a developer is on leave and may not have Git pushed this helps the development team save time by retrieving code unavailable in GitHub.
 
-- [https://github.com/DEFRA/software-development-standards](https://github.com/DEFRA/software-development-standards)
+#### Use Orchestrator Assets for configurable input data.
+The exception being if there is a project specific reason e.g. sensitive data requiring you to use a custom approach.
 
-- [https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable)
+#### Complete the Developer technical document as and when you can.
+Filling in the document throughout the development process will ensure nothing is forgotten or missed.
 
-- [https://www.gov.uk/government/publications/open-source-guidance/when-code-should-be-open-or-closed](https://www.gov.uk/government/publications/open-source-guidance/when-code-should-be-open-or-closed)
+### Try
 
-- [https://docs.uipath.com/studiox/docs/automation-best-practices](https://docs.uipath.com/studiox/docs/automation-best-practices)
-  [https://docs.uipath.com/studio/docs/workflow-design](https://docs.uipath.com/studio/docs/workflow-design)
+#### Try using simulate click/background activities over foreground versions.
+For attended mode it allows users to use mouse & keyboard while a robot is running. This approach is faster and more stable than foreground counterparts.
 
-- [https://docs.uipath.com/studio/docs/ui-automation](https://docs.uipath.com/studio/docs/ui-automation)
+#### Consider when you should use a sequence, flowchart, or a state machine.
+Sometimes switching your code to a different format can improve readability. E.g. the ‘if activity’ and ‘flow decision’ activity are both if statements. However swapping ‘flow decisions’ with ‘if statements’ or vice versa can make an impactful change.
 
-- [https://docs.uipath.com/studio/docs/project-organization](https://docs.uipath.com/studio/docs/project-organization)
+#### Using a template for your project.
+Templates are available and kept up to date by the development team. There may be a rare scenario requiring you to create custom code. Please check with a Lead developer if the template is not fit for purpose before you create custom code.
 
-- [https://forum.uipath.com/t/uipath-best-practices-wiki/139278](https://forum.uipath.com/t/uipath-best-practices-wiki/139278)
+#### If you must use foreground activities on an unstable selector ensure there is confirmation of code execution.
+Wrap the foreground activity with a retry scope and some verification. Alternatively use the modern design mode built-in verification.
+
+#### For message boxes addressed to the user please make use of the popup’s library components.
+This is to ensure consistency in our department branding. Where you create your own try and keep the theme consistent with our branding.
+
+#### Use the latest dependency.
+Latest dependencies “usually” are faster and more stable.
+
+#### Git push at the end of the day or after a meaningful change.
+This helps to version control or checkpoint allowing you to return to a previous position. It further allows others to download and distinguish between completed code and partially built code.
+
+#### Maintain consistency in your coding/readability.
+If you discover an improved method as you are developing a project please ensure your entire code is in line with it for a consistent approach.
+
+#### Asynchronous approach. Parallel coding style. Check outcomes simultaneously if possible.
+Try using pick branches when you review multiple outcomes this is faster than having a chain of if activities. The state machine also has a built-in pick machine in the transition lines. *Please note this is not truly asynchronous to achieve asynchronous code you can make use of invoke process.* The pick branch executes the triggers in sequence but doesn’t wait for the activities to finish before executing the next trigger (making it seem like parallel or asynchronous).
+
+#### Stay up to date with UiPath software.
+This can be done by reading the latest release notes and watching the latest UiPath training academy videos. Share findings with the development team through share and learns.
+
+### Avoid
+
+#### Hardcoding values especially usernames/passwords
+This is required as you may upload usernames/passwords to a public GitHub repository. It will be easier to change the values of any configurable from outside the code. E.g. Assets
+
+#### Image based automation
+Keep this as a last resort - image based activities are slow and unstable.
+
+#### Nesting activities
+E.g. an if within an if within … Nesting activities within each other makes the code difficult to read. Try to change your approach to reduce the level of nesting. E.g. use a switch case instead of a nest of ifs.
+
+#### Spaghetti code
+Spaghetti code refers to a difficult to follow coding style. Your code should be easy to follow in a flowchart. E.g. Having crossed lines in a flow chart will make it difficult to follow. E.g. Splitting a function written in several different invokes.
+
+#### Storing passwords/sensitive information in Orchestrator
+Some of our stakeholders do not authorise the use of cloud services. Please check with stakeholders for the preferred method of handling data.
+
+#### Leaving developer code in final product main files
+It is acceptable to leave separate testing xaml’s however avoid leaving commented out code in the main code or temporary write-lines etc…
+
+#### Exception swallowing
+If you use a try catch ensure exceptions are logged as a minimum because an empty catch makes it difficult to pinpoint the root cause during debugging.
+
+#### Complicated/complex coding techniques
+Avoid using complex coding techniques that could be done with simpler methods. If complex code is required please include an explanation within the annotation of the code. E.g. Using invoke code with vb.net instead of using predefined activities.
+
+#### Complicated variables
+E.g. Use a datatable/json object instead of dictionary within a dictionary variable.
+
+#### Lasagne code
+It is good practice to break up a flow into smaller flows however if this is done frequently the code becomes too layered. Try to keep how deep invokes within invoke layers reach. In addition don’t use one xaml file for everything! Avoid the use of single activity invokes or single activity components.
+
+#### High number of variables
+Try to reduce the number of variables used. It is difficult to track information being transferred during debugging if it’s passed from variable to variable. Try to keep arguments and variables that connect to each other in different xamls similarly named. You could make use of global variables if possible. Add into config variable if you need to use variable everywhere.
+
+#### Using delay activity
+Try to keep the delay activity as a last resort. You should be able to use find element as a wait which will stop waiting as soon as confirmation is received e.g. click followed by a find element. Consider also reducing the delays in the activities to speed up your code.
+
+## Status
+This revised standard was formally adopted on 23 July 2024
+
+## Significant changes
+Original version adopted October 2020.\
+Re-write July 2024 based on the revised ways of working implemented from 2021 onwards.
