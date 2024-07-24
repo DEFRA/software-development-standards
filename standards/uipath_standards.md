@@ -130,5 +130,5 @@ Try to keep the delay activity as a last resort. You should be able to use find 
 This revised standard was formally adopted on 23 July 2024
 
 ## Significant changes
-
+Original version adopted October 2020.
 Re-write July 2024 based on the revised ways of working implemented from 2021 onwards.
