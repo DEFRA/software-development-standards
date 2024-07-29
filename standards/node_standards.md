@@ -31,6 +31,14 @@
 
 ### CommonJS vs ES modules
 - ES modules should be used by default over CommonJS modules
-- For scenarios where ES modules are not appropriate then CommonJs may be used
+- For scenarios where ES modules are not appropriate then CommonJS may be used
 
-> Note: Some Node.js packages such as [Jest](https://jestjs.io/) are not fully compatible with ES modules and it may be more pragmatic to use CommonJs.
+> Note: Some Node.js packages such as [Jest](https://jestjs.io/) are not fully compatible with ES modules and it may be more pragmatic to use CommonJS.
+
+## Status
+
+This standard was formally adopted on 8 January 2020.
+
+## Significant changes
+
+Clarification on preference between CommonJS and ESM added 29 July 2024.
