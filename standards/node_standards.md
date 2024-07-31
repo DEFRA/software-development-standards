@@ -35,10 +35,10 @@
 
 > Note: Some Node.js packages such as [Jest](https://jestjs.io/) are not fully compatible with ES modules and it may be more pragmatic to use CommonJS.
 
-## Status
+### Status
 
 This standard was formally adopted on 8 January 2020.
 
-## Significant changes
+### Significant changes
 
 Clarification on preference between CommonJS and ESM added 29 July 2024.
