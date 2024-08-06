@@ -1,0 +1,1914 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://defra.github.io/software-development-standards/standards/tsql_and_sqldb_standards/">
+      
+      
+        <link rel="prev" href="../security_standards/">
+      
+      
+        <link rel="next" href="../uipath_standards/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>TSQL and SQL Server database standards - FCP Development Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tsql-and-sql-server-database-standards" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FCP Development Guide" class="md-header__button md-logo" aria-label="FCP Development Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FCP Development Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TSQL and SQL Server database standards
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FCP Development Guide" class="md-nav__button md-logo" aria-label="FCP Development Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon.png" alt="logo">
+
+    </a>
+    FCP Development Guide
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/aws_session_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Session Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/choosing_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choosing packages and dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/continuous_integration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Continuous integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/developer_workflows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer Workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/docker_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/java_auto_format_eclipse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Auto-format with Eclipse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/mobile_app_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile application guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/mono_or_multi_repo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mono repo and a multi repo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/new_starters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guide for new Defra developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/plsql_auto_format_toad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PL/SQL Auto-format with TOAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/sql_prompt_tool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/style_guide_for_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Style guide for software development standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/unmanaged_devices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using Unmanaged Devices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/version_control_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version control guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Principles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Principles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Principles for software development standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/coding_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/security_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Processes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/credential_exposure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Credential exposure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/pull_requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pull requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Standards
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Standards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Common coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../container_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Container standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csharp_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C# coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development_language_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development languages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Coding Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Javascript standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile_app_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile application standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plsql_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PL/SQL Coding Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quality_assurance_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quality assurance and test standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readme_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    README standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ruby_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ruby coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Standard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    TSQL and SQL Server database standards
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    TSQL and SQL Server database standards
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stored-procs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Procs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triggers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primary-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foreign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Foreign Keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Columns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Rules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formatting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uipath_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uipath Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version_control_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version control standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stored-procs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Procs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triggers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primary-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foreign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Foreign Keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Columns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Rules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formatting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="tsql-and-sql-server-database-standards">TSQL and SQL Server database standards</h1>
+<h2 id="naming">Naming</h2>
+<h3 id="tables">Tables</h3>
+<p>Rules: Pascal notation; end with an <code>s</code></p>
+<p>Examples: <code>Products</code>, <code>Customers</code>. Group related table names<sup>1</sup></p>
+<h3 id="stored-procs">Stored Procs</h3>
+<p>Rules: sp[App Name]_[Group Name]_[Action][table/logical instance]</p>
+<p>Examples: <code>spOrders_GetNewOrders</code>, <code>spProducts_UpdateProduct</code></p>
+<h3 id="triggers">Triggers</h3>
+<p>Rules: TR_[TableName]_[action]</p>
+<p>Examples: <code>TR_Orders_UpdateProducts</code></p>
+<p><em>Note. The use of triggers is discouraged</em></p>
+<h3 id="indexes">Indexes</h3>
+<p>Rules: IX_[TableName]_[column]ID</p>
+<p>Examples: <code>IX_Products_ProductID</code></p>
+<h3 id="primary-keys">Primary Keys</h3>
+<p>Rules: PK_[TableName]</p>
+<p>Examples: <code>PK_Products</code></p>
+<h3 id="foreign-keys">Foreign Keys</h3>
+<p>Rules: FK_[TableName1]_[TableName2]</p>
+<p>Example: <code>FK_Products_Orders</code></p>
+<h3 id="defaults">Defaults</h3>
+<p>Rules: DF_[TableName]_[ColumnName]</p>
+<p>Example: <code>DF_Products_Quantity</code></p>
+<h3 id="columns">Columns</h3>
+<p>If a column references another table’s column, name it [table name]ID</p>
+<p>Example: The Customers table has an ID column. The Orders table should have a <code>CustomerID</code> column</p>
+<h2 id="general-rules">General Rules</h2>
+<ul>
+<li>Do not use spaces in the name of database objects</li>
+<li>Do not use SQL keywords as the name of database objects. In cases where this is necessary, surround the object name with brackets, such as <code>[Year]</code></li>
+<li>Do not prefix stored procedures with <code>sp_</code><sup>2</sup></li>
+<li>Prefix table names with the owner name<sup>3</sup></li>
+</ul>
+<h2 id="structure">Structure</h2>
+<ul>
+<li>Each table must have a primary key<ul>
+<li>In most cases it should be an <code>IDENTITY</code> column named ID</li>
+</ul>
+</li>
+<li>Normalize data to third normal form<ul>
+<li>Do not compromise on performance to reach third normal form. Sometimes, a little denormalization results in better performance.</li>
+</ul>
+</li>
+<li>Do not use <code>TEXT</code> as a data type; use the maximum allowed characters of <code>VARCHAR</code> instead</li>
+<li>In <code>VARCHAR</code> data columns, do not default to <code>NULL</code>; use an empty string instead</li>
+<li>Columns with default values should not allow NULLs</li>
+<li>As much as possible, create stored procedures on the same database as the main tables they will be accessing</li>
+</ul>
+<h2 id="formatting">Formatting</h2>
+<ul>
+<li>Use upper case for all SQL keywords<ul>
+<li><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>WHERE</code>, <code>AND</code>, <code>OR</code>, <code>LIKE</code>, etc.</li>
+</ul>
+</li>
+<li>Indent code to improve readability</li>
+<li>Comment code blocks that are not easily understandable<ul>
+<li>Use single-line comment markers(<code>--</code>)</li>
+<li>Reserve multi-line comments (<code>/*.. ..*/</code>) for blocking out sections of code</li>
+</ul>
+</li>
+<li>Use single quote characters to delimit strings.<ul>
+<li>Nest single quotes to express a single quote or apostrophe within a string<ul>
+<li>For example, <code>SET @sExample = 'SQL''s Authority'</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use parentheses to increase readability<ul>
+<li><code>WHERE (color=’red’ AND (size = 1 OR size = 2))</code></li>
+</ul>
+</li>
+<li>Use <code>BEGIN..END</code> blocks only when multiple statements are present within a conditional code segment.</li>
+<li>Use one blank line to separate code sections.</li>
+<li>Use spaces so that expressions read like sentences.<ul>
+<li><code>fillfactor = 25</code>, not <code>fillfactor=25</code></li>
+</ul>
+</li>
+<li>Format <code>JOIN</code> operations using indents<ul>
+<li>Also, use ANSI Joins instead of old style joins<sup>4</sup></li>
+</ul>
+</li>
+<li>Place <code>SET</code> statements before any executing code in the procedure.</li>
+</ul>
+<h2 id="coding">Coding</h2>
+<ul>
+<li>Optimize queries using the tools provided by SQL Server<sup>5</sup></li>
+<li>Do not use <code>SELECT *</code></li>
+<li>Return multiple result sets from one stored procedure to avoid trips from the application server to SQL server</li>
+<li>Avoid unnecessary use of temporary tables<ul>
+<li>Use 'Derived tables' or CTE (Common Table Expressions) wherever possible, as they perform better<sup>6</sup></li>
+</ul>
+</li>
+<li>Avoid using <code>&lt;&gt;</code> as a comparison operator where possible<ul>
+<li>Consider using <code>ID IN(1,3,4,5)</code> instead of <code>ID &lt;&gt; 2</code></li>
+</ul>
+</li>
+<li>Use <code>SET NOCOUNT ON</code> at the beginning of stored procedures<sup>7</sup></li>
+<li>Do not use cursors or application loops to do inserts<sup>8</sup><ul>
+<li>Instead, use <code>INSERT INTO</code></li>
+</ul>
+</li>
+<li>Fully qualify tables and column names in JOINs</li>
+<li>Fully qualify all stored procedure and table references in stored procedures.</li>
+<li>Consider not defining default values for parameters.<ul>
+<li>If a default is needed, the front end should supply the value where possible.</li>
+</ul>
+</li>
+<li>Place all <code>DECLARE</code> statements before any other code in the procedure.</li>
+<li>Do not use column numbers in the <code>ORDER BY</code> clause.</li>
+<li>Do not use <code>GOTO</code>.</li>
+<li>Check the global variable <code>@@ERROR</code> immediately after executing a data manipulation statement (like <code>INSERT</code>/<code>UPDATE</code>/<code>DELETE</code>), so that you can rollback the transaction if an error occurs<ul>
+<li>Or use <code>TRY</code>/<code>CATCH</code></li>
+</ul>
+</li>
+<li>Do basic validations in the front-end itself during data entry</li>
+<li>Off-load tasks, like string manipulations, concatenations, row numbering, case conversions, type conversions etc., to the front-end applications if these operations are going to consume more CPU cycles on the database server</li>
+<li>Always use a column list in your <code>INSERT</code> statements.<ul>
+<li>This helps avoid problems when the table structure changes (like adding or dropping a column).</li>
+</ul>
+</li>
+<li>Minimize the use of NULLs, as they often confuse front-end applications, unless the applications are coded intelligently to eliminate NULLs or convert the NULLs into some other form.<ul>
+<li>Any expression that deals with <code>NULL</code> results in a <code>NULL</code> output.</li>
+<li>The <code>ISNULL</code> and <code>COALESCE</code> functions are helpful in dealing with <code>NULL</code> values.</li>
+</ul>
+</li>
+<li>Do not use the identitycol or rowguidcol.</li>
+<li>Avoid the use of cross joins, if possible.</li>
+<li>When executing an <code>UPDATE</code> or <code>DELETE</code> statement, use the primary key in the <code>WHERE</code> condition, if possible. This reduces error possibilities.</li>
+<li>Avoid using <code>TEXT</code> or <code>NTEXT</code> datatypes for storing large textual data.<sup>9</sup><ul>
+<li>Use the maximum allowed characters of <code>VARCHAR</code> instead</li>
+</ul>
+</li>
+<li>Avoid dynamic SQL statements as much as possible.<sup>10</sup></li>
+<li>Access tables in the same order in your stored procedures and triggers consistently.<sup>11</sup></li>
+<li>Do not call functions repeatedly within your stored procedures, triggers, functions and batches.<sup>12</sup></li>
+<li>Default constraints must be defined at the column level.</li>
+<li>Avoid wild-card characters at the beginning of a word while searching using the <code>LIKE</code> keyword, as these results in an index scan, which defeats the purpose of an index.</li>
+<li>Define all constraints, other than defaults, at the table level.</li>
+<li>When a result set is not needed, use syntax that does not return a result set.<sup>13</sup></li>
+<li>Avoid rules, database level defaults that must be bound or user-defined data types. While these are legitimate database constructs, opt for constraints and column defaults to hold the database consistent for development and conversion coding.</li>
+<li>Constraints that apply to more than one column must be defined at the table level.</li>
+<li>Where the <code>CHAR</code> data type is appropriate for a column. Only use it when the column is non-nullable.<sup>14</sup></li>
+<li>Do not use white space in identifiers.</li>
+<li>The <code>RETURN</code> statement is meant for returning the execution status only, but not data.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ol>
+<li>
+<p>Group related table names:</p>
+</li>
+<li>
+<p><code>Products_UK</code></p>
+</li>
+<li><code>Products_India</code></li>
+<li>
+<p><code>Products_Mexico</code></p>
+</li>
+<li>
+<p>The prefix sp_ is reserved for system stored procedures that ship with SQL Server. Whenever SQL Server encounters a procedure name starting with sp_, it first tries to locate the procedure in the master database, then it looks for any qualifiers (database, owner) provided, then it tries dbo as the owner. Time spent locating the stored procedure can be saved by avoiding the <code>sp_</code> prefix.</p>
+</li>
+<li>
+<p>This improves readability and avoids unnecessary confusion. Microsoft SQL Server Books Online states that qualifying table names with owner names helps in execution plan reuse, further boosting performance.</p>
+</li>
+<li>
+<p>Example of 'False code'</p>
+</li>
+</ol>
+<pre><code class="language-sql">SELECT *
+FROM Table1, Table2
+WHERE Table1.d = Table2.c
+</code></pre>
+<p>Example of 'True code'</p>
+<pre><code class="language-sql">SELECT *
+FROM Table1
+INNER JOIN Table2 ON Table1.d = Table2.c
+</code></pre>
+<ol>
+<li>
+<p>Use the graphical execution plan in Query Analyzer or <code>SHOWPLAN_TEXT</code> or <code>SHOWPLAN_ALL</code> commands to analyze your queries. Make sure your queries do an 'Index seek' instead of an 'Index scan' or a 'Table scan.' A table scan or an index scan is a highly undesirable and should be avoided where possible.</p>
+</li>
+<li>
+<p>Consider the following query to find the second highest offer price from the <code>Items</code> table</p>
+</li>
+</ol>
+<pre><code class="language-sql">SELECT MIN(Price)
+FROM Products
+WHERE ID IN
+(
+SELECT TOP 2 ID
+FROM Products
+ORDER BY Price Desc
+)
+</code></pre>
+<p>The same query can be re-written using a derived table, as shown below, and it performs generally twice as fast as the above query.</p>
+<pre><code class="language-sql">SELECT MIN(Price)
+FROM
+(
+SELECT TOP 2 Price
+FROM Products
+ORDER BY Price DESC
+)
+</code></pre>
+<ol>
+<li>
+<p>This suppresses messages like <code>(1 row(s) affected)</code> after executing <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> and <code>SELECT</code> statements. Performance is improved due to the reduction of network traffic.</p>
+</li>
+<li>
+<p>Try to avoid server side cursors as much as possible. Always stick to a 'set-based approach' instead of a 'procedural approach' for accessing and manipulating data. Cursors can often be avoided by using <code>SELECT</code> statements instead. If a cursor is unavoidable, use a <code>WHILE</code> loop instead. For a <code>WHILE</code> loop to replace a cursor, however, you need a column (primary key or unique key) to identify each row uniquely.</p>
+</li>
+<li>
+<p>You cannot directly write or update text data using the <code>INSERT</code> or <code>UPDATE</code> statements. Instead, you have to use special statements like <code>READTEXT</code>, <code>WRITETEXT</code> and <code>UPDATETEXT</code>. So, if you don't have to store more than 8KB of text, use the <code>CHAR(8000)</code> or <code>VARCHAR(8000)</code> datatype instead.</p>
+</li>
+<li>
+<p>Dynamic SQL tends to be slower than static SQL, as SQL Server must generate an execution plan at runtime. <code>IF</code> and <code>CASE</code> statements come in handy to avoid dynamic SQL.</p>
+</li>
+<li>
+<p>This helps to avoid deadlocks. Other things to keep in mind to avoid deadlocks are:</p>
+</li>
+<li>
+<p>Keep transactions as short as possible.</p>
+</li>
+<li>Touch the minimum amount of data possible during a transaction.</li>
+<li>Never wait for user input in the middle of a transaction.</li>
+<li>
+<p>Do not use higher level locking hints or restrictive isolation levels unless they are absolutely needed.</p>
+</li>
+<li>
+<p>You might need the length of a string variable in many places of your procedure, but don't call the <code>LEN</code> function whenever it's needed. Instead, call the <code>LEN</code> function once and store the result in a variable for later use.</p>
+</li>
+<li>
+<p>Resultset syntax</p>
+</li>
+</ol>
+<pre><code class="language-sql">IF EXISTS (SELECT 1 FROM Products WHERE ID = 50)
+</code></pre>
+<p>Instead of</p>
+<pre><code class="language-sql">IF EXISTS (SELECT COUNT(ID) FROM Products WHERE ID = 50)
+</code></pre>
+<ol>
+<li><code>CHAR(100)</code>, when <code>NULL</code>, will consume 100 bytes, resulting in space wastage. Preferably, use <code>VARCHAR(100)</code> in this situation. Variable-length columns have very little processing overhead compared with fixed-length columns.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2423 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://defra.github.io/software-development-standards/guides/unmanaged_devices/">
+      
+      
+        <link rel="prev" href="../style_guide_for_standards/">
+      
+      
+        <link rel="next" href="../version_control_guidance/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Using Unmanaged Devices - FCP Development Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-unmanaged-devices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FCP Development Guide" class="md-header__button md-logo" aria-label="FCP Development Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FCP Development Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using Unmanaged Devices
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FCP Development Guide" class="md-nav__button md-logo" aria-label="FCP Development Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon.png" alt="logo">
+
+    </a>
+    FCP Development Guide
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws_session_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Session Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choosing_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choosing packages and dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../continuous_integration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Continuous integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_workflows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer Workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java_auto_format_eclipse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Auto-format with Eclipse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile_app_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile application guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mono_or_multi_repo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mono repo and a multi repo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new_starters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guide for new Defra developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plsql_auto_format_toad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PL/SQL Auto-format with TOAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_prompt_tool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style_guide_for_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Style guide for software development standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Using Unmanaged Devices
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Using Unmanaged Devices
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-this-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is this about?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-it-apply-to-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      Does it apply to you?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Does it apply to you?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-know-if-my-device-is-unmanaged" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I know if my device is unmanaged?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-it-is-my-own-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      What if it is my own device?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-know-if-this-guidance-applies-for-my-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I know if this guidance applies for my device?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-can-you-talk-to-about-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Who can you talk to about this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-different-for-unmanaged-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is different for unmanaged devices?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-security-controls-you-need-to-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the security controls you need to apply?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common controls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common controls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#be-aware-of-your-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Be aware of your responsibilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understand-the-security-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understand the security principles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-your-device-is-registered-on-the-appropriate-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure your device is registered on the appropriate inventory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-your-device-patched-and-up-to-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep your device patched and up to date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-that-you-are-using-official-online-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure that you are using official online resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-public-networks-securely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use public networks securely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-not-compromise-the-organisations-corporate-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do not compromise the organisation's corporate network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-the-device-physically-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep the device physically secure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-device-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the device safely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-any-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fix any faults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-and-secure-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup and secure data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returning-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returning devices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controls-for-windows-laptops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controls for Windows laptops
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controls for Windows laptops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dont-set-a-bios-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Don't set a BIOS password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-latest-stable-desktop-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the latest stable desktop operating system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-the-operating-system-and-applications-patched-and-up-to-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep the operating system and applications patched and up to date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      User accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-all-the-built-in-threat-protections-are-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure all the built-in threat protections are enabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disc-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disc encryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public networks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtualisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtualisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corporate-resources-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corporate resources access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-development-environment-access-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud development environment access (VPN)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controls-for-macbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controls for Macbooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controls for Macbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dont-set-a-firmware-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Don't set a firmware password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-latest-general-release-operating-system-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the latest general release operating system version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-the-operating-system-and-applications-patched-and-up-to-date_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep the operating system and applications patched and up to date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-accounts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      User accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-dedicated-anti-malware-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install dedicated anti-malware software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disc-encryption_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disc encryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtualisation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtualisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corporate-resources-access_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corporate resources access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-development-environment-access-vpn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud development environment access (VPN)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version_control_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version control guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Principles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Principles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Principles for software development standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/coding_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/security_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Processes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/credential_exposure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Credential exposure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/pull_requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pull requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Standards
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Standards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/common_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Common coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/container_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Container standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/csharp_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C# coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/deployment_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/development_language_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development languages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/java_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Coding Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/javascript_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Javascript standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kubernetes_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/mobile_app_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile application standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/node_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/plsql_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PL/SQL Coding Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/quality_assurance_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quality assurance and test standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/readme_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    README standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/ruby_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ruby coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/security_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Standard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/tsql_and_sqldb_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSQL and SQL Server database standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/uipath_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uipath Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/version_control_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version control standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-this-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is this about?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-it-apply-to-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      Does it apply to you?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Does it apply to you?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-know-if-my-device-is-unmanaged" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I know if my device is unmanaged?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-it-is-my-own-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      What if it is my own device?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-know-if-this-guidance-applies-for-my-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I know if this guidance applies for my device?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-can-you-talk-to-about-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Who can you talk to about this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-different-for-unmanaged-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is different for unmanaged devices?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-the-security-controls-you-need-to-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the security controls you need to apply?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common controls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common controls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#be-aware-of-your-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Be aware of your responsibilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understand-the-security-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understand the security principles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-your-device-is-registered-on-the-appropriate-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure your device is registered on the appropriate inventory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-your-device-patched-and-up-to-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep your device patched and up to date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-that-you-are-using-official-online-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure that you are using official online resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-public-networks-securely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use public networks securely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-not-compromise-the-organisations-corporate-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do not compromise the organisation's corporate network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-the-device-physically-secure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep the device physically secure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-device-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the device safely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-any-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fix any faults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-and-secure-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup and secure data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returning-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returning devices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controls-for-windows-laptops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controls for Windows laptops
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controls for Windows laptops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dont-set-a-bios-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Don't set a BIOS password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-latest-stable-desktop-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the latest stable desktop operating system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-the-operating-system-and-applications-patched-and-up-to-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep the operating system and applications patched and up to date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      User accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-all-the-built-in-threat-protections-are-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure all the built-in threat protections are enabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disc-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disc encryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public networks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtualisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtualisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corporate-resources-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corporate resources access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-development-environment-access-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud development environment access (VPN)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controls-for-macbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controls for Macbooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controls for Macbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dont-set-a-firmware-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Don't set a firmware password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-latest-general-release-operating-system-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the latest general release operating system version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-the-operating-system-and-applications-patched-and-up-to-date_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep the operating system and applications patched and up to date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-accounts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      User accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-dedicated-anti-malware-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install dedicated anti-malware software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disc-encryption_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disc encryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtualisation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtualisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corporate-resources-access_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Corporate resources access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-development-environment-access-vpn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud development environment access (VPN)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="using-unmanaged-devices">Using Unmanaged Devices</h1>
+<p>A guide for everyone that needs to use unmanaged devices.</p>
+<h3 id="what-is-this-about">What is this about?</h3>
+<p>This guide is about the appropriate steps you should take when using devices that are not managed by the normal
+organisational IT controls.</p>
+<p>That means "off-network" laptops used, for example, by developers, testers and designers on digital services.</p>
+<h3 id="does-it-apply-to-you">Does it apply to you?</h3>
+<p>Most people are issued with devices have been pre-configured with the organisation's standard IT controls in place.</p>
+<p>For some people, however, these standard devices are too restricted and prevent us from performing our duties.</p>
+<p>In these cases, you will have been issued with an <em>unmanaged</em> device.</p>
+<h4 id="how-do-i-know-if-my-device-is-unmanaged">How do I know if my device is unmanaged?</h4>
+<p>You will have been issued with the device by your line manager and informed that it is an unmanaged device.</p>
+<p>If you have a device and you do not know whether it is managed or unmanaged then ask your line manager.</p>
+<h4 id="what-if-it-is-my-own-device">What if it is my own device?</h4>
+<p>We do not allow people to use their own devices for official work. Please don't do it.</p>
+<blockquote>
+<p>This includes personal smartphones chatting on <a href="https://slack.com">Slack</a>, personal tablets used to
+<a href="https://appear.in/">appear.in</a>, etc.  Seriously, please don't.</p>
+</blockquote>
+<p>One day we might have thought through the policy for official data on privately-owned equipment sufficiently to make
+this happen, but we're not there yet.</p>
+<h4 id="how-do-i-know-if-this-guidance-applies-for-my-device">How do I know if this guidance applies for my device?</h4>
+<p>This guidance applies for <em>all</em> unmanaged devices.</p>
+<h3 id="who-can-you-talk-to-about-this">Who can you talk to about this?</h3>
+<p>If you have any questions then please contact your line manager.</p>
+<p>For suggestions feel free to create an Issue or raise a PR with your suggested changes.</p>
+<h3 id="what-is-different-for-unmanaged-devices">What is different for unmanaged devices?</h3>
+<p>The main difference is that <strong>you must apply all the necessary security controls to the device yourself</strong>.</p>
+<p>If you are not comfortable with the full set of responsibilities outlined in this guide then speak to your line manager.
+It may be best to return the unmanaged device and replace it with a managed device.</p>
+<h3 id="what-are-the-security-controls-you-need-to-apply">What are the security controls you need to apply?</h3>
+<p>The precise controls that you need to apply will vary depending on the type of device that you have and how you need
+to use it.</p>
+<p>However, there are some common controls that you must apply in all cases and these are described first.</p>
+<h3 id="common-controls">Common controls</h3>
+<p>These controls must be applied whatever type of unmanaged device you use.</p>
+<h4 id="be-aware-of-your-responsibilities">Be aware of your responsibilities</h4>
+<p>Familiarise yourself with your organisation's information handling responsibilities, acceptable use policies and code
+of conduct for the use of IT and digital resources.</p>
+<p>We need to be especially mindful of these as the standard IT security controls often help us to comply with them
+without us even realising it.</p>
+<h4 id="understand-the-security-principles">Understand the security principles</h4>
+<p>Read the <a href="https://www.ncsc.gov.uk/guidance/end-user-device-security">CESG End User Devices Security Guidance</a>, in
+particular the <a href="https://www.ncsc.gov.uk/guidance/end-user-devices-security-principles">Security Principles</a>.</p>
+<p>This should give you a good understanding of the kind of controls that are required and why they are necessary.</p>
+<p>If you have any questions then speak to your line manager.</p>
+<h4 id="ensure-your-device-is-registered-on-the-appropriate-inventory">Ensure your device is registered on the appropriate inventory</h4>
+<p>Your line manager must have a record of your device and it must be recorded in a shared inventory.  In most cases, the
+device itself will also have an asset identifier on it, usually in the form of a sticker.</p>
+<p>This ensures that we can keep track of the device and prevent it becoming lost when people move roles.  It also allows
+to audit equipment for security compliance.</p>
+<h4 id="keep-your-device-patched-and-up-to-date">Keep your device patched and up to date</h4>
+<p>Whatever device you are using, you will not be receiving updates distributed by your organisation so you will need to
+apply these yourself.</p>
+<p>You should normally apply all patches and updates immediately.
+The only exception to this is where you need to maintain older versions of software to do compatibility testing.</p>
+<h4 id="ensure-that-you-are-using-official-online-resources">Ensure that you are using official online resources</h4>
+<p>One of the main reasons for having unmanaged devices is to be able to make use of online resources.
+However, this freedom of access can also be a threat that may cause devices to be compromised or leak official
+information.</p>
+<p>For this reason, only officially approved online resources should be accessed from unmanaged devices.</p>
+<p>In reality, any resource that you access for legitimate work is likely to be "officially approved", but you are
+responsible for all of your online activity and will be accountable for any incidents resulting from inappropriate
+access.</p>
+<p>If you are not sure whether an online resource is considered to be officially approved then speak to your line manager.</p>
+<h4 id="use-public-networks-securely">Use public networks securely</h4>
+<p>You should be aware whenever you are connecting to open, public networks as these can represent an information
+security risk.
+In particular, the captive portals typically found in cafes and hotels that require a username and password may not
+provide secure end-to-end encryption.</p>
+<p>Whenever you are connecting to a public network, you must ensure that you first evaluate whether it is safe to do so.</p>
+<h4 id="do-not-compromise-the-organisations-corporate-network">Do not compromise the organisation's corporate network</h4>
+<p>Under normal circumstances you must never connect your device to the organisation's internal corporate network.</p>
+<p>However, for some work it may be appropriate to use the device on the corporate network and when this has been
+officially approved then you must ensure that the network is not compromised.</p>
+<h4 id="keep-the-device-physically-secure">Keep the device physically secure</h4>
+<p>Unmanaged devices are generally portable and often highly valuable, so you must take appropriate steps to keep the
+device physically secure.</p>
+<p>In particular, you should:
+ - keep the device hidden whenever it is being transported or stored
+ - ensure the device is stored in a secure, locked location
+ - ensure the device is adequately protected from damage at all times</p>
+<p>Cases, bags or other containers can be provided by your line manager.</p>
+<h4 id="use-the-device-safely">Use the device safely</h4>
+<p>Unmanaged devices often have different physical characteristics than standard-issue equipment.</p>
+<p>You must make sure that you complete an assessment of how to use the device in a way that does not cause strain or
+long-term injury.</p>
+<p>Some specific areas to look out for are:
+ - screen size, graphics resolution and text size may not be optimal in the default configuration
+ - on-screen or built-in keyboards, touchpads or trackpads are often not suitable for long periods of use
+ - default operating system or software configuration can often not be suitable for long periods of use
+ - devices may not have the necessary connectivity options for external equipment</p>
+<p>Additional equipment or guidance can be provided by your line manager.</p>
+<h4 id="fix-any-faults">Fix any faults</h4>
+<p>If your device develops any hardware faults it could represent a safety or security issue.</p>
+<p>These devices are not managed by the normal corporate IT support functions so you should contact your line manager
+immediately to have any faults fixed.</p>
+<p>It may be possible to get certain repairs done under warranty, which could involve contacting the support desk or our
+equipment suppliers, but even so you should still speak to your line manager first.</p>
+<h4 id="backup-and-secure-data">Backup and secure data</h4>
+<p>Using unmanaged devices often requires the creation of data outside of our secure, corporate repositories.</p>
+<p>You must ensure that any unique content you create is backed up to alternative persistent storage in accordance with
+the information management procedures that apply.</p>
+<p>Additional equipment such as encrypted hard drives or online services such as OneDrive can be provided by your
+line manager.</p>
+<h4 id="returning-devices">Returning devices</h4>
+<p>When you return your device, you must ensure that it has been treated to remove all official information and is
+ready to be used by someone else.</p>
+<p>This usually just means performing a factory reset, although in some cases additional steps may be required.
+You must ensure that there are no online accounts linked to the device, such as Microsoft or Apple IDs.</p>
+<h3 id="controls-for-windows-laptops">Controls for Windows laptops</h3>
+<h4 id="dont-set-a-bios-password">Don't set a BIOS password</h4>
+<p>BIOS passwords don't add any greater security to the device and primarily only help to prevent accidental
+mis-configuration.</p>
+<p>Setting such passwords can make it more difficult to reuse the device so do not set a BIOS password.</p>
+<h4 id="use-the-latest-stable-desktop-operating-system">Use the latest stable desktop operating system</h4>
+<p>The device is likely to come with a suitable version of Windows 10 pre-installed, but if not then you should ensure
+that Windows 10 Professional or Enterprise is installed on it, but do not remove any existing recovery partition.</p>
+<p>Guidance on this can be provided by your line manager.</p>
+<p>You must ensure that the device has the latest stable version.</p>
+<p>Do not use server versions or different operating systems, e.g. any Linux distribution.</p>
+<p>If you need to work with a different operating system then you must use a virtualisation technology,
+or you could consider using the Windows Subsystem for Linux.</p>
+<h4 id="keep-the-operating-system-and-applications-patched-and-up-to-date">Keep the operating system and applications patched and up to date</h4>
+<p>Windows 10 quality updates must be applied automatically and not paused.</p>
+<p>Feature updates to new versions should be applied as soon as they are available for your device, but may be
+deferred for a month or two if you have specific software compatibility issues.</p>
+<h4 id="user-accounts">User accounts</h4>
+<p>Your device should be supplied relatively factory-fresh, without existing user accounts.</p>
+<p>You need to create a local device account for yourself, not linked to a Microsoft account, to use as a local
+administrator account.
+You should use your corporate network username for this account so that it can be unambiguously identified.</p>
+<p>Secure this account with a password.</p>
+<h4 id="ensure-all-the-built-in-threat-protections-are-enabled">Ensure all the built-in threat protections are enabled</h4>
+<p>Modern Windows versions have highly capable firewall and anti-malware software, you must ensure that these remain
+enabled on your device.</p>
+<p>Very occasionally, it can be necessary to temporarily disable some of the threat protections, for example real-time
+file scanning can sometimes prevent certain legitimate software from installing properly.
+However, whenever you do this you must re-enable them once the operation has completed.</p>
+<h4 id="disc-encryption">Disc encryption</h4>
+<p>You must activate BitLocker disc encryption on your device, with a minimum 8-digit PIN.</p>
+<p>You must supply the recovery key and disc identifier to your line manager so they can keep a record of them.</p>
+<h4 id="public-networks">Public networks</h4>
+<p>When you connect to public networks, ensure that you identify them as such to Windows so that it does not share
+resources from your device.</p>
+<h4 id="virtualisation">Virtualisation</h4>
+<p>Most development work should be undertaken in a dedicated virtual machine as this helps to protect the integrity of
+the host device.</p>
+<p>Commercial virtualisation software can be provided by your line manager if required.</p>
+<h4 id="corporate-resources-access">Corporate resources access</h4>
+<p>Whilst most corporate resources sit inside entirely private networks, it is possible for some of our online
+services to be accessed from an unmanaged device.
+To do this, additional controls can be applied to the device.</p>
+<p>To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune.
+This facility can be requested through your line manager.</p>
+<p>If you enrol your device, you will need to use your corporate account, which will become registered as a new account
+on the device in addition to the local account you have already created.
+You will need to secure this account with a PIN.</p>
+<h4 id="cloud-development-environment-access-vpn">Cloud development environment access (VPN)</h4>
+<p>Dedicated development environments and services can be accessed via VPN.
+You should install the VPN client on your device according to instructions provided by the operations team.</p>
+<p>VPN client connections should be made from the host device, not from virtual machines.</p>
+<h3 id="controls-for-macbooks">Controls for Macbooks</h3>
+<h4 id="dont-set-a-firmware-password">Don't set a firmware password</h4>
+<p>Firmware passwords offer minimal additional protection and are easily lost or forgotten, which can only be fixed by
+an authorised Apple representative.</p>
+<h4 id="use-the-latest-general-release-operating-system-version">Use the latest general release operating system version</h4>
+<p>It can sometimes take a while for application vendors to support new macOS versions and there's no going back, so you
+can allow yourself a month or two before moving to the latest macOS operating system.
+But you should upgrade as soon as it is safe to do so.</p>
+<p>If you have a device that will not support the latest version of the operating system then you should talk to your
+line manager to arrange an alternative.</p>
+<p>You must not install any other operating system such as Windows or a Linux distribution.</p>
+<p>If you need to work with a different operating system then you must use a virtualisation technology.</p>
+<h4 id="keep-the-operating-system-and-applications-patched-and-up-to-date_1">Keep the operating system and applications patched and up to date</h4>
+<p>You must ensure that your device is configured to automatically check for updates and you should regularly install
+macOS and app updates so that you are using current features.</p>
+<p>Most importantly, you must ensure that your device is configured to automatically install system data files and
+security updates, which only covers the built-in anti-malware software and its configuration.</p>
+<h4 id="user-accounts_1">User accounts</h4>
+<p>Your device should be supplied relatively factory-fresh, without existing user accounts.</p>
+<p>You need to create a local device account for yourself to use as a local administrator account.
+You should use your corporate network username for this account so that it can be unambiguously identified.</p>
+<p>Secure this account with a password.</p>
+<p>You will also need to create an Apple ID registered to your corporate email address if you don't already have one.
+This account can be used for the App Store and can be linked to your work iPhone if you have one, which is useful
+for enabling two-factor authentication.</p>
+<p>However, you should not use this account to synchronise content across devices.</p>
+<h4 id="install-dedicated-anti-malware-software">Install dedicated anti-malware software</h4>
+<p>Although Gatekeeper provides good protection for applications, it does not provide equivalent controls for other
+files.</p>
+<p>You must install a commercial anti-malware product, which can be obtained from your line manager.</p>
+<p>Very occasionally, it can be necessary to temporarily disable some of the threat protections, for example real-time
+file scanning can sometimes prevent certain legitimate software from installing properly.
+However, whenever you do this you must re-enable them once the operation has completed.</p>
+<h4 id="disc-encryption_1">Disc encryption</h4>
+<p>You must enable FileVault on the disc of your device and create a local recovery key.
+Do <strong>not</strong> use your iCloud account or store the recovery key with Apple.</p>
+<p>You must supply the recovery key and disc identifier to your line manager so they can keep a record of them.</p>
+<h4 id="virtualisation_1">Virtualisation</h4>
+<p>Most development work will be done in the native operating system, but you may also wish to create virtual
+machines.</p>
+<h4 id="corporate-resources-access_1">Corporate resources access</h4>
+<p>Whilst most corporate resources sit inside entirely private networks, it is possible for some of our online
+services to be accessed from an unmanaged device.
+To do this, additional controls can be applied to the device.</p>
+<p>To allow your device to access the corporate Office 365 services, you will need to enrol it with InTune.
+This facility can be requested through your line manager.</p>
+<h4 id="cloud-development-environment-access-vpn_1">Cloud development environment access (VPN)</h4>
+<p>Dedicated development environments and services can be accessed via VPN.
+You should install the VPN client on your device according to instructions provided by the operations team.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2365 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://defra.github.io/software-development-standards/standards/uipath_standards/">
+      
+      
+        <link rel="prev" href="../tsql_and_sqldb_standards/">
+      
+      
+        <link rel="next" href="../version_control_standards/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Uipath Best Practices - FCP Development Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uipath-best-practices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FCP Development Guide" class="md-header__button md-logo" aria-label="FCP Development Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FCP Development Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Uipath Best Practices
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FCP Development Guide" class="md-nav__button md-logo" aria-label="FCP Development Guide" data-md-component="logo">
+      
+  <img src="../../img/favicon.png" alt="logo">
+
+    </a>
+    FCP Development Guide
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/aws_session_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Session Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/choosing_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choosing packages and dependencies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/continuous_integration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Continuous integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/developer_workflows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer Workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/docker_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/java_auto_format_eclipse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Auto-format with Eclipse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/mobile_app_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile application guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/mono_or_multi_repo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mono repo and a multi repo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/new_starters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guide for new Defra developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/plsql_auto_format_toad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PL/SQL Auto-format with TOAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/sql_prompt_tool/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/style_guide_for_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Style guide for software development standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/unmanaged_devices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using Unmanaged Devices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/version_control_guidance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version control guidance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Principles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Principles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Principles for software development standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/coding_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coding principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/security_principles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security principles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Processes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/credential_exposure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Credential exposure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/pull_requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pull requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Standards
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Standards
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Common coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../container_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Container standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csharp_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C# coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development_language_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development languages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Coding Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Javascript standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile_app_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile application standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plsql_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PL/SQL Coding Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quality_assurance_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quality assurance and test standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readme_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    README standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ruby_coding_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ruby coding standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Standard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tsql_and_sqldb_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TSQL and SQL Server database standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Uipath Best Practices
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Uipath Best Practices
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#developer-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Developer Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Developer Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Do">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-if-a-library-component-already-exists-for-your-need-before-you-start-development-if-you-find-a-component-that-almost-meets-the-requirement-amend-the-component-as-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check if a library component already exists for your need before you start development. If you find a component that almost meets the requirement amend the component as required.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-your-code-has-a-loop-ensure-there-is-an-infinite-loop-failsafe-within-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      If your code has a loop ensure there is an infinite loop failsafe within it.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-users-will-have-sight-of-exception-messages-then-try-catch-specific-errors-and-reword-them-to-be-more-user-friendly" class="md-nav__link">
+    <span class="md-ellipsis">
+      If users will have sight of exception messages then try catch specific errors and reword them to be more user friendly.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#please-follow-the-34-letter-prefix-and-hungarian-case-naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Please follow the 3/4 letter prefix and Hungarian case naming conventions.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-all-arguments-with-in-out-or-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefix all arguments with in, out, or io.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-64-bit-template-with-modern-design-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the 64-bit Template with modern design experience.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotate-complicated-code-or-any-code-requiring-additional-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotate complicated code or any code requiring additional information.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-activities-have-descriptive-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure activities have descriptive names.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-working-on-a-new-application-please-ensure-that-you-grant-the-same-level-of-access-to-all-team-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      When working on a new application please ensure that you grant the same level of access to all team members.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#each-projectwork-package-should-have-its-own-repository-naming-convention-to-be-used-agencyworkpackage-name-ie-ea-waste-tonnage-returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Each project/work package should have its own repository. Naming convention to be used – [Agency][Workpackage Name] i.e. EA-Waste-Tonnage-Returns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upon-completion-of-a-project-please-book-a-technical-video-handover-with-2-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upon completion of a project – please book a technical video handover with 2 Developers.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-useful-code-into-library-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert useful code into library components.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-guides-and-add-them-to-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create guides and add them to Guides.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-from-the-onedrive-folder-and-provide-the-development-team-with-access-to-that-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Work from the OneDrive folder and provide the development team with access to that folder.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-orchestrator-assets-for-configurable-input-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Orchestrator Assets for configurable input data.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-the-developer-technical-document-as-and-when-you-can" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete the Developer technical document as and when you can.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Try">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#try-using-simulate-clickbackground-activities-over-foreground-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try using simulate click/background activities over foreground versions.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consider-when-you-should-use-a-sequence-flowchart-or-a-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consider when you should use a sequence, flowchart, or a state machine.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-template-for-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a template for your project.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-you-must-use-foreground-activities-on-an-unstable-selector-ensure-there-is-confirmation-of-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you must use foreground activities on an unstable selector ensure there is confirmation of code execution.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-message-boxes-addressed-to-the-user-please-make-use-of-the-popups-library-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      For message boxes addressed to the user please make use of the popup’s library components.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-latest-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the latest dependency.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-push-at-the-end-of-the-day-or-after-a-meaningful-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git push at the end of the day or after a meaningful change.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintain-consistency-in-your-codingreadability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintain consistency in your coding/readability.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-approach-parallel-coding-style-check-outcomes-simultaneously-if-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous approach. Parallel coding style. Check outcomes simultaneously if possible.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stay-up-to-date-with-uipath-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stay up to date with UiPath software.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avoid
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Avoid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardcoding-values-especially-usernamespasswords" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardcoding values especially usernames/passwords
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-based-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image based automation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nesting-activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nesting activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spaghetti-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spaghetti code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storing-passwordssensitive-information-in-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storing passwords/sensitive information in Orchestrator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leaving-developer-code-in-final-product-main-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leaving developer code in final product main files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-swallowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exception swallowing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complicatedcomplex-coding-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complicated/complex coding techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complicated-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complicated variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lasagne-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lasagne code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-number-of-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      High number of variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-delay-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using delay activity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#significant-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Significant changes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version_control_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version control standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#developer-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Developer Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Developer Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Do">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-if-a-library-component-already-exists-for-your-need-before-you-start-development-if-you-find-a-component-that-almost-meets-the-requirement-amend-the-component-as-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check if a library component already exists for your need before you start development. If you find a component that almost meets the requirement amend the component as required.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-your-code-has-a-loop-ensure-there-is-an-infinite-loop-failsafe-within-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      If your code has a loop ensure there is an infinite loop failsafe within it.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-users-will-have-sight-of-exception-messages-then-try-catch-specific-errors-and-reword-them-to-be-more-user-friendly" class="md-nav__link">
+    <span class="md-ellipsis">
+      If users will have sight of exception messages then try catch specific errors and reword them to be more user friendly.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#please-follow-the-34-letter-prefix-and-hungarian-case-naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Please follow the 3/4 letter prefix and Hungarian case naming conventions.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-all-arguments-with-in-out-or-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefix all arguments with in, out, or io.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-64-bit-template-with-modern-design-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the 64-bit Template with modern design experience.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotate-complicated-code-or-any-code-requiring-additional-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotate complicated code or any code requiring additional information.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-activities-have-descriptive-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure activities have descriptive names.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-working-on-a-new-application-please-ensure-that-you-grant-the-same-level-of-access-to-all-team-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      When working on a new application please ensure that you grant the same level of access to all team members.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#each-projectwork-package-should-have-its-own-repository-naming-convention-to-be-used-agencyworkpackage-name-ie-ea-waste-tonnage-returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Each project/work package should have its own repository. Naming convention to be used – [Agency][Workpackage Name] i.e. EA-Waste-Tonnage-Returns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upon-completion-of-a-project-please-book-a-technical-video-handover-with-2-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upon completion of a project – please book a technical video handover with 2 Developers.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-useful-code-into-library-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert useful code into library components.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-guides-and-add-them-to-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create guides and add them to Guides.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-from-the-onedrive-folder-and-provide-the-development-team-with-access-to-that-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Work from the OneDrive folder and provide the development team with access to that folder.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-orchestrator-assets-for-configurable-input-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Orchestrator Assets for configurable input data.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-the-developer-technical-document-as-and-when-you-can" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete the Developer technical document as and when you can.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Try">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#try-using-simulate-clickbackground-activities-over-foreground-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try using simulate click/background activities over foreground versions.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consider-when-you-should-use-a-sequence-flowchart-or-a-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consider when you should use a sequence, flowchart, or a state machine.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-template-for-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a template for your project.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-you-must-use-foreground-activities-on-an-unstable-selector-ensure-there-is-confirmation-of-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you must use foreground activities on an unstable selector ensure there is confirmation of code execution.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-message-boxes-addressed-to-the-user-please-make-use-of-the-popups-library-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      For message boxes addressed to the user please make use of the popup’s library components.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-latest-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the latest dependency.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-push-at-the-end-of-the-day-or-after-a-meaningful-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git push at the end of the day or after a meaningful change.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintain-consistency-in-your-codingreadability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintain consistency in your coding/readability.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-approach-parallel-coding-style-check-outcomes-simultaneously-if-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous approach. Parallel coding style. Check outcomes simultaneously if possible.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stay-up-to-date-with-uipath-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stay up to date with UiPath software.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avoid
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Avoid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardcoding-values-especially-usernamespasswords" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardcoding values especially usernames/passwords
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-based-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image based automation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nesting-activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nesting activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spaghetti-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spaghetti code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storing-passwordssensitive-information-in-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storing passwords/sensitive information in Orchestrator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leaving-developer-code-in-final-product-main-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leaving developer code in final product main files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-swallowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exception swallowing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complicatedcomplex-coding-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complicated/complex coding techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complicated-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complicated variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lasagne-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lasagne code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-number-of-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      High number of variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-delay-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using delay activity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#significant-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Significant changes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="uipath-best-practices">Uipath Best Practices</h1>
+<h2 id="developer-best-practices">Developer Best Practices</h2>
+<h3 id="do">Do</h3>
+<h4 id="check-if-a-library-component-already-exists-for-your-need-before-you-start-development-if-you-find-a-component-that-almost-meets-the-requirement-amend-the-component-as-required">Check if a library component already exists for your need before you start development. If you find a component that almost meets the requirement amend the component as required.</h4>
+<p>This helps save time, prevents duplication of components, and helps keep the components library up to date.</p>
+<h4 id="if-your-code-has-a-loop-ensure-there-is-an-infinite-loop-failsafe-within-it">If your code has a loop ensure there is an infinite loop failsafe within it.</h4>
+<p>E.g. you can build in a counter in your loop to keep track of how many loops have taken place. You can then throw an exception or escape the loop at this point. This will prevent the automation from getting stuck.</p>
+<h4 id="if-users-will-have-sight-of-exception-messages-then-try-catch-specific-errors-and-reword-them-to-be-more-user-friendly">If users will have sight of exception messages then try catch specific errors and reword them to be more user friendly.</h4>
+<p>This may reduce the number of MyIT tickets raised for our team. If possible add in a solution to the error message. E.g. “The Excel file is already open. Please close the file then restart the robot.”</p>
+<h4 id="please-follow-the-34-letter-prefix-and-hungarian-case-naming-conventions">Please follow the 3/4 letter prefix and Hungarian case naming conventions.</h4>
+<p>E.g. strStringVariable, boolBooleanVariable, arrArrayVariable, dictDictionaryVariable. Give variables descriptive names. This ensures the code is easier to navigate and read.</p>
+<h4 id="prefix-all-arguments-with-in-out-or-io">Prefix all arguments with in, out, or io.</h4>
+<p>E.g. io_dictConfig</p>
+<h4 id="use-the-64-bit-template-with-modern-design-experience">Use the 64-bit Template with modern design experience.</h4>
+<p>Some applications may not be compatible with 64-bit framework – in which case there is a 32-bit template available.</p>
+<h4 id="annotate-complicated-code-or-any-code-requiring-additional-information">Annotate complicated code or any code requiring additional information.</h4>
+<p>Comment activity is also available to add text to.</p>
+<h4 id="ensure-activities-have-descriptive-names">Ensure activities have descriptive names.</h4>
+<p>E.g. Assign – Initialise Dictionary</p>
+<h3 id="documentation">Documentation</h3>
+<h4 id="when-working-on-a-new-application-please-ensure-that-you-grant-the-same-level-of-access-to-all-team-members">When working on a new application please ensure that you grant the same level of access to all team members.</h4>
+<p>This helps reallocate work in case additional support work is required or there is unplanned leave.</p>
+<h4 id="each-projectwork-package-should-have-its-own-repository-naming-convention-to-be-used-agencyworkpackage-name-ie-ea-waste-tonnage-returns">Each project/work package should have its own repository. Naming convention to be used – [Agency][Workpackage Name] i.e. EA-Waste-Tonnage-Returns</h4>
+<p>Email Ben Sagar to create the repository.</p>
+<h4 id="upon-completion-of-a-project-please-book-a-technical-video-handover-with-2-developers">Upon completion of a project – please book a technical video handover with 2 Developers.</h4>
+<p>Please upload this to our SharePoint Handover Videos. Remember to add the link URL into the Technical Developer document.</p>
+<h4 id="convert-useful-code-into-library-components">Convert useful code into library components.</h4>
+<p>You may create some useful reusable code for a new project. Please try to convert it into a library and book a share and learn with the team.</p>
+<h4 id="create-guides-and-add-them-to-guides">Create guides and add them to Guides.</h4>
+<p>You may have to do some configuration or set up a new application as part of a project or be given some RnD to complete. Please create a step-by-step guide with screenshots for anything that will be useful for the development team.</p>
+<h4 id="work-from-the-onedrive-folder-and-provide-the-development-team-with-access-to-that-folder">Work from the OneDrive folder and provide the development team with access to that folder.</h4>
+<p>Where a developer is on leave and may not have Git pushed this helps the development team save time by retrieving code unavailable in GitHub.</p>
+<h4 id="use-orchestrator-assets-for-configurable-input-data">Use Orchestrator Assets for configurable input data.</h4>
+<p>The exception being if there is a project specific reason e.g. sensitive data requiring you to use a custom approach.</p>
+<h4 id="complete-the-developer-technical-document-as-and-when-you-can">Complete the Developer technical document as and when you can.</h4>
+<p>Filling in the document throughout the development process will ensure nothing is forgotten or missed.</p>
+<h3 id="try">Try</h3>
+<h4 id="try-using-simulate-clickbackground-activities-over-foreground-versions">Try using simulate click/background activities over foreground versions.</h4>
+<p>For attended mode it allows users to use mouse &amp; keyboard while a robot is running. This approach is faster and more stable than foreground counterparts.</p>
+<h4 id="consider-when-you-should-use-a-sequence-flowchart-or-a-state-machine">Consider when you should use a sequence, flowchart, or a state machine.</h4>
+<p>Sometimes switching your code to a different format can improve readability. E.g. the ‘if activity’ and ‘flow decision’ activity are both if statements. However swapping ‘flow decisions’ with ‘if statements’ or vice versa can make an impactful change.</p>
+<h4 id="using-a-template-for-your-project">Using a template for your project.</h4>
+<p>Templates are available and kept up to date by the development team. There may be a rare scenario requiring you to create custom code. Please check with a Lead developer if the template is not fit for purpose before you create custom code.</p>
+<h4 id="if-you-must-use-foreground-activities-on-an-unstable-selector-ensure-there-is-confirmation-of-code-execution">If you must use foreground activities on an unstable selector ensure there is confirmation of code execution.</h4>
+<p>Wrap the foreground activity with a retry scope and some verification. Alternatively use the modern design mode built-in verification.</p>
+<h4 id="for-message-boxes-addressed-to-the-user-please-make-use-of-the-popups-library-components">For message boxes addressed to the user please make use of the popup’s library components.</h4>
+<p>This is to ensure consistency in our department branding. Where you create your own try and keep the theme consistent with our branding.</p>
+<h4 id="use-the-latest-dependency">Use the latest dependency.</h4>
+<p>Latest dependencies “usually” are faster and more stable.</p>
+<h4 id="git-push-at-the-end-of-the-day-or-after-a-meaningful-change">Git push at the end of the day or after a meaningful change.</h4>
+<p>This helps to version control or checkpoint allowing you to return to a previous position. It further allows others to download and distinguish between completed code and partially built code.</p>
+<h4 id="maintain-consistency-in-your-codingreadability">Maintain consistency in your coding/readability.</h4>
+<p>If you discover an improved method as you are developing a project please ensure your entire code is in line with it for a consistent approach.</p>
+<h4 id="asynchronous-approach-parallel-coding-style-check-outcomes-simultaneously-if-possible">Asynchronous approach. Parallel coding style. Check outcomes simultaneously if possible.</h4>
+<p>Try using pick branches when you review multiple outcomes this is faster than having a chain of if activities. The state machine also has a built-in pick machine in the transition lines. <em>Please note this is not truly asynchronous to achieve asynchronous code you can make use of invoke process.</em> The pick branch executes the triggers in sequence but doesn’t wait for the activities to finish before executing the next trigger (making it seem like parallel or asynchronous).</p>
+<h4 id="stay-up-to-date-with-uipath-software">Stay up to date with UiPath software.</h4>
+<p>This can be done by reading the latest release notes and watching the latest UiPath training academy videos. Share findings with the development team through share and learns.</p>
+<h3 id="avoid">Avoid</h3>
+<h4 id="hardcoding-values-especially-usernamespasswords">Hardcoding values especially usernames/passwords</h4>
+<p>This is required as you may upload usernames/passwords to a public GitHub repository. It will be easier to change the values of any configurable from outside the code. E.g. Assets</p>
+<h4 id="image-based-automation">Image based automation</h4>
+<p>Keep this as a last resort - image based activities are slow and unstable.</p>
+<h4 id="nesting-activities">Nesting activities</h4>
+<p>E.g. an if within an if within … Nesting activities within each other makes the code difficult to read. Try to change your approach to reduce the level of nesting. E.g. use a switch case instead of a nest of ifs.</p>
+<h4 id="spaghetti-code">Spaghetti code</h4>
+<p>Spaghetti code refers to a difficult to follow coding style. Your code should be easy to follow in a flowchart. E.g. Having crossed lines in a flow chart will make it difficult to follow. E.g. Splitting a function written in several different invokes.</p>
+<h4 id="storing-passwordssensitive-information-in-orchestrator">Storing passwords/sensitive information in Orchestrator</h4>
+<p>Some of our stakeholders do not authorise the use of cloud services. Please check with stakeholders for the preferred method of handling data.</p>
+<h4 id="leaving-developer-code-in-final-product-main-files">Leaving developer code in final product main files</h4>
+<p>It is acceptable to leave separate testing xaml’s however avoid leaving commented out code in the main code or temporary write-lines etc…</p>
+<h4 id="exception-swallowing">Exception swallowing</h4>
+<p>If you use a try catch ensure exceptions are logged as a minimum because an empty catch makes it difficult to pinpoint the root cause during debugging.</p>
+<h4 id="complicatedcomplex-coding-techniques">Complicated/complex coding techniques</h4>
+<p>Avoid using complex coding techniques that could be done with simpler methods. If complex code is required please include an explanation within the annotation of the code. E.g. Using invoke code with vb.net instead of using predefined activities.</p>
+<h4 id="complicated-variables">Complicated variables</h4>
+<p>E.g. Use a datatable/json object instead of dictionary within a dictionary variable.</p>
+<h4 id="lasagne-code">Lasagne code</h4>
+<p>It is good practice to break up a flow into smaller flows however if this is done frequently the code becomes too layered. Try to keep how deep invokes within invoke layers reach. In addition don’t use one xaml file for everything! Avoid the use of single activity invokes or single activity components.</p>
+<h4 id="high-number-of-variables">High number of variables</h4>
+<p>Try to reduce the number of variables used. It is difficult to track information being transferred during debugging if it’s passed from variable to variable. Try to keep arguments and variables that connect to each other in different xamls similarly named. You could make use of global variables if possible. Add into config variable if you need to use variable everywhere.</p>
+<h4 id="using-delay-activity">Using delay activity</h4>
+<p>Try to keep the delay activity as a last resort. You should be able to use find element as a wait which will stop waiting as soon as confirmation is received e.g. click followed by a find element. Consider also reducing the delays in the activities to speed up your code.</p>
+<h2 id="status">Status</h2>
+<p>This revised standard was formally adopted on 23 July 2024</p>
+<h2 id="significant-changes">Significant changes</h2>
+<p>Original version adopted October 2020.\
+Re-write July 2024 based on the revised ways of working implemented from 2021 onwards.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
