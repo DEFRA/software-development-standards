@@ -8,73 +8,9 @@ These form part of the software development standards policy for Defra and apply
 
 All developers working on behalf of Defra need to be aware of their obligation to follow these standards.
 
-Any deviation must be managed as an exception under Defra's architectural goverance processes.
+Any deviation must be managed as an exception under Defra's architectural governance processes.
 
 We maintain these standards on GitHub to ensure they have the greatest visibility to all developers and are readily available in a familiar environment. To aid readability, you can refer to the [GitHub documentation on managing accessibility settings](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-accessibility-settings).
-
-## Principles
-
-The standards and guidance provided here a based on an agreed set of principles.
-
-- [Principles for these standards](/docs/principles/README.md)
-- [Coding principles](/docs/principles/coding_principles.md)
-- [Security principles](/docs/principles/security_principles.md)
-
-
-## Standards
-
-These are the standards that must be followed for all software development undertaken on behalf of the Defra group.
-
-- [List of all standards (A-Z)](/docs/standards/README.md)
-
-- Coding standards
-  - [Common coding standards](/docs/standards/common_coding_standards.md)
-  - [Development languages](/docs/standards/development_language_standards.md)
-  - [JavaScript standards](/docs/standards/javascript_standards.md)
-  - [C# coding standards](/docs/standards/csharp_coding_standards.md)
-  - [Mobile application standards](/docs/standards/mobile_app_standards.md)
-  - [Node.js standards](/docs/standards/node_standards.md)
-  - [UiPath standards](/docs/standards/uipath_standards.md)
-- [Quality assurance and test standards](/docs/standards/quality_assurance_standards.md)
-- [Security standards](/docs/standards/security_standards.md)
-- [Version control standards](/docs/standards/version_control_standards.md)
-- Packaging and deployment standards
-  - [Container standards](/docs/standards/container_standards.md)
-  - [Deployment standards](/docs/standards/deployment_standards.md)
-  - [Kubernetes standards](/docs/standards/kubernetes_standards.md)
-- Database standards
-  - [PL/SQL coding standards](/docs/standards/plsql_coding_standards.md)
-  - [TSQL and SQL Server database standards](/docs/standards/tsql_and_sqldb_standards.md)
-- [README standards](/docs/standards/readme_standards.md)
-- Standards for non-strategic technologies
-  - [Java coding standards](/docs/standards/java_coding_standards.md)
-  - [Ruby coding standards](/docs/standards/ruby_coding_standards.md)
-
-## Processes and guides
-
-These guides provide additional support for meeting and working with the standards.
-
-- [Processes](/docs/processes/README.md)
-  - [Credential exposure](/docs/processes/credential_exposure.md)
-  - [GitHub access](/docs/processes/github_access.md)
-  - [Pull requests](/docs/processes/pull_requests.md)
-- [Guides](/docs/guides/README.md)
-  - [General guidance](/docs/guides/README.md#general-guidance)
-  - [Choosing between a mono repo and a multi repo](/docs/guides/choosing_mono_or_multi_repo.md)
-  - [Choosing packages](/docs/guides/choosing_packages.md)
-  - [Continuous integration](/docs/guides/continuous_integration.md)
-  - [Developer workflows](/docs/guides/developer_workflows.md)
-  - [Docker guidance](/docs/guides/docker_guidance.md)
-  - [Java auto-format with Eclipse](/docs/guides/java_auto_format_eclipse.md)
-  - [Kubernetes](/docs/guides/kubernetes.md)
-  - [Mobile application guidance](/docs/guides/mobile_app_guidance.md)
-  - [New starters](/docs/guides/new_starters.md)
-  - [PL/SQL auto-format with TOAD](/docs/guides/plsql_auto_format_toad.md)
-  - [SQL Prompt](/docs/guides/version_control_guidance.md)
-  - [Style guide for standards](/docs/guides/style_guide_for_standards.md)
-  - [Using AWS session manager](/docs/guides/aws_session_manager.md)
-  - [Using unmanaged devices](/docs/guides/unmanaged_devices.md)
-  - [Version control guidance](/docs/guides/version_control_guidance.md)
 
 ## Contributing to this project
 
@@ -84,7 +20,7 @@ They have been produced as a series of markdown files to make the process of add
 
 It is maintained under source control to cater for this, allowing anyone to make suggestions for improvement via the standard [pull request process](https://help.github.com/articles/using-pull-requests/). They can then be discussed and approved by the [DEFRA/sds-group](https://github.com/orgs/DEFRA/teams/sds-group).
 
-Please ensure you have read our [principles](/docs/principles/README.md) first, and then [contribution guidelines](/CONTRIBUTING.md) for details on how to get started.
+Please ensure you have read our [principles](/docs/principles/README.md) first, and then [contribution guidelines](/docs/CONTRIBUTING.md) for details on how to get started.
 
 ## Viewing the guide
 

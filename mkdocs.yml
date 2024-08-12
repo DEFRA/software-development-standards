@@ -5,6 +5,6 @@ theme:
   logo: img/favicon.png
   favicon: img/favicon.ico
   palette:
-    primary: black
+    primary: green
 repo_url: https://github.com/DEFRA/software-development-standards
 remote_branch: gh-pages
