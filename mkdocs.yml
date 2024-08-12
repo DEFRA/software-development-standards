@@ -6,5 +6,8 @@ theme:
   favicon: img/favicon.ico
   palette:
     primary: green
+  font:
+    text: 'Arial'
+    code: 'Roboto Mono'
 repo_url: https://github.com/DEFRA/software-development-standards
 remote_branch: gh-pages
