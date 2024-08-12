@@ -2,8 +2,8 @@ site_name: Defra Software Development Standards
 site_url: https://defra.github.io/software-development-standards
 theme: 
   name: material
-  logo: img/favicon.png
-  favicon: img/favicon.ico
+  logo: img/code-white.png
+  favicon: img/code-black.png
   palette:
     primary: green
   font:
