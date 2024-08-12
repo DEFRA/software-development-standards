@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - add-github-pages
 permissions:
   contents: write
 jobs:
