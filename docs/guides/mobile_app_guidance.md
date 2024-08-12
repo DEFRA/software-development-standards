@@ -10,7 +10,7 @@ This guidance applies to mobile application in-house development and management.
 
 This guidance is intended to cover all forms of mobile application: from fully "off-line capable" progressive web applications, through cross-platform apps to fully native apps.
 
-This document should be read in conjunction with the Mobile Application Standards (**[Mobile Application Standards](/standards/mobile_app_standards.md)**).
+This document should be read in conjunction with the Mobile Application Standards (**[Mobile Application Standards](../standards/mobile_app_standards.md)**).
 
 ## Caveats
 
@@ -18,7 +18,7 @@ This is a fast moving area involving multiple platforms and diverse technology s
 
 ## Extra security guidance
 
-Please ensure that you have read the "Extra Security Considerations" of the **[Mobile Application Standards](/standards/mobile_app_standards.md)** before reading this section.
+Please ensure that you have read the "Extra Security Considerations" of the **[Mobile Application Standards](../standards/mobile_app_standards.md)** before reading this section.
 
 ### Application wrappers
 

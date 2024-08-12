@@ -4,7 +4,7 @@ This folder contains various guides to help those working in software developmen
 
 ## Contents
 
-- [Choosing between a mono repo and a multi repo](choosing_mono_or_multi_repo.md)
+- [Choosing between a mono repo and a multi repo](mono_or_multi_repo.md)
 - [Choosing packages](choosing_packages.md)
 - [Continuous integration](continuous_integration.md)
 - [Developer workflows](developer_workflows.md)
@@ -32,7 +32,7 @@ Writing clean and maintainable code is much easier when it's clear which compone
 
 ### Coding standards
 
-Follow secure coding [standards](/standards) where available to avoid potential security vulnerabilities.
+Follow secure coding [standards](../standards/README.md) where available to avoid potential security vulnerabilities.
 
 ### Use self-explanatory naming conventions
 

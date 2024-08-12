@@ -70,7 +70,7 @@ These guides provide additional support for meeting and working with the standar
 ### [Guides](./guides/README.md)
 
 - [General guidance](./guides/README.md#general-guidance)
-- [Choosing between a mono repo and a multi repo](./guides/choosing_mono_or_multi_repo.md)
+- [Choosing between a mono repo and a multi repo](./guides/mono_or_multi_repo.md)
 - [Choosing packages](./guides/choosing_packages.md)
 - [Continuous integration](./guides/continuous_integration.md)
 - [Developer workflows](./guides/developer_workflows.md)

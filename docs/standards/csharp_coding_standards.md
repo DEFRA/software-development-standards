@@ -93,7 +93,7 @@ public interface IShape
 9.  Remove end of line whitespace
 10.  Update endregion tags
 
-The default settings for CodeMaid should remain in place to adhere to [DEFRA principles](/principles/README.md) (details at http://www.codemaid.net/documentation/)
+The default settings for CodeMaid should remain in place to adhere to [DEFRA principles](../principles/README.md) (details at http://www.codemaid.net/documentation/)
 
 ### Testing
 
