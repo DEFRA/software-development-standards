@@ -8,26 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://defra.github.io/software-development-standards/">
+        <link rel="canonical" href="https://defra.github.io/software-development-standards/CONTRIBUTING/">
       
       
+        <link rel="prev" href="..">
       
-        <link rel="next" href="CONTRIBUTING/">
+      
+        <link rel="next" href="../guides/">
       
       
-      <link rel="icon" href="img/favicon.ico">
+      <link rel="icon" href="../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
-        <title>Defra Software Development Standards</title>
+        <title>Contributing - Defra Software Development Standards</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction" class="md-skip">
+        <a href="#contributing" class="md-skip">
           Skip to content
         </a>
       
@@ -86,9 +88,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Defra Software Development Standards" class="md-header__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
+    <a href=".." title="Defra Software Development Standards" class="md-header__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
       
-  <img src="img/favicon.png" alt="logo">
+  <img src="../img/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -105,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Contributing
             
           </span>
         </div>
@@ -192,9 +194,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Defra Software Development Standards" class="md-nav__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
+    <a href=".." title="Defra Software Development Standards" class="md-nav__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
       
-  <img src="img/favicon.png" alt="logo">
+  <img src="../img/favicon.png" alt="logo">
 
     </a>
     Defra Software Development Standards
@@ -218,6 +220,26 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -234,18 +256,18 @@
           
   
   <span class="md-ellipsis">
-    Introduction
+    Contributing
   </span>
   
 
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Introduction
+    Contributing
   </span>
   
 
@@ -267,173 +289,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#about" class="md-nav__link">
+  <a href="#what-not-to-include" class="md-nav__link">
     <span class="md-ellipsis">
-      About
+      What not to include
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
+  <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
-      Principles
+      Getting started
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#standards" class="md-nav__link">
+  <a href="#getting-feedback" class="md-nav__link">
     <span class="md-ellipsis">
-      Standards
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coding-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Coding standards
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#packaging-and-deployment-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Packaging and deployment standards
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#database-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Database standards
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#standards-for-non-strategic-technologies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Standards for non-strategic technologies
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#processes-and-guides" class="md-nav__link">
-    <span class="md-ellipsis">
-      Processes and guides
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Processes and guides">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#processes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Processes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#guides" class="md-nav__link">
-    <span class="md-ellipsis">
-      Guides
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing-to-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      Contributing to this project
+      Getting feedback
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#viewing-the-guide" class="md-nav__link">
+  <a href="#approval" class="md-nav__link">
     <span class="md-ellipsis">
-      Viewing the guide
+      Approval
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#updating-the-guide" class="md-nav__link">
+  <a href="#finishing-up" class="md-nav__link">
     <span class="md-ellipsis">
-      Updating the guide
+      Finishing up
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project layout
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    <span class="md-ellipsis">
-      License
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="License">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#about-the-license" class="md-nav__link">
-    <span class="md-ellipsis">
-      About the license
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -441,26 +337,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="CONTRIBUTING/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Contributing
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -507,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/" class="md-nav__link">
+      <a href="../guides/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -528,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/aws_session_manager/" class="md-nav__link">
+      <a href="../guides/aws_session_manager/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -549,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/choosing_packages/" class="md-nav__link">
+      <a href="../guides/choosing_packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -570,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/continuous_integration/" class="md-nav__link">
+      <a href="../guides/continuous_integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -591,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/developer_workflows/" class="md-nav__link">
+      <a href="../guides/developer_workflows/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -612,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/docker_guidance/" class="md-nav__link">
+      <a href="../guides/docker_guidance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -633,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/java_auto_format_eclipse/" class="md-nav__link">
+      <a href="../guides/java_auto_format_eclipse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/kubernetes/" class="md-nav__link">
+      <a href="../guides/kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -675,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/mobile_app_guidance/" class="md-nav__link">
+      <a href="../guides/mobile_app_guidance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -696,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/mono_or_multi_repo/" class="md-nav__link">
+      <a href="../guides/mono_or_multi_repo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -717,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/new_starters/" class="md-nav__link">
+      <a href="../guides/new_starters/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -738,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/plsql_auto_format_toad/" class="md-nav__link">
+      <a href="../guides/plsql_auto_format_toad/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -759,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/sql_prompt_tool/" class="md-nav__link">
+      <a href="../guides/sql_prompt_tool/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -780,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/style_guide_for_standards/" class="md-nav__link">
+      <a href="../guides/style_guide_for_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -801,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/unmanaged_devices/" class="md-nav__link">
+      <a href="../guides/unmanaged_devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -822,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/version_control_guidance/" class="md-nav__link">
+      <a href="../guides/version_control_guidance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -885,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="principles/" class="md-nav__link">
+      <a href="../principles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -906,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="principles/coding_principles/" class="md-nav__link">
+      <a href="../principles/coding_principles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -927,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="principles/security_principles/" class="md-nav__link">
+      <a href="../principles/security_principles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -990,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="processes/" class="md-nav__link">
+      <a href="../processes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1011,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="processes/credential_exposure/" class="md-nav__link">
+      <a href="../processes/credential_exposure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1032,7 +908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="processes/github_access/" class="md-nav__link">
+      <a href="../processes/github_access/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1053,7 +929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="processes/pull_requests/" class="md-nav__link">
+      <a href="../processes/pull_requests/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1116,7 +992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/" class="md-nav__link">
+      <a href="../standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1137,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/common_coding_standards/" class="md-nav__link">
+      <a href="../standards/common_coding_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1158,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/container_standards/" class="md-nav__link">
+      <a href="../standards/container_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1179,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/csharp_coding_standards/" class="md-nav__link">
+      <a href="../standards/csharp_coding_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1200,7 +1076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/deployment_standards/" class="md-nav__link">
+      <a href="../standards/deployment_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1221,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/development_language_standards/" class="md-nav__link">
+      <a href="../standards/development_language_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1242,7 +1118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/java_coding_standards/" class="md-nav__link">
+      <a href="../standards/java_coding_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1263,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/javascript_standards/" class="md-nav__link">
+      <a href="../standards/javascript_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1284,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/kubernetes_standards/" class="md-nav__link">
+      <a href="../standards/kubernetes_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1305,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/mobile_app_standards/" class="md-nav__link">
+      <a href="../standards/mobile_app_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1326,7 +1202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/node_standards/" class="md-nav__link">
+      <a href="../standards/node_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1347,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/plsql_coding_standards/" class="md-nav__link">
+      <a href="../standards/plsql_coding_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1368,7 +1244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/quality_assurance_standards/" class="md-nav__link">
+      <a href="../standards/quality_assurance_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1389,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/readme_standards/" class="md-nav__link">
+      <a href="../standards/readme_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1410,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/ruby_coding_standards/" class="md-nav__link">
+      <a href="../standards/ruby_coding_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1431,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/security_standards/" class="md-nav__link">
+      <a href="../standards/security_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1452,7 +1328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/tsql_and_sqldb_standards/" class="md-nav__link">
+      <a href="../standards/tsql_and_sqldb_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1473,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/uipath_standards/" class="md-nav__link">
+      <a href="../standards/uipath_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1494,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="standards/version_control_standards/" class="md-nav__link">
+      <a href="../standards/version_control_standards/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1542,173 +1418,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#about" class="md-nav__link">
+  <a href="#what-not-to-include" class="md-nav__link">
     <span class="md-ellipsis">
-      About
+      What not to include
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
+  <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
-      Principles
+      Getting started
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#standards" class="md-nav__link">
+  <a href="#getting-feedback" class="md-nav__link">
     <span class="md-ellipsis">
-      Standards
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coding-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Coding standards
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#packaging-and-deployment-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Packaging and deployment standards
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#database-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Database standards
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#standards-for-non-strategic-technologies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Standards for non-strategic technologies
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#processes-and-guides" class="md-nav__link">
-    <span class="md-ellipsis">
-      Processes and guides
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Processes and guides">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#processes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Processes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#guides" class="md-nav__link">
-    <span class="md-ellipsis">
-      Guides
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing-to-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      Contributing to this project
+      Getting feedback
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#viewing-the-guide" class="md-nav__link">
+  <a href="#approval" class="md-nav__link">
     <span class="md-ellipsis">
-      Viewing the guide
+      Approval
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#updating-the-guide" class="md-nav__link">
+  <a href="#finishing-up" class="md-nav__link">
     <span class="md-ellipsis">
-      Updating the guide
+      Finishing up
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project layout
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    <span class="md-ellipsis">
-      License
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="License">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#about-the-license" class="md-nav__link">
-    <span class="md-ellipsis">
-      About the license
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1730,120 +1480,43 @@
   
 
 
-<h1 id="introduction">Introduction</h1>
-<h2 id="about">About</h2>
-<p>This is the home for standards and guidance relating to software development in <a href="https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs">Defra</a>.</p>
-<p>These form part of the software development standards policy for Defra and apply to all software development undertaken on behalf of the Defra group whether by staff, contingent workers or suppliers.</p>
-<p>All developers working on behalf of Defra need to be aware of their obligation to follow these standards.</p>
-<p>Any deviation must be managed as an exception under Defra's architectural goverance processes.</p>
-<p>We maintain these standards on GitHub to ensure they have the greatest visibility to all developers and are readily available in a familiar environment. To aid readability, you can refer to the <a href="https:/..github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-accessibility-settings">GitHub documentation on managing accessibility settings</a>.</p>
-<h2 id="principles">Principles</h2>
-<p>The standards and guidance provided here a based on an agreed set of principles.</p>
+<h1 id="contributing">Contributing</h1>
+<p>If you have an idea you'd like to contribute please log an <a href="https://help.github.com/en/articles/about-issues">issue</a>.</p>
+<p>If you'd like to suggest a change or addition, create a branch, add your changes to it, then submit a <a href="https://help.github.com/en/articles/about-pull-requests">pull request</a>.</p>
+<p>Feedback will be done in Github either against the issue or pull request. When enough time has been allowed for feedback, and you and the Standards Group are happy the change will be merged! 🎉</p>
+<p>If you have any questions or need to discuss or check anything contact us via the <a href="https://defra-digital.slack.com/messages/development-standards/">#development-standards</a> channel in <a href="https://defra-digital.slack.com/">Slack</a>.</p>
+<h2 id="what-not-to-include">What not to include</h2>
+<p>This repository is concerned with standards and guidance so please keep ideas and contributions to those areas. You should also avoid</p>
 <ul>
-<li><a href="principles/">Principles for these standards</a></li>
-<li><a href="principles/coding_principles/">Coding principles</a></li>
-<li><a href="principles/security_principles/">Security principles</a></li>
+<li>repeating content available elsewhere. Link to it instead</li>
+<li>be careful with anything related to how a service's environment is setup</li>
+<li>be careful about discussing any internal Defra processes</li>
+<li>adding in any personal information</li>
 </ul>
-<h2 id="standards">Standards</h2>
-<p>These are the standards that must be followed for all software development undertaken on behalf of the Defra group.</p>
-<ul>
-<li><a href="standards/">List of all standards (A-Z)</a></li>
-</ul>
-<h3 id="coding-standards">Coding standards</h3>
-<ul>
-<li><a href="standards/common_coding_standards/">Common coding standards</a></li>
-<li><a href="standards/development_language_standards/">Development languages</a></li>
-<li><a href="standards/javascript_standards/">JavaScript standards</a></li>
-<li><a href="standards/csharp_coding_standards/">C# coding standards</a></li>
-<li><a href="standards/mobile_app_standards/">Mobile application standards</a></li>
-<li><a href="standards/node_standards/">Node.js standards</a></li>
-<li><a href="standards/uipath_standards/">UiPath standards</a></li>
-<li><a href="standards/quality_assurance_standards/">Quality assurance and test standards</a></li>
-<li><a href="standards/security_standards/">Security standards</a></li>
-<li><a href="standards/version_control_standards/">Version control standards</a></li>
-</ul>
-<h3 id="packaging-and-deployment-standards">Packaging and deployment standards</h3>
-<ul>
-<li><a href="standards/container_standards/">Container standards</a></li>
-<li><a href="standards/deployment_standards/">Deployment standards</a></li>
-<li><a href="standards/kubernetes_standards/">Kubernetes standards</a></li>
-</ul>
-<h3 id="database-standards">Database standards</h3>
-<ul>
-<li><a href="standards/plsql_coding_standards/">PL/SQL coding standards</a></li>
-<li><a href="standards/tsql_and_sqldb_standards/">TSQL and SQL Server database standards</a></li>
-<li><a href="standards/readme_standards/">README standards</a></li>
-</ul>
-<h3 id="standards-for-non-strategic-technologies">Standards for non-strategic technologies</h3>
-<ul>
-<li><a href="standards/java_coding_standards/">Java coding standards</a></li>
-<li><a href="standards/ruby_coding_standards/">Ruby coding standards</a></li>
-</ul>
-<h2 id="processes-and-guides">Processes and guides</h2>
-<p>These guides provide additional support for meeting and working with the standards.</p>
-<h3 id="processes"><a href="processes/">Processes</a></h3>
-<ul>
-<li><a href="processes/credential_exposure/">Credential exposure</a></li>
-<li><a href="processes/github_access/">GitHub access</a></li>
-<li><a href="processes/pull_requests/">Pull requests</a></li>
-</ul>
-<h3 id="guides"><a href="guides/">Guides</a></h3>
-<ul>
-<li><a href="guides/#general-guidance">General guidance</a></li>
-<li><a href="./guides/choosing_mono_or_multi_repo.md">Choosing between a mono repo and a multi repo</a></li>
-<li><a href="guides/choosing_packages/">Choosing packages</a></li>
-<li><a href="guides/continuous_integration/">Continuous integration</a></li>
-<li><a href="guides/developer_workflows/">Developer workflows</a></li>
-<li><a href="guides/docker_guidance/">Docker guidance</a></li>
-<li><a href="guides/java_auto_format_eclipse/">Java auto-format with Eclipse</a></li>
-<li><a href="guides/kubernetes/">Kubernetes</a></li>
-<li><a href="guides/mobile_app_guidance/">Mobile application guidance</a></li>
-<li><a href="guides/new_starters/">New starters</a></li>
-<li><a href="guides/plsql_auto_format_toad/">PL/SQL auto-format with TOAD</a></li>
-<li><a href="guides/version_control_guidance/">SQL Prompt</a></li>
-<li><a href="guides/style_guide_for_standards/">Style guide for standards</a></li>
-<li><a href="guides/aws_session_manager/">Using AWS session manager</a></li>
-<li><a href="guides/unmanaged_devices/">Using unmanaged devices</a></li>
-<li><a href="guides/version_control_guidance/">Version control guidance</a></li>
-</ul>
-<h2 id="contributing-to-this-project">Contributing to this project</h2>
-<p>We encourage everyone to contribute to these standards!</p>
-<p>They have been produced as a series of markdown files to make the process of adding and maintaining the documentation as simple as possible.</p>
-<p>It is maintained under source control to cater for this, allowing anyone to make suggestions for improvement via the standard <a href="https://help.github.com/articles/using-pull-requests/">pull request process</a>. They can then be discussed and approved by the <a href="https://github.com/orgs/DEFRA/teams/sds-group">DEFRA/sds-group</a>.</p>
-<p>Please ensure you have read our <a href="principles/">principles</a> first, and then <a href="CONTRIBUTING/">contribution guidelines</a> for details on how to get started.</p>
-<h2 id="viewing-the-guide">Viewing the guide</h2>
-<p>The guide is best viewed in GitHub pages at <a href="https://defra.github.io/software-development-standards/">https://defra.github.io/software-development-standards</a></p>
-<h2 id="updating-the-guide">Updating the guide</h2>
-<p>This documentation is written in markdown and is built using <a href="https://www.mkdocs.org">MkDocs</a> and the <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> theme.</p>
-<p>Please follow the below installation instructions prior to working with this repository:</p>
-<ul>
-<li><a href="https://www.mkdocs.org">mkdocs.org</a></li>
-<li><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></li>
-</ul>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-<li><code>mkdocs gh-deploy</code> - Deploy the documentation to GitHub pages.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre>
-<h2 id="license">License</h2>
-<p>THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:</p>
-<p><a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3">http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3</a></p>
-<p>The following attribution statement MUST be cited in your products and applications when using this information.</p>
+<p>If in doubt speak to <a href="https://github.com/cruikshanks">Alan Cruikshanks</a> or <a href="https://github.com/bensagar-ea">Ben Sagar</a> before creating the PR.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Read the <a href="/guides/style_guide_for_standards.md">style guide for standards</a>.</p>
+<p>Create a branch with a brief but descriptive name e.g. <code>add-more-details-for-contributors</code>.</p>
+<p>Start committing your changes and <strong>push</strong> straight away rather than when finished. We don't want your work to get lost!</p>
+<p>When you are ready for feedback create the pull request. Take the time to give it a meaningful title and detailed description as this will help those reviewing it understand what you've done.</p>
 <blockquote>
-<p>Contains public sector information licensed under the Open Government license v3</p>
+<p>Pro tip! If you create the PR straight after your first commit, GitHub will automatically populate the title and description for the new PR from the commit message.</p>
 </blockquote>
-<h3 id="about-the-license">About the license</h3>
-<p>The Open Government Licence (OGL) was developed by the Controller of Her Majesty's Stationery Office (HMSO) to enable information providers in the public sector to license the use and re-use of their information under a common open licence.</p>
-<p>It is designed to encourage use and re-use of information freely and flexibly, with only a few conditions.</p>
+<p>Also assign yourself to the PR so folks know who created it and consider adding a label to the PR. These can help potential reviewers quickly see the nature of the it.</p>
+<p>When you are ready request a review from <a href="https://github.com/orgs/DEFRA/teams/sds-group">DEFRA/sds-group</a>.</p>
+<p>Finally announce your PR in our <a href="https://defra-digital.slack.com/messages/development-standards/">slack channel</a> in <strong>Slack</strong> to make sure no one can say they didn't know about it 😀.</p>
+<h2 id="getting-feedback">Getting feedback</h2>
+<p>Feedback will be provided within the PR. Decisions will be documented and reasons given.</p>
+<p>We want to encourage all to contribute and suggest ways we can improve. Anyone providing feedback should be positive and professional with any comments made about your contribution, but let us know if you feel we failed.</p>
+<h2 id="approval">Approval</h2>
+<p>Those that review your contribution when happy with it will leave a comment indicating so e.g. 👍, 🚢, LGTM.</p>
+<p>It will formally be approved however by the Head of Standards, or in their absence one of the Principal Developers. This will be done <a href="https://help.github.com/en/articles/approving-a-pull-request-with-required-reviews">via the GitHub UI</a>.</p>
+<h2 id="finishing-up">Finishing up</h2>
+<p>When your contribution has been approved, you can go ahead and merge it using the GitHub UI for the pull request.</p>
+<blockquote>
+<p><strong>IMPORTANT</strong> If you have multiple commits on your branch it will squash them, and ask you to confirm what the final single commit message should be. Rewrite the message so it reflects the final change you've made (feedback may have changed your original intent) and why.</p>
+</blockquote>
+<p>With that done sit back, have a 🍹, and ponder your next contribution!</p>
 
 
 
@@ -1890,10 +1563,10 @@ docs/
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   </body>
