@@ -8,7 +8,7 @@ These form part of the software development standards policy for Defra and apply
 
 All developers working on behalf of Defra need to be aware of their obligation to follow these standards.
 
-Any deviation must be managed as an exception under Defra's architectural goverance processes.
+Any deviation must be managed as an exception under Defra's architectural governance processes.
 
 We maintain these standards on GitHub to ensure they have the greatest visibility to all developers and are readily available in a familiar environment. To aid readability, you can refer to the [GitHub documentation on managing accessibility settings](https:/..github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-accessibility-settings).
 

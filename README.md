@@ -26,30 +26,6 @@ Please ensure you have read our [principles](/docs/principles/README.md) first, 
 
 The guide is best viewed in GitHub pages at [https://defra.github.io/software-development-standards](https://defra.github.io/software-development-standards/)
 
-## Updating the guide
-
-This documentation is written in markdown and is built using [MkDocs](https://www.mkdocs.org) and the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
-
-Please follow the below installation instructions prior to working with this repository:
-
-- [mkdocs.org](https://www.mkdocs.org)
-- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-* `mkdocs gh-deploy` - Deploy the documentation to GitHub pages.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-
 ## License
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:

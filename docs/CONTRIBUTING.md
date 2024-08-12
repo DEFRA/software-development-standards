@@ -56,3 +56,16 @@ When your contribution has been approved, you can go ahead and merge it using th
 > **IMPORTANT** If you have multiple commits on your branch it will squash them, and ask you to confirm what the final single commit message should be. Rewrite the message so it reflects the final change you've made (feedback may have changed your original intent) and why.
 
 With that done sit back, have a 🍹, and ponder your next contribution!
+
+## GitHub pages
+
+This documentation is published to [GitHub pages](https://pages.github.com/) using [MkDocs](https://www.mkdocs.org) and the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
+
+To view changes locally you will need the following pre-requisites:
+
+- [mkdocs.org](https://www.mkdocs.org)
+- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+
+Once installed you can run `mkdocs serve` to start a live-reloading server to view your changes.
+
+Once your changes are merged, the CI pipeline will automatically deploy the changes to GitHub pages.
