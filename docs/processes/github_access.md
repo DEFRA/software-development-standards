@@ -17,16 +17,16 @@ You're not required to set a profile picture, but changing it from the default G
 
 All projects at Defra must be created under one of the organisations within the Defra GitHub enterprise:
 
-- [Defra](https://github.com/DEFRA) for software
+- [Defra](https://github.com/DEFRA) for development of digital services
 - [Defra Data Science Centre of Excellence](https://github.com/-Defra-Data-Science-Centre-of-Excellence) for data science
 - [Defra design team](https://github.com/defra-design) for prototype designs
-- [aphascience](https://github.com/aphascience) for the APHA Scientific Computing Environment
+- [aphascience](https://github.com/aphascience) for scientific projects at APHA
 
 The organisation owners can be contacted to add you to their organisation:
 
-- for software development or design, use the #github-support channel on the Defra Digital Slack workspace
+- for digital service development or design, use the #github-support channel on the Defra Digital Slack workspace
 - for data science visit the [Internal Defra DASH SharePoint site](https://defra.sharepoint.com/sites/Community448) for contact details
-- for the SCE visit the [Internal Defra SCE SharePoint site](https://defra.sharepoint.com/teams/Team741) for contact details
+- for scientific projects at APHA visit the [Internal Defra SCE SharePoint site](https://defra.sharepoint.com/teams/Team741) for contact details
 
 Depending on your role and requirements, you may either be added as a member of the organisation or as an [outside collaborator](https://help.github.com/articles/adding-outside-collaborators-to-repositories-in-your-organization/) on individual repositories.
 
