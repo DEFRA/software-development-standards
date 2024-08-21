@@ -36,7 +36,7 @@ If this documentation is too lengthy or complex, it doesn't have to be in the RE
 
 ## A basic README.md template
 
-```
+```markdown
 # name-of-repo
 
 The "Register your dinosaur" service allows customers to apply online for a dinosaur licence.

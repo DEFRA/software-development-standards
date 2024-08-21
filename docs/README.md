@@ -52,6 +52,9 @@ These are the standards that must be followed for all software development under
 
 - [PL/SQL coding standards](./standards/plsql_coding_standards.md)
 - [TSQL and SQL Server database standards](./standards/tsql_and_sqldb_standards.md)
+
+### Documentation standards
+
 - [README standards](./standards/readme_standards.md)
 
 ### Standards for non-strategic technologies
