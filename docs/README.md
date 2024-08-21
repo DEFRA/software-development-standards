@@ -61,13 +61,13 @@ These are the standards that must be followed for all software development under
 
 These guides provide additional support for meeting and working with the standards.
 
-### [Processes](./processes/README.md)
+### Processes
 
 - [Credential exposure](./processes/credential_exposure.md)
 - [GitHub access](./processes/github_access.md)
 - [Pull requests](./processes/pull_requests.md)
 
-### [Guides](./guides/README.md)
+### Guides
 
 - [General guidance](./guides/README.md#general-guidance)
 - [Choosing between a mono repo and a multi repo](./guides/mono_or_multi_repo.md)
