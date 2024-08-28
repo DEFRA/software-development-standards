@@ -16,7 +16,7 @@ As implied, there are a number of ways of delivering mobile apps. These standard
 
 This is a fast moving area involving multiple platforms and diverse technology stacks: these standards are therefore early and provisional. As such, these standards often require more background explanation and justification than those for other, more mature or more homogenous, technology stacks. Inevitably, therefore, these standards, for the time being, are likely to be more discursive than those for other areas, and, unavoidably, the line between standard and guidance can often, as yet, not be so sharply drawn.
 
-This document should therefore be read in conjunction with the Mobile Application Guidance (**[guidance](/guides/mobile_app_guidance.md)**).
+This document should therefore be read in conjunction with the Mobile Application Guidance (**[guidance](../guides/mobile_app_guidance.md)**).
 
 ## What is a mobile app?
 
@@ -68,7 +68,7 @@ As mobile applications will usually be accessing the internet over entirely publ
 
 ### Also consider the guidance before designing the app's security profile
 
-There are other recommendations to also bear in mind, especially around the security of data on the device and authentication strategies, so you are strongly advised to also read the accompanying **[guidance](/guides/mobile_app_guidance.md)** on mobile app development alongside these standards.
+There are other recommendations to also bear in mind, especially around the security of data on the device and authentication strategies, so you are strongly advised to also read the accompanying **[guidance](../guides/mobile_app_guidance.md)** on mobile app development alongside these standards.
 
 ## Which type of mobile technology to adopt
 
@@ -92,13 +92,13 @@ Microsoft Power Apps offer a low or even no code way of developing mobile apps, 
 
 Progressive Web Apps provide cross platform and cross device support and can be delivered just like ordinary web apps to the browser, so no engagement with an app store or Mobile Device Management (MDM) software is needed, either by ourselves or the users, and the constraints of dealing with a proprietary platform, such as Apple, are avoided (for example, Apple require all apps to be re-released with a renewed provisioning profile at least once a year). Ongoing costs of ownership, as compared with other bespoke approaches, ought to be lower. Furthermore the skills involved in developing Progressive Web Apps are more transferable and much more likely to have a longer shelf life, so time and money invested in learning will have a bigger pay-off. This approach should also make it feasible to take existing web applications, and progressively enhance them until they can become PWAs.
 
-It is possible to build PWAs that are fully functional offline mobile apps even on less standards compliant browsers such as Apple's Safari/WebKit. For more information on this please see read the "Extra Guidance on Progressive Web Apps" section in the accompanying **[guidance](/guides/mobile_app_guidance.md)**.
+It is possible to build PWAs that are fully functional offline mobile apps even on less standards compliant browsers such as Apple's Safari/WebKit. For more information on this please see read the "Extra Guidance on Progressive Web Apps" section in the accompanying **[guidance](../guides/mobile_app_guidance.md)**.
 
 #### Option 3: Build a cross-platform app
 
 If, having considered above and done the recommended research, a PWA is not acceptable, the next option to consider is building the mobile app using a cross platform technology stack. These stacks are ways of using the same, or very close to the same, code-base but still building the app in ways that can allow it to run on multiple platforms and multiple devices. Otherwise a completely different code base, using a different language and development framework, is needed to build an app for each platform.
 
-There are many such cross platform technology stacks, but some are obscure or are nearing obsolescence. This is still a too broad and fast moving area for us to as yet mandate solid standards, so you are therefore strongly advised to read the accompanying Mobile Application Guidance before considering a technology stack for developing cross platform apps (**[guidance](/guides/mobile_app_guidance.md)**).
+There are many such cross platform technology stacks, but some are obscure or are nearing obsolescence. This is still a too broad and fast moving area for us to as yet mandate solid standards, so you are therefore strongly advised to read the accompanying Mobile Application Guidance before considering a technology stack for developing cross platform apps (**[guidance](../guides/mobile_app_guidance.md)**).
 
 Note that cross platform app development, where in any way feasible, **is always preferable to native app development, even when we are currently targeting only a single platform (say Apple) and range of associated devices**. That is because such apps ought to be easily adaptable to run on a different platform, for example if our selected choice of devices changes, or if we decide to make the app, or a version of the app, available on more devices. Also, investment, in terms of time, money and "hard lessons learned", in cross platform app development is more likely to be applicable across the whole range of possible future apps than if we focus on a single native app technology. Furthermore, cross platform app development techniques also provide much better insulation against all the myriad changes that happen on the underlying platform itself (not completely, but better than with pure native development).
 

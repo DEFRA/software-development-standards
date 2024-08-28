@@ -14,4 +14,4 @@ This makes it easy to apply version control to each component individually, whil
 
 A mono repository should only be considered for small scale projects consisting of a single application or package.
 
-For additional context behind this standard, see the [guidance](/guides/mono_or_multi_repo.md).
+For additional context behind this standard, see the [guidance](../guides/mono_or_multi_repo.md).

@@ -1,26 +1,4 @@
-# Guides
-
-This folder contains various guides to help those working in software development, both generally and in support of our standards.
-
-## Contents
-
-- [Choosing between a mono repo and a multi repo](choosing_mono_or_multi_repo.md)
-- [Choosing packages](choosing_packages.md)
-- [Continuous integration](continuous_integration.md)
-- [Developer workflows](developer_workflows.md)
-- [Docker guidance](docker_guidance.md)
-- [Java auto-format with Eclipse](java_auto_format_eclipse.md)
-- [Kubernetes](kubernetes.md)
-- [Mobile application guidance](mobile_app_guidance.md)
-- [New starters](new_starters.md)
-- [PL/SQL auto-format with TOAD](plsql_auto_format_toad.md)
-- [SQL Prompt](sql_prompt_tool.md)
-- [Style guide for standards](style_guide_for_standards.md)
-- [Using AWS session manager](aws_session_manager.md)
-- [Using unmanaged devices](unmanaged_devices.md)
-- [Version control guidance](version_control_guidance.md)
-
-## General guidance
+# General guidance
 
 For most developers the primary activity they will carry out is writing code.
 
@@ -32,7 +10,7 @@ Writing clean and maintainable code is much easier when it's clear which compone
 
 ### Coding standards
 
-Follow secure coding [standards](/standards) where available to avoid potential security vulnerabilities.
+Follow secure coding standards where available to avoid potential security vulnerabilities.
 
 ### Use self-explanatory naming conventions
 

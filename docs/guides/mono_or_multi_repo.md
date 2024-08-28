@@ -109,4 +109,4 @@ Multi repos support multiple teams owning different parts of the codebase.
 
 ## Conclusion
 
-As per [Defra version control standards](/standards/version_control_standards.md), teams should follow a multi repository approach as the default.  Mono repositories should only be used for small scale projects consisting of a single application or package with only one development team.
+As per [Defra version control standards](../standards/version_control_standards.md), teams should follow a multi repository approach as the default.  Mono repositories should only be used for small scale projects consisting of a single application or package with only one development team.

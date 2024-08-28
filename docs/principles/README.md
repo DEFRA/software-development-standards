@@ -1,17 +1,4 @@
-# Principles for software development standards
-
-This folder contains details on principles related to specific areas, and below general principles that underpin all our guidance and standards.
-
-## Contents
-
-- [Coding principles](coding_principles.md)
-- [Security principles](security_principles.md)
-
-## Background
-
-There are a number of factors that can influence the decision to adopt a particular development standard. The purpose of these principles is to condense all of those factors into a simple set of statements that can be used to help with those decisions.
-
-## Principles
+# General principles
 
 ### Don't re-invent the wheel
 

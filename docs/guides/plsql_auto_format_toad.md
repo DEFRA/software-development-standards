@@ -6,7 +6,7 @@
 
 Some teams in Defra have licenses for Toad, and use it when working with our Oracle databases.
 
-We have a [standard for PL/SQL](/standards/plsql_coding_standards.md) which can be applied automatically using the auto-format tool in Toad.
+We have a [standard for PL/SQL](../standards/plsql_coding_standards.md) which can be applied automatically using the auto-format tool in Toad.
 
 ## The format file
 

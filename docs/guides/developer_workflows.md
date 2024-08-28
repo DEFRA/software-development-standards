@@ -22,7 +22,7 @@ Using this workflow we only use two branches
 
 ## All branches
 
-In all cases when the branch is created it should be pushed up to the **origin** repo and a pull request created as per the [pull request](/processes/pull_requests.md) process.
+In all cases when the branch is created it should be pushed up to the **origin** repo and a pull request created as per the [pull request](../processes/pull_requests.md) process.
 
 ## Gitflow
 
