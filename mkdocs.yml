@@ -5,7 +5,7 @@ theme:
   logo: img/code-white.png
   favicon: img/code-black.png
   palette:
-    primary: green
+    primary: deep-purple
   font:
     text: 'Arial'
     code: 'Roboto Mono'

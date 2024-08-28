@@ -27,8 +27,6 @@ The standards and guidance provided here a based on an agreed set of principles.
 
 These are the standards that must be followed for all software development undertaken on behalf of the Defra group.
 
-- [List of all standards (A-Z)](./standards/README.md)
-
 ### Coding standards
 
 - [Common coding standards](./standards/common_coding_standards.md)
