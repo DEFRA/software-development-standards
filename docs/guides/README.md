@@ -10,7 +10,7 @@ Writing clean and maintainable code is much easier when it's clear which compone
 
 ### Coding standards
 
-Follow secure coding [standards](../standards/README.md) where available to avoid potential security vulnerabilities.
+Follow secure coding standards where available to avoid potential security vulnerabilities.
 
 ### Use self-explanatory naming conventions
 
