@@ -1,3 +1,5 @@
+<marquee>DON'T USE TYPESCRIPT</marquee>
+
 # Introduction
 
 > These pages are automatically generated from content hosted in this [GitHub repository](https://github.com/DEFRA/software-development-standards)

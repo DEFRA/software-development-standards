@@ -75,7 +75,7 @@ Ensure your service's compliance with the following:
 * [GOV.UK content styles](https://www.gov.uk/guidance/content-design/writing-for-gov-uk)
 * [GOV.UK design system](https://design-system.service.gov.uk/)
 * [Privacy policies](https://www.gov.uk/service-manual/design/collecting-personal-information-from-users) - especially when communicating with third parties such as Google for analytics
-* [Progressive enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement), in particular that your service is usable without Cascading Style Sheets (CSS) and Javascript
+* [Progressive enhancement](https://www.gov.uk/service-manual/technology/using-progressive-enhancement), in particular that your service is usable without Cascading Style Sheets (CSS) and JavaScript
 
 ## Continuous integration (pipeline)
 
