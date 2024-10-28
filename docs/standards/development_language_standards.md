@@ -60,13 +60,19 @@ frameworks, libraries and tools to support it.
 These kind of services change rapidly, which has led to the rise of rapid development frameworks and a preference for
 dynamic languages.
 
-Building for the Web means that developers already need a knowledge of Javascript, so using Node.js eases the
+Building for the Web means that developers already need a knowledge of JavaScript, so using Node.js eases the
 burden on developers to maintain capability in multiple languages. Also, Node.js has proven to deliver good
 application performance in most Web-facing scenarios.
 
 This can be seen across government as well, in particular the GDS front end community tend to publish their products
 so that they can be easily used in Ruby and Node.js, in particular.
  
+## We use JavaScript as our Node.js development language
+We do not use TypeScript (or any other extensions to the JavaScript language). 
+
+For the types of digital services we build, TypeScript is unneccessary as any benefits don't outweigh the overhead. 
+Use vanilla JavaScript.
+
 ## We use the Hapi framework to develop in Node.js
 Hapi is already in use in Defra digital services and has provided a productive level of standardisation across
 development teams and has proven to be robust and reliable.

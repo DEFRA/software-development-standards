@@ -1,5 +1,7 @@
 ## JavaScript standards
 
+Use vanilla JavaScript, don't use extensions to the language such as TypeScript
+
 ### Use [Standard JS](https://standardjs.com/) to lint your code
 
 - A consistent approach to code layout, spacing and formatting makes it easier to switch between projects.
