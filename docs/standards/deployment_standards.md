@@ -17,7 +17,7 @@ Containerisation also allows us to better manage a diverse application estate as
 ## We deploy code rather than containers to AWS Lambda and Azure Functions where their use is formally justified
 There are cases where it will make sense to use a serverless platform rather than a containerised solution, but these _must_ be individually justified and recorded as formal architectural decisions.
 
-Additionally, justifications for using serverless platforms can _only_ be considered for Javascript or C# functions.
+Additionally, justifications for using serverless platforms can _only_ be considered for JavaScript or C# functions.
 
 ### Rationale
 Serverless platforms provide a greatly reduced operational burden, but are not so well represented in development and have certain limitations that can make their use inappropriate.
