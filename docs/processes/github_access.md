@@ -55,13 +55,13 @@ Repositories without an administrator will be archived by the organisation owner
 
 ## Access removal
 
-The administrators of our Defra GitHub enterprise will run quarterly reports of [dormant users](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-dormant-users) and provide these to the owners of all the organisations in the enterprise.
+The administrators of our Defra GitHub enterprise will run monthly reports of [dormant users](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-dormant-users) and provide a list of users that have been dormant for six months to all the organisation owners in the enterprise.
 
-The owners will have a week to respond with the details of any dormant users that should not be removed, but after that time any other accounts will be removed from the enterprise. Organisation owners will need to remove any dormant outside collaborators.
+The organisation owners will remove those users from their organisation, or identify to the enterprise owners any accounts that should be retained.
 
 This will ensure that we are using our licences effectively and that we are applying appropriate security controls on our information.
 
-If you need access again after your account is removed, you will need to ask to join an organisation again as described above.
+If you need access again after your account is removed, you will need to ask to join an organisation again as described above. The organisation owners can reinstate the permissions you had before removal if you request to rejoin within three months of being removed.
 
 If you think you may be identified as a dormant user, for example if you are taking an extended break from work, then you should let an organisation owner know and they will ensure that your account is not removed.
 
@@ -74,5 +74,5 @@ If you would like to have a new organisation added into the Defra enterprise you
 As an organisation owner you are responsible for
 
 - setting the standards and processes for access control in the organisation
-- checking whether access is required for dormant users and removing dormant outside collaborators from your organisation
+- removing dormant users from your organisation
 - ensuring that people that will want to join your organisation know who you are and how to contact you
