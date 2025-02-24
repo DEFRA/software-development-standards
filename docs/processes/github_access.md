@@ -55,7 +55,7 @@ Repositories without an administrator will be archived by the organisation owner
 
 ## Access removal
 
-The administrators of our Defra GitHub enterprise will run monthly reports of [dormant users](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-dormant-users) and provide a list of users that have been dormant for six months to all the organisation owners in the enterprise.
+Each month, the administrators of our Defra GitHub enterprise will run a report to identify any [dormant users](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-dormant-users) who have not been active for six months and provide the list to each of the organisation owners in the enterprise.
 
 The organisation owners will remove those users from their organisation, or identify to the enterprise owners any accounts that should be retained.
 
@@ -73,6 +73,7 @@ If you would like to have a new organisation added into the Defra enterprise you
 
 As an organisation owner you are responsible for
 
-- setting the standards and processes for access control in the organisation
+- setting the standards and processes for access control in your organisation
 - removing dormant users from your organisation
+- informing enterprise owners of any dormant users who still require access
 - ensuring that people that will want to join your organisation know who you are and how to contact you
