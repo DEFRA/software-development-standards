@@ -97,6 +97,12 @@ All repos are connected to a security tool to monitor for vulnerabilities in the
 
 No out of date dependencies or libraries with known vulnerabilities.
 
+### All code is licensed appropriately
+
+The README on all repos must include an appropriate licence. 
+
+The default licence for all Defra code is the [Open Government Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). Any deviation should follow the National Archives [guidance about open software licences](http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/open-software-licences/) and be agreed with ***somebody, but not sure who and not just because you really like a particular alternative licence***.
+
 ## Status
 
 This standard was formally adopted on 1 July 2019.
