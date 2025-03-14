@@ -33,6 +33,7 @@ These are the standards that must be followed for all software development under
 - [Development languages](./standards/development_language_standards.md)
 - [JavaScript standards](./standards/javascript_standards.md)
 - [C# coding standards](./standards/csharp_coding_standards.md)
+- [Logging standards](./standards/logging_standards.md)
 - [Mobile application standards](./standards/mobile_app_standards.md)
 - [Node.js standards](./standards/node_standards.md)
 - [UiPath standards](./standards/uipath_standards.md)
