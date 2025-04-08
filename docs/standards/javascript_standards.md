@@ -22,7 +22,7 @@ neostandard is the spiritual successor to Standard JS and is maintained by many 
 
 Whilst there is no immediate requirement that teams migrate existing codebases to neostandard, new projects should use neostandard.
 
-Migration is relatively straight forward and neostandard [documentation](https://github.com/neostandard/neostandard?tab=readme-ov-file#migrate-from-standard) includes a guide.
+Migration is relatively straightforward and neostandard [documentation](https://github.com/neostandard/neostandard?tab=readme-ov-file#migrate-from-standard) includes a guide.
 
 ### Do not use front end JavaScript frameworks
 
