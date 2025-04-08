@@ -1,29 +1,48 @@
 # Logging standards
 
-Logging is a critical part of any application. It provides a way to monitor the health of the application, to debug issues and to provide an audit trail of what has happened.
+Logging is a critical part of any application. It provides a way to monitor the health of the application, debug issues, and provide an audit trail of what has happened.
 
-## What to log
+## Only log useful information
 
-When logging, consider what information is useful to log. This will depend on the application, but some common things to log include:
-- Errors
-- Warnings
-- Informational messages
-- Debug messages
-- Audit logs
+This will depend on the application, but some common things to log include:
+- **Errors**: Capture unexpected issues or failures.
+- **Warnings**: Highlight potential problems that may not immediately impact functionality.
+- **Informational messages**: Provide insights into the application's normal operations.
+- **Debug messages**: Help developers understand the application's behavior during development.
+- **Audit logs**: Record user actions or system events for compliance and security purposes.
 
-## Log levels across environments
+Logging excessive or redundant information can make logs harder to analyze and increase storage costs.
 
-Different log levels are useful in different environments. For example, in a development environment you may want to log debug messages to help with debugging, whereas in a production environment you may only want to log errors and warnings.
+Consider the logging any third-party libraries do and configure them appropriately.
 
-Consider the log levels that are appropriate for each environment and configure your logging accordingly.
+## Log different levels across environments
+
+Different log levels are useful in different environments. Use the following as a baseline approach and ensure that log levels are easily configurable:
+
+- **Development**: Log debug messages to assist with troubleshooting.
+- **Testing/Staging**: Focus on warnings and errors to validate application behavior.
+- **Production**: Restrict logs to errors and critical warnings to minimize noise and protect performance.
+
 
 ## Use structured logs
 
-Structured logs are logs that are formatted in a way that makes them easy to parse and search. They are typically in a key-value format, where each key represents a piece of information about the log message.
+Structured logs are formatted in a way that makes them easy to parse and search. They are typically in a key-value format, where each key represents a piece of information about the log message. For example:
 
-## PII and sensitive data
+```json
+{
+  "timestamp": "2023-10-01T12:00:00Z",
+  "level": "ERROR",
+  "message": "Database connection failed",
+  "service": "user-service",
+  "correlationId": "abc123"
+}
+```
 
-When logging, it is important to ensure that no personally identifiable information (PII) or sensitive data is logged. This includes, but is not limited to:
+## Do not log any personally identifiable information (PII) or sensitive data
+
+Logging sensitive data can lead to security breaches and compliance violations. Always sanitize logs to remove any sensitive information before storing or transmitting them.
+
+This includes, but is not limited to:
 - Names
 - Addresses
 - Email addresses
@@ -35,6 +54,25 @@ When logging, it is important to ensure that no personally identifiable informat
 - API keys
 - Tokens
 
-## Where to log
+Be aware of any logging third party libraries may do with this data to avoid any unexpected leaks.
 
-Logs should be written to a centralised logging system appropriate for your environment. This allows logs to be aggregated and searched in one place.
+## Logs should be written to a centralised logging system
+
+This allows logs to be aggregated and searched in one place. Examples of centralized logging systems include:
+
+- Elasticsearch, Logstash, and Kibana (ELK stack)
+- AWS CloudWatch
+- Azure Monitor
+
+## Protective monitoring events should be written to Security Operations Centre (SOC)
+
+Protective monitoring events should be sent to the SOC for analysis and response. 
+
+Teams are expected to engage with the SOC team for guidance on what events should be logged and how to send them.
+
+Examples of log that may need including in the SOC:
+- Authentication attempts
+- Access control changes
+- Configuration changes
+- Network traffic
+- Decision making
