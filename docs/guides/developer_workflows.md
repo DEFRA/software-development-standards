@@ -11,8 +11,8 @@ Gitflow is useful for teams that like the space to combine multiple features, or
 
 ## Feature branch workflow (GitHub flow)
 
-<img src="githubflow.png" alt="GitHub flow" style="width: 600px;"/>
-<sub><https://guides.github.com/activities/hello-world/branching.png></sub>
+![GitHub flow](githubflow.png)
+<sub>[Source: GitHub Docs - Get started](https://docs.github.com/en/get-started/start-your-journey/hello-world)</sub>
 
 Using this workflow we only use two branches
 
@@ -26,8 +26,8 @@ In all cases when the branch is created it should be pushed up to the **origin**
 
 ## Gitflow
 
-<img src="gitflow.png" alt="Git flow" style="width: 600px;"/>
-<sub><https://www.atlassian.com/git/images/tutorials/collaborating/comparing-workflows/gitflow-workflow/05.svg></sub>
+![Git flow](gitflow.png)
+<sub>[Source: Atlassian Tutorials - Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)</sub>
 
 Using this workflow it means our branches have specific uses
 
