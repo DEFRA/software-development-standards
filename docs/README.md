@@ -87,7 +87,7 @@ These guides provide additional support for meeting and working with the standar
 - [SQL Prompt](./guides/version_control_guidance.md)
 - [Style guide for standards](./guides/style_guide_for_standards.md)
 - [Using AWS session manager](./guides/aws_session_manager.md)
-- [Using unmanaged devices](./guides/unmanaged_devices.md)
+- [Using devices with privileged access](./guides/privileged_devices.md)
 - [Version control guidance](./guides/version_control_guidance.md)
 
 ## Contributing to this project
