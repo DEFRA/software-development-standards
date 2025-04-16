@@ -22,7 +22,7 @@ At Defra, we use .NET as a secondary technology stack, with **Node.js** being ou
 
 4. **Long-Term Support (LTS)**:
    - Always strive to use the latest **LTS version** of .NET.
-   - **.NET Framework** should only be used for maintaining legacy applications. New projects must use **.NET 8+**.
+   - **.NET Framework** should only be used for maintaining legacy applications.
 
 ## When to Use .NET Over Node.js
 
