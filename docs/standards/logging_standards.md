@@ -75,7 +75,7 @@ Protective monitoring events should be sent to the SOC for analysis and response
 
 Teams are expected to engage with the SOC team for guidance on what events should be logged and how to send them.
 
-Examples of events that may need including in the SOC:
+Examples of events that may need sending to the SOC:
 - Authentication attempts
 - Access control changes
 - Configuration changes
