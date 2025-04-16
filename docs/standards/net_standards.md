@@ -33,22 +33,19 @@ While Node.js is the preferred stack, there are scenarios where .NET may be bett
      - Dynamics 365, which has strong support for .NET libraries and SDKs.
 
 2. **High-Performance Backend Services**:
-   - .NET is well-suited for CPU-intensive operations, such as:
+   - .NET is generally better suited for CPU-intensive operations, such as:
      - Complex mathematical computations.
      - Image or video processing.
      - Real-time data analysis.
    - The Just-In-Time (JIT) compilation and runtime optimizations in .NET can outperform Node.js in these scenarios.
 
-3. **Need for a Strongly Typed Language**:
-   - When the project requires a strongly typed language to reduce runtime errors and improve maintainability, .NET (with C#) is a better choice. The static typing system in C# helps catch errors at compile time, making it ideal for complex systems with strict type requirements.
-
-4. **Large-Scale Multi-Layer Monolith**:
+3. **Large-Scale Multi-Layer Monolith**:
    - For large-scale, multi-layered monolithic applications that require:
      - Clear separation of concerns (e.g., presentation, business logic, and data access layers).
      - Advanced tooling for debugging and profiling.
    - .NET provides a robust framework and ecosystem to support such architectures effectively.
 
-5. **Cross-Platform Desktop Applications**:
+4. **Cross-Platform Desktop Applications**:
    - If backend services need to complement cross-platform desktop applications built with .NET technologies like:
      - WPF (Windows Presentation Foundation).
      - WinForms.
