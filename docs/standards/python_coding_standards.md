@@ -1,6 +1,6 @@
 # Python Standards
 
-This document defines the internal development standards for building backend services in Python ([FastAPI](https://fastapi.tiangolo.com/tutorial/)) awithin Defra. It adheres strictly to the [UK Government Digital Service (GDS) Python style guide](https://gds-way.digital.cabinet-office.gov.uk/manuals/programming-languages/python/python.html) and [PEP 8](https://peps.python.org/pep-0008/), ensuring code is clear, consistent, and maintainable across all AI services (using tools like [LangChain](https://python.langchain.com/docs/introduction/), [LangGraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/), etc.). All engineers must follow these conventions when writing Python code for backend services.
+This document defines the internal development standards for building backend services in Python ([FastAPI](https://fastapi.tiangolo.com/tutorial/)) within Defra. It adheres strictly to the [UK Government Digital Service (GDS) Python style guide](https://gds-way.digital.cabinet-office.gov.uk/manuals/programming-languages/python/python.html) and [PEP 8](https://peps.python.org/pep-0008/), ensuring code is clear, consistent, and maintainable across all AI services (using tools like [LangChain](https://python.langchain.com/docs/introduction/), [LangGraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/), etc.). All engineers must follow these conventions when writing Python code for backend services.
 
 **Note:** Python should **ONLY** be used for creating backend services related to AI or data.
 
