@@ -23,18 +23,23 @@ Different log levels are useful in different environments. Use the following as 
 - **Testing/Staging**: Focus on warnings and errors to validate application behavior.
 - **Production**: Restrict logs to errors and critical warnings to minimize noise and protect performance.
 
-
 ## Use structured logs
 
-Structured logs are formatted in a way that makes them easy to parse and search. They are typically in a key-value format, where each key represents a piece of information about the log message. For example:
+Structured logs are formatted in a way that makes them easy to parse and search. They are typically in a key-value format, where each key represents a piece of information about the log message.
+
+Industry standard structured logging formats should be followed rather than inventing your own.  For example, [Elastic Common Schema (ECS)](https://www.elastic.co/docs/reference/ecs)
 
 ```json
 {
-  "timestamp": "2023-10-01T12:00:00Z",
-  "level": "ERROR",
+  "@timestamp": "2025-04-16T12:00:00Z",
+  "log.level": "error",
   "message": "Database connection failed",
-  "service": "user-service",
-  "correlationId": "abc123"
+  "service.name": "user-service",
+  "service.environment": "production",
+  "event.category": "database",
+  "event.action": "connection_failure",
+  "host.name": "example-host",
+  "process.name": "user-service-process"
 }
 ```
 
