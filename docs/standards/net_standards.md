@@ -7,7 +7,7 @@ At Defra, we use .NET as a secondary technology stack, with **Node.js** being ou
 1. **Primary Stack Preference**:
    - **Node.js** is the preferred stack for all new projects.
    - The decision to use .NET must be supported by clear evidence, such as:
-     - Integration with commodity products or libraries that are best suited .NET.
+     - Integration with commodity products or libraries that are best suited to .NET.
      - Specific backend service requirements that are better suited to .NET.
      - Ecosystem is already heavily invested in .NET, making it more efficient to continue using it.
      - Matches team profile and expertise.
