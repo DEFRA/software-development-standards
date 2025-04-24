@@ -4,7 +4,7 @@ Use vanilla JavaScript, don't use extensions to the language such as TypeScript
 
 ### Use [neostandard](https://github.com/neostandard/neostandard) to lint your code
 
-neostandard is an opinioned JavaScript linter that enforces a consistent coding style.
+neostandard is an opinionated JavaScript linter that enforces a consistent coding style.
 
 - A consistent approach to code layout, spacing and formatting makes it easier to switch between projects.
 
@@ -12,7 +12,9 @@ neostandard is an opinioned JavaScript linter that enforces a consistent coding 
 
 - The choice of an opinionated linter is deliberate as it avoids teams needing to spend time debating the merits of different styles.
 
-- Teams should not extend or modify the neostandard ruleset.
+- Teams should not extend or modify the neostandard ruleset
+
+- Teams should not set the `noStyle` rule to `true` to disable the linter's formatting rules
 
 #### [Standard JS](https://standardjs.com/)
 
@@ -39,4 +41,4 @@ This standard was formally adopted on 1 July 2019.
 ## Significant changes
 
 - Clarification on not using front end frameworks was added 1 December 2024.
-- Standard JS was replaced with neostandard 8 April 2025
+- Standard JS was replaced with neostandard 24 April 2025
