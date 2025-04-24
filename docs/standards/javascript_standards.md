@@ -2,13 +2,29 @@
 
 Use vanilla JavaScript, don't use extensions to the language such as TypeScript
 
-### Use [Standard JS](https://standardjs.com/) to lint your code
+### Use [neostandard](https://github.com/neostandard/neostandard) to lint your code
+
+neostandard is an opinionated JavaScript linter that enforces a consistent coding style.
 
 - A consistent approach to code layout, spacing and formatting makes it easier to switch between projects.
 
-By [adding it as a dev dependency](https://standardjs.com/index.html#install) it can be easily used in the terminal,
-[Webstorm](https://blog.jetbrains.com/webstorm/2017/04/using-javascript-standard-style/),
-and [Visual Studio](https://marketplace.visualstudio.com/items?itemName=chenxsan.vscode-standardjs).
+- By adding it as a dev dependency it can be easily used in the terminal and CI pipelines.
+
+- The choice of an opinionated linter is deliberate as it avoids teams needing to spend time debating the merits of different styles.
+
+- Teams should not extend or modify the neostandard ruleset
+
+- Teams should not set the `noStyle` rule to `true` to disable the linter's formatting rules
+
+#### [Standard JS](https://standardjs.com/)
+
+Standard JS was previously Defra's choice of linter, however this is no longer maintained as it once was.
+
+neostandard is the spiritual successor to Standard JS and is maintained by many of the same people.
+
+Whilst there is no immediate requirement that teams migrate existing codebases to neostandard, new projects should use neostandard.
+
+Migration is relatively straightforward and neostandard [documentation](https://github.com/neostandard/neostandard?tab=readme-ov-file#migrate-from-standard) includes a guide.
 
 ### Do not use front end JavaScript frameworks
 
@@ -24,4 +40,5 @@ This standard was formally adopted on 1 July 2019.
 
 ## Significant changes
 
-Clarification on not using front end frameworks was added 1 December 2024.
+- Clarification on not using front end frameworks was added 1 December 2024.
+- Standard JS was replaced with neostandard 24 April 2025
