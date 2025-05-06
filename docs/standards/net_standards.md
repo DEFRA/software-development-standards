@@ -1,6 +1,10 @@
 # .NET Standards
 
-At Defra, we use .NET as a secondary technology stack, with **Node.js** being our primary stack. The use of .NET must be justified with an **evidence-based decision**. This document outlines the standards for using .NET within Defra, ensuring alignment with modern practices and Microsoft's best practices.
+At Defra, we use .NET as a secondary technology stack, with **Node.js** being our primary stack. 
+
+.NET does not align with our recruitment or training strategies and has a significantly smaller talent pool within Defra compared to Node.js.
+
+The use of .NET must be justified with an **evidence-based decision**. This document outlines the standards for using .NET within Defra, ensuring alignment with modern practices and Microsoft's best practices.
 
 ## Key Principles
 
