@@ -15,6 +15,7 @@ The use of .NET must be justified with an **evidence-based decision**. This docu
      - Specific backend service requirements that are better suited to .NET.
      - Ecosystem is already heavily invested in .NET, making it more efficient to continue using it.
      - Matches team profile and expertise.
+     - .NET is more prone to state mutation through multi-threading which can lead to hard to debug issues.
 
 2. **Backend Services Only**:
    - .NET is only used for **backend services** and **integration with commodity products**.
@@ -28,7 +29,7 @@ The use of .NET must be justified with an **evidence-based decision**. This docu
    - Always strive to use the latest **LTS version** of .NET.
    - **.NET Framework** should only be used for maintaining legacy applications.
 
-## When to Use .NET Over Node.js
+## When to use .NET over Node.js
 
 While Node.js is the preferred stack, there are scenarios where .NET may be better suited:
 
@@ -56,7 +57,7 @@ While Node.js is the preferred stack, there are scenarios where .NET may be bett
      - MAUI (Multi-platform App UI).
    - .NET ensures seamless integration between the desktop and backend.
 
-## Best Practices
+## Best practices
 
 To ensure consistency and maintainability, follow Microsoft's official guidelines for .NET development:
 - [Microsoft .NET Documentation](https://learn.microsoft.com/en-us/dotnet/)
