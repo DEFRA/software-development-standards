@@ -92,7 +92,7 @@ Once approved to complete the PR you'll need to `squash` your commits down to on
 
 The simplest way to do this is in the GitHub UI. Within the PR the merge button for new repo's will say `Squash and merge`. Else you may need to click the down arrow next to the button to select it.
 
-<img src="squash_and_merge.png" alt="Squash and merge" style="width: 384px;"/>
+![Squash and merge](squash_and_merge.png)
 
 When you click it GitHub will present a box which contains the combined text from all the commit messages in the PR. Use this opportunity to reword the content to a single commit message (the smaller the change the simpler this is to do!)
 
