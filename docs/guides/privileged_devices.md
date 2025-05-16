@@ -88,6 +88,8 @@ You must ensure that any unique content you create is backed up to secure, corpo
 
 You should also consider backing up some of your local settings and data, which could help if your device fails and needs to be fixed or replaced.
 
+Keys and other credentials that you might hold in local configuration files can be held securely in our Defra Bitwarden organisation.
+
 ## Setup guidance
 The following sections will help you getting set up with some of the tools you are likely to use when you have privileged access.
 
