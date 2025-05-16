@@ -71,7 +71,7 @@ If you need to pay for a licence to use a piece of software, speak to your manag
 #### Ensure that you only install software that doesn't introduce a security risk
 Before installing and using software, you should be aware of any data that the software stores or any potential it may have for information exposure.
 
-All downloaded software must be scanned for malware.
+Privileged access does not circumvent device or firewall malware scanning, you should not attempt deactivate this. All downloaded software will be scanned and quarantined or blocked if deemed a risk.
 
 If you have any concerns about any software, speak to your manager before installing it.
 
@@ -166,3 +166,8 @@ If you are running WSL:
 1. Ensure that Docker Desktop is available to your WSL distro. This can be done by right-clicking the Docker Desktop icon in the system tray and selecting `Settings`. From there, select `Resources`, `WSL Integration` and ensure that the distro you are using is checked.
 
 Defra has a Docker organisation that you should join to ensure that you are licensed for your use of Docker Desktop.
+
+### Visual Studio Code
+A lot of developers use VS Code, setup instructions can be found at [https://code.visualstudio.com/docs/setup/setup-overview](https://code.visualstudio.com/docs/setup/setup-overview)
+
+You may find some extensions face issues with the proxy when attempting authentication - in this case set the `http.proxySupport` setting to `off` instead of the default `override`
