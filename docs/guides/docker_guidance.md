@@ -161,6 +161,7 @@ services:
 For scenarios where multiple containers need to be created across multiple repositories, it might be advantageous to create a "development" repo.
 
 The development repository would:
+
 - clone all necessary repositories
 - builds images from Dockerfiles in each repository by referencing Docker Compose files in those repositories
 - run containers based on those images in a single Docker network by referencing Docker Compose files in those repositories

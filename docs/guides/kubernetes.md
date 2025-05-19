@@ -25,6 +25,7 @@ This allows logical separation between services as well as the enabling simpler 
 
 ## Requirements
 The following are the suggested outcomes of a namespace.
+
 - `ResourceQuota` resource to limit resource usage
 - `RoleBinding` resource to restrict interaction to delivery team
 

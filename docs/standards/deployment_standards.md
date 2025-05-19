@@ -25,6 +25,7 @@ They also represent some vendor lock-in that, whilst minimal, is still not prefe
 
 ## We regularly review our use of serverless platforms
 In particular, we will ensure that:
+
 - Vendor lock-in doesn't increase
 - We identify opportunities to rationalise these standards to use, effectively, "serverless containers"
 
