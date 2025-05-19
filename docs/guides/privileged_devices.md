@@ -6,6 +6,7 @@ A guide for everyone that has privileged access to their corporate devices - oft
 This guide is about the appropriate steps you should take when using devices where you have been granted privileged access, bypassing the normal organisational IT controls.
 
 This includes:
+
 - local admin access, such as with MakeMeAdmin
 - exemption from network controls, such as specialist Zscaler profiles
 

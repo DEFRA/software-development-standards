@@ -3,6 +3,7 @@
 This standard defines the development languages we use.
 
 The standard has come from delivering digital services that tend to follow this pattern:
+
 - A bespoke online digital service that is specifically built to meet well-researched user needs
 - One or more common Defra core IT systems that support our business
 - Pursuing a Cloud first agenda and giving equal consideration to open source software
@@ -12,6 +13,7 @@ We recognise the value of choosing the right tool for the job so we do not speci
 for everything we deliver.
 
 The advantages of this approach are:
+
 - it increases our ability to rapidly respond to changing business needs
 - we can more easily adopt new developments in the IT industry
 - vendor and product selection is less constrained
@@ -21,6 +23,7 @@ The advantages of this approach are:
 - happier developers!
 
 There are some disadvantages, such as the following, but these are out-weighed by the advantages:
+
 - staff recruitment, retention and work allocation is more difficult
 - there are fewer opportunities to share internal code and best practice
 - it can be difficult to maintain enough capability with only a small number of developers
@@ -30,6 +33,7 @@ There are some disadvantages, such as the following, but these are out-weighed b
 The government
 [Technology Code of Practice](https://www.gov.uk/government/publications/technology-code-of-practice/technology-code-of-practice)
 states that you must:
+
 - Be open and use open source
 - Make use of open standards
 

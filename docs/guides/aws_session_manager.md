@@ -11,6 +11,7 @@ If you need any assistance, don't hesitate to contact the CCoE AWS WebOps team.
 
 ## User permissions
 When initiating a session, you will be logging into the server as the `developer` user. This user has limited permissions and is intended for basic investigative work only. You won't be able to:
+
 - Run `sudo`, `pm2`, `docker` among other administrative commands.
 - Switch to other users.
 - Copy files onto or off the server.
