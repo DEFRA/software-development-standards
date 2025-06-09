@@ -60,6 +60,7 @@ While Node.js is the preferred stack, there are scenarios where .NET may be bett
 ## Best practices
 
 To ensure consistency and maintainability, follow Microsoft's official guidelines for .NET development:
+
 - [Microsoft .NET Documentation](https://learn.microsoft.com/en-us/dotnet/)
 - [Best Practices for .NET Applications](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/)
 - [Secure Coding Guidelines for .NET](https://learn.microsoft.com/en-us/dotnet/standard/security/secure-coding-guidelines)
