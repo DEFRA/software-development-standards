@@ -45,6 +45,7 @@ This document outlines the standards for writing C# code at Defra. To ensure con
 ## Additional Resources
 
 For further guidance, refer to the following Microsoft resources:
+
 - [C# Language Reference](https://learn.microsoft.com/en-us/dotnet/csharp/)
 - [Asynchronous Programming in C#](https://learn.microsoft.com/en-us/dotnet/csharp/async)
 - [Secure Coding Guidelines for .NET](https://learn.microsoft.com/en-us/dotnet/standard/security/secure-coding-guidelines)
