@@ -18,10 +18,14 @@ Consider the logging any third-party libraries do and configure them appropriate
 
 ## Log different levels across environments
 
-Different log levels are useful in different environments. Use the following as a baseline approach and ensure that log levels are easily configurable:
+Different log levels are useful in different environments. 
+
+Consider an appropriate level of logging for each environment that fits your specific context.
+
+Use the following example as a baseline approach and ensure that log levels are easily configurable:
 
 - **Development**: Log debug messages to assist with troubleshooting.
-- **Testing/Staging**: Focus on warnings and errors to validate application behavior.
+- **Testing/Staging**: Focus on warnings and errors to validate application behaviour.
 - **Production**: Restrict logs to errors and critical warnings to minimize noise and protect performance.
 
 ## Use structured logs
