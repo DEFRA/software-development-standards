@@ -100,11 +100,11 @@ We try to keep our standards agnostic of specific tools wherever possible, altho
 
 We will often reference specific tools and technologies in our guides.
 
-For information on Defra's tooling and technology choices beyond what is covered in these standards, see the [Defra Development and Testing Tools Radar](https://linktbc).
+For information on Defra's tooling and technology choices beyond what is covered in these standards, see the [Defra Tools Radar on Jira](https://eaflood.atlassian.net/jira/software/projects/TR/boards/630).
 
 ### Architectural standards
 
-All development in Defra is done in accordance with our [Enterprise architecture principles](https://linktbc) and our [Technology architecture guardrails](https://linktbc).
+All development in Defra is done in accordance with our enterprise architecture principles, policies and standards - see our [internal Architecture SharePoint site](https://defra.sharepoint.com/teams/Team3221/sitepages/Nav-Architecture.aspx) for details of these.
 
 ## Contributing to this project
 
