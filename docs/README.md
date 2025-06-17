@@ -91,6 +91,22 @@ These guides provide additional support for meeting and working with the standar
 - [Using devices with privileged access](./guides/privileged_devices.md)
 - [Version control guidance](./guides/version_control_guidance.md)
 
+## Other standards
+
+These standards do not exist in isolation and all development work should be mindful of  other Defra standards.
+
+### Tooling and technology choices
+
+We try to keep our standards agnostic of specific tools wherever possible, although we might mandate some tools, frameworks and libraries where this consistency provides benefit to the organisation.
+
+We will often reference specific tools and technologies in our guides.
+
+For information on Defra's tooling and technology choices beyond what is covered in these standards, see the [Defra Tools Radar on Jira](https://eaflood.atlassian.net/jira/software/projects/TR/boards/630).
+
+### Architectural standards
+
+All development in Defra is done in accordance with our enterprise architecture principles, policies and standards - see our [internal Architecture SharePoint site](https://defra.sharepoint.com/teams/Team3221/sitepages/Nav-Architecture.aspx) for details of these.
+
 ## Contributing to this project
 
 We encourage everyone to contribute to these standards!
