@@ -1,6 +1,6 @@
 # Training
 
-To support career development of software developers, a list of training courses aligned to Defra's software development standards and tools are available.
+To support career development of software developers, a list of training courses aligned to Defra's software development standards and tools is available.
 
 These courses are available on [Pluralsight](https://app.pluralsight.com/) and can be accessed by all Defra staff. 
 
