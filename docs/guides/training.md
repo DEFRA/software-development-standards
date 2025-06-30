@@ -17,3 +17,5 @@ The courses are grouped into the following categories:
 - [Cloud](https://app.pluralsight.com/channels/details/752a25e0-eec4-431e-9b8e-338577006333)
 
 These courses are not intended to be an exhaustive list, but rather a starting point for developers looking to improve their skills and knowledge in these areas.
+
+> NOTE: Zscaler may partially block access to Pluralsight.  Ensure that you are signed in to Pluralsight before accessing the links above.
