@@ -36,6 +36,7 @@ These are the standards that must be followed for all software development under
 - [Logging standards](./standards/logging_standards.md)
 - [Mobile application standards](./standards/mobile_app_standards.md)
 - [Node.js standards](./standards/node_standards.md)
+- [Python coding standards](./standards/python_coding_standards.md)
 - [UiPath standards](./standards/uipath_standards.md)
 - [Quality assurance and test standards](./standards/quality_assurance_standards.md)
 - [Security standards](./standards/security_standards.md)
