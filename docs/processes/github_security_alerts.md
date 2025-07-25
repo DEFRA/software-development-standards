@@ -1,4 +1,4 @@
-# Bypassing GitHub security controls
+# Resolving GitHub security alerts
 
 We have controls on our [Defra GitHub organisation](https://github.com/defra) that require approval to:
 - bypass GitHub push protection
@@ -20,9 +20,9 @@ You should provide:
 - a link to the bypass request
 - a brief explanation of why the protection should be bypassed
 
-## Security alerts
+## Code security alerts
 
-In addition to secret scanning, GitHub can raise other security alerts on your repo, which can be seen under the **Security** tab.
+In addition to secret scanning, GitHub can raise other security alerts on your code, which can be seen under the **Security** tab in your repository.
 
 We expect repository owners to be regularly reviewing these alerts and actioning them - either fixing the issue or dismissing it with a reason.
 
