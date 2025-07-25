@@ -68,6 +68,7 @@ These guides provide additional support for meeting and working with the standar
 
 ### Processes
 
+- [Bypassing GitHub security controls](./processes/github_security_bypass.md)
 - [Credential exposure](./processes/credential_exposure.md)
 - [GitHub access](./processes/github_access.md)
 - [Pull requests](./processes/pull_requests.md)
