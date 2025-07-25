@@ -38,6 +38,7 @@ You should contact the organisation owners to create a new repository. They'll n
 - Whether the repository is to be private or public - and if it is private the [justification](https://www.gov.uk/government/publications/open-source-guidance/when-code-should-be-open-or-closed) for this
 - The GitHub username of the person that will be its administrator
 - (Optional) A description - having a short description helps other people quickly identify what is in your repository
+- (Optional) The language you will be coding with - this allows us to pre-populate your repository with a suitable `.gitignore` file, which can help prevent accidentally committing sensitive information
 
 **Do not create repositories under your own user account!** Though repositories can be transferred at a later date, it is easier for everyone if they originate within our organisations.
 
