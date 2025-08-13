@@ -71,6 +71,7 @@ These guides provide additional support for meeting and working with the standar
 - [Credential exposure](./processes/credential_exposure.md)
 - [GitHub access](./processes/github_access.md)
 - [Pull requests](./processes/pull_requests.md)
+- [Resolving GitHub security alerts](./processes/github_security_alerts.md)
 
 ### Guides
 
