@@ -1,6 +1,7 @@
 # Resolving GitHub security alerts
 
 We have controls on our [Defra GitHub organisation](https://github.com/defra) that require approval to:
+
 - bypass GitHub push protection
 - dismiss GitHub security alerts
 
@@ -17,6 +18,7 @@ Secret scanning is pretty good at avoiding false-positives, but occasionally thi
 When you do this, it will create a request that requires approval - **you will need to post a message in the #github-support channel on the defra-digital Slack to have your request actioned**
 
 You should provide:
+
 - a link to the bypass request
 - a brief explanation of why the protection should be bypassed
 
@@ -29,6 +31,7 @@ We expect repository owners to be regularly reviewing these alerts and actioning
 When you dismiss an alert, it will create a request that requires approval - **you will need to post a message in the #github-support channel on the defra-digital Slack to have your request actioned**
 
 You should provide:
+
 - a link to the alert dismissal request
 - a brief explanation of why the alert can be dismissed
 
