@@ -1,22 +1,18 @@
 # Managing Application Credentials
 
-Credentials should never be stored in your application code. Depending on how your application is deployed and what is supported by the deployment environment, credentials should either be:
+Credentials should never be stored in your application code. Credentials should either be:
 
-* Read from the environment via environment variables (see 12 factor)
-* Pulled directly from cloud secret stores (AWS Secrets Manager or Azure Key Vault) using appropriate Azure and AWS SDKs
+* Delivered to the environment where you application is hosted and read into environment variables (see The Twelve-Factor App [guidance on config](https://12factor.net/config))
+* Pulled directly from cloud secret stores (AWS Secrets Manager or Azure Key Vault) within your application at start-up using appropriate Azure and AWS SDKs
 
-Note: you should continue to use environment variables for configuration that affects application behaviour, such as feature toggles. Pulling values from cloud secret stores should be limited to credentials.
+You should continue to use environment variables for configuration that affects application behaviour, such as feature toggles. Pulling values from cloud secret stores should be limited to credentials.
 
 ## Changes to credentials
 
 From time to time the credentials you application relies on may expire, requiring your application to obtain updated credentials.
 
-Some SDKs provide tools to automatically refresh credentials (https://learn.microsoft.com/en-us/azure/azure-app-configuration/reload-key-vault-secrets-dotnet)
+Where provided by your cloud SDK, you should take advantage of automatically refreshing credentials (see [for example](https://learn.microsoft.com/en-us/azure/azure-app-configuration/reload-key-vault-secrets-dotnet)) to ensure no interruptions to application up-time.
 
-But in most cases credentials are read on application start-up, either via environment variables or pulled directly from secret stores.
+In most cases, however, you will need to restart the application to re-read updated environment variables or values within the cloud secret store. To ensure timely refreshing of credentials and reduce the risk of unnecessary downtime you should:
 
-The simplest method therefore is to restart you application when credentials have been updated either in the environment setup of you application or in the cloud secret store.
-
-To reduce the risk that of expired credentials render you application kaput, you should:
-
-**Work with Change Management to create a Standard Change for your application that allows you to restart the application with no code changes for the purpose of reloading updated credentials**
+> Work with Change Management to create a Standard Change for your application. This Standard Change should simply allow you to restart the application with no code changes, and be used solely for the purpose of reloading updated credentials and restarting a crashed application.
