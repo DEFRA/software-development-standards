@@ -82,6 +82,7 @@ These guides provide additional support for meeting and working with the standar
 - [Docker guidance](./guides/docker_guidance.md)
 - [Java auto-format with Eclipse](./guides/java_auto_format_eclipse.md)
 - [Kubernetes](./guides/kubernetes.md)
+- [Managing Application Credentials](./guides/application_credentials.md)
 - [Mobile application guidance](./guides/mobile_app_guidance.md)
 - [New starters](./guides/new_starters.md)
 - [Opening existing private code](./guides/opening_private_code.md)
