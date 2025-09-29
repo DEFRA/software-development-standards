@@ -6,7 +6,7 @@ This guide provides some best practice to help you manage credentials safely and
 
 ## Accessing credentials from your application
 
-Credentials should be stored in cloud secret stores such as AWS Secrets Manager or Azure Key Vault.
+Credentials should be stored in cloud secret stores such as AWS Secrets Manager or Azure Key Vault. The Core Delivery Platform provide their own [mechanism for storing secrets](https://portal.cdp-int.defra.cloud/documentation/how-to/secrets.md).
 
 Your application should read credentials in one of the following two ways:
 
@@ -41,4 +41,4 @@ For example [how to do this for .NET applications in Azure](https://learn.micros
 In most cases, however, you will need to restart your application to re-read updated environment variables or values within the cloud secret store.
 To ensure timely refreshing of credentials and reduce the risk of unnecessary downtime you should:
 
-- Work with Change Management to create a Standard Change for your application. This Standard Change should simply allow you to restart the application with no code changes, and be used solely for the purposes of reloading updated credentials and restarting a crashed application.
+> Work with Change Management to create a Standard Change for your application. This Standard Change should as a minimum allow you to redeploy the application with no code changes, and can be used to update credentials and restart a crashed application.
