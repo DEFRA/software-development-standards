@@ -32,9 +32,9 @@ If the commit was on a branch the fix involves amending or removing the commit. 
 
 You will then follow this with a `git push -f`.
 
-### On master
+### On main
 
-If it was the last commit on master, you can get away a `git commit --amend` and a `git push -f` if you have the rights.
+If it was the last commit on main, you can get away a `git commit --amend` and a `git push -f` if you have the rights.
 
 Else you will need to follow a much more involved strategy. GitHub provide a [guide](https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository). If you are unsure contact the development community or speak to our principal developers.
 

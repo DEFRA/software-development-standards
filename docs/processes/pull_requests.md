@@ -11,7 +11,7 @@ We also want to respect the time and effort of those reviewing the work. Keeping
 
 ## Always on a branch
 
-No matter how small the change, all changes should be done on a branch and never directly to `master`. This is to support the principle of [Master is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/principles/coding_principles.md#master-is-always-shippable)
+No matter how small the change, all changes should be done on a branch and never directly to `main`. This is to support the principle of [Main is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/docs/principles/coding_principles.md#main-is-always-shippable)
 
 Clone the repo then create your new branch. For example `git checkout -b add-ea-admin-area-lookup`.
 
@@ -74,10 +74,10 @@ Now get on and code. You should commit frequently and push often. Don't worry to
 
 ## Keep up to date
 
-It's on you to keep your branch up to date with with your main development branch e.g. *master*. Using `rebase` rather than `merge` will mean no merge messages appearing in your PR's commit history, but its not required. To `rebase` on *master* use
+It's on you to keep your branch up to date with with your main development branch e.g. *main*. Using `rebase` rather than `merge` will mean no merge messages appearing in your PR's commit history, but its not required. To `rebase` on *main* use
 
 ```bash
-git rebase origin/master
+git rebase origin/main
 ```
 
 ## Get it looked at

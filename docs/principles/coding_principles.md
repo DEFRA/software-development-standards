@@ -9,7 +9,7 @@ These are common principles that apply to coding.
 
 ## Principles
 
-### Master is always shippable
+### Main is always shippable
 
 > The main branch(s) of a project is always in a state of 'shippable to production'
 

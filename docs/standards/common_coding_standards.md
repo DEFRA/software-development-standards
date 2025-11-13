@@ -16,7 +16,7 @@ Whilst we acknowledge that there are cases where it may be necessary for code to
 
 ### All coding is done on a branch
 
-No code changes are made directly to the master branch.
+No code changes are made directly to the main branch.
 
 This reflects the 'golden' state of the branch and mirrors the general standard that changes are never made directly to production services.
 

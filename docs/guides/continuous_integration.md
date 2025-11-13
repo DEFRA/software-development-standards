@@ -18,9 +18,9 @@ Many services can integrate with GitHub and automatically respond to new commits
 
 [GitHub Actions](https://github.com/features/actions/) is free to use for open source GitHub repositories.
 
-You can configure your repository to always require certain checks when merging to protected branches (like `master`). If a required check fails, it will block merging until the problem is fixed.
+You can configure your repository to always require certain checks when merging to protected branches (like `main`). If a required check fails, it will block merging until the problem is fixed.
 
-We recommend making the build a required check. This should prevent anyone from merging breaking changes into the master branch.
+We recommend making the build a required check. This should prevent anyone from merging breaking changes into the main branch.
 
 There are lots of other tools which can integrate with GitHub, especially if your repository is open source.
 
