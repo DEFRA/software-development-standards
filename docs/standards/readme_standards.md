@@ -11,6 +11,7 @@ The README should include the following (if they apply):
   - test tools
 - **How to run in development** – how to locally run the application in development mode after setup
 - **How to run tests** – how to run the test suite, broken into different categories if relevant (unit, integration, acceptance)
+- **Branching policy** – the branching policy used by the project
 - **Contributing to the project** - what to know before you submit your first pull request (this could also be in the form of a `CONTRIBUTING.md` file)
 - **Licence information** – what licence the repo uses (in addition to your `LICENSE` file)
 
@@ -54,6 +55,8 @@ This application handles the backend dinosaur processing.
 ## Running in development
 
 ## Running tests
+
+## Branching policy
 
 ## Contributing to this project
 
