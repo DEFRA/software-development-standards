@@ -42,6 +42,17 @@ You should contact the organisation owners to create a new repository. They'll n
 
 **Do not create repositories under your own user account!** Though repositories can be transferred at a later date, it is easier for everyone if they originate within our organisations.
 
+## Analysing a repository with SonarQube Cloud
+
+If your repository is in the Defra GitHub organisation, we have a SonarQube Cloud organisation that can be used to perform static analysis on your code.
+
+You should put this in place, to ensure that you comply with [our standard for code quality checks](../standards/common_coding_standards.md/#all-code-is-checked-for-quality).
+
+To request this, you can contact the organisation owners:
+
+- use the #sonar-support channel on the Defra Digital Slack workspace
+
+
 ## Administering a repository
 
 If you are the administrator for a repository it's your responsibility to ensure the repo has been set up and maintained in accordance with the standards of the organisation.
@@ -52,7 +63,17 @@ However you choose to manage it, you must always ensure that your repository's *
 
 If you will no longer be the administrator for a repository, you will need to identify a replacement and make them the administrator.
 
+## Archiving repositories
+
+When a repository that you administer is no longer being maintained, you should request that it be archived. This can be done by contacting the relevant organisation owners.
+
+We typically archive repositories rather than deleting them, as the code they contain may still be of value.
+
 Repositories without an administrator will be archived by the organisation owners.
+
+Repositories that have been inactive for 24 months or more will be archived by the organisation owners.
+
+If an archived repository has an associated SonarQube Cloud project then that will be deleted by the organisation owners. Projects will also be deleted if they haven't been analysed for 24 months or more.
 
 ## Access removal
 
