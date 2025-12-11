@@ -11,7 +11,7 @@ We also want to respect the time and effort of those reviewing the work. Keeping
 
 ## Always on a branch
 
-No matter how small the change, all changes should be done on a branch and never directly to `main`. This is to support the principle of [Main is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/docs/principles/coding_principles.md#main-is-always-shippable)
+No matter how small the change, all changes should be done on a branch and never directly to `main`. This is to support the principle of [main is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/docs/principles/coding_principles.md#main-is-always-shippable)
 
 Clone the repo then create your new branch. For example `git checkout -b add-ea-admin-area-lookup`.
 
