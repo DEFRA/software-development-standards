@@ -71,11 +71,37 @@ application performance in most Web-facing scenarios.
 This can be seen across government as well, in particular the GDS front end community tend to publish their products
 so that they can be easily used in Ruby and Node.js, in particular.
  
-## We use JavaScript as our Node.js development language
-We do not use TypeScript (or any other extensions to the JavaScript language). 
+## We use JavaScript as our primary Node.js development language
+Teams should always look to use vanilla JavaScript in the first instance.
 
-For the types of digital services we build, TypeScript is unneccessary as any benefits don't outweigh the overhead. 
-Use vanilla JavaScript.
+For scenarios where JavaScript alone has evidence of not being sufficient for the use case, then [JSDoc](https://jsdoc.app/) should be used to provide type annotations.
+
+Only if there is still evidence of insufficiency should [TypeScript](https://www.typescriptlang.org/) be considered.
+
+### When to use JSDoc
+
+- Function parameters or return values are non-trivial types
+- There is repeated ambiguity
+- Developers frequently struggle to understand how to use a function or class
+- Refactoring often causes avoidable runtime errors
+- IDE auto-completion is frequently unhelpful or misleading
+
+JSDoc should be used selectively as overuse can lead to the opposite effect, making code harder to read and maintain.
+
+### When to use TypeScript
+
+- Complex, deeply nested domain models that change frequently
+- Heavy use of generics or polymorphic behaviour that cannot be easily expressed in JSDoc
+- Persistent runtime errors caused by type-related issues
+- Significant refactoring risk
+- Multiple teams working on the same codebase
+- Shared libraries where consumers are in different codebases
+
+TypeScript is a restricted technology as for the majority of digital services developed in Defra, any benefits don't outweigh the overhead.
+
+Use of TypeScript must be approved at the appropriate governance level.  Please speak to a Principal Developer for more information.
+
+> TypeScript is a new addition to this standard and it's usage has been long debated and there remain strong views for and against within the community.  By allowing TypeScript in restricted scenarios we do not expect teams to start using it by default, nor do we support teams assessing existing JavaScript code as "technical debt", pushing the cost of unnecessary TypeScript migration to Defra.
 
 ## We use the Hapi framework to develop in Node.js
 Hapi is already in use in Defra digital services and has provided a productive level of standardisation across
@@ -107,3 +133,7 @@ It is also the language that is best supported in open source .NET managed frame
 ## We use .NET Core wherever practical in preference to .NET Framework
 .NET Core is Microsoft's strategic direction for .NET and gives all the benefits of being open source and cross platform,
 including growing community support.
+
+## Significant changes
+
+- TypeScript usage guidance added December 2025
