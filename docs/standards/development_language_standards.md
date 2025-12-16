@@ -82,7 +82,6 @@ For rarer scenarios where JavaScript alone has evidence of not being sufficient 
 Only if there is still evidence of insufficiency should [TypeScript](https://www.typescriptlang.org/) be considered.
 
 ### When to use JSDoc
-
 - Function parameters or return values are non-trivial types
 - There is repeated ambiguity
 - Developers frequently struggle to understand how to use a function or class
@@ -92,7 +91,6 @@ Only if there is still evidence of insufficiency should [TypeScript](https://www
 JSDoc should be used selectively as overuse can lead to the opposite effect, making code harder to read and maintain.
 
 ### When to use TypeScript
-
 - Complex, deeply nested domain models that change frequently
 - Heavy use of generics or polymorphic behaviour that cannot be easily expressed in JSDoc
 - Persistent runtime errors caused by type-related issues
