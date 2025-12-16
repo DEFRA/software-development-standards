@@ -74,7 +74,10 @@ so that they can be easily used in Ruby and Node.js, in particular.
 ## We use JavaScript as our primary Node.js development language
 Teams should always look to use vanilla JavaScript in the first instance.
 
-For scenarios where JavaScript alone has evidence of not being sufficient for the use case, then [JSDoc](https://jsdoc.app/) should be used to provide type annotations.
+A Typical Defra digital service is a simple transactional application that does not require complex type
+structures.
+
+For rarer scenarios where JavaScript alone has evidence of not being sufficient for the use case, then [JSDoc](https://jsdoc.app/) should be used to provide type annotations.
 
 Only if there is still evidence of insufficiency should [TypeScript](https://www.typescriptlang.org/) be considered.
 
@@ -98,6 +101,14 @@ JSDoc should be used selectively as overuse can lead to the opposite effect, mak
 - Shared libraries where consumers are in different codebases
 
 TypeScript is a restricted technology as for the majority of digital services developed in Defra, any benefits don't outweigh the overhead.
+
+Teams adopting TypeScript are accepting the cost of doing so such as:
+
+- Increased build complexity and time
+- Additional developer training and onboarding time
+- Potentially reduced agility due to the static type system
+- More configuration and dependency management
+- Potentially avoidable risk to delivery timelines
 
 Use of TypeScript must be approved at the appropriate governance level.  Please speak to a Principal Developer for more information.
 
