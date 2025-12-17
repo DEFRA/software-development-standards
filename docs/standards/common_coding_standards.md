@@ -115,4 +115,4 @@ Amended to add standard on code licencing in April 2025.
 
 ## Significant changes
 
-SonarCloud (now know as SonarQube Cloud) was adopted as our standard quality analysis tool on 1 April 2020.
+SonarCloud (now known as SonarQube Cloud) was adopted as our standard quality analysis tool on 1 April 2020.
