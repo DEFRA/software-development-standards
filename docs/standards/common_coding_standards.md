@@ -87,7 +87,7 @@ The path to reuse starts with module/namespacing. When the need for reuse is con
 
 All repos are connected to a quality analysis tool and the tool's maximum quality rating is maintained.
 
-All repos on GitHub and Azure Repos are connected to our SonarCloud organisation and the Defra standard quality gate is met.
+All repos on GitHub and Azure Repos are connected to our SonarQube Cloud organisation and the Defra standard quality gate is met.
 
 ### All code is checked for security
 
@@ -115,4 +115,4 @@ Amended to add standard on code licencing in April 2025.
 
 ## Significant changes
 
-SonarCloud was adopted as our standard quality analysis tool on 1 April 2020.
+SonarCloud (now known as SonarQube Cloud) was adopted as our standard quality analysis tool on 1 April 2020.

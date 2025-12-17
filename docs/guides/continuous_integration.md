@@ -35,15 +35,15 @@ These tools are free to use for open source GitHub repositories.
 
 ### Maintainability and test coverage
 
-Defra has a [SonarCloud](https://www.sonarsource.com/products/sonarcloud/) organisation, which should be used to perform static quality analysis checks on your code.
+Defra has a [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/) organisation, which should be used to perform static quality analysis checks on your code.
 It provides a rating for the security, reliability and maintainability of your code and estimates the time it would take to deal with any technical debt.
 
-You should include SonarCloud in your CI so that it flags problems it spots in your code, like duplication or complexity.
+You should include SonarQube Cloud in your CI so that it flags problems it spots in your code, like duplication or complexity.
 
-You can also configure your build tool (like GitHub Actions) to report unit test coverage to SonarCloud.
-SonarCloud will then include your test coverage in its assessment of your code.
+You can also configure your build tool (like GitHub Actions) to report unit test coverage to SonarQube Cloud.
+It will then include your test coverage in its assessment of your code.
 
-SonarCloud is free to use for open source GitHub repositories.
+SonarQube Cloud is free to use for open source GitHub repositories.
 
 ## CI with Jenkins
 
