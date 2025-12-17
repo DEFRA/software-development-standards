@@ -18,7 +18,7 @@ You're not required to set a profile picture, but changing it from the default G
 All projects at Defra must be created under one of the organisations within the Defra GitHub enterprise:
 
 - [Defra](https://github.com/DEFRA) for development of digital services
-- [Defra Data Science Centre of Excellence](https://github.com/-Defra-Data-Science-Centre-of-Excellence) for data science
+- [Defra Data Science Centre of Excellence](https://github.com/Defra-Data-Science-Centre-of-Excellence) for data science
 - [Defra design team](https://github.com/defra-design) for prototype designs
 - [aphascience](https://github.com/aphascience) for scientific projects at APHA
 
