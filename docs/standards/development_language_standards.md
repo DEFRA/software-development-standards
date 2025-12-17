@@ -79,6 +79,8 @@ structures.
 
 For rarer scenarios where JavaScript alone has evidence of not being sufficient for the use case, then [JSDoc](https://jsdoc.app/) should be used to provide type annotations.
 
+Teams should use [type annotations supported by TypeScript](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html).
+
 Only if there is still evidence of insufficiency should [TypeScript](https://www.typescriptlang.org/) be considered.
 
 ### When to use JSDoc
@@ -91,6 +93,7 @@ Only if there is still evidence of insufficiency should [TypeScript](https://www
 JSDoc should be used selectively as overuse can lead to the opposite effect, making code harder to read and maintain.
 
 ### When to use TypeScript
+- When the above JSDoc criteria have been met _and_ one or more of the following apply
 - Complex, deeply nested domain models that change frequently
 - Heavy use of generics or polymorphic behaviour that cannot be easily expressed in JSDoc
 - Persistent runtime errors caused by type-related issues
@@ -110,7 +113,7 @@ Teams adopting TypeScript are accepting the cost of doing so such as:
 
 Use of TypeScript must be approved at the appropriate governance level.  Please speak to a Principal Developer for more information.
 
-> TypeScript is a new addition to this standard and it's usage has been long debated and there remain strong views for and against within the community.  By allowing TypeScript in restricted scenarios we do not expect teams to start using it by default, nor do we support teams assessing existing JavaScript code as "technical debt", pushing the cost of unnecessary TypeScript migration to Defra.
+> TypeScript is a new addition to this standard and its usage has been long debated and there remain strong views for and against within the community.  By allowing TypeScript in restricted scenarios we do not expect teams to start using it by default, nor do we support teams assessing existing JavaScript code as "technical debt", pushing the cost of unnecessary TypeScript migration to Defra.
 
 ## We use the Hapi framework to develop in Node.js
 Hapi is already in use in Defra digital services and has provided a productive level of standardisation across
