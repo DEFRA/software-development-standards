@@ -52,6 +52,7 @@ To request this, you can contact the organisation owners:
 
 - use the #sonar-support channel on the Defra Digital Slack workspace
 
+You will need to [sign in to SonarQube Cloud](https://sonarcloud.io/login) with your GitHub account before you can be added to the Defra SonarQube Cloud organisation.
 
 ## Administering a repository
 
