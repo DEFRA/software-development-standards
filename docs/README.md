@@ -90,6 +90,7 @@ These guides provide additional support for meeting and working with the standar
 - [PL/SQL auto-format with TOAD](./guides/plsql_auto_format_toad.md)
 - [SQL Prompt](./guides/version_control_guidance.md)
 - [Style guide for standards](./guides/style_guide_for_standards.md)
+- [Training](./guides/training.md)
 - [Using AWS session manager](./guides/aws_session_manager.md)
 - [Using devices with privileged access](./guides/privileged_devices.md)
 - [Version control guidance](./guides/version_control_guidance.md)
