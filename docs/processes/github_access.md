@@ -18,7 +18,7 @@ You're not required to set a profile picture, but changing it from the default G
 All projects at Defra must be created under one of the organisations within the Defra GitHub enterprise:
 
 - [Defra](https://github.com/DEFRA) for development of digital services
-- [Defra Data Science Centre of Excellence](https://github.com/-Defra-Data-Science-Centre-of-Excellence) for data science
+- [Defra Data Science Centre of Excellence](https://github.com/Defra-Data-Science-Centre-of-Excellence) for data science
 - [Defra design team](https://github.com/defra-design) for prototype designs
 - [aphascience](https://github.com/aphascience) for scientific projects at APHA
 
@@ -38,8 +38,21 @@ You should contact the organisation owners to create a new repository. They'll n
 - Whether the repository is to be private or public - and if it is private the [justification](https://www.gov.uk/government/publications/open-source-guidance/when-code-should-be-open-or-closed) for this
 - The GitHub username of the person that will be its administrator
 - (Optional) A description - having a short description helps other people quickly identify what is in your repository
+- (Optional) The language you will be coding with - this allows us to pre-populate your repository with a suitable `.gitignore` file, which can help prevent accidentally committing sensitive information
 
 **Do not create repositories under your own user account!** Though repositories can be transferred at a later date, it is easier for everyone if they originate within our organisations.
+
+## Analysing a repository with SonarQube Cloud
+
+If your repository is in the Defra GitHub organisation, we have a SonarQube Cloud organisation that can be used to perform static analysis on your code.
+
+You should put this in place, to ensure that you comply with [our standard for code quality checks](../standards/common_coding_standards.md/#all-code-is-checked-for-quality).
+
+To request this, you can contact the organisation owners:
+
+- use the #sonar-support channel on the Defra Digital Slack workspace
+
+You will need to [sign in to SonarQube Cloud](https://sonarcloud.io/login) with your GitHub account before you can be added to the Defra SonarQube Cloud organisation.
 
 ## Administering a repository
 
@@ -51,7 +64,17 @@ However you choose to manage it, you must always ensure that your repository's *
 
 If you will no longer be the administrator for a repository, you will need to identify a replacement and make them the administrator.
 
+## Archiving repositories
+
+When a repository that you administer is no longer being maintained, you should request that it be archived. This can be done by contacting the relevant organisation owners.
+
+We typically archive repositories rather than deleting them, as the code they contain may still be of value.
+
 Repositories without an administrator will be archived by the organisation owners.
+
+Repositories that have been inactive for 24 months or more will be archived by the organisation owners.
+
+If an archived repository has an associated SonarQube Cloud project then that will be deleted by the organisation owners. Projects will also be deleted if they haven't been analysed for 24 months or more.
 
 ## Access removal
 

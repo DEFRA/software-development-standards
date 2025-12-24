@@ -1,6 +1,6 @@
 ## JavaScript standards
 
-Use vanilla JavaScript, don't use extensions to the language such as TypeScript
+Use vanilla JavaScript in the first instance, don't use extensions to the language such as TypeScript without an approved exception.
 
 ### Use [neostandard](https://github.com/neostandard/neostandard) to lint your code
 

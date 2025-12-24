@@ -36,6 +36,7 @@ These are the standards that must be followed for all software development under
 - [Logging standards](./standards/logging_standards.md)
 - [Mobile application standards](./standards/mobile_app_standards.md)
 - [Node.js standards](./standards/node_standards.md)
+- [Python coding standards](./standards/python_coding_standards.md)
 - [UiPath standards](./standards/uipath_standards.md)
 - [Quality assurance and test standards](./standards/quality_assurance_standards.md)
 - [Security standards](./standards/security_standards.md)
@@ -70,6 +71,7 @@ These guides provide additional support for meeting and working with the standar
 - [Credential exposure](./processes/credential_exposure.md)
 - [GitHub access](./processes/github_access.md)
 - [Pull requests](./processes/pull_requests.md)
+- [Resolving GitHub security alerts](./processes/github_security_alerts.md)
 
 ### Guides
 
@@ -81,6 +83,7 @@ These guides provide additional support for meeting and working with the standar
 - [Docker guidance](./guides/docker_guidance.md)
 - [Java auto-format with Eclipse](./guides/java_auto_format_eclipse.md)
 - [Kubernetes](./guides/kubernetes.md)
+- [Managing Application Credentials](./guides/application_credentials.md)
 - [Mobile application guidance](./guides/mobile_app_guidance.md)
 - [New starters](./guides/new_starters.md)
 - [Opening existing private code](./guides/opening_private_code.md)
