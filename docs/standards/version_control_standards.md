@@ -17,7 +17,7 @@ The primary repository is in the Defra GitHub organisation.
 
 Azure DevOps Git or hosted GitLab may be used to provide mirrors of GitHub repositories.
 
-### Every repository has a protected master branch with required status checks and approving reviews
+### Every repository has a protected main branch with required status checks and approving reviews
 
 This ensures that no change can be directly applied to production without appropriate test and review.
 
