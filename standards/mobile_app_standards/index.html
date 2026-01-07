@@ -1,0 +1,2892 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://defra.github.io/software-development-standards/standards/mobile_app_standards/">
+      
+      
+        <link rel="prev" href="../logging_standards/">
+      
+      
+        <link rel="next" href="../net_standards/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/code-black.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Mobile application standards - Defra Software Development Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Arial";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mobile-application-standards" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Defra Software Development Standards" class="md-header__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
+      
+  <img src="../../img/code-white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Defra Software Development Standards
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mobile application standards
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Defra Software Development Standards" class="md-nav__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
+      
+  <img src="../../img/code-white.png" alt="logo">
+
+    </a>
+    Defra Software Development Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/application_credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Application Credentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/aws_session_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/choosing_packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing packages and dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/continuous_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuous integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/developer_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/docker_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/java_auto_format_eclipse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Auto-format with Eclipse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/mobile_app_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile application guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/mono_or_multi_repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mono repo and a multi repo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/new_starters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide for new Defra developers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/opening_private_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opening existing private code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/plsql_auto_format_toad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PL/SQL Auto-format with TOAD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/privileged_devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Devices with Privileged Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/sql_prompt_tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Prompt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/style_guide_for_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style guide for software development standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/version_control_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Principles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/coding_principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/security_principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/credential_exposure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential exposure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_security_alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolving GitHub security alerts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/pull_requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pull requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../container_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Container standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csharp_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C# Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development_language_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development languages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Coding Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Javascript standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile application standards
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile application standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caveats
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-mobile-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a mobile app?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is a mobile app?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assume-we-are-providing-an-offline-mobile-app-unless-we-have-clear-agreement-that-the-app-will-only-work-online" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assume we are providing an offline mobile app unless we have clear agreement that the app will only work online
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-only-an-online-mobile-app-is-needed-its-functionality-should-still-degrade-gracefully-when-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If only an online mobile app is needed its functionality should still degrade gracefully when offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-mobile-platforms-must-be-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which mobile platforms must be supported
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Which mobile platforms must be supported">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mobile-applications-for-use-within-the-defra-family-must-run-on-the-apple-platform-apps-intended-for-public-use-must-run-on-at-least-apple-and-android-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mobile applications for use within the Defra family must run on the Apple platform; apps intended for public use must run on at least Apple and Android devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-starting-development-you-must-have-the-knowledge-kit-privileges-and-app-distribution-arrangements-in-place-to-be-able-to-remotely-debug-the-app-on-suitable-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before starting development you must have the knowledge, kit, privileges and app distribution arrangements in place to be able to remotely debug the app on suitable devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-app-must-log-errors-and-it-must-be-possible-for-the-user-to-make-that-information-available-to-us-for-support-purposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The app must log errors and it must be possible for the user to make that information available to us for support purposes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extra-security-considerations-for-mobile-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extra security considerations for mobile apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extra security considerations for mobile apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assess-and-address-the-security-challenges-to-your-app-before-finally-agreeing-app-scope-or-minimal-viable-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assess and address the security challenges to your app before finally agreeing app scope or minimal viable product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-traffic-to-and-from-the-app-must-be-encrypted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All traffic to and from the app must be encrypted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-the-app-needs-to-access-defra-family-systems-that-are-non-public-developers-andor-application-architects-must-design-the-security-profile-for-the-app-in-consultation-with-the-cloud-mobile-services-team-in-group-infrastructure-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If the app needs to access Defra family systems that are non-public, developers and/or application architects must design the security profile for the app in consultation with the Cloud Mobile Services team in Group Infrastructure and Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#also-consider-the-guidance-before-designing-the-apps-security-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Also consider the guidance before designing the app's security profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-type-of-mobile-technology-to-adopt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which type of mobile technology to adopt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Which type of mobile technology to adopt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decide-which-type-of-mobile-technology-to-adopt-by-working-through-the-options-below-in-the-stated-order-of-preference-stopping-as-early-as-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decide which type of mobile technology to adopt by working through the options below in the stated order of preference, stopping as early as possible
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decide which type of mobile technology to adopt by working through the options below in the stated order of preference, stopping as early as possible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-0-pick-something-off-the-shelf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 0: Pick something "off-the-shelf"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-1-develop-a-microsoft-power-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Develop a Microsoft Power App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-develop-a-progressive-web-app-pwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Develop a Progressive Web App (PWA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-build-a-cross-platform-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 3: Build a cross-platform app
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-build-hybrid-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don't build hybrid apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-build-native-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don't build native apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extra-considerations-for-testing-mobile-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extra considerations for testing mobile apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extra considerations for testing mobile apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mobile-apps-must-be-tested-on-a-representative-range-of-platforms-and-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mobile apps must be tested on a representative range of platforms and devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clearly-state-the-specific-operating-system-versions-and-device-types-on-which-the-app-will-be-officially-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearly state the specific operating system versions and device types on which the app will be "officially supported"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-apps-running-on-defra-managed-devices-test-the-app-on-the-currently-latest-defra-adopted-version-of-iosipad-os-and-the-currently-latest-public-version-of-iosipad-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For apps running on Defra managed devices, test the app on the currently latest Defra adopted version of iOS/iPad OS and the currently latest public version of iOS/iPad OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-public-apps-on-the-appropriate-versions-of-iosipad-os-and-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test public apps on the appropriate versions of iOS/iPad OS and Android
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-beta-programmes-to-test-apps-on-emerging-versions-of-iosipad-os-or-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use beta programmes to test apps on emerging versions of iOS/iPad OS or Android
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributing-and-managing-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributing and managing apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributing and managing apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-the-mechanisms-to-distribute-the-app-and-app-updates-to-end-user-devices-before-development-starts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose the mechanisms to distribute the app and app updates to end user devices before development starts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-apps-that-can-be-managed-by-an-internal-mobile-device-management-solution-must-be-so-managed-at-least-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal apps that can be managed by an internal mobile device management solution must be so managed (at least in production)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-standards-are-mandated-for-the-distribution-of-external-apps-but-there-are-technical-and-licensing-restrictions-to-be-aware-of-on-the-apple-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No standards are mandated for the distribution of external apps, but there are technical and licensing restrictions to be aware of on the Apple platform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plsql_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PL/SQL Coding Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quality_assurance_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality assurance and test standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readme_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    README standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ruby_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ruby coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tsql_and_sqldb_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSQL and SQL Server database standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uipath_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Uipath Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version_control_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caveats
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-mobile-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a mobile app?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is a mobile app?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assume-we-are-providing-an-offline-mobile-app-unless-we-have-clear-agreement-that-the-app-will-only-work-online" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assume we are providing an offline mobile app unless we have clear agreement that the app will only work online
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-only-an-online-mobile-app-is-needed-its-functionality-should-still-degrade-gracefully-when-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If only an online mobile app is needed its functionality should still degrade gracefully when offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-mobile-platforms-must-be-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which mobile platforms must be supported
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Which mobile platforms must be supported">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mobile-applications-for-use-within-the-defra-family-must-run-on-the-apple-platform-apps-intended-for-public-use-must-run-on-at-least-apple-and-android-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mobile applications for use within the Defra family must run on the Apple platform; apps intended for public use must run on at least Apple and Android devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-starting-development-you-must-have-the-knowledge-kit-privileges-and-app-distribution-arrangements-in-place-to-be-able-to-remotely-debug-the-app-on-suitable-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before starting development you must have the knowledge, kit, privileges and app distribution arrangements in place to be able to remotely debug the app on suitable devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-app-must-log-errors-and-it-must-be-possible-for-the-user-to-make-that-information-available-to-us-for-support-purposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The app must log errors and it must be possible for the user to make that information available to us for support purposes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extra-security-considerations-for-mobile-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extra security considerations for mobile apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extra security considerations for mobile apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assess-and-address-the-security-challenges-to-your-app-before-finally-agreeing-app-scope-or-minimal-viable-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assess and address the security challenges to your app before finally agreeing app scope or minimal viable product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-traffic-to-and-from-the-app-must-be-encrypted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All traffic to and from the app must be encrypted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-the-app-needs-to-access-defra-family-systems-that-are-non-public-developers-andor-application-architects-must-design-the-security-profile-for-the-app-in-consultation-with-the-cloud-mobile-services-team-in-group-infrastructure-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If the app needs to access Defra family systems that are non-public, developers and/or application architects must design the security profile for the app in consultation with the Cloud Mobile Services team in Group Infrastructure and Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#also-consider-the-guidance-before-designing-the-apps-security-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Also consider the guidance before designing the app's security profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-type-of-mobile-technology-to-adopt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which type of mobile technology to adopt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Which type of mobile technology to adopt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decide-which-type-of-mobile-technology-to-adopt-by-working-through-the-options-below-in-the-stated-order-of-preference-stopping-as-early-as-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decide which type of mobile technology to adopt by working through the options below in the stated order of preference, stopping as early as possible
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decide which type of mobile technology to adopt by working through the options below in the stated order of preference, stopping as early as possible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-0-pick-something-off-the-shelf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 0: Pick something "off-the-shelf"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-1-develop-a-microsoft-power-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Develop a Microsoft Power App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-develop-a-progressive-web-app-pwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Develop a Progressive Web App (PWA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-build-a-cross-platform-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 3: Build a cross-platform app
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-build-hybrid-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don't build hybrid apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dont-build-native-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don't build native apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extra-considerations-for-testing-mobile-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extra considerations for testing mobile apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extra considerations for testing mobile apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mobile-apps-must-be-tested-on-a-representative-range-of-platforms-and-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mobile apps must be tested on a representative range of platforms and devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clearly-state-the-specific-operating-system-versions-and-device-types-on-which-the-app-will-be-officially-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearly state the specific operating system versions and device types on which the app will be "officially supported"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-apps-running-on-defra-managed-devices-test-the-app-on-the-currently-latest-defra-adopted-version-of-iosipad-os-and-the-currently-latest-public-version-of-iosipad-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For apps running on Defra managed devices, test the app on the currently latest Defra adopted version of iOS/iPad OS and the currently latest public version of iOS/iPad OS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-public-apps-on-the-appropriate-versions-of-iosipad-os-and-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test public apps on the appropriate versions of iOS/iPad OS and Android
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-beta-programmes-to-test-apps-on-emerging-versions-of-iosipad-os-or-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use beta programmes to test apps on emerging versions of iOS/iPad OS or Android
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributing-and-managing-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributing and managing apps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributing and managing apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-the-mechanisms-to-distribute-the-app-and-app-updates-to-end-user-devices-before-development-starts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose the mechanisms to distribute the app and app updates to end user devices before development starts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-apps-that-can-be-managed-by-an-internal-mobile-device-management-solution-must-be-so-managed-at-least-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal apps that can be managed by an internal mobile device management solution must be so managed (at least in production)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-standards-are-mandated-for-the-distribution-of-external-apps-but-there-are-technical-and-licensing-restrictions-to-be-aware-of-on-the-apple-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No standards are mandated for the distribution of external apps, but there are technical and licensing restrictions to be aware of on the Apple platform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mobile-application-standards">Mobile application standards</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The huge increase in the use of mobile devices means that mobile application development is now of critical interest to the Defra family, even more so given the amount of field-work being carried out by workers within the Defra family.</p>
+<h2 id="scope">Scope</h2>
+<p>These standards apply to mobile application in-house development and management.</p>
+<p>These standards are intended to cover all forms of mobile application.</p>
+<p>As implied, there are a number of ways of delivering mobile apps. These standards will cover which approach is best and under what circumstances, and aspects that are common to all or many of the approaches. As and when more detail is available on specific approaches, such as Flutter app development, or Progressive Web Apps, such approach-specific standards should form part of their own separate, detailed, documented standard, which, ideally, will simply be a reference to a recognised external standard for that specific technology.</p>
+<h2 id="caveats">Caveats</h2>
+<p>This is a fast moving area involving multiple platforms and diverse technology stacks: these standards are therefore early and provisional. As such, these standards often require more background explanation and justification than those for other, more mature or more homogenous, technology stacks. Inevitably, therefore, these standards, for the time being, are likely to be more discursive than those for other areas, and, unavoidably, the line between standard and guidance can often, as yet, not be so sharply drawn.</p>
+<p>This document should therefore be read in conjunction with the Mobile Application Guidance (<strong><a href="../../guides/mobile_app_guidance/">guidance</a></strong>).</p>
+<h2 id="what-is-a-mobile-app">What is a mobile app?</h2>
+<h3 id="assume-we-are-providing-an-offline-mobile-app-unless-we-have-clear-agreement-that-the-app-will-only-work-online">Assume we are providing an offline mobile app unless we have clear agreement that the app will only work online</h3>
+<p>Mobile apps are commonly defined along the following lines: "A mobile application, also referred to as a mobile app or simply an app, is a computer program or software application designed to run on a mobile device such as a phone, tablet, or watch."</p>
+<p>In practice, the user need that often drives the requirement to have a mobile app in the first place is the necessity to use the app when the user is out and about, including in situations where there is no signal and therefore no internet access. Indeed, it is difficult for an app to be truly "mobile" unless it is capable of still doing something useful where connectivity is lost. This is particularly the case for Defra family field workers who will often be working in remote, rural locations.</p>
+<p>Therefore, rather than providing purely "mobile apps", we will usually be providing what are commonly called <strong>offline mobile apps</strong> (a.k.a. <strong>offline apps</strong>).</p>
+<p>Offline apps can continue to be usable without an internet connection, including being able to work with data locally on the device <strong>if</strong> that is necessary for the app still to perform "usefully".</p>
+<p>We should assume that any mobile apps we are providing are offline mobile apps unless we have a clear understanding, and written agreement with the users, that this is not a requirement, as this can often be a cause of confusion, and retrofitting offline functionality to a purely online mobile application after it has been provided may be very difficult or even not practical at all.</p>
+<h3 id="if-only-an-online-mobile-app-is-needed-its-functionality-should-still-degrade-gracefully-when-offline">If only an online mobile app is needed its functionality should still degrade gracefully when offline</h3>
+<p>Even if it is agreed that the app only needs to work online then it should still degrade gracefully when the connection is lost, for example by providing a clear message to the user that connection has been lost and the user should check their connection.</p>
+<h2 id="which-mobile-platforms-must-be-supported">Which mobile platforms must be supported</h2>
+<h3 id="mobile-applications-for-use-within-the-defra-family-must-run-on-the-apple-platform-apps-intended-for-public-use-must-run-on-at-least-apple-and-android-devices">Mobile applications for use within the Defra family must run on the Apple platform; apps intended for public use must run on at least Apple and Android devices</h3>
+<p>Mobile applications must run on mobile devices. Currently Defra has adopted Apple technology as the standard platform for mobile devices. <strong>All mobile applications intended for internal use must therefore run on Apple devices. All mobile applications intended for by the general public, must run on at least Apple and Android devices. If a mobile application is intended for use outside Defra, but restricted to a specific and atypical (in terms of likely use of mobile technology as compared to the general public) user community, then we will need to be guided by the preferences of that user community in terms of the platform that we need to support.</strong></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="before-starting-development-you-must-have-the-knowledge-kit-privileges-and-app-distribution-arrangements-in-place-to-be-able-to-remotely-debug-the-app-on-suitable-devices">Before starting development you must have the knowledge, kit, privileges and app distribution arrangements in place to be able to remotely debug the app on suitable devices</h3>
+<p>Often, issues will only be encountered when running apps on actual target devices. <strong>Therefore you must have the knowledge, kit, privileges and app distribution arrangements in place to be able to remotely debug the app on suitable devices.</strong></p>
+<h3 id="the-app-must-log-errors-and-it-must-be-possible-for-the-user-to-make-that-information-available-to-us-for-support-purposes">The app must log errors and it must be possible for the user to make that information available to us for support purposes</h3>
+<p>Information about errors occurring on mobile devices will often be lost to us, making problem resolution much more difficult. To mitigate this issue <strong>the app must log errors, and it must be possible for the user to make that information available to us for support purposes</strong>, even if that is just via screenshot. It should also be possible to vary the level of detail logged, for example by implementing a "debug" mode. Early implementation of such features is very likely to also speed up error resolution during development itself.</p>
+<h2 id="extra-security-considerations-for-mobile-apps">Extra security considerations for mobile apps</h2>
+<h3 id="assess-and-address-the-security-challenges-to-your-app-before-finally-agreeing-app-scope-or-minimal-viable-product">Assess and address the security challenges to your app before finally agreeing app scope or minimal viable product</h3>
+<p>Data security is always essential, and mobile apps can be especially exposed to security risks and challenges. All mobile devices suffer from poor physical security in terms of being easily lost or stolen, and all have to operate over potentially insecure public networks. Furthermore, when an app is intended to run on a public device, then the security of the device is an unknown, and, by default, we should assume the device is inherently insecure. This means that the points below <strong>must be considered and addressed very early in any project to develop such a mobile app</strong>, as they could even influence the practical viability of the app or the scope of the requirements it can securely deliver. Design the complete security profile for your app before finally agreeing the scope of the app's requirements or the minimal viable product.</p>
+<h3 id="all-traffic-to-and-from-the-app-must-be-encrypted">All traffic to and from the app must be encrypted</h3>
+<p>As mobile applications will usually be accessing the internet over entirely public networks <strong>all traffic to and from the app must be encrypted</strong>, for example via HTTPS/Transport Layer Security and/or via the use of a Virtual Private Network (VPN) and/or in-built application security wrapper. Please consult the latest security standards as to the appropriate level of encryption any such mechanisms should adopt, given the confidentiality marking of the data in question.</p>
+<h3 id="if-the-app-needs-to-access-defra-family-systems-that-are-non-public-developers-andor-application-architects-must-design-the-security-profile-for-the-app-in-consultation-with-the-cloud-mobile-services-team-in-group-infrastructure-and-operations">If the app needs to access Defra family systems that are non-public, developers and/or application architects must design the security profile for the app in consultation with the Cloud Mobile Services team in Group Infrastructure and Operations</h3>
+<p><strong>If your app, which will normally be operating across the public internet, needs to access Defra family systems that are non-public, developers and/or application architects must consult with the Cloud Mobile Services team in Group Infrastructure and Operations</strong>, who will advise on what is or isn't permissible and, where permissible, what mechanisms they can provide to allow such access to be done securely. For example, Cloud Mobile Services may advise as to VPN software and VPN end-points that they can make available to mobile devices that can allow safe access into "back-end", non-public Defra family systems in the cloud or on premise.</p>
+<h3 id="also-consider-the-guidance-before-designing-the-apps-security-profile">Also consider the guidance before designing the app's security profile</h3>
+<p>There are other recommendations to also bear in mind, especially around the security of data on the device and authentication strategies, so you are strongly advised to also read the accompanying <strong><a href="../../guides/mobile_app_guidance/">guidance</a></strong> on mobile app development alongside these standards.</p>
+<h2 id="which-type-of-mobile-technology-to-adopt">Which type of mobile technology to adopt</h2>
+<h3 id="decide-which-type-of-mobile-technology-to-adopt-by-working-through-the-options-below-in-the-stated-order-of-preference-stopping-as-early-as-possible">Decide which type of mobile technology to adopt by working through the options below in the stated order of preference, stopping as early as possible</h3>
+<p>Mobile apps will usually be required to work on multiple devices and operating systems. For example, for apps intended for general public use, we have already stated that mobile apps created by the Defra family must work on at least the Apple and Android platforms. That alone creates a considerable development challenge, and can mean continuing high costs of ownership, especially as those platforms are rapidly changing, and some suppliers, such as Apple, impose additional constraints and demands on users of their technology stack. Add in the need for the mobile app to work readily even with no internet access, and the additional concerns mobile poses to security, and the approach adopted to deliver a mobile app needs to be chosen extremely carefully, following the standard hierarchy explained below, <strong>starting from the top and only working your way further down the options where it is clearly necessary to do so.</strong></p>
+<h4 id="option-0-pick-something-off-the-shelf">Option 0: Pick something "off-the-shelf"</h4>
+<p>This means that, <strong>before developing an in-house app, it is even more important than for other bespoke developments to consider if a Commercial Off-The-Shelf (COTS) approach is preferred</strong>. For example, is a suitable app already available in the app stores? Also, if the app is intended for use with an already adopted COTS suite, for example a time recording or asset management system, then is it possible that the supplier of that suite already has or will soon have a suitable app available, removing the need for us to develop our own app and then integrate that app with third party software? Then not only the development costs of the app, but also the ongoing costs of ownership, will be shared across the supplier's many customers rather than being having to be paid by us alone.</p>
+<p>If using a third party app of any kind carefully assess whether use of that app will be appropriate given the sensitivity of the data it will be handling. In particular, many apps, especially free apps available in app stores, harvest user data, for example via Google Analytics. If those data harvesting features cannot be reliably disabled, and the data being processed by the app is in any way sensitive, then the use of such an app would be entirely inappropriate.</p>
+<h4 id="option-1-develop-a-microsoft-power-app">Option 1: Develop a Microsoft Power App</h4>
+<p>Microsoft Power Apps offer a low or even no code way of developing mobile apps, which can then run within a Power Apps Mobile "app player" that comes in varieties downloadable to a range of mobile platforms. This option is likely to be appropriate if the app is going to have to interact with the rest of the Microsoft technology stack in the cloud, for example Dynamics or Office365, and when the app is simpler. Due to the Microsoft licensing model, it is also currently only likely to be appropriate for internal apps. Note that Microsoft frequently revises its licensing model, so you are advised to check out the current model before proceeding to assess what is possible, the costs and what licences we may already have available.</p>
+<h4 id="option-2-develop-a-progressive-web-app-pwa">Option 2: Develop a Progressive Web App (PWA)</h4>
+<p><strong>Where a fully bespoke app is needed the next option to consider is a Progressive Web App (PWA), as recommended by the Government Digital Service here: <a href="https://www.gov.uk/service-manual/technology/working-with-mobile-technology">https://www.gov.uk/service-manual/technology/working-with-mobile-technology</a></strong></p>
+<p>Progressive Web Apps provide cross platform and cross device support and can be delivered just like ordinary web apps to the browser, so no engagement with an app store or Mobile Device Management (MDM) software is needed, either by ourselves or the users, and the constraints of dealing with a proprietary platform, such as Apple, are avoided (for example, Apple require all apps to be re-released with a renewed provisioning profile at least once a year). Ongoing costs of ownership, as compared with other bespoke approaches, ought to be lower. Furthermore the skills involved in developing Progressive Web Apps are more transferable and much more likely to have a longer shelf life, so time and money invested in learning will have a bigger pay-off. This approach should also make it feasible to take existing web applications, and progressively enhance them until they can become PWAs.</p>
+<p>It is possible to build PWAs that are fully functional offline mobile apps even on less standards compliant browsers such as Apple's Safari/WebKit. For more information on this please see read the "Extra Guidance on Progressive Web Apps" section in the accompanying <strong><a href="../../guides/mobile_app_guidance/">guidance</a></strong>.</p>
+<h4 id="option-3-build-a-cross-platform-app">Option 3: Build a cross-platform app</h4>
+<p>If, having considered above and done the recommended research, a PWA is not acceptable, the next option to consider is building the mobile app using a cross platform technology stack. These stacks are ways of using the same, or very close to the same, code-base but still building the app in ways that can allow it to run on multiple platforms and multiple devices. Otherwise a completely different code base, using a different language and development framework, is needed to build an app for each platform.</p>
+<p>There are many such cross platform technology stacks, but some are obscure or are nearing obsolescence. This is still a too broad and fast moving area for us to as yet mandate solid standards, so you are therefore strongly advised to read the accompanying Mobile Application Guidance before considering a technology stack for developing cross platform apps (<strong><a href="../../guides/mobile_app_guidance/">guidance</a></strong>).</p>
+<p>Note that cross platform app development, where in any way feasible, <strong>is always preferable to native app development, even when we are currently targeting only a single platform (say Apple) and range of associated devices</strong>. That is because such apps ought to be easily adaptable to run on a different platform, for example if our selected choice of devices changes, or if we decide to make the app, or a version of the app, available on more devices. Also, investment, in terms of time, money and "hard lessons learned", in cross platform app development is more likely to be applicable across the whole range of possible future apps than if we focus on a single native app technology. Furthermore, cross platform app development techniques also provide much better insulation against all the myriad changes that happen on the underlying platform itself (not completely, but better than with pure native development).</p>
+<h3 id="dont-build-hybrid-apps">Don't build hybrid apps</h3>
+<p>In the past one common technique used to build cross platform apps was to actually run the app inside a hidden browser on the device, with such apps often being called "hybrid" apps. However, that is not the approach adopted by any of latest and more popular frameworks, and it is increasingly challenged by ever stricter adoption of "single origin" security restrictions in more modern browser engines. A mobile app rendering local content automatically uses up one "origin", to be precise, before it even starts to interact with any \"remote\" systems, plus single origin restrictions disallow delivering up local content via AJAX calls. Therefore, such frameworks including Apache Cordova, the closely related PhoneGap (which is Adobe's own Cordova variant) and Cordova-based Ionic (though Ionic also now has a React based version) must now be regarded as legacy and <strong>not used for new projects</strong>. It is still just about possible to work around such restrictions using the above frameworks, but the approaches then become painful and convoluted, for example Cordova-based Ionic does so by using a local web server built into the app. <strong>Avoid these "hybrid" approaches for building a cross-platform app within a browser.</strong></p>
+<p>Of course, PWAs are also mobile apps that run within the browser, but with PWAs we are working "with the grain" of industry standards, that are becoming ever more capable all the time, where-as proprietary frameworks tend to eventually be allowed to fall behind browser standards, and then become gradually but inexorably less capable over time. For example, PWAs offer industry standards such as the indexedDB API to make managing and accessing local content much more straightforward than in any of the old "hybrid" app technologies. Also, because they are based on open W3C standards, knowledge gained building PWAs is likely to be useful for much longer and be more transferable.</p>
+<h3 id="dont-build-native-apps">Don't build native apps</h3>
+<p>Given all the alternative approaches, and the significant disadvantages of developing purely native apps, we do not currently anticipate any need to ever build native apps. Should this ever appear to be necessary, it will need to be managed as an exception to this standard.</p>
+<h2 id="extra-considerations-for-testing-mobile-apps">Extra considerations for testing mobile apps</h2>
+<p>This section further supports the general testing guidance on the <a href="https://github.com/DEFRA/qa-test/wiki">Defra quality assurance and test wiki</a>.</p>
+<h3 id="mobile-apps-must-be-tested-on-a-representative-range-of-platforms-and-devices">Mobile apps must be tested on a representative range of platforms and devices</h3>
+<p><strong>Mobile Apps must be tested on a representative range of platforms and devices.</strong> That range of platforms and devices will obviously depend on the intended use of the app: for example, it can include the Apple platform and associated devices for an internal app, but for an app intended for use beyond the Defra family will include at least both the Apple and Android platforms and associated devices.</p>
+<h3 id="clearly-state-the-specific-operating-system-versions-and-device-types-on-which-the-app-will-be-officially-supported">Clearly state the specific operating system versions and device types on which the app will be "officially supported"</h3>
+<p><strong>At all times clearly state the specific operating system versions and device types on which the app will be tested, and where it is therefore "officially supported". This list will change constantly as operating systems and devices are updated.</strong></p>
+<p>Appropriate tools should be adopted to facilitate this. For example, if using a full functional IDE such as Xcode or Android Studio, make extensive use of the device simulators.</p>
+<p>However, no simulator is entirely perfect, and, once the mobile app has gone live, you will also be faced with the need to keep it tested and running despite rapid operating system updates (for example, for iPad OS these occur roughly monthly). It is therefore also strongly recommended that you acquire, and refresh as needed, a range of suitable devices for use in developing and then supporting the app.</p>
+<h3 id="for-apps-running-on-defra-managed-devices-test-the-app-on-the-currently-latest-defra-adopted-version-of-iosipad-os-and-the-currently-latest-public-version-of-iosipad-os">For apps running on Defra managed devices, test the app on the currently latest Defra adopted version of iOS/iPad OS and the currently latest public version of iOS/iPad OS</h3>
+<p><strong>If the app is to be deployed on Defra managed devices it must be tested on the currently latest Defra adopted version of iOS/iPad OS and the currently latest public version of iOS/iPad OS</strong> (most of the time these versions will be the same, but there is normally a slight delay between Apple releasing a new version of iOS/iPad OS and Defra adoption, to ensure that no business critical apps have been negatively affected).</p>
+<h3 id="test-public-apps-on-the-appropriate-versions-of-iosipad-os-and-android">Test public apps on the appropriate versions of iOS/iPad OS and Android</h3>
+<p><strong>If the app is intended for use outside Defra, then it must be tested on the versions of iOS/iPad OS stated above, plus it should also be tested on the previous public version, at least. It must also be tested on the latest version of Android and should also be tested on the previous version, at least.</strong></p>
+<h3 id="use-beta-programmes-to-test-apps-on-emerging-versions-of-iosipad-os-or-android">Use beta programmes to test apps on emerging versions of iOS/iPad OS or Android</h3>
+<p><strong>Device/s must also be enrolled in any beta programmes and used to test emerging versions of iOS/iPad OS or Android, so that we have advance warning of any upcoming issues.</strong></p>
+<h2 id="distributing-and-managing-apps">Distributing and managing apps</h2>
+<h3 id="choose-the-mechanisms-to-distribute-the-app-and-app-updates-to-end-user-devices-before-development-starts">Choose the mechanisms to distribute the app and app updates to end user devices before development starts</h3>
+<p><strong>App delivery is impossible without a mechanism for distributing the app and continuing app updates to end user devices. It is therefore best to assess the app distribution options early in the project, in order to understand any implications for the project as quickly as possible, and to best ensure that testing during development can be done on a realistic basis.</strong></p>
+<p>For progressive web apps this task is straight-forward: merely requiring the end user to navigate to the app's URL in a browser.</p>
+<p>Distribution of Android apps is very open. Android apps can be distributed via app stores, such as Google Play or the Amazon app store, via your own website or even sent via emails. Android apps could also, of course, be distributed internally via Defra Mobile Device Management software, currently AirWatch, but, as mobile applications intended for internal use must run on Apple devices, attempting to distribute Android apps this way would currently be pointless, as such apps cannot run on the mandated Apple devices.</p>
+<p>Distribution of Apple apps is, however, outside of distributions for purely development and testing purposes, very closed. Apple expect such apps to be distributed via the Apple app store, with the exception of apps that as an organisation intends to be used purely internally. Such internal apps can also, or instead, be distributed internally via an organisation's Mobile Device Management software (so in our case AirWatch) provided the organisation has purchased an Enterprise licence via the Apple Developer Enterprise Programme.</p>
+<p>The Environment Agency is signed up to the Apple Developer Enterprise Programme, at least at the time of writing, May 2020, and can therefore distribute apps through the shared Defra family Mobile Device Management (MDM) software (i.e. AirWatch). As of the same date (May 2020) core Defra and the other parts of the Defra family are NOT signed up to the Apple Developer Enterprise Programme, meaning that they are contractually not meant to deploy their apps internally via our shared AirWatch. However, the costs of signing up are low, in the order of hundreds of pounds a year. <strong>If you want to sign up another part of Defra to the Apple Enterprise Programme, first seek the advice of the Cloud Mobile Services team.</strong></p>
+<h3 id="internal-apps-that-can-be-managed-by-an-internal-mobile-device-management-solution-must-be-so-managed-at-least-in-production">Internal apps that can be managed by an internal mobile device management solution must be so managed (at least in production)</h3>
+<p>Deploying an app intended for internal use via our MDM (currently AirWatch a.k.a. VMWare Workspace One) has many advantages in terms of app management and monitoring, such as, for example, controlling which user groups receive the app, allowing those groups to receive the app automatically or forcing the app to always use a provided VPN when connecting to specific URLs (this approach is called "per app" or "in-app" VPN). <strong>Production distribution of internally developed apps intended purely for internal use, meaning use within the Defra family on managed devices, that can technically be managed via our MDM solution (so, for example, this standard cannot apply to PWAs) must therefore be via the Defra Mobile Device Management system, currently AirWatch. Note the unavoidable implication of this rule: this means that internal apps developed for use by any part of Defra other than the Environment Agency will require an Apple Developer Enterprise Programme membership to be arranged for the part of Defra that needs to use the app.</strong></p>
+<p><strong>The advantages of having apps, which we are using officially internally, managed via an MDM means that it will often (but not always) be desirable to also deploy third party apps via the same mechanism, in other words use our MDM (currently AirWatch a.k.a. VMWare Workspace One) to also manage these third party apps (in addition to apps we have developed internally).</strong> Note, however, that as organisations are contractually only meant to use an MDM to distribute production apps to themselves, and then only when they have an Apple Developer Enterprise Programme licence, third party apps cannot be directly deployed to our MDM. Instead such apps must first be deployed to the app store. MDMs (including our current AirWatch set-up) then integrate via an Apple provided service called the Apple Business Manager <strong>(<a href="https://www.apple.com/uk/business/it/">https://www.apple.com/uk/business/it/</a></strong> ) to the Apple app store, and are then able to manage apps pulled out of the app store and include them in the MDM's own application catalogues. (In AirWatch such apps can be managed in a very similar way to our own apps, such as being rolled out automatically to certain groups of users, or being forced to use a VPN).</p>
+<p>We may also want a third party supplier to make, for example, an app developed or customised for our specific use available to us privately, rather than via the public part of the app store. Though, at the time of writing (May 2020), we have never used this facility, Apple have a service, called "App Store Connect", that is meant to allow private deployment from the Apple app store to a client's own MDM (<a href="https://developer.apple.com/business/distribute/">https://developer.apple.com/business/distribute/</a>).</p>
+<h3 id="no-standards-are-mandated-for-the-distribution-of-external-apps-but-there-are-technical-and-licensing-restrictions-to-be-aware-of-on-the-apple-platform">No standards are mandated for the distribution of external apps, but there are technical and licensing restrictions to be aware of on the Apple platform</h3>
+<p>The above covers how we should manage apps for our own internal use (which, because of our standards about mobile devices, can currently only be Apple apps). We may also want to distribute apps externally.</p>
+<p>Publication of a public app to a well-known app store will often be desirable, for example to make the app more easily discoverable. However, bear in mind that distributing via an app store requires the app store providers to "accept" an app into their store and thus creates an extra "hurdle" to jump.</p>
+<p><strong>Therefore, no standards are mandated about how we should externally distribute the Android versions of internally developed apps.</strong></p>
+<p><strong>Unfortunately, though, Apple versions of internally developed apps can (and must) ONLY be externally distributed via the Apple app store.</strong> It is technically possible to externally distribute an Apple app signed with an Enterprise licence by mechanisms other than the app store but, though this will work, Apple tend to regard it as a violation of licence terms and may summarily revoke the provisioning profile of the offending app, causing the app to immediately stop working.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
