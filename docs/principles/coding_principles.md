@@ -48,4 +48,5 @@ They will not have the understanding and context you do at the time of writing i
 - It is usually self documenting
 - Increases quality
 - Provides confidence in the implementation
-- For low code platforms, Integration testing often adds more value
+- Enables safe refactoring and code improvements
+- Catches bugs early when they're cheaper to fix
