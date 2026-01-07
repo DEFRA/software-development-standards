@@ -129,5 +129,9 @@ To increase the stability and predictability of a Kubernetes cluster, services s
 
 Probe end points should follow the convention of `healthy` for readiness probes and `healthz` for liveness/startup probes.
 
+## Status
+
+This standard was first adopted 15 January 2021.
+
 ## Significant changes
-- Entra ID Workload Identities replaces Azure AD Pod Identity as authenticating AKS pods to Azure resources 7 January 2026
+- Entra ID Workload Identities replaces Azure AD Pod Identity for authenticating AKS pods to Azure resources on 7 January 2026
