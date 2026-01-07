@@ -128,3 +128,6 @@ In the event a cluster has to make a choice between killing one of two services 
 To increase the stability and predictability of a Kubernetes cluster, services should make use of readiness, liveness and startup probes unless there is a significant reason not to.
 
 Probe end points should follow the convention of `healthy` for readiness probes and `healthz` for liveness/startup probes.
+
+## Significant changes
+- Entra ID Workload Identities replaces Azure AD Pod Identity as authenticating AKS pods to Azure resources 7 January 2026
