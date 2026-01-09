@@ -43,7 +43,7 @@ They will not have the understanding and context you do at the time of writing i
 
 ### We test our code
 
-> Tests can act as good documentation as well as avoiding bugs and regression issues.
+> We are always able to prove that our code works and functions correctly with an automated test suite
 
 - It is usually self documenting
 - Increases quality
