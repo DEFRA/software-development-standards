@@ -45,7 +45,7 @@ They will not have the understanding and context you do at the time of writing i
 
 > We are always able to prove that our code works and functions correctly with an automated test suite
 
-- It is usually self documenting
+- Acts as supporting documentation for the code
 - Increases quality
 - Provides confidence in the implementation
 - Enables safe refactoring and code improvements
