@@ -43,7 +43,7 @@ They will not have the understanding and context you do at the time of writing i
 
 ### We test our code
 
-> We are always able to prove that our code works and functions correctly with an automated test suite
+> We are always able to prove that our code works and functions correctly with a set of tests
 
 - Acts as supporting documentation for the code
 - Increases quality
