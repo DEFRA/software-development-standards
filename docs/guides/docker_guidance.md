@@ -10,6 +10,38 @@ A container is a standard unit of software that packages up code and all its dep
 `Image` - a constructed set of layered docker instructions  
 `Container` - a running instance of an image
 
+## Security best practices
+
+### File ownership in COPY commands
+
+When using `COPY` commands in Dockerfiles, it's critical to avoid assigning write permissions to copied resources. SonarCloud and other security scanning tools will flag this as a security vulnerability.
+
+#### The problem
+Using `COPY --chown=node:node` gives the running user ownership of the files, which means they have write permissions by default. This creates unnecessary security risks.
+
+#### The solution
+Files should be owned by `root:root` while the container runs as a non-root user. This ensures the running user cannot modify application files.
+
+**Secure approach:**
+```dockerfile
+COPY --chown=root:root package*.json ./
+COPY --chown=root:root app/ ./app/
+USER node
+```
+
+**Why this works:**
+- Files are owned by `root:root`
+- The container runs as the `node` user (non-root) via `USER node`
+- Since the `node` user doesn't own the files, it has no write permissions by default
+- This satisfies security scanning requirements in tools like Sonarqube without needing explicit `chmod` commands
+
+**Approaches to avoid:**
+- `COPY --chown=node:node` - gives write permissions to the running user
+- `RUN chmod 755` after `COPY` - still allows owner write access
+- Running as root user - creates major security vulnerabilities
+
+The root ownership approach is more secure than using `--chmod=755` because the running user has zero write access, whereas `--chmod=755` would still allow the owner to write.
+
 ## Multi stage builds
 Dockerfiles should implement multi stage builds to allow different build stages to be targeted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
@@ -29,9 +61,9 @@ ARG PORT
 ENV PORT ${PORT}
 ARG PORT_DEBUG
 EXPOSE ${PORT} ${PORT_DEBUG}
-COPY --chown=node:node package*.json ./
+COPY --chown=root:root package*.json ./
 RUN npm install
-COPY --chown=node:node app/ ./app/
+COPY --chown=root:root app/ ./app/
 RUN npm run build
 CMD [ "npm", "run", "start:watch" ]
 
@@ -43,8 +75,8 @@ LABEL uk.gov.defra.parent-image=defradigital/node:${PARENT_VERSION}
 ARG PORT
 ENV PORT ${PORT}
 EXPOSE ${PORT}
-COPY --from=development /home/node/app/ ./app/
-COPY --from=development /home/node/package*.json ./
+COPY --chown=root:root --from=development /home/node/app/ ./app/
+COPY --chown=root:root --from=development /home/node/package*.json ./
 RUN npm ci
 CMD [ "node", "app" ]
 ```
