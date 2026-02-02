@@ -14,7 +14,8 @@ A container is a standard unit of software that packages up code and all its dep
 
 ### File ownership in COPY commands
 
-When using `COPY` commands in Dockerfiles, it's critical to avoid assigning write permissions to copied resources. SonarCloud and other security scanning tools will flag this as a security vulnerability.
+When using `COPY` commands in Dockerfiles, it's critical to avoid assigning write permissions to copied resources. SonarCloud and other security scanning tools will flag this as a security vulnerability. See [Allowing non-root users to modify resources copied to an image is security-sensitive
+](https://rules.sonarsource.com/docker/type/Security%20Hotspot/RSPEC-6504/) for an applicable SonarCloud rule.
 
 #### The problem
 Using `COPY --chown=node:node` gives the running user ownership of the files, which means they have write permissions by default. This creates unnecessary security risks.
