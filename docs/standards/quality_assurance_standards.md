@@ -60,7 +60,7 @@ By default, use [Jira](https://www.atlassian.com/software/jira) to manage bugs a
 
 ## Code quality testing
 
-Automated test code must meet Defra [common coding standards](https://github.com/DEFRA/software-development-standards/blob/master/standards/common_coding_standards.md) wherever applicable.
+Automated test code must meet Defra [common coding standards](https://github.com/DEFRA/software-development-standards/blob/main/standards/common_coding_standards.md) wherever applicable.
 
 All development and test code must undergo regular linting to check that it meets minimum standards.
 

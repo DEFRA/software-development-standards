@@ -5,7 +5,7 @@ When working with Git most teams use one of two different workflows depending on
 - [Feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) (also known as [GitHub flow](https://guides.github.com/introduction/flow/))
 - [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-Though FBW is the simpler of the two, it should be used by teams that are confident whenever they change the **main** branch it still remains ready for production ([main is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/docs/principles/coding_principles.md#main-is-always-shippable)).
+Though FBW is the simpler of the two, it should be used by teams that are confident whenever they change the **main** branch it still remains ready for production ([main is always shippable](https://github.com/DEFRA/software-development-standards/blob/main/docs/principles/coding_principles.md#main-is-always-shippable)).
 
 Gitflow is useful for teams that like the space to combine multiple features, or are working on a large feature, before then shipping to production.
 
@@ -31,7 +31,7 @@ In all cases when the branch is created it should be pushed up to the **origin**
 
 Using this workflow it means our branches have specific uses
 
-- **main** is the version of code that is in production (see the principle [main is always shippable](https://github.com/DEFRA/software-development-standards/blob/master/docs/principles/coding_principles.md#main-is-always-shippable))
+- **main** is the version of code that is in production (see the principle [main is always shippable](https://github.com/DEFRA/software-development-standards/blob/main/docs/principles/coding_principles.md#main-is-always-shippable))
 
 - We create a **Hotfix** branch when we need to make a change to production code because of a critical error. When finished we merge the change back into main, but also Develop
 
