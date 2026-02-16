@@ -40,3 +40,13 @@ They will not have the understanding and context you do at the time of writing i
 ### Code securely
 
 > We incorporate good security practice in all our code
+
+### We test our code
+
+> We are always able to prove that our code works and functions correctly with a set of tests
+
+- Acts as supporting documentation for the code
+- Increases quality
+- Provides confidence in the implementation
+- Enables safe refactoring and code improvements
+- Catches bugs early when they're cheaper to fix
