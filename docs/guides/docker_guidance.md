@@ -1,3 +1,41 @@
+> **Development vs Production:**
+>
+> The strict file permission approach (removing write access for the running user) is intended for the production build stage. During development and testing, tools like nodemon, test runners, or hot-reloading may require write access to application files or directories. For these stages, you may need to use `COPY --chown=node:node` or relax permissions to ensure a smooth developer experience. It's recommended to apply the strictest permissions only in the final production image.
+# Development
+FROM defradigital/node-development:${PARENT_VERSION} AS development
+ARG PARENT_VERSION
+ARG REGISTRY
+LABEL uk.gov.defra.parent-image=defradigital/node-development:${PARENT_VERSION}
+ARG PORT
+ENV PORT ${PORT}
+ARG PORT_DEBUG
+EXPOSE ${PORT} ${PORT_DEBUG}
+# In development, allow node user to own files for tools like nodemon, tests, etc.
+COPY --chown=node:node package*.json ./
+RUN npm install
+COPY --chown=node:node app/ ./app/
+RUN npm run build
+CMD [ "npm", "run", "start:watch" ]
+
+# Production
+FROM defradigital/node:${PARENT_VERSION} AS production
+ARG PARENT_VERSION
+ARG REGISTRY
+LABEL uk.gov.defra.parent-image=defradigital/node:${PARENT_VERSION}
+ARG PORT
+ENV PORT ${PORT}
+EXPOSE ${PORT}
+USER root
+# In production, copy files as root and remove write permissions
+COPY --chown=root:root --from=development /home/node/app/ ./app/
+COPY --chown=root:root --from=development /home/node/package*.json ./
+RUN npm ci
+RUN chmod -R a-w /home/node
+USER node
+CMD [ "node", "app" ]
+> **Note:**
+>
+> While the default and most secure approach is to deny write access to application files for the running user, there are scenarios where your application may require write access to certain directories (for example, for temporary files, caches, or runtime data). In such cases, you should explicitly grant write permissions only to those specific locations, and ensure the rest of the application files remain read-only. Always review your application's requirements and hosting environment to determine the safest permissions model.
 # Docker guidance
 
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably across multiple environments.  Docker is a tool to build and run these containers.
@@ -30,25 +68,28 @@ COPY --chown=root:root app/ ./app/
 USER node
 ```
 
+
 **Why this works:**
 - Files are owned by `root:root`
 - The container runs as the `node` user (non-root) via `USER node`
-- Since the `node` user doesn't own the files, it has no write permissions by default
-- This satisfies security scanning requirements in tools like Sonarqube without needing explicit `chmod` commands
+- By default, the `COPY` command preserves the permissions of the source files. If the files already have write permissions for group or others, those will remain unless explicitly changed. Therefore, to ensure files are not writable by the `node` user, you should explicitly set permissions after copying.
+- Using `chmod -R a-w` removes write permissions for all users, including the running user, ensuring files are read-only at runtime.
+- This approach satisfies security scanning requirements in tools like SonarQube.
 
 **Approaches to avoid:**
 - `COPY --chown=node:node` - gives write permissions to the running user
 - `RUN chmod 755` after `COPY` - still allows owner write access
 - Running as root user - creates major security vulnerabilities
 
-The root ownership approach is more secure than using `--chmod=755` because the running user has zero write access, whereas `--chmod=755` would still allow the owner to write.
+The root ownership approach, combined with removing write permissions using `chmod -R a-w`, is more secure than using `--chmod=755` because the running user has zero write access, whereas `--chmod=755` would still allow the owner to write.
 
 ## Multi stage builds
 Dockerfiles should implement multi stage builds to allow different build stages to be targeted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
-Below is an example multi stage build which is intended to use the Defra Node.js base image.
 
-```
+Below is an example multi-stage build which is intended to use the Defra Node.js base image, and demonstrates explicitly setting file permissions after copying, before switching to the non-root user:
+
+```dockerfile
 ARG PARENT_VERSION=1.0.0-node12.16.0
 ARG PORT=3000
 ARG PORT_DEBUG=9229
@@ -76,9 +117,12 @@ LABEL uk.gov.defra.parent-image=defradigital/node:${PARENT_VERSION}
 ARG PORT
 ENV PORT ${PORT}
 EXPOSE ${PORT}
+USER root
 COPY --chown=root:root --from=development /home/node/app/ ./app/
 COPY --chown=root:root --from=development /home/node/package*.json ./
 RUN npm ci
+RUN chmod -R a-w /home/node
+USER node
 CMD [ "node", "app" ]
 ```
 
