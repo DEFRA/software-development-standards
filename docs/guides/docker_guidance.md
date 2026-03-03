@@ -51,7 +51,7 @@ Dockerfiles should implement multi stage builds to allow different build stages 
 
 Below is an example multi stage build which is intended to use the Defra Node.js base image.
 
-> **Note:** Removing write permissions from application files (e.g., `RUN chmod -R a-w /home/node`) is only recommended for the production stage. Do **not** use this step in the development stage, as it will prevent tools like nodemon, tests, and other development workflows from functioning correctly. SonarCloud or similar tools may flag the absence of this step in development images, but this is acceptable for local development.
+> **Note:** Removing write permissions from application files (e.g., `RUN chmod -R a-w /home/node`) is only recommended for the production stage. Do **not** use this step in the development stage, as it will prevent tools like nodemon, tests, and other development workflows from functioning correctly. SonarCloud or similar tools may flag the absence of this step in development images, but this is acceptable for local development. If running tests in a container with no write permissions is required, operations such as writing coverage reports to the container filesystem will not be possible.
 
 ```
 ARG PARENT_VERSION=1.0.0-node22.21.1
