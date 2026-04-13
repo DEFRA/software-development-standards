@@ -18,7 +18,7 @@
 ### Package Management
 - Use NPM.
 - Use a package.json and package-lock.json for repeatable builds.
-- Use an automated checker such as Snyk or Dependabot to ensure that your dependencies are up to date with the
+- Use an automated checker such as Dependabot or npm audit to ensure that your dependencies are up to date with the
   latest patches.
 - Separate dependencies and dev dependencies.
 - Update your version number inline with the [semantic versioning standard](https://semver.org/).

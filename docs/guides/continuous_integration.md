@@ -28,7 +28,7 @@ There are lots of other tools which can integrate with GitHub, especially if you
 
 These tools check the security of your project. This can include reporting vulnerabilities in your dependencies, or doing static analysis on your code.
 
-- Use [Snyk](https://snyk.io/) for Node.js projects
+- Use [Dependabot](https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/dependabot-quickstart-guide) and/or [npm audit](https://docs.npmjs.com/cli/v9/commands/npm-audit) for Node.js projects
 - Use [Hakiri](https://hakiri.io/) for Ruby projects
 
 These tools are free to use for open source GitHub repositories.
