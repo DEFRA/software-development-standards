@@ -72,9 +72,9 @@ We typically archive repositories rather than deleting them, as the code they co
 
 Repositories without an administrator will be archived by the organisation owners.
 
-Repositories that have been inactive for 24 months or more will be archived by the organisation owners.
+Repositories that have been inactive for 36 months or more will be archived by the organisation owners.
 
-If an archived repository has an associated SonarQube Cloud project then that will be deleted by the organisation owners. Projects will also be deleted if they haven't been analysed for 24 months or more.
+If an archived repository has an associated SonarQube Cloud project then that will be deleted by the organisation owners. Projects will also be deleted if they haven't been analysed for 36 months or more.
 
 ## Access removal
 
