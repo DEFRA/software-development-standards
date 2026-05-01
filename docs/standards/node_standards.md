@@ -36,7 +36,7 @@ min-release-age=7
 | Setting | Purpose |
 |---|---|
 | `save-exact=true` | Saves exact dependency versions rather than version ranges. Prevents version-range drift from silently pulling in a later, potentially vulnerable release. |
-| `ignore-scripts=true` | Prevents npm from running lifecycle scripts such as `preinstall` and `postinstall` during package installation. This blocks a common vector for arbitrary code execution from malicious or compromised packages. Note: some packages that compile native bindings require lifecycle scripts to function. Test your project after enabling this setting and explicitly allow any packages that genuinely need it. |
+| `ignore-scripts=true` | Prevents npm from running lifecycle scripts such as `preinstall` and `postinstall` during package installation. This blocks a common vector for arbitrary code execution from malicious or compromised packages. Note: some packages that compile native bindings require lifecycle scripts to function. If any packages genuinely need it, then `--ignore-scripts=false` can be passed to the relevant `npm install` command. |
 | `min-release-age=7` | Refuses to install packages published fewer than 7 days ago. This provides a window to detect package takeover or typosquatting attacks before they reach your codebase. Studies have shown that most malicious packages are detected within this timeframe. |
 
 To apply these settings globally across all projects on your machine, either run:

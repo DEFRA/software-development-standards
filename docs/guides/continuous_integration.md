@@ -28,11 +28,13 @@ These tools check the security of your project. This can include reporting vulne
 
 #### Dependabot
 
-Enable [Dependabot](https://docs.github.com/en/code-security/dependabot) in each repository to automatically raise pull requests when vulnerable or outdated dependencies are detected. Before enabling Dependabot, ensure the [dependency graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) is enabled.
+Enable [Dependabot](https://docs.github.com/en/code-security/dependabot) in each repository to automatically raise pull requests when vulnerable or outdated dependencies are detected. 
 
-Grouped updates are recommended to reduce pull request noise.
+Dependabot depends on the [dependency graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) being enabled.
 
-Dependabot is free for public repositories and is also available for private repositories with GitHub Advanced Security enabled.
+> Dependency graph will shortly be automatically enabled for all repositories by default.
+
+Grouped Dependabot updates are recommended to reduce pull request noise.
 
 #### Dependency review action
 
