@@ -23,6 +23,7 @@
   latest patches.
 - Separate dependencies and dev dependencies.
 - Update your version number inline with the [semantic versioning standard](https://semver.org/).
+- Vet third-party packages before adding them as dependencies by following this [guide](../guides/choosing_packages.md).
 
 #### .npmrc security settings
 
