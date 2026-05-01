@@ -2,7 +2,7 @@
 
 ### General
 - Node.js code is JavaScript code and should follow the [JavaScript standards](javascript_standards.md).
-- Don't use TypeScript.
+- Don't use TypeScript without an approved exemption.
 - Session state should not be stored on the node app server. Don't tie a session to a particular node server instance. Use a distributed cache or document storage database and not something like express-session. 
 - Avoid blocking the [main event loop and the worker pool](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/). In short "you shouldn't do too much work for any client in any single callback or task." and consider passing CPU intensive tasks off to another service.
 - Prefer await over callbacks and avoid nested callbacks. This is easily done in [Node 8 and above](https://nodejs.org/api/util.html#util_util_promisify_original).
@@ -18,6 +18,7 @@
 ### Package Management
 - Use npm.
 - Use a package.json and package-lock.json for repeatable builds.
+- Use `npm ci` instead of `npm install` in automated production builds to ensure  the exact versions in `package-lock.json` are installed.  It will also fail if the `package-lock.json` and `package.json` are out of sync, which can help catch mistakes.
 - Use an automated checker such as Dependabot or npm audit to ensure that your dependencies are up to date with the
   latest patches.
 - Separate dependencies and dev dependencies.
