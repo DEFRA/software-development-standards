@@ -16,12 +16,38 @@
 - Don't progress beyond Active LTS versions.
 
 ### Package Management
-- Use NPM.
+- Use npm.
 - Use a package.json and package-lock.json for repeatable builds.
 - Use an automated checker such as Dependabot or npm audit to ensure that your dependencies are up to date with the
   latest patches.
 - Separate dependencies and dev dependencies.
 - Update your version number inline with the [semantic versioning standard](https://semver.org/).
+
+#### .npmrc security settings
+
+Create an `.npmrc` file at the root of each repository with the following settings:
+
+```ini
+save-exact=true
+ignore-scripts=true
+min-release-age=7
+```
+
+| Setting | Purpose |
+|---|---|
+| `save-exact=true` | Saves exact dependency versions rather than version ranges. Prevents version-range drift from silently pulling in a later, potentially vulnerable release. |
+| `ignore-scripts=true` | Prevents npm from running lifecycle scripts such as `preinstall` and `postinstall` during package installation. This blocks a common vector for arbitrary code execution from malicious or compromised packages. Note: some packages that compile native bindings require lifecycle scripts to function. Test your project after enabling this setting and explicitly allow any packages that genuinely need it. |
+| `min-release-age=7` | Refuses to install packages published fewer than 7 days ago. This provides a window to detect package takeover or typosquatting attacks before they reach your codebase. Studies have shown that most malicious packages are detected within this timeframe. |
+
+To apply these settings globally across all projects on your machine, either run:
+
+```sh
+npm config set save-exact=true
+npm config set ignore-scripts=true
+npm config set min-release-age=7
+```
+
+or add the three lines directly to your global npm configuration file at `~/.npmrc`.
 
 ### Server framework
 - Our standard framework is [Hapi](https://hapijs.com/).
