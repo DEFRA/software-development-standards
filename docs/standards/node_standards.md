@@ -69,3 +69,4 @@ This standard was formally adopted on 8 January 2020.
 ### Significant changes
 
 Clarification on preference between CommonJS and ESM added 29 July 2024.
+Add .npmrc security settings added 1 May 2026.

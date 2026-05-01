@@ -42,3 +42,6 @@ This means you do not need to wait for a build to run to discover a vulnerabilit
 
 Snyk has been assessed alongside GitHub Advanced Security. As GitHub Advanced Security provides largely equivalent capability and is already available to all Defra teams, teams should look to maximise usage of GitHub Advanced Security rather than relying on Snyk.
 
+### Significant changes
+
+GitHub Advanced Security integration added 1 May 2026.
