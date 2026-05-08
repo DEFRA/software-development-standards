@@ -130,17 +130,78 @@ In this case, you may need to allow WSL to modify the Windows file permissions -
 1. Restart WSL for changes to take effect.
 
 #### Proxy
-You will need to configure WSL to work around the proxy to avoid network conflicts.
+You will need to configure WSL to work around the Zscaler proxy to avoid network conflicts.
 
-1. Create a `.wslconfig` file in your Windows profile directory (`C:\Users\<username>`) with the following content:
+This can be configured in the **WSL Settings** app. Open the WSL Settings app and set the networking mode to `Mirrored` with `Auto proxy enabled` set to `false`. Restart WSL for changes to take effect.
+
+#### Zscaler
+Install the Zscaler root certificate into the WSL trust store so that TLS inspection does not break package managers and other tools running inside WSL.
+
+**1. Export the Zscaler root certificate from Windows**
+
+1. Press `Win + R` and run `certmgr.msc`.
+1. Navigate to **Trusted Root Certification Authorities → Certificates**.
+1. Find the Zscaler certificate (often named `Zscaler Root CA`, `Zscaler Intermediate Root CA`, or a company-specific name).
+1. Right-click → **All Tasks → Export**.
+1. Choose **Base-64 encoded X.509 (.CER)** and save it somewhere accessible, for example:
 
     ```
-    [wsl2]
-    networkingMode=mirrored
-    autoProxy=false
+    C:\Users\YOURNAME\Downloads\zscaler-root.cer
     ```
 
-1. Restart WSL for changes to take effect.
+**2. Copy the certificate into WSL**
+
+Inside WSL, run:
+
+```
+cp /mnt/c/Users/YOURNAME/Downloads/zscaler-root.cer ~/
+```
+
+**3. Install into the Ubuntu/Debian trust store**
+
+1. Rename the file to `.crt`:
+
+    ```
+    mv ~/zscaler-root.cer ~/zscaler-root.crt
+    ```
+
+1. Copy it into the CA certificates directory:
+
+    ```
+    sudo cp ~/zscaler-root.crt /usr/local/share/ca-certificates/
+    ```
+
+1. Update the certificate store:
+
+    ```
+    sudo update-ca-certificates
+    ```
+
+    You should see output similar to:
+
+    ```
+    1 added, 0 removed
+    ```
+
+**4. Verify**
+
+Test that TLS is working:
+
+```
+curl https://example.com
+```
+
+If the connection succeeds without certificate errors, your certificate is installed correctly.
+
+##### Node.js
+
+Node.js does not use the system certificate store by default. Add the following to your `~/.bashrc` (or `~/.zshrc` if using Zsh):
+
+```
+export NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler-root.crt
+```
+
+Reload your shell or run `source ~/.bashrc` (or `source ~/.zshrc`) to apply the change.
 
 #### Quick links
 - [Setup Docker Desktop](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers)
