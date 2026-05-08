@@ -1,7 +1,5 @@
 # Continuous integration
 
-NOTE: This guidance only applies to repositories and projects which are public on GitHub and can therefore take advantage of several free integrations. We intend to expand upon this guide in the future to cover the rest of our ecosystem.
-
 > Continuous Integration (CI) is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early.
 >
 > [ThoughtWorks](https://www.thoughtworks.com/continuous-integration)
@@ -28,10 +26,27 @@ There are lots of other tools which can integrate with GitHub, especially if you
 
 These tools check the security of your project. This can include reporting vulnerabilities in your dependencies, or doing static analysis on your code.
 
-- Use [Dependabot](https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/dependabot-quickstart-guide) and/or [npm audit](https://docs.npmjs.com/cli/v9/commands/npm-audit) for Node.js projects
-- Use [Hakiri](https://hakiri.io/) for Ruby projects
+#### Dependabot
 
-These tools are free to use for open source GitHub repositories.
+Enable [Dependabot](https://docs.github.com/en/code-security/dependabot) in each repository to automatically raise pull requests when vulnerable or outdated dependencies are detected. 
+
+Dependabot depends on the [dependency graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) being enabled.
+
+> Dependency graph will shortly be automatically enabled for all repositories by default.
+
+Grouped Dependabot updates are recommended to reduce pull request noise.
+
+#### Dependency review action
+
+Add the [dependency review action](https://github.com/actions/dependency-review-action) to your pull request workflows. It checks whether a PR is introducing any packages with known vulnerabilities and fails the check if so, preventing vulnerable dependencies from being merged.
+
+The review won't catch vulnerabilities in existing dependencies, but it will help prevent new ones from being added.
+
+See the [security standards](../standards/security_standards.md) for more details and an example workflow.
+
+#### GitHub Security tab
+
+Regularly review the **Security** tab in your GitHub repository. It provides a continuously-updated view of Dependabot alerts, code scanning results, and secret scanning alerts without needing to trigger a build.
 
 ### Maintainability and test coverage
 
@@ -45,6 +60,6 @@ It will then include your test coverage in its assessment of your code.
 
 SonarQube Cloud is free to use for open source GitHub repositories.
 
-## CI with Jenkins
+### Significant changes
 
-We use Jenkins for our internal build servers.
+GitHub Advanced Security integration added 1 May 2026.
