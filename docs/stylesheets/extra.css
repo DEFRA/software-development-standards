@@ -1,0 +1,169 @@
+/*
+ * Defra Software Development Standards – theme colours
+ *
+ * Primary (Defra Green): #00a33b — https://digital.defra.gov.uk/design/branding
+ * All other colours: GOV.UK Design System palette
+ *   https://design-system.service.gov.uk/styles/colour/
+ */
+
+:root {
+  /* ── Defra primary (kept as-is per branding) ── */
+  --md-primary-fg-color:        #00a33b;
+  --md-primary-fg-color--light: #66c889;
+  --md-primary-fg-color--dark:  #007e2e;
+  --md-primary-bg-color:        #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+  --md-header-height: 86px;
+
+  /* ── GOV.UK text ── */
+  --md-default-fg-color:           #0b0c0c; /* govuk: text */
+  --md-default-fg-color--light:    #484949; /* govuk: secondary-text / black tint-25 */
+  --md-default-fg-color--lighter:  #858686; /* govuk: black tint-50 */
+  --md-default-fg-color--lightest: #cecece; /* govuk: border / black tint-80 */
+
+  /* ── GOV.UK backgrounds ── */
+  --md-default-bg-color:           #ffffff; /* govuk: body-background */
+  --md-default-bg-color--light:    #f4f8fb; /* govuk: template-background / surface */
+  --md-default-bg-color--lighter:  #f3f3f3; /* govuk: black tint-95 */
+  --md-default-bg-color--lightest: #f3f3f3;
+
+  /* ── GOV.UK accent (interactive highlights, active nav) ── */
+  --md-accent-fg-color:             #1d70b8; /* govuk: brand blue */
+  --md-accent-fg-color--transparent: rgba(29, 112, 184, 0.1);
+
+  /* ── GOV.UK links ── */
+  --md-typeset-a-color: #1a65a6; /* govuk: link */
+
+  /* ── GOV.UK code ── */
+  --md-code-fg-color: #0b0c0c; /* govuk: text */
+  --md-code-bg-color: #f3f3f3; /* govuk: black tint-95 */
+
+  /* ── GOV.UK footer ── */
+  --md-footer-fg-color:         #ffffff;
+  --md-footer-fg-color--light:  rgba(255, 255, 255, 0.7);
+  --md-footer-fg-color--lighter: rgba(255, 255, 255, 0.45);
+  --md-footer-bg-color:         #0b0c0c; /* govuk: black */
+  --md-footer-bg-color--dark:   #0b0c0c;
+}
+
+/* ── GOV.UK links ──────────────────────────────────────────────────── */
+.md-typeset a {
+  color: #1a65a6; /* govuk: link */
+}
+
+.md-typeset a:hover {
+  color: #0f385c; /* govuk: link-hover */
+}
+
+.md-typeset a:visited {
+  color: #54319f; /* govuk: link-visited / purple primary */
+}
+
+/* ── GOV.UK focus ring ─────────────────────────────────────────────── */
+:focus-visible,
+.md-header__button:focus,
+.md-search__input:focus {
+  outline: 3px solid #ffdd00; /* govuk: focus yellow */
+  outline-offset: 0;
+}
+
+/* ── Header – Row 1: Defra brand strip ─────────────────────────────── */
+.md-header__brand {
+  background-color: var(--md-primary-fg-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.md-header__brand-inner {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+}
+
+/* ── Header – Row 2: white nav bar ─────────────────────────────────── */
+.md-header__nav-row {
+  background-color: #ffffff;
+  border-bottom: 1px solid #cecece; /* govuk: border */
+}
+
+.md-header__site-link {
+  color: #0b0c0c; /* govuk: text */
+  text-decoration: none;
+}
+
+.md-header__site-link:hover {
+  color: #0f385c; /* govuk: link-hover */
+  text-decoration: underline;
+}
+
+.md-header__nav-row .md-header__button,
+.md-header__nav-row .md-source,
+.md-header__nav-row .md-source__repository,
+.md-header__nav-row .md-source__facts {
+  color: #0b0c0c; /* govuk: text */
+}
+
+.md-header__nav-row .md-header__button:hover {
+  opacity: 0.7;
+}
+
+.md-header__title {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.md-header__nav-row .md-header__topic,
+.md-header__nav-row .md-header__topic span,
+.md-header__nav-row [data-md-component="header-topic"] span {
+  color: #0b0c0c; /* govuk: text */
+}
+
+/* ── Search ─────────────────────────────────────────────────────────── */
+.md-search__input {
+  background-color: #f3f3f3; /* govuk: black tint-95 */
+  color: #0b0c0c;            /* govuk: text */
+  border: 2px solid #0b0c0c; /* govuk: input-border */
+}
+
+.md-search__input::placeholder {
+  color: #484949; /* govuk: secondary-text */
+}
+
+.md-search__output {
+  background-color: #ffffff;
+  border: 1px solid #cecece; /* govuk: border */
+}
+
+.md-search-result__meta {
+  background-color: #f4f8fb; /* govuk: surface-background */
+  color: #484949;            /* govuk: secondary-text */
+}
+
+.md-search-result__title {
+  color: #1a65a6; /* govuk: link */
+}
+
+.md-search-result__teaser {
+  color: #0b0c0c; /* govuk: text */
+}
+
+/* ── Sidebar / navigation active state ─────────────────────────────── */
+/* Active nav items use the primary (Defra Green) – no override needed.
+   Nav text uses the default fg colour set above. */
+
+/* ── Tables ─────────────────────────────────────────────────────────── */
+.md-typeset table:not([class]) th {
+  background-color: #f4f8fb; /* govuk: surface-background */
+  color: #0b0c0c;
+}
+
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  border-color: #cecece; /* govuk: border */
+}
+
+/* ── Admonitions (notes, warnings, etc.) ───────────────────────────── */
+.md-typeset .admonition,
+.md-typeset details {
+  border-color: #cecece; /* govuk: border */
+}
+
