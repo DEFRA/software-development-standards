@@ -167,3 +167,9 @@
   border-color: #cecece; /* govuk: border */
 }
 
+/* ── Footer ─────────────────────────────────────────────────────────── */
+/* Hide the footer meta bar (copyright/social row) since both are empty */
+.md-footer-meta {
+  display: none;
+}
+
