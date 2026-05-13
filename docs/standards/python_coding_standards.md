@@ -20,12 +20,12 @@ All projects must use `pyproject.toml` for declaring dependencies and project me
 
 - Pin dependencies to exact versions using `==` specifiers to prevent unexpected version drift:
 
-    ```toml
-    dependencies = [
-        "fastapi==0.104.1",
-        "requests==2.31.0",
-    ]
-    ```
+```toml
+dependencies = [
+    "fastapi==0.104.1",
+    "requests==2.31.0",
+]
+```
 
 - Commit `uv.lock` to version control for reproducible builds. Always use `uv sync --locked` in CI/automated builds to ensure the lock file matches `pyproject.toml` (equivalent to `npm ci`).
 
