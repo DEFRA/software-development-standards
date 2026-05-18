@@ -17,7 +17,7 @@ Default acceptance criteria for new stories:
 * Screens, behaviour and content match designs from the prototype or wireframe
 * Styles match the [design system](https://design-system.service.gov.uk/)
 * Accessible - meets [Web Content Accessibility Guidelines (WCAG) version 2.1](https://www.w3.org/WAI/standards-guidelines/wcag/glance/) at levels A and AA
-* Works across [all supported browsers](https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices) including IE11 and mobile
+* Works across [all supported browsers](https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices) including mobile
 * Server-side [error validation](https://design-system.service.gov.uk/components/error-message/) exists for all fields
 * No obvious performance issues (most transactions under 1 second, avoid transactions over 10 seconds)
 * No existing functionality has regressed
