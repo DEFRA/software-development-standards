@@ -2,12 +2,15 @@ site_name: Defra Software Development Standards
 site_url: https://defra.github.io/software-development-standards
 theme: 
   name: material
-  logo: img/code-white.png
-  favicon: img/code-black.png
+  custom_dir: overrides
+  logo: img/brand.png
+  favicon: img/brand.ico
   palette:
-    primary: deep-purple
+    primary: custom
   font:
     text: 'Arial'
     code: 'Roboto Mono'
+extra_css:
+  - stylesheets/extra.css
 repo_url: https://github.com/DEFRA/software-development-standards
 remote_branch: gh-pages
