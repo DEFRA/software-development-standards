@@ -30,6 +30,7 @@ These are the standards that must be followed for all software development under
 ### Coding standards
 
 - [Common coding standards](./standards/common_coding_standards.md)
+- [Continuous integration standards](./standards/continuous_integration.md)
 - [Development languages](./standards/development_language_standards.md)
 - [JavaScript standards](./standards/javascript_standards.md)
 - [C# coding standards](./standards/csharp_coding_standards.md)
@@ -78,7 +79,6 @@ These guides provide additional support for meeting and working with the standar
 - [General guidance](./guides/README.md)
 - [Choosing between a mono repo and a multi repo](./guides/mono_or_multi_repo.md)
 - [Choosing packages](./guides/choosing_packages.md)
-- [Continuous integration](./guides/continuous_integration.md)
 - [Developer workflows](./guides/developer_workflows.md)
 - [Docker guidance](./guides/docker_guidance.md)
 - [Java auto-format with Eclipse](./guides/java_auto_format_eclipse.md)
