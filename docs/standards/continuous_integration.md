@@ -22,7 +22,9 @@ We use [GitHub Actions](https://github.com/features/actions/) for our CI builds 
 
 When using GitHub Actions, you should pin your actions to a specific commit SHA rather than a branch or tag. This ensures that the exact version of the action you have tested and approved is used in your workflow.
 
-Whilst this will prevent you from automatically inheriting updates to the action, it will protect you from compromised version tags or branches in the action's repository. This is an increasingly common threat vector for supply chain attacks, where an attacker can push a malicious update to a branch or tag that your workflow is using, and it will automatically be used in your workflow without you needing to change anything.
+Whilst this will prevent you from automatically inheriting updates to the action, it will protect you from compromised version tags or branches in the action's repository. 
+
+This is an increasingly common threat vector for supply chain attacks, where an attacker can push a malicious update to a branch or tag that your workflow is using, and it will automatically be used in your workflow without you needing to change anything.
 
 If you want to update to a new version of the action, you can update the commit SHA in your workflow file after testing the new version.
 
