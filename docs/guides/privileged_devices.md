@@ -137,6 +137,8 @@ This can be configured in the **WSL Settings** app. Open the WSL Settings app an
 #### Zscaler
 Install the Zscaler root certificate into the WSL trust store so that TLS inspection does not break package managers and other tools running inside WSL.
 
+This is not mandatory, however it will likely reduce the number of support requests to bypass TLS inspection for specific endpoints.
+
 **1. Export the Zscaler root certificate from Windows**
 
 1. Press `Win + R` and run `certmgr.msc`.
