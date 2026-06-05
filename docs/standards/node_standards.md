@@ -51,6 +51,8 @@ npm config set min-release-age=7
 
 Or add the three lines directly to your global npm configuration file at `~/.npmrc`.
 
+> There may be scenarios where it would be advantageous to bypass the seven day release age requirement, such as when you need to immediately patch a vulnerability. In these cases, you should do appropriate due diligence on the package and its publisher before installing it, and consider temporarily disabling the setting if necessary. You can bypass the setting for a single install command with `--min-release-age=0`.
+
 ### Server framework
 - Our standard framework is [Hapi](https://hapijs.com/).
 - Be aware of the [Hapi support timeline](https://hapi.dev/support/#plans).
