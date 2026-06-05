@@ -12,7 +12,7 @@ This automated build can check several things, including:
 
 ## Branch protection
 
-`Main` branches must be protected with [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) to ensure that all changes are reviewed and pass required checks before being merged.
+`main` branches must be protected with [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) to ensure that all changes are reviewed and pass required checks before being merged.
 
 ## GitHub Actions
 
@@ -43,7 +43,7 @@ Not:
 uses: aquasecurity/trivy-action@v0.35.0
 ```
 
-Or:
+Nor:
 
 ```yaml
 uses: aquasecurity/trivy-action@main
@@ -83,7 +83,7 @@ This includes vulnerabilities in GitHub actions themselves.
 
 > Note: there is a bug in the GitHub UI where the `ecosystem` tab incorrectly filters GitHub Actions as `ecosystem:"GitHub Actions"` instead of the correct `ecosystem:actions`.
 
-Teams must not have any open security alerts in their repositories.
+Teams must resolve any open security alerts in their repositories.
 
 ### Maintainability and test coverage
 
