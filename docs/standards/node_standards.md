@@ -41,7 +41,7 @@ min-release-age=7
 | `ignore-scripts=true` | Prevents npm from running lifecycle scripts such as `preinstall` and `postinstall` during package installation. This blocks a common vector for arbitrary code execution from malicious or compromised packages. Note: some packages that compile native bindings require lifecycle scripts to function. If any packages genuinely need it, then `--ignore-scripts=false` can be passed to the relevant `npm install` command. |
 | `min-release-age=7` | Refuses to install packages published fewer than 7 days ago. This provides a window to detect package takeover or typosquatting attacks before they reach your codebase. Studies have shown that most malicious packages are detected within this timeframe. |
 
-To apply these settings globally across all projects on your machine, either run:
+To apply these settings you must also configure them globally across all projects on your machine. Run the following commands to ensure you are protected from any repository you interact with, even if you don't own it.
 
 ```sh
 npm config set save-exact=true
@@ -49,7 +49,9 @@ npm config set ignore-scripts=true
 npm config set min-release-age=7
 ```
 
-or add the three lines directly to your global npm configuration file at `~/.npmrc`.
+Or add the three lines directly to your global npm configuration file at `~/.npmrc`.
+
+> There may be scenarios where it would be advantageous to bypass the seven day release age requirement, such as when you need to immediately patch a vulnerability. In these cases, you should do appropriate due diligence on the package and its publisher before installing it, and consider temporarily disabling the setting if necessary. You can bypass the setting for a single install command with `--min-release-age=0`.
 
 ### Server framework
 - Our standard framework is [Hapi](https://hapijs.com/).
