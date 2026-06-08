@@ -81,8 +81,6 @@ It is expected that teams regularly review the **Security** tab in your GitHub r
 
 This includes vulnerabilities in GitHub actions themselves.
 
-> Note: there is a bug in the GitHub UI where the `ecosystem` tab incorrectly filters GitHub Actions as `ecosystem:"GitHub Actions"` instead of the correct `ecosystem:actions`.
-
 Teams must resolve any open security alerts in their repositories.
 
 ### Maintainability and test coverage
