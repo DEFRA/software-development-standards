@@ -89,6 +89,7 @@ These guides provide additional support for meeting and working with the standar
 - [Opening existing private code](./guides/opening_private_code.md)
 - [PL/SQL auto-format with TOAD](./guides/plsql_auto_format_toad.md)
 - [SQL Prompt](./guides/version_control_guidance.md)
+- [Shared libraries](./guides/shared_libraries.md)
 - [Style guide for standards](./guides/style_guide_for_standards.md)
 - [Training](./guides/training.md)
 - [Using AWS session manager](./guides/aws_session_manager.md)
