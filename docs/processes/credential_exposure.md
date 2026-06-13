@@ -12,19 +12,21 @@ This process will take you through what to do if that happens. The key point is
 
 No matter the speed with which you rectify the situation, or how little you think the chance is for people to see it. Treat it as compromised.
 
+Deleting the repository or making it private are not solutions. The secret may have been cached by GitHub, or forked by someone else. You need to treat it as compromised and rotate it.
+
 ## Contact operations
 
 The first step is to make contact with the team responsible for your production environment.
 
-For example if your service is hosted in AWS, you should call someone from the AWS web-ops team ([David Blackburn](https://github.com/davidblackburn) or [Tom Tant](https://github.com/TTEA1990)).
-
-We cannot post contact numbers here. But they are available using our internal systems.
+For example if your service is hosted in AWS or Azure, you should raise an incident with the Cloud Centre of Excellence (CCoE).
 
 Follow this up with an email that contains a link to the commit, and explains what was exposed.
 
 ## Fix your git
 
 Next is fix your git tree. This involves removing the offending commit from your git history.
+
+> In some cases rewriting history would add disproportionate complexity to the project. Particularly if the commit was some time ago.  In these cases it may be better to leave the commit in place if you can rotate the secret.
 
 ### On a branch
 
@@ -44,7 +46,7 @@ To quote GitHub's guide
 
 > [..] *it's important to note that those commits may still be accessible in any clones or forks of your repository, directly via their SHA-1 hashes in cached views on GitHub, and through any pull requests that reference them.*
 
-If someone manages to fork or update their fork before you push your fix there is little you can do. Try to reach out to them to explain the situtation, and ask them to update their fork.
+If someone manages to fork or update their fork before you push your fix there is little you can do. Try to reach out to them to explain the situation, and ask them to update their fork.
 
 ### GitHub
 

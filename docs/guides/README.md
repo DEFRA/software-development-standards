@@ -32,6 +32,8 @@ Security issues can arise when one code component incorrectly assumes another ha
 
 Keep secrets such as passwords and private keys logically isolated from the core code base. This will help prevent them being checked in to public code repositories. Hard coding credentials in source code is bad practice.
 
+See the [GitHub Advanced Security guide](github_advanced_security.md) for how Defra uses secret scanning and push protection to detect and prevent secret exposure.
+
 ### Do small and regular code commits
 
 Performing effective review becomes more difficult when large changes are made with each commit. Small and clearly labelled commits simplify the review and roll back process.
