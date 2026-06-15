@@ -12,7 +12,7 @@ Use the [OWASP Secure coding practices - quick reference guide](https://www.owas
 
 ## GitHub Advanced Security
 
-Defra has GitHub Advanced Security enabled across its organisation. Teams should maximise use of these built-in features rather than relying on third-party tools.
+Defra has GitHub Advanced Security enabled across its organisation. Teams should maximise use of these built-in features rather than relying on third-party tools. See the [GitHub Advanced Security guide](../guides/github_advanced_security.md) for a full explanation of the features and how to use them.
 
 ### Dependency graph
 
@@ -40,7 +40,7 @@ This means you do not need to wait for a build to run to discover a vulnerabilit
 
 ### Snyk
 
-Snyk has been assessed alongside GitHub Advanced Security. As GitHub Advanced Security provides largely equivalent capability and is already available to all Defra teams, teams should look to maximise usage of GitHub Advanced Security rather than relying on Snyk.
+Snyk has been assessed alongside [GitHub Advanced Security](../guides/github_advanced_security.md). As GitHub Advanced Security provides largely equivalent capability and is already available to all Defra teams, teams should look to maximise usage of GitHub Advanced Security rather than relying on Snyk.
 
 ### Significant changes
 

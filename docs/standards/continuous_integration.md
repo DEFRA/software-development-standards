@@ -83,6 +83,8 @@ This includes vulnerabilities in GitHub actions themselves.
 
 Teams must resolve any open security alerts in their repositories.
 
+See the [GitHub Advanced Security guide](../guides/github_advanced_security.md) for more detail on alert types, push protection, and how to request approval to dismiss alerts.
+
 ### Maintainability and test coverage
 
 Defra has a [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/) organisation, which must be used to perform static quality analysis checks on your code.
