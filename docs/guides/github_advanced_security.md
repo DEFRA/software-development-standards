@@ -33,7 +33,7 @@ View all secret scanning alerts for the Defra org:
 
 Only an **admin** can bypass push protection. If you believe a detection is a false positive, you can submit a bypass request through the GitHub UI by providing a reason.
 
-**You must then post in the #github-support channel on the defra-digital Slack to have your request actioned.** Include:
+**You must then post in the [`#github-support`](https://defra-digital.slack.com/archives/C015VCNLKFE) channel on the defra-digital Slack to have your request actioned.** Include:
 
 - a link to the bypass request
 - a brief explanation of why the protection should be bypassed
@@ -42,7 +42,7 @@ See the [resolving GitHub security alerts](../processes/github_security_alerts.m
 
 ### Custom secret patterns
 
-The Defra organisation has custom secret patterns in addition to GitHub's defaults. Teams can request new custom patterns by posting in `#github-support` on the defra-digital Slack.
+The Defra organisation has custom secret patterns in addition to GitHub's defaults. Teams can request new custom patterns by posting in [`#github-support`](https://defra-digital.slack.com/archives/C015VCNLKFE) on the defra-digital Slack.
 
 ### If a secret has been exposed
 
@@ -61,8 +61,9 @@ Teams should:
 - regularly review Dependabot alerts in their repositories
 - action alerts promptly - either by patching the dependency or dismissing the alert with a reason
 
-Only an **admin** can dismiss a Dependabot alert. If you need to dismiss one, submit the dismissal through the GitHub UI and then post in `#github-support` to have it approved. Include:
+Only an **admin** can dismiss a Dependabot alert. If you need to dismiss one, submit the dismissal through the GitHub UI and then post in [`#github-support`](https://defra-digital.slack.com/archives/C015VCNLKFE) to have it approved. 
 
+Include:
 - a link to the dismissal request
 - a brief explanation of why the alert can be dismissed
 
@@ -72,7 +73,7 @@ See the [resolving GitHub security alerts](../processes/github_security_alerts.m
 
 [Code scanning](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning) uses [CodeQL](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql) to perform static analysis on your code and surface potential security vulnerabilities. Alerts appear in the **Security and Quality** tab of your repository.
 
-Like Dependabot alerts, code scanning alert dismissals require admin approval - post in `#github-support` with a link to the dismissal and a brief reason.
+Like Dependabot alerts, code scanning alert dismissals require admin approval - post in [`#github-support`](https://defra-digital.slack.com/archives/C015VCNLKFE) with a link to the dismissal and a brief reason.
 
 ## Security overview
 
@@ -97,6 +98,6 @@ You can configure [GitHub notifications](https://docs.github.com/en/account-and-
 
 ### Dismissing or bypassing alerts
 
-Only an **admin** can bypass push protection or dismiss a security alert. In all cases, post in `#github-support` on the defra-digital Slack with a link to the request and a brief reason.
+Only an **admin** can bypass push protection or dismiss a security alert. In all cases, post in [`#github-support`](https://defra-digital.slack.com/archives/C015VCNLKFE) on the defra-digital Slack with a link to the request and a brief reason.
 
 See the [resolving GitHub security alerts](../processes/github_security_alerts.md) process for full details.
