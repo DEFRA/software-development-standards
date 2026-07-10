@@ -321,3 +321,32 @@ volumes:
 ```
 
 Then volume and port bindings are only used during local development and any local tests runs will not impact development data.
+
+### Windows Git Bash
+
+There is an issue where Git Bash may not correctly interpret volume paths when running Docker Compose on Windows.
+
+To avoid this issue, the following snippet should be added to the `.bashrc` file in the home directory of the user running Git Bash.
+
+```bash
+# --- Make Docker work nicely in Git Bash ---
+
+# Prevent MSYS from mangling paths
+__docker_env() {
+  MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*' "$@"
+}
+
+# Wrapper for docker.exe
+docker() {
+  local needs_winpty=
+  for a in "$@"; do
+    [[ "$a" == "-it" || "$a" == "-i" || "$a" == "-t" ]] && needs_winpty=1
+  done
+
+  if [[ -n "$needs_winpty" ]] && command -v winpty >/dev/null 2>&1; then
+    __docker_env winpty docker.exe "$@"
+  else
+    __docker_env docker.exe "$@"
+  fi
+}
+```
