@@ -64,7 +64,7 @@ There may be scenarios where there is evidence that another package management t
 These potential benefits must be weighed against the disadvantages of using a less common package management tool, such as:
 - less community support and documentation
 - less knowledge sharing across teams
-- isolated and increased response to supply chain attacks
+- isolated and increased response effort to supply chain attacks
 - requirement to learn how the tool's package resolution and dependency management works, which may be different to npm
 - because dependency resolution and vulnerability auditing vary between package managers, teams need to understand the different supply-chain risks and attack paths each tool introduces.
 
