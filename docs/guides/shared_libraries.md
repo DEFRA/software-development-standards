@@ -8,7 +8,7 @@ Two package ecosystems align to Defra's primary technology choices.
 
 **npm** packages are used in JavaScript projects. They are hosted on [npmjs.com](https://www.npmjs.com) and installed using the `npm` command. Packages can be scoped to an organisation, such as `@defra/your-package`.
 
-**NuGet** packages are used in .NET projects. They are hosted on [nuget.org](https://www.nuget.org) and installed using the `dotnet add package` command. Packages are grouped under an organisation, such as `DefraDigital.YourPackage`.
+**NuGet** packages are used in .NET projects. They are hosted on [nuget.org](https://www.nuget.org) and installed using the `dotnet add package` command. Packages are grouped under an organisation, such as `Defra.YourPackage`.
 
 ## When a shared library can be useful
 
@@ -181,11 +181,11 @@ The first publish of any `@defra`-scoped package must be done by a Defra npm org
 
 Publish NuGet packages to [nuget.org](https://www.nuget.org) under the [Defra NuGet organisation](https://www.nuget.org/profiles/Defra).
 
-The `Defra` package ID prefix is reserved on NuGet.org and package IDs using it may be rejected. Use the `DefraDigital` prefix instead:
+The `Defra` package ID prefix is reserved on NuGet.org for the `Defra` organisation and should be used for all packages.  Examples of valid package IDs include:
 
 ```text
-DefraDigital.YourPackage
-DefraDigital.Team.Component
+Defra.YourPackage
+Defra.Team.Component
 ```
 
 For onboarding, contact [`#nuget-support`](https://defra-digital.slack.com/archives/C0B9RF36WTH) in Slack. A Defra NuGet org admin will add you as a Collaborator to the Defra organisation on NuGet.org.
@@ -203,7 +203,7 @@ Contact `#nuget-support` in Slack with:
 - your NuGet.org username
 - your team name
 - the GitHub repository that will publish the package
-- the proposed package ID (for example `DefraDigital.YourPackage`)
+ the proposed package ID (for example `Defra.YourPackage`)
 - confirmation the package is suitable for public publishing
 
 Make sure your NuGet.org account uses a secure Microsoft account with MFA enabled.
@@ -213,29 +213,29 @@ Make sure your NuGet.org account uses a secure Microsoft account with MFA enable
 Create a new GitHub repository under the DEFRA organisation, then create a solution, class library and test project:
 
 ```bash
-dotnet new sln --name DefraDigital.YourPackage
+dotnet new sln --name Defra.YourPackage
 
 dotnet new classlib \
-  --name DefraDigital.YourPackage \
-  --output DefraDigital.YourPackage
+  --name Defra.YourPackage \
+  --output Defra.YourPackage
 
 dotnet new xunit \
-  --name DefraDigital.YourPackage.Tests \
-  --output DefraDigital.YourPackage.Tests
+  --name Defra.YourPackage.Tests \
+  --output Defra.YourPackage.Tests
 
-dotnet sln add DefraDigital.YourPackage/DefraDigital.YourPackage.csproj
-dotnet sln add DefraDigital.YourPackage.Tests/DefraDigital.YourPackage.Tests.csproj
+dotnet sln add Defra.YourPackage/Defra.YourPackage.csproj
+dotnet sln add Defra.YourPackage.Tests/Defra.YourPackage.Tests.csproj
 
-dotnet add DefraDigital.YourPackage.Tests/DefraDigital.YourPackage.Tests.csproj \
-  reference DefraDigital.YourPackage/DefraDigital.YourPackage.csproj
+dotnet add Defra.YourPackage.Tests/Defra.YourPackage.Tests.csproj \
+  reference Defra.YourPackage/Defra.YourPackage.csproj
 ```
 
-Replace `DefraDigital.YourPackage` with your actual package ID.
+Replace `Defra.YourPackage` with your actual package ID.
 
 **3. Add package metadata to the `.csproj`**
 
 ```xml
-<PackageId>DefraDigital.YourPackage</PackageId>
+<PackageId>Defra.YourPackage</PackageId>
 <Version>0.1.0</Version>
 <Authors>Authors</Authors>
 <Company>Defra</Company>
@@ -272,13 +272,13 @@ Key version check steps:
 - name: Get current version
   id: current-version
   run: |
-    echo "version=$(grep -oP '(?<=<Version>)[^<]+' DefraDigital.YourPackage/DefraDigital.YourPackage.csproj)" >> $GITHUB_OUTPUT
+    echo "version=$(grep -oP '(?<=<Version>)[^<]+' Defra.YourPackage/Defra.YourPackage.csproj)" >> $GITHUB_OUTPUT
 
 - name: Get main branch version
   id: base-version
   run: |
     git fetch origin main --depth=1
-    echo "version=$(git show origin/main:DefraDigital.YourPackage/DefraDigital.YourPackage.csproj | grep -oP '(?<=<Version>)[^<]+')" >> $GITHUB_OUTPUT
+    echo "version=$(git show origin/main:Defra.YourPackage/Defra.YourPackage.csproj | grep -oP '(?<=<Version>)[^<]+')" >> $GITHUB_OUTPUT
 
 - name: Check version incremented
   run: |
@@ -296,7 +296,7 @@ Key version check steps:
     fi
 ```
 
-Replace `DefraDigital.YourPackage` with your package ID and project path.
+Replace `Defra.YourPackage` with your package ID and project path.
 
 **5. Add a publish workflow**
 
@@ -329,7 +329,7 @@ jobs:
       - run: dotnet test --configuration Release --no-build
 
       - name: Pack
-        run: dotnet pack DefraDigital.YourPackage/DefraDigital.YourPackage.csproj --configuration Release --no-build --output artifacts
+        run: dotnet pack Defra.YourPackage/Defra.YourPackage.csproj --configuration Release --no-build --output artifacts
 
       - name: NuGet login
         id: login
@@ -341,7 +341,7 @@ jobs:
         run: dotnet nuget push "artifacts/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
 ```
 
-Replace `DefraDigital.YourPackage` with your package ID and project path.
+Replace `Defra.YourPackage` with your package ID and project path.
 
 **6. Add the `NUGET_USERNAME` secret**
 
