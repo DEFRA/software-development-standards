@@ -24,6 +24,7 @@
 - Separate dependencies and dev dependencies.
 - Update your version number inline with the [semantic versioning standard](https://semver.org/).
 - Vet third-party packages before adding them as dependencies by following this [guide](../guides/choosing_packages.md).
+- Pin all dependencies to exact versions in `package.json`. Do not use version range specifiers such as `^`, `~`, `*`, or `x` (e.g. use `"1.2.3"` not `"^1.2.3"`). Exact versions ensure reproducible installs and prevent unexpected updates from silently introducing breaking changes or vulnerabilities. The `save-exact=true` `.npmrc` setting enforces this for new installs.
 
 #### .npmrc security settings
 
@@ -62,6 +63,7 @@ npm has been chosen as our standard package management tool as it is the most wi
 There may be scenarios where there is evidence that another package management tool is more appropriate for a more niche project setup.
 
 These potential benefits must be weighed against the disadvantages of using a less common package management tool, such as:
+
 - less community support and documentation
 - less knowledge sharing across teams
 - isolated and increased response effort to supply chain attacks
