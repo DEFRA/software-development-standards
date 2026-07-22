@@ -60,6 +60,7 @@ nav:
       - Choosing packages: guides/choosing_packages.md
       - Developer workflows: guides/developer_workflows.md
       - Docker guidance: guides/docker_guidance.md
+      - GitHub Copilot: guides/github_copilot.md
       - Java auto-format with Eclipse: guides/java_auto_format_eclipse.md
       - Kubernetes: guides/kubernetes.md
       - Managing application credentials: guides/application_credentials.md
