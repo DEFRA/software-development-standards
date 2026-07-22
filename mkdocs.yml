@@ -56,7 +56,7 @@ nav:
       - Resolving GitHub security alerts: processes/github_security_alerts.md
     - Guides:
       - General guidance: guides/README.md
-      - Caching: guides/caching.md
+      - Server-Side Caching with Hapi.js: guides/caching.md
       - Choosing between a mono repo and a multi repo: guides/mono_or_multi_repo.md
       - Choosing packages: guides/choosing_packages.md
       - Cookie banner: guides/cookies-banner.md
