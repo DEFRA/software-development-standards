@@ -59,7 +59,11 @@ nav:
       - Choosing between a mono repo and a multi repo: guides/mono_or_multi_repo.md
       - Choosing packages: guides/choosing_packages.md
       - Developer workflows: guides/developer_workflows.md
+      - Cookie banner: guides/cookies-banner.md
+      - Defra Identity: guides/defra-id.md
       - Docker guidance: guides/docker_guidance.md
+      - Entra: guides/entra.md
+      - GitHub Advanced Security: guides/github_advanced_security.md
       - GitHub Copilot: guides/github_copilot.md
       - Java auto-format with Eclipse: guides/java_auto_format_eclipse.md
       - Kubernetes: guides/kubernetes.md
