@@ -20,6 +20,57 @@ You will mostly use it in three ways:
 
 > **Sustainability note.** Prefer the lightest mode that will do the job. Completions cost far less than a long agent session. Reach for agent mode only when a task really spans multiple steps or files.
 
+## Where to use GitHub Copilot
+
+GitHub Copilot can be used in three places, and the same standards configuration applies in all of them:
+
+- **In your editor**, through Copilot Chat and completions in VS Code.
+- **In your terminal**, through the Copilot CLI.
+- **In the cloud**, through the Copilot coding agent that works on GitHub and opens pull requests.
+
+They share the same standards configuration, so your instruction files, skills and prompts apply wherever you work. See [writing effective instructions](#writing-effective-instructions) and [custom agents, skills and prompts](#custom-agents-skills-and-prompts).
+
+| Surface | What it is | Where it runs | Interaction | Best for |
+| --- | --- | --- | --- | --- |
+| **Editor (VS Code)** | Chat, completions, agent and Plan mode inside your IDE | Locally, on your machine, with your open workspace as context | Synchronous, you stay in the loop and review as you go | Everyday development where you want to see and steer each change |
+| **Copilot CLI** | An agent you drive from the command line | Locally in your terminal by default, with an optional cloud sandbox | Interactive, or headless for scripting and automation | Terminal-centric workflows, Git and `gh` operations, quick tasks without leaving the shell |
+| **Cloud agent** | The Copilot coding agent working autonomously on GitHub | In the cloud, on GitHub Actions, in an isolated environment | Asynchronous, it works in the background and opens a pull request | Well-defined, self-contained tasks you can hand off and review later |
+
+### In your editor (VS Code)
+
+Copilot Chat in VS Code is the surface you will use most. It runs locally with your open workspace as context, and it hosts all the modes in the section above: [inline completions](#what-is-github-copilot), chat, agent mode and [Plan mode](#using-plan-mode).
+
+Use it when you want to stay close to the work: exploring code, making changes and reviewing each edit as it happens. Because you are in the loop throughout, it is the right choice for anything where you want to guide the approach, understand the change, or iterate quickly against the running code.
+
+### Copilot CLI
+
+The Copilot CLI brings the same agent to your terminal, so you can ask it to make changes, run commands and interact with GitHub without leaving the shell. It runs locally against the directory you launch it from, and can also run in an isolated cloud sandbox when you want to keep work off your machine.
+
+It has two ways to run:
+
+- **Interactively**, where you hold a conversation, steer the work and approve tool use as it goes. It also has its own Plan mode for building an approach before it writes code.
+- **Programmatically**, by passing a single prompt (`copilot -p "..."`) so it completes a task and exits. This suits scripting and automation, though granting automatic tool approval carries real risk, so scope it carefully.
+
+Reach for the CLI when your workflow is already terminal-centric: performing Git and `gh` operations, wiring Copilot into a script, or making a quick change without opening the editor. It honours the same instruction files, skills and MCP configuration as the editor, and it applies the same safeguards, such as trusting only the directory you launch it from and asking before it runs or modifies files. Never enable blanket automatic approval in a directory you do not fully trust; see [your responsibilities](#your-responsibilities).
+
+### The cloud agent
+
+The Copilot coding agent works asynchronously in the cloud, on GitHub Actions, in its own isolated environment. Rather than pairing with you in real time, it takes a task, works in the background, and opens a pull request for you to review. You start it by assigning an issue to Copilot, mentioning `@copilot` on a pull request, or using the agents panel on GitHub.
+
+Use it to hand off well-defined, self-contained work so you can stay focused on more complex tasks. It is well suited to backlog items such as small features, test coverage, documentation and tidying technical debt. Because you delegate rather than supervise, the quality of the result depends almost entirely on the quality of the brief; see [a ticket is a brief for the coding agent](#a-ticket-is-a-brief-for-the-coding-agent).
+
+A few limits shape what to give it: each task works on one repository and one branch and produces one pull request, and a session has a fixed maximum runtime, so break large work into smaller, focused tasks. Review its pull request as you would any other, using [Copilot code review](#using-copilot-code-review) as a first pass and a human review before merge, in line with the [pull requests process](../processes/pull_requests.md).
+
+### Choosing between them
+
+- Reach for the **editor** when you want to stay in the loop and review each change as it happens. It is the default for everyday development.
+- Reach for the **CLI** when you are already working in the terminal, or when you want to drive Copilot from a script.
+- Reach for the **cloud agent** when a task is well-defined enough to hand off, so you can delegate it and review the pull request later.
+
+They complement each other. You might plan a change in the editor, hand a couple of self-contained tickets to the cloud agent, and use the CLI to drive the Git operations that tie it together.
+
+> **Sustainability note.** Match the surface to the task. Delegating self-contained work to the cloud agent lets several tasks progress in parallel without a long interactive session, but each cloud run also spends GitHub Actions minutes and credits, so hand off work that is genuinely ready rather than exploratory.
+
 ## Requesting a licence
 
 ### Defra developers
@@ -75,7 +126,7 @@ For times you want to pick deliberately, here's what each model is best at:
 | **GPT mini** | A reliable default for everyday coding and writing, and lighter debugging or reasoning | Deep architecture-level reasoning (use Opus or Sonnet), heavy multi-tool agent work (use Codex) | Good cost and quality balance, works well across languages |
 | **MAI Code 1 Flash** | Fast, adaptive everyday coding, strong instruction-following, multi-turn development workflows | Long, complex reasoning chains and large-scale refactors (use Opus or Sonnet) | Fast and concise, and continuously improving |
 
-Model names and their exact strengths change often. See [GitHub's AI model comparison](https://docs.github.com/en/copilot/reference/ai-models/model-comparison) for the current, detailed picture.
+Model names and their exact strengths change often. The models made available to Defra are periodically reviewed by Principal Developers, who add new models and remove outdated ones as the landscape evolves. See [GitHub's AI model comparison](https://docs.github.com/en/copilot/reference/ai-models/model-comparison) for the current, detailed picture. If a model you rely on has been removed, or you would like a new one made available, raise it in the [#github-support](https://defra-digital.slack.com/archives/C015VCNLKFE) Slack channel.
 
 ### Other settings
 
@@ -765,4 +816,6 @@ Use Copilot to build your skill, not to skip building it:
 - [Defra AI in the SDLC playbook](https://defra.github.io/defra-ai-sdlc/)
 - [Defra AI tool guidance](https://defra.github.io/ai-sdlc-tool-guidance/)
 - [GitHub Copilot customisation docs](https://docs.github.com/en/copilot/customizing-copilot)
+- [About GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)
+- [About the GitHub Copilot coding agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent)
 - [Defra security standards](../standards/security_standards.md)
