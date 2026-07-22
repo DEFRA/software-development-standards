@@ -2,6 +2,12 @@
 
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably across multiple environments.  Docker is a tool to build and run these containers.
 
+## Local development principles
+
+- Teams must not constrain their local development setup to a specific device or operating system to maintain developer mobility and agility.
+- Local development should maximise the use of emulation and avoid tight coupling to cloud services where possible.
+- Repositories should include full instructions for anyone to be able to easily run the service locally.
+
 ## More information
 [Docker introduction on docker.com](https://www.docker.com/resources/what-container)
 
@@ -350,3 +356,200 @@ docker() {
   fi
 }
 ```
+
+## Local development workflow
+
+This section describes conventions for using Docker Compose to support an efficient local development workflow including hot reload, test-driven development, and debugging.
+
+### Compose file conventions
+
+Separate Compose files by concern to allow different combinations for different workflows:
+
+| File | Purpose |
+|------|---------|
+| `docker-compose.yaml` | Production image build and core service definitions. No port or volume bindings. |
+| `docker-compose.override.yaml` | Local development overrides: port bindings, volume mounts, watch mode. Applied automatically by `docker compose up`. |
+| `docker-compose.debug.yaml` | Starts the application waiting for a debugger before executing code. |
+| `docker-compose.test.yaml` | Runs tests. No port bindings (avoids conflicts in CI). |
+| `docker-compose.test.watch.yaml` | Override for `docker-compose.test.yaml` to run tests in watch mode for TDD. |
+| `docker-compose.test.debug.yaml` | Runs tests in watch mode with debugger support. |
+
+### Hot reload with watch mode
+
+The development image should run the application in watch mode so that code changes are automatically picked up without rebuilding. For Node.js services, [nodemon](https://www.npmjs.com/package/nodemon) is used to restart the application when files change.
+
+This requires binding the application source as a volume in `docker-compose.override.yaml`:
+
+```yaml
+volumes:
+  - ./app:/home/node/app
+```
+
+### Avoiding port conflicts
+
+When running multiple services locally, each must bind to a unique host port. Map container ports to different host ports per service:
+
+```yaml
+# service 1 docker-compose.override.yaml
+ports:
+  - "3000:3000"
+  - "9229:9229"
+
+# service 2 docker-compose.override.yaml
+ports:
+  - "3001:3000"
+  - "9230:9229"
+```
+
+The same applies to dependency containers (databases, caches).
+
+### package.json scripts
+
+To support the above workflow, configure scripts in `package.json`:
+
+```json
+"scripts": {
+    "test": "jest --runInBand --forceExit",
+    "test:watch": "jest --coverage=false --onlyChanged --watch --runInBand",
+    "test:debug": "node --inspect-brk=0.0.0.0 ./node_modules/jest/bin/jest.js --coverage=false --onlyChanged --watch --runInBand --no-cache",
+    "start:watch": "nodemon --inspect=0.0.0.0 --ext js --legacy-watch app/index.js",
+    "start:debug": "nodemon --inspect-brk=0.0.0.0 --ext js --legacy-watch app/index.js"
+}
+```
+
+- `test` — runs all tests sequentially with coverage. Used in CI.
+- `test:watch` — runs only changed tests in watch mode. Primary TDD workflow.
+- `test:debug` — watch mode with `--inspect-brk` to wait for debugger attachment.
+- `start:watch` — runs the app with nodemon for automatic restart on changes.
+- `start:debug` — same as watch but waits for debugger before executing.
+
+For Jest watch to detect which files have changed, the `.git` directory must be mounted to the test container:
+
+```yaml
+volumes:
+  - ./.git:/home/node/.git
+```
+
+### Debugging in VS Code
+
+Add the following debug configurations to `.vscode/launch.json` (excluded from source control).
+
+#### Attach to a running container
+
+```json
+{
+  "name": "Docker: Attach",
+  "type": "node",
+  "request": "attach",
+  "restart": true,
+  "port": 9229,
+  "remoteRoot": "/home/node",
+  "skipFiles": [
+    "<node_internals>/**",
+    "**/node_modules/**"
+  ]
+}
+```
+
+`restart: true` ensures the debugger reattaches when nodemon restarts the app.
+
+#### Attach to Jest tests in debug mode
+
+```json
+{
+  "name": "Docker: Jest Attach",
+  "type": "node",
+  "request": "attach",
+  "port": 9229,
+  "restart": true,
+  "timeout": 10000,
+  "remoteRoot": "/home/node",
+  "disableOptimisticBPs": true,
+  "continueOnAttach": true,
+  "skipFiles": [
+    "<node_internals>/**",
+    "**/node_modules/**"
+  ]
+}
+```
+
+`disableOptimisticBPs` is required because Jest copies test files before execution, which can cause breakpoint mapping issues.
+
+#### Launch container in debug mode via VS Code task
+
+```json
+{
+  "name": "Docker: Attach Launch",
+  "type": "node",
+  "request": "attach",
+  "remoteRoot": "/home/node",
+  "restart": true,
+  "port": 9229,
+  "skipFiles": [
+    "<node_internals>/**",
+    "**/node_modules/**"
+  ],
+  "preLaunchTask": "compose-debug-up",
+  "postDebugTask": "compose-debug-down"
+}
+```
+
+With supporting `.vscode/tasks.json`:
+
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compose-debug-up",
+      "type": "shell",
+      "command": "docker compose -f docker-compose.yaml -f docker-compose.override.yaml -f docker-compose.debug.yaml up -d"
+    },
+    {
+      "label": "compose-debug-down",
+      "type": "shell",
+      "command": "docker compose -f docker-compose.yaml -f docker-compose.override.yaml -f docker-compose.debug.yaml down"
+    }
+  ]
+}
+```
+
+### Debugging .NET in a Linux container
+
+.NET services developed in Linux containers require the `vsdbg` remote debugger, which is included in the Defra .NET development base image.
+
+#### VS Code
+
+```json
+{
+  "name": ".NET Core Docker Attach",
+  "type": "coreclr",
+  "request": "attach",
+  "processId": "${command:pickRemoteProcess}",
+  "pipeTransport": {
+    "pipeProgram": "docker",
+    "pipeArgs": ["exec", "-i", "my-service-container"],
+    "debuggerPath": "/vsdbg/vsdbg",
+    "pipeCwd": "${workspaceRoot}",
+    "quoteArgs": false
+  },
+  "sourceFileMap": {
+    "/home/dotnet": "${workspaceFolder}"
+  }
+}
+```
+
+#### Visual Studio
+
+Visual Studio does not integrate with the WSL filesystem, so WSL users must clone the repository in Windows to debug using Visual Studio. Ensure the following git configuration is set to preserve line endings:
+
+```bash
+git config --global core.autocrlf input
+```
+
+1. Start the container with `docker-compose up --build`
+2. In Visual Studio, select `Debug -> Attach to process`
+3. Select `Docker (Linux Container)` for connection type
+4. Enter the container name in connection target
+5. Select the process matching the running application
+6. Select `Managed (.NET Core for Unix)` code type
