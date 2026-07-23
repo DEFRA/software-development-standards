@@ -741,6 +741,48 @@ The techniques in this guide are what make security consistent rather than ad ho
 
 > **Sustainability note.** Point security reviews at a focused diff or feature rather than asking Copilot to "audit the whole codebase". Focused requests use fewer tokens and give sharper findings, and encoding your security rules in instructions prevents the same weaknesses recurring, which is cheaper than catching them again in every review.
 
+## Rubber ducking
+
+Rubber duck debugging is the long-standing practice of explaining a problem, line by line, to an inanimate rubber duck. The act of articulating it out loud often surfaces the answer before you finish. Copilot is a rubber duck that talks back: it listens to your explanation, asks clarifying questions, offers hypotheses and points you at the next thing to check. When you are stuck and no colleague is free, it is a judgement-free place to think out loud and get unblocked.
+
+Use it to work through the problem, not to hand the problem over. The goal is to reach an understanding you could explain to someone else, in the same spirit as [learning with Copilot](#learning-with-copilot).
+
+### Diagnosing and investigating when stuck
+
+The value of a duck is that describing the problem forces you to structure it. Copilot adds a duck that reasons back, so lean into the conversation:
+
+- **Describe the problem in plain language**, including what you expected to happen, what actually happened and what you have already tried. Articulating it is often half the fix.
+- **Share the evidence, not secrets.** Paste the error message, stack trace, failing test output or log excerpt, with any credentials, tokens or personal data removed first, in line with [your responsibilities](#your-responsibilities).
+- **Ask for hypotheses, ranked by likelihood**, rather than a single answer. A list of plausible causes gives you somewhere to start when you have no lead.
+- **Ask for the next diagnostic step**, for example what to log, inspect or test to confirm or rule out a cause, so you narrow the problem down rather than guessing.
+- **Work in small steps you can follow**, checking each hypothesis before moving on, instead of accepting a large speculative fix you cannot reason about.
+- **It works for any tech stack**, not only the languages Copilot writes most fluently. Diagnosis is reasoning about behaviour, symptoms and data flow, so it is just as useful for a failing pipeline, a database script or an automation workflow as for application code.
+
+For a knottier investigation where the cause is not yet clear, [Plan mode](#using-plan-mode) is well suited to researching the problem and agreeing an approach before any change is made.
+
+### Reading unfamiliar files and stacks
+
+Copilot can read the files in your workspace directly, so it can reason about a stack even when you are not working in that stack's usual specialist tool. Whatever the file format, if it is text on disk, Copilot can open it, explain it and help you investigate it.
+
+- **Open the folder in VS Code** and let Copilot read the files as context, or **point the Copilot CLI at the directory** from your terminal. Either surface can reason about the contents without you leaving it. See [where to use GitHub Copilot](#where-to-use-github-copilot).
+- **You do not need the stack's normal IDE open to think about the problem.** A UiPath workflow is stored as `.xaml`, which is XML underneath, so Copilot can read the activities, arguments and logic and help you trace a fault without opening UiPath Studio. A SQL script, a stored procedure, a Terraform file, a YAML pipeline definition or a config file is all just text it can read and explain in the same way.
+- **Ask it to explain an unfamiliar file** before you change anything, so you understand what a script or workflow does and where the problem is likely to be.
+- **Reference the files, do not paste them.** Let Copilot read them from the workspace rather than copying large blocks into the chat, which stays current and costs fewer tokens. See [reference context, do not paste it](#reference-context-do-not-paste-it).
+
+This makes Copilot a useful first port of call when you are handed a fault in a technology you do not use every day: open the files, ask it to walk you through them, and reason about the problem together.
+
+### Getting a useful diagnosis
+
+Copilot can be confidently wrong, so how you ask shapes how much you can trust the answer:
+
+- **Give it enough context to reason well:** the symptoms, the relevant files, the environment and what you have already ruled out.
+- **Ask "why", not just "what".** Have it explain why a cause would produce the symptoms you see, so you can judge whether the explanation holds rather than taking it on trust.
+- **Ask for a way to verify** each suggested cause or fix, so you confirm the diagnosis against reality rather than assuming it is right because it sounds plausible.
+- **Cross-check against official documentation and our [standards](../standards/README.md)**, which remain the source of truth when Copilot and a standard disagree.
+- **Never paste secrets, credentials or personal data** into a prompt while investigating, even under time pressure. If Copilot surfaces a real secret in a file, treat it as exposed and follow the [credential exposure process](../processes/credential_exposure.md).
+
+> **Sustainability note.** Rubber ducking is a light, conversational use that costs little and often saves hours of being stuck. Keep the exchange focused on the problem in front of you, sharing the specific error and files rather than the whole codebase, and prefer referencing files over pasting them, so you get to the answer with the fewest tokens.
+
 ## Learning with Copilot
 
 Copilot is a powerful learning aid, not just a code generator. Directed well, it can explain as it works, so you finish a task understanding it rather than just having completed it. Treat it as an augmented mentor: one that is always available, never impatient, and often, but not always, right.
