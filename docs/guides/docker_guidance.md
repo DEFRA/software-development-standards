@@ -1,8 +1,6 @@
-# Docker guidance
+# Docker
 
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably across multiple environments. Docker is a tool to build and run these containers.
-
-Docker remains the default way to package and run Defra services, both in the pipeline and for local development. This guide covers building images, composing local environments, running tests, and debugging. It reflects current tooling: Docker Compose v2 (`docker compose`), Node.js 24, and .NET 10.
 
 ## Local development principles
 
@@ -26,7 +24,11 @@ Docker remains the default way to package and run Defra services, both in the pi
 
 ## Base images
 
-Defra publishes hardened base images that provide a non-root user, CA certificates, and the debugging tooling needed for local development. Build on these rather than the raw upstream images:
+Defra publishes hardened base images that provide a non-root user, CA certificates, and the debugging tooling needed for local development. 
+
+These images are scanned for vulnerabilities daily using [Trivy](https://github.com/aquasecurity/trivy) and [Grype](https://github.com/anchore/grype).
+
+Build on these rather than the raw upstream images:
 
 - [defra-docker-node](https://github.com/DEFRA/defra-docker-node) - Node.js (`defradigital/node` and `defradigital/node-development`)
 - [defra-docker-dotnetcore](https://github.com/DEFRA/defra-docker-dotnetcore) - .NET (`defradigital/dotnetcore` and `defradigital/dotnetcore-development`)
@@ -63,9 +65,7 @@ FROM defradigital/node:${PARENT_VERSION} AS production
 
 ENV TZ="Europe/London"
 
-# Add curl for the CDP platform health check
 USER root
-RUN apk add --no-cache curl
 
 COPY --from=development --chown=root:root /home/node/package*.json ./
 COPY --from=development --chown=root:root /home/node/app/ ./app/
@@ -88,10 +88,7 @@ Notes on this example:
 
 - **Pin the base image** with `ARG PARENT_VERSION` and use the same version for both stages. `3.1.1-node24.18.0` is the current Node 24 (LTS) Defra base at the time of writing. Check [defra-docker-node](https://github.com/DEFRA/defra-docker-node) for the latest.
 - **Use `npm ci`, not `npm install`.** `npm ci` installs exactly what is in `package-lock.json`, giving reproducible builds. Use `npm ci --omit=dev` in production to exclude dev dependencies.
-- **No `LABEL uk.gov.defra...` lines are needed.** The base images already carry their provenance labels.
 - **Set `ENV TZ`** so container timestamps match the expected timezone.
-
-Front-end services that build client-side assets (for example with Vite) should add an intermediate build stage between `development` and `production` that runs the asset build, and copy the built output into the production stage.
 
 ## Security best practices
 
@@ -122,13 +119,9 @@ USER node
 
 > **Some processes legitimately need to write at runtime.** A service might write to a mounted `tmp` directory or a cache such as `node_modules/.cache`. Where this is required, define and secure those specific writable locations (for example a dedicated mounted volume) rather than making the whole application tree writable. Consider whether your service has this need before applying blanket read-only permissions.
 
-### Scan images for vulnerabilities
-
-Scan built images for known vulnerabilities as part of the pipeline. The Defra base image repositories use tools such as [Trivy](https://github.com/aquasecurity/trivy) and [Grype](https://github.com/anchore/grype); [Snyk](https://snyk.io/) is also used across Defra. Keep base images current so that upstream security fixes are picked up.
-
 ## Docker Compose
 
-Use a single `compose.yaml` per repository. Older services split configuration across many files (`docker-compose.override.yaml`, `docker-compose.test.yaml`, `docker-compose.test.watch.yaml`, and so on), which drift out of sync and are hard to reason about. Compose v2 profiles remove the need for most of these.
+Use a single `compose.yaml` per repository. Older services may split configuration across many files (`docker-compose.override.yaml`, `docker-compose.test.yaml`, `docker-compose.test.watch.yaml`, and so on), which drift out of sync and are hard to reason about. Compose v2 profiles remove the need for most of these.
 
 ### One file with profiles
 
@@ -250,8 +243,6 @@ README.md
 ## Local development workflow
 
 The recommended inner loop runs the application with hot reload while its dependencies run in containers. Running the app itself on the host (rather than in a container) gives the fastest feedback and the simplest debugging, because there is no rebuild or bind-mount sync on each change and the debugger attaches to a local process.
-
-For a repeatable, cross-repository approach to this model (host-native app, containerised dependencies, and Testcontainers for integration tests), see the [local development refactoring playbook](https://github.com/johnwatson484/local-dev-refactoring).
 
 ### Hot reload with Node's native watch
 
