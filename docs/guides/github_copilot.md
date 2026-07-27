@@ -133,6 +133,8 @@ Model names and their exact strengths change often. The models made available to
 - **Match Thinking Effort to the task.** Lower it for simple edits, raise it for hard reasoning problems.
 - **Reduce Context Size for simple tasks.** A large context window is rarely needed for a small, local change.
 - **Attach only relevant files.** More context is not better. It costs more and can dilute the answer.
+- **Monitor context window usage.** The chat input's context window control shows a visual fill indicator for how much of the model's context window is in use, and hovering over it reveals the exact token count and the session's credit cost. The window compacts automatically as it fills, or you can trigger compaction yourself with the `/compact` command or "Compact Conversation" in the control. See VS Code's guide to [monitoring context window usage](https://code.visualstudio.com/docs/chat/copilot-chat-context#_monitor-context-window-usage).
+- **Check your own usage.** Your GitHub profile settings ([github.com/settings/copilot](https://github.com/settings/copilot)) show your individual premium request and usage figures, so you can see how your habits track over time.
 - **Use instructions and skills** (see below) so you do not have to re-explain your standards every time.
 
 > **Sustainability note.** Picking a lighter model, lowering Thinking Effort and trimming context are the most effective ways to cut token use. Using Opus for a one-line change wastes shared credits and delivers no better result than Haiku, GPT mini or MAI Code 1 Flash.
