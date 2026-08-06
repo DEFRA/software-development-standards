@@ -1,332 +1,389 @@
-# Docker guidance
+# Docker
 
-A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably across multiple environments.  Docker is a tool to build and run these containers.
+A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably across multiple environments. Docker is a tool to build and run these containers.
+
+## Local development principles
+
+- Teams must not constrain their local development setup to a specific device or operating system to maintain developer mobility and agility.
+- Local development should maximise the use of emulation and avoid tight coupling to cloud services where possible.
+- Repositories should include full instructions for anyone to be able to easily run the service locally.
+- Keep the local setup lean. Favour a single Compose file per repository over many overlapping variants, and prefer built-in tooling (for example Node's native watch and `--env-file`) over extra dependencies.
 
 ## More information
+
 [Docker introduction on docker.com](https://www.docker.com/resources/what-container)
 
 ## Terminology
-`Dockerfile` - set of instructions for building a docker image  
-`Image` - a constructed set of layered docker instructions  
-`Container` - a running instance of an image
+
+`Dockerfile` - set of instructions for building a Docker image  
+`Image` - a constructed set of layered Docker instructions  
+`Container` - a running instance of an image  
+`Compose file` - a `compose.yaml` file describing how to build and run one or more services
+
+> **Docker Compose v1 has reached end of life.** Use the Compose v2 plugin, invoked as `docker compose` (with a space), not the standalone `docker-compose` binary. The canonical Compose filename is `compose.yaml`, and the top-level `version:` key is obsolete and should be omitted.
+
+## Base images
+
+Defra publishes hardened base images that provide a non-root user, CA certificates, and the debugging tooling needed for local development. 
+
+These images are scanned for vulnerabilities daily using [Trivy](https://github.com/aquasecurity/trivy) and [Grype](https://github.com/anchore/grype).
+
+Build on these rather than the raw upstream images:
+
+- [defra-docker-node](https://github.com/DEFRA/defra-docker-node) - Node.js (`defradigital/node` and `defradigital/node-development`)
+- [defra-docker-dotnetcore](https://github.com/DEFRA/defra-docker-dotnetcore) - .NET (`defradigital/dotnetcore` and `defradigital/dotnetcore-development`)
+
+Always pin the base image version. Never depend on `latest`, as an unpinned tag makes builds non-reproducible and can pull in unexpected changes.
 
 ## Multi stage builds
-Dockerfiles should implement multi stage builds to allow different build stages to be targeted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
-Below is an example multi stage build which is intended to use the Defra Node.js base image.
+Dockerfiles should implement multi stage builds so that different stages can be targeted for specific purposes. A production image does not need dev dependencies, test files, or a watch command, whereas a development image does.
 
-```
-ARG PARENT_VERSION=1.0.0-node12.16.0
+The example below uses the Defra Node.js base image. It has two stages: `development` (used locally, with dev dependencies and hot reload) and `production` (the lean deployable artifact).
+
+```dockerfile
+ARG PARENT_VERSION=3.1.1-node24.18.0
 ARG PORT=3000
 ARG PORT_DEBUG=9229
 
-# Development
 FROM defradigital/node-development:${PARENT_VERSION} AS development
-ARG PARENT_VERSION
-ARG REGISTRY
-LABEL uk.gov.defra.parent-image=defradigital/node-development:${PARENT_VERSION}
-ARG PORT
-ENV PORT ${PORT}
-ARG PORT_DEBUG
-EXPOSE ${PORT} ${PORT_DEBUG}
-COPY --chown=node:node package*.json ./
-RUN npm install
-COPY --chown=node:node app/ ./app/
-RUN npm run build
-CMD [ "npm", "run", "start:watch" ]
 
-# Production
-FROM defradigital/node:${PARENT_VERSION} AS production
-ARG PARENT_VERSION
-ARG REGISTRY
-LABEL uk.gov.defra.parent-image=defradigital/node:${PARENT_VERSION}
+ENV TZ="Europe/London"
+
 ARG PORT
-ENV PORT ${PORT}
-EXPOSE ${PORT}
-COPY --from=development /home/node/app/ ./app/
-COPY --from=development /home/node/package*.json ./
+ARG PORT_DEBUG
+ENV PORT=${PORT}
+EXPOSE ${PORT} ${PORT_DEBUG}
+
+COPY --chown=node:node package*.json ./
 RUN npm ci
+COPY --chown=node:node . .
+
+CMD [ "npm", "run", "dev" ]
+
+FROM defradigital/node:${PARENT_VERSION} AS production
+
+ENV TZ="Europe/London"
+
+USER root
+
+COPY --from=development --chown=root:root /home/node/package*.json ./
+COPY --from=development --chown=root:root /home/node/app/ ./app/
+
+RUN npm ci --omit=dev
+
+# Remove write permissions from application files
+RUN chmod -R a-w /home/node
+
+USER node
+
+ARG PORT
+ENV PORT=${PORT}
+EXPOSE ${PORT}
+
 CMD [ "node", "app" ]
 ```
 
-## Docker Compose guidance
+Notes on this example:
 
-### Use override files to reduce duplication
-Additional settings can be applied to a docker compose file by using override files.
+- **Pin the base image** with `ARG PARENT_VERSION` and use the same version for both stages. `3.1.1-node24.18.0` is the current Node 24 (LTS) Defra base at the time of writing. Check [defra-docker-node](https://github.com/DEFRA/defra-docker-node) for the latest.
+- **Use `npm ci`, not `npm install`.** `npm ci` installs exactly what is in `package-lock.json`, giving reproducible builds. Use `npm ci --omit=dev` in production to exclude dev dependencies.
+- **Set `ENV TZ`** so container timestamps match the expected timezone.
 
-Override files can be applied by listing the files after the `docker-compose` command with the `-f` parameter, i.e.
+## Security best practices
 
-`docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up`
+### Run as a non-root user
 
-Note that the above is equivalent to running the command:
+Containers must run as a non-root user. The Defra base images provide a `node` user (and a `dotnet` user for .NET). Switch to it with `USER node` before the container's `CMD` runs so the process has the least privilege it needs.
 
-`docker-compose up`
+### File ownership and write permissions
 
-as calling `docker-compose` without specifying any files will run `docker-compose` with any available `docker-compose.yaml` and `docker-compose.override.yaml` files in the executing directory. 
+Security scanners such as SonarQube flag application files that the running user can write to (see [SonarSource rule S6504](https://rules.sonarsource.com/docker/type/Security%20Hotspot/RSPEC-6504/)). A running process should not be able to modify its own application code, as this reduces the impact of a compromised process.
 
-Note however that:
+`COPY --chown=node:node` makes the running `node` user the owner, which grants write access. `COPY` also preserves the source file permissions, so changing ownership alone does not reliably remove write access. To guarantee read-only application files in the **production** stage:
 
-`docker-compose up -f docker-compose.yaml`
+1. Copy files as `root` with `COPY --chown=root:root`.
+2. Explicitly remove write permissions with `RUN chmod -R a-w /home/node`.
+3. Switch to the non-root user with `USER node`.
 
-will **not** apply the docker `docker-compose.override.yaml` file, only the file specified.
+Because the `node` user neither owns the files nor has write permission, the application code is read-only at runtime. This is preferable to `chmod 755`, which still leaves the owner able to write.
 
-One use case is for running tests in CI - common settings can be put into the base `docker-compose.yaml` file, while changes to the command and containers needed in local development can be placed in override files.
-
-The below example demonstrates changing the command and container name for testing:
-
-`docker-compose.yaml`
-
+```dockerfile
+COPY --from=development --chown=root:root /home/node/app/ ./app/
+RUN npm ci --omit=dev
+RUN chmod -R a-w /home/node
+USER node
 ```
-version: '3.4'
+
+> **Apply read-only ownership to the production stage only.** In the `development` stage keep `COPY --chown=node:node` and do **not** run `chmod -R a-w`. Watch mode, tests, and coverage reports all need to write to the container filesystem, so a read-only development image breaks the inner loop. Scanners may flag the development stage for the missing `chmod`; that is acceptable for a local-only image.
+
+> **Some processes legitimately need to write at runtime.** A service might write to a mounted `tmp` directory or a cache such as `node_modules/.cache`. Where this is required, define and secure those specific writable locations (for example a dedicated mounted volume) rather than making the whole application tree writable. Consider whether your service has this need before applying blanket read-only permissions.
+
+## Docker Compose
+
+Use a single `compose.yaml` per repository. Older services may split configuration across many files (`docker-compose.override.yaml`, `docker-compose.test.yaml`, `docker-compose.test.watch.yaml`, and so on), which drift out of sync and are hard to reason about. Compose v2 profiles remove the need for most of these.
+
+### One file with profiles
+
+Put the application service behind a profile so that `docker compose up` starts only the backing dependencies, and the full stack starts on demand:
+
+```yaml
 services:
-  ffc-demo-service:
-    build: .
-    image: ffc-demo-service
-    container_name: ffc-demo-service
+  my-service:
+    profiles: ["app"]
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    env_file:
+      - .env
     environment:
-      DEMO_API: http://demo-api
+      REDIS_HOST: redis
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./app:/home/node/app
+    networks:
+      - my-network
 
-volumes:
-  node_modules: {}
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - my-network
 
+networks:
+  my-network:
+    driver: bridge
+    name: my-network
 ```
 
-`docker-compose.test.yaml`
-```
-version: '3.4'
-services:
-  ffc-demo-service:
-    command: npm run test
-    container_name: ffc-demo-service-test
+Start dependencies only, or the whole stack:
+
+```bash
+docker compose up -d                 # start dependencies only (Redis here)
+docker compose --profile app up -d   # start dependencies and the application
 ```
 
-The tests can be run by providing the `docker-compose.test.yaml` file with a `-f` parameter:
+Gating the app behind `profiles: ["app"]` supports the common local workflow of running the app itself on the host (or in your IDE) while its dependencies run in containers, and still lets an orchestration repo bring up the whole stack with `--profile app`.
 
-`docker-compose up -f docker-compose.yaml -f docker-compose.test.yaml`  
+### Layer environment variables
 
-It is also recommended not to expose any ports through Docker Compose used in CI as they may conflict with other ports already in use in the build agent.  
+Use `env_file` for developer-supplied values and `environment` for the few values that must differ inside Docker (typically service hostnames). The `environment` block takes precedence over `env_file`:
 
-Further documentation on docker-compose can be found at https://docs.docker.com/compose/reference/overview/#specifying-multiple-compose-files.
-
-### Use projects to provide unique volumes and networks
-To avoid conflicts when running different permutations of docker files, projects should be specified to segregate the volumes and networks.
-
-This can be achieved with the `-p` switch when calling docker compose on the command line.
-
- i.e. to start the service
-
-`docker-compose -p ffc-demo-service -f docker-compose.yaml up`
-
-and to run the tests
-
-`docker-compose -p ffc-demo-service-test -f docker-compose.yaml -f docker-compose.test.yaml up`
-
-### Use environment variables to guarantee unique projects and containers
-When running through CI, a combination of the `-p` switch and environment variables can be used to ensure each build and test has unique project and container names.  This will prevent conflicts with other build pipelines when using tools such as a single node Jenkins.
-
-For example using Jenkins, the following compose files can be started via:
-
-`docker-compose -p ffc-demo-service-$PR_NUMBER-$BUILD_NUMBER -f docker-compose.yaml up`
-
-and tested with
-
-`docker-compose -p ffc-demo-service-test-$PR_NUMBER-$BUILD_NUMBER -f docker-compose.yaml -f docker-compose.test.yaml up`
-
-using `PR_NUMBER` and `BUILD_NUMBER` environment variables to isolate build tasks.
-
-`docker-compose.yaml`
-
-```
-version: '3.4'
-services:
-  ffc-demo-service:
-    build: .
-    image: ffc-demo-service
-    container_name: ffc-demo-service-${PR_NUMBER}-${BUILD_NUMBER}
-volumes:
-  node_modules: {}
-
+```yaml
+    env_file:
+      - .env                       # e.g. REDIS_HOST=localhost for host-native dev
+    environment:
+      REDIS_HOST: redis            # inside Docker the dependency is on its service name
 ```
 
-`docker-compose.test.yaml`
-```
-version: '3.4'
-services:
-  ffc-demo-service:
-    command: npm run test
-    container_name: ffc-demo-service-test-${PR_NUMBER}-${BUILD_NUMBER}
-```
+This removes the old pattern of duplicating every variable across a base file and an override file. Keep `.env` out of source control and out of images by listing it in both `.gitignore` and `.dockerignore`, and commit a `.env.example` instead.
 
-### Composing multiple repositories for local development
-For scenarios where multiple containers need to be created across multiple repositories, it might be advantageous to create a "development" repo.
+### Health checks and start ordering
 
-The development repository would:
+Give each dependency a `healthcheck` and make the app `depends_on` it with `condition: service_healthy`. Without this, the app can start before the dependency is ready and fail to connect:
 
-- clone all necessary repositories
-- builds images from Dockerfiles in each repository by referencing Docker Compose files in those repositories
-- run containers based on those images in a single Docker network by referencing Docker Compose files in those repositories
-- run single containers for any shared dependencies across repositories such as message queues or databases
-
-To facilitate this, each repository with a potentially shared dependency will need its Docker Compose override files to be setup in such a way that dependency containers can be isolated.  This will allow those repository services to run both in isolation and as part of wider service depending on development needs.
-
-For example, let's say we have two repositories, **ServiceA** and **ServiceB**.  **ServiceA** communicates with **ServiceB** via an ActiveMQ message queue. **ServiceB** has a PostgreSQL database.
-
-**ServiceA**'s Docker Compose files could be structured as follows.
-
-`docker-compose.yaml` - builds image and runs **ServiceA**
-`docker-compose.override.yaml` - runs Artemis ActiveMQ container
-`docker-compose.link.yaml` - runs **ServiceA** in a named Docker network
-
-**ServiceB**'s Docker Compose files could be structured as follows.
-
-`docker-compose.yaml` - builds image and runs **ServiceB** and PostgreSQL container
-`docker-compose.override.yaml` - runs Artemis ActiveMQ container
-`docker-compose.link.yaml` - runs **ServiceB** in a named Docker network
-
-**ServiceA** and **ServiceB** can be run in isolation by running the following commands in each repository.
-
-`docker-compose build`
-`docker-compose up`
-
-The development repository would contain the following.
-
-`docker-compose.yaml` - runs Artemis ActiveMQ container in named Docker network
-
-A script which would run the following commands:
-
-```
-if [ -z "$(docker network ls --filter name=^NETWORK_NAME$ --format={{.Name}})" ]; then
-  docker network create NETWORK_NAME
-fi
-docker-compose up
-docker-compose -f path/to/ServiceA/docker-compose.yaml -f path/to/ServiceA/docker-compose.link.yaml up --detach
-docker-compose -f path/to/ServiceB/docker-compose.yaml -f path/to/ServiceB/docker-compose.link.yaml up --detach
+```yaml
+  postgres:
+    image: postgres:16.6
+    environment:
+      POSTGRES_DB: my_database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d my_database"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 ```
 
-#### Avoiding docker-compose.yaml in the development repository
-If it is preferred to avoid the need for an additional `docker-compose.yaml` file in the development repository itself, an alternative approach would be to explicity declare the shared resources are not started in subsequent `override` files in the start up script.
+### Set image and container names
 
-For example:
+If you do not set an image or container name, Compose derives one from the project and service names, which can be unpredictable. Set them explicitly where you need to reference the container later:
 
-```
-if [ -z "$(docker network ls --filter name=^NETWORK_NAME$ --format={{.Name}})" ]; then
-  docker network create NETWORK_NAME
-fi
-docker-compose up
-docker-compose -f path/to/ServiceA/docker-compose.yaml -f path/to/ServiceA/docker-compose.override.yaml -f path/to/ServiceA/docker-compose.link.yaml up --detach
-docker-compose -f path/to/ServiceB/docker-compose.yaml -f path/to/ServiceB/docker-compose.override.yaml -f path/to/ServiceB/docker-compose.link.yaml up --detach --scale SERVICE_NAME=0
-```
-
-### Binding volumes to container
-To aide local development, the local workspace can be bound to a Docker volume.  This allows code changes to be automatically picked up within the container without the need to rebuild the image or restart the container.  
-
-To best support this, workspaces should be structured so it is simple to determine which files should be bound to Docker volumes as it would not be appropriate to bind everything.  For example, it would not be beneficial to bind `node_modules` or a `README`.  
-
-Example of Docker compose file with volume binding.  
-
-```
-volumes:
-  - ./app/:/home/node/app/
-  - ./test/:/home/node/test/
-  - ./test-output/:/home/node/test-output/
-  - ./package.json:/home/node/package.json
-```
-
-Changes to any of the directories listed above would automatically be picked up in the running container.
-
-Binding also allows developers to take advantage of file watching in testing applications.  Changes made to code locally will automatically be reflected in the running container supporting a TDD approach.
-
-### .dockerignore
-A `.dockerignore` file is a way of preventing local files being copied into an image during build.
-
-For example, if a repository contains the following files.
-
-```
-app/index.js
-app/config.js
-node_modules
-index.js
-README.md
-LICENCE
-Dockerfile
-```
-
-The `Dockerfile` in this repository includes the following layer which would copy all local files to the container.
-
-```
-COPY . .
-```
-
-When the image is built then all files in the repository are copied to the image.  In this scenario, it is not ideal for performance and disk space reasons to copy the `node_modules`, `LICENCE`, `Dockerfile` or `README.md` to the image.
-
-To prevent this a `.dockerignore` file should be added with the following content.
-
-```
-node_modules
-Dockerfile
-LICENCE
-README.md
-```
-
-### Container and image names using Docker Compose
-If an image name or container name is not specified in a Docker Compose file, then Docker Compose will determine it's own based on the service name.  This can result in duplication in the name and unpredictabilty in futher container interaction.
-
-#### Set image and container name
-
-```
-version: '3.7'
+```yaml
 services:
   my-service:
     image: my-service
     container_name: my-service
 ```
 
-### Preserving database volumes during test runs
-In many scenarios it is beneficial to utilise Docker to run local integration tests against a containerised dependency such as a database or message broker.
+### Preserving database volumes
 
-These tests would typically write and delete data during test execution.  In order to prevent this impacting on local development data and still avoid duplication in Docker Compose definitions, volumes should be declared separate to the database definition.
+Integration tests that run against a containerised database write and delete data. To keep test data separate from local development data, declare the persistent volume only where you want persistence rather than in a shared base definition. For most repositories, prefer [Testcontainers](#running-tests) for integration tests, which gives each run a fresh, isolated database with no volume management at all.
 
-For example, if you have the following Docker Compose files
+### .dockerignore
 
-- `docker-compose.yaml` - base definition used in all scenarios
-- `docker-compose.override.yaml` - applied when running locally only
-- `docker-compose.test.yaml` - applied when running tests only
+A `.dockerignore` file prevents local files being copied into an image during build. This keeps images small and avoids copying artifacts such as `node_modules`, local `.env` files, and test files.
 
-Then using a Postgres image as an example each definition should contain the following.
+For a typical Node.js service:
 
-#### docker-compose.yaml
 ```
-version: '3.7'
-services:
-  my-postgres-service:
-    image: postgres:11.4-alpine
-    environment:
-      POSTGRES_DB: my_database
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USERNAME: postgres      
+node_modules
+Dockerfile
+.dockerignore
+.git
+.env
+coverage
+**/*.test.js
+LICENCE
+README.md
 ```
 
-#### docker-compose.override.yaml
-```
-version: '3.7'
-services:
-  ffc-demo-claim-postgres:
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+## Local development workflow
 
+The recommended inner loop runs the application with hot reload while its dependencies run in containers. Running the app itself on the host (rather than in a container) gives the fastest feedback and the simplest debugging, because there is no rebuild or bind-mount sync on each change and the debugger attaches to a local process.
+
+### Hot reload with Node's native watch
+
+Node 24 has built-in watch mode, so a separate tool such as nodemon is no longer needed. Use `node --watch` (restart on change) and `--watch-path` to scope what triggers a restart:
+
+```json
+"scripts": {
+    "dev": "node --watch --watch-path=./app --env-file-if-exists=.env app",
+    "dev:debug": "node --watch --watch-path=./app --inspect --env-file-if-exists=.env app",
+    "start": "node app",
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+}
+```
+
+`--env-file-if-exists=.env` loads a local `.env` when present and is a no-op when it is absent, so the same script works locally and in deployed environments where platform environment variables are provided directly. Use the `-if-exists` variant so a missing file does not error.
+
+If you run the app inside a container instead, mount the source you want watched as a volume in the Compose file so changes are picked up without a rebuild:
+
+```yaml
 volumes:
-  postgres_data: {}
+  - ./app:/home/node/app
 ```
 
-Then volume and port bindings are only used during local development and any local tests runs will not impact development data.
+Bind only what needs watching. It is not beneficial to bind `node_modules` or a `README`.
 
-### Windows Git Bash
+### Avoiding port conflicts
 
-There is an issue where Git Bash may not correctly interpret volume paths when running Docker Compose on Windows.
+When running multiple services locally, each must bind to a unique host port. Map container ports to different host ports per service, and do the same for dependency containers:
 
-To avoid this issue, the following snippet should be added to the `.bashrc` file in the home directory of the user running Git Bash.
+```yaml
+# service 1
+ports:
+  - "3000:3000"
+  - "9229:9229"
+
+# service 2
+ports:
+  - "3001:3000"
+  - "9230:9229"
+```
+
+Do not expose ports on containers used only in CI, as they may conflict with ports already in use on the build agent.
+
+## Running tests
+
+Prefer running unit tests on the host for speed. For integration tests that need real infrastructure (a database, cache, or message broker), use [Testcontainers](https://testcontainers.com/) to start that infrastructure programmatically from within the test process. This replaces the older approach of maintaining separate `docker-compose.test*.yaml` files.
+
+Testcontainers gives each test run a fresh, isolated dependency, and the same code path runs locally and in CI (GitHub-hosted runners provide a Docker daemon). Because there are no test-specific Compose files to keep in sync, and no shared volumes to reset, tests are both simpler and more reliable.
+
+```js
+import { GenericContainer, Wait } from 'testcontainers'
+
+const redis = await new GenericContainer('redis')
+  .withExposedPorts(6379)
+  .withWaitStrategy(Wait.forLogMessage('Ready to accept connections'))
+  .start()
+
+process.env.REDIS_HOST = redis.getHost()
+process.env.REDIS_PORT = String(redis.getMappedPort(6379))
+```
+
+Tests need a running Docker daemon but do not need `docker compose up` first.
+
+## Debugging in VS Code
+
+The simplest option is to run the app on the host and debug it directly with a normal launch configuration (inspector bound to `127.0.0.1`). Where you need to debug the process running inside a container, use an attach configuration.
+
+Add debug configurations to `.vscode/launch.json`.
+
+### Attach to a Node process in a running container
+
+The container must run the app with the inspector enabled (for example `node --inspect=0.0.0.0` on the debug port exposed in the Compose file).
+
+```json
+{
+  "name": "Docker: Attach",
+  "type": "node",
+  "request": "attach",
+  "restart": true,
+  "port": 9229,
+  "remoteRoot": "/home/node",
+  "skipFiles": [
+    "<node_internals>/**",
+    "**/node_modules/**"
+  ]
+}
+```
+
+`restart: true` reattaches the debugger when watch mode restarts the app.
+
+When running several services together, give each a unique host debug port (for example 9229, 9230, 9231) mapped to the container's inspector port, so you can attach to more than one at a time.
+
+## Debugging .NET in a Linux container
+
+.NET services running in Linux containers are debugged with the `vsdbg` remote debugger. `vsdbg` is not part of the .NET SDK, so it must be present in the image. The Defra .NET development base image ([defra-docker-dotnetcore](https://github.com/DEFRA/defra-docker-dotnetcore)) already installs it (at `/vsdbg`), so services built on `defradigital/dotnetcore-development` do not need to add it. This remains the case for .NET 10. If you build on the plain Microsoft SDK image instead, install it yourself in the development stage:
+
+```dockerfile
+ADD https://aka.ms/getvsdbgsh /tmp/getvsdbgsh
+RUN /bin/sh /tmp/getvsdbgsh -v latest -l /vsdbg && rm /tmp/getvsdbgsh
+```
+
+### VS Code
+
+```json
+{
+  "name": ".NET Core Docker Attach",
+  "type": "coreclr",
+  "request": "attach",
+  "processId": "${command:pickRemoteProcess}",
+  "pipeTransport": {
+    "pipeProgram": "docker",
+    "pipeArgs": ["exec", "-i", "my-service-container"],
+    "debuggerPath": "/vsdbg/vsdbg",
+    "pipeCwd": "${workspaceRoot}",
+    "quoteArgs": false
+  },
+  "sourceFileMap": {
+    "/home/dotnet": "${workspaceFolder}"
+  }
+}
+```
+
+### Visual Studio
+
+Visual Studio does not integrate with the WSL filesystem, so WSL users must clone the repository in Windows to debug using Visual Studio. Set the following git configuration to preserve line endings:
+
+```bash
+git config --global core.autocrlf input
+```
+
+1. Start the container with `docker compose up --build`.
+2. In Visual Studio, select `Debug -> Attach to process`.
+3. Select `Docker (Linux Container)` for connection type.
+4. Enter the container name in connection target.
+5. Select the process matching the running application.
+6. Select `Managed (.NET Core for Unix)` code type.
+
+## Windows Git Bash
+
+Git Bash may not correctly interpret volume paths when running Docker Compose on Windows. To avoid this, add the following to the `.bashrc` in the home directory of the user running Git Bash:
 
 ```bash
 # --- Make Docker work nicely in Git Bash ---
@@ -350,3 +407,11 @@ docker() {
   fi
 }
 ```
+
+## References
+
+- [defra-docker-node](https://github.com/DEFRA/defra-docker-node) - Defra Node.js base images
+- [defra-docker-dotnetcore](https://github.com/DEFRA/defra-docker-dotnetcore) - Defra .NET base images
+- [local development refactoring playbook](https://github.com/johnwatson484/local-dev-refactoring) - host-native inner loop with Testcontainers
+- [Docker Compose documentation](https://docs.docker.com/compose/)
+- [Testcontainers](https://testcontainers.com/)
