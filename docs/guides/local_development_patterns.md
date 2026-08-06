@@ -108,7 +108,7 @@ This is the recommended default. The application runs on the host with hot reloa
 
 ### One compose file, with the app behind a profile
 
-Keep a single `compose.yml` per repository. Put the application service behind a profile so it does not start by default.
+Keep a single `compose.yaml` per repository. Put the application service behind a profile so it does not start by default.
 
 ```yaml
 services:
@@ -122,6 +122,8 @@ services:
       - "9229:9229"
     volumes:
       - ./src:/home/node/src
+    env_file:
+      - .env
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
@@ -170,7 +172,9 @@ A single file that supports both modes is much easier to keep correct than a fam
 
 The application needs different hostnames depending on where it runs. On the host it talks to `localhost`. Inside a container it talks to the compose service name.
 
-Handle that with two layers rather than two files. Developer values live in `.env` and are read when the application runs on the host. The compose `environment:` block overrides the host-specific values when the application runs in a container.
+Handle that with two layers rather than two files. A single `.env` holds every developer-supplied value. When the application runs on the host, the runtime loads that file directly. When it runs in a container, compose loads the same file through `env_file:`, then the `environment:` block overrides only the values that have to differ, which in practice is little more than hostnames and ports.
+
+That way there is one place to set a value, wherever the application ends up running. The [Docker guidance](docker_guidance.md) covers the compose syntax and precedence rules.
 
 Commit a `.env.example` with safe defaults and never commit `.env`.
 
@@ -422,120 +426,29 @@ Choose this when parity matters more than iteration speed: many awkward dependen
 
 Make the trade explicit in the README, and invest in the debugging setup, because that is where the cost lands.
 
-See also the [Docker guidance](docker_guidance.md) and the [container standards](../standards/container_standards.md), which cover image building in more depth.
+The mechanics are in the [Docker guidance](docker_guidance.md): the multi-stage image with a `development` target, bind mounting source for reload, isolating compose projects so parallel work does not collide, and the attach configuration needed to debug a process inside a container. The [container standards](../standards/container_standards.md) set out what a Defra image must do.
 
-### Multi-stage image with a development target
+Four things are worth calling out here, because they are specific to using containers as your inner loop rather than as a deployment artifact.
 
-One Dockerfile serves both local development and production. The development stage keeps the full toolchain, the production stage keeps almost nothing.
+### Commit the debug configuration
 
-```dockerfile
-ARG PARENT_VERSION=3.1.1-node24.18.0
-ARG PORT=3001
-ARG PORT_DEBUG=9229
+This is the part that usually gets skipped, and it is why container-first developers stop using a debugger.
 
-FROM defradigital/node-development:${PARENT_VERSION} AS development
-ENV TZ="Europe/London"
-ARG PORT
-ARG PORT_DEBUG
-ENV PORT=${PORT}
-EXPOSE ${PORT} ${PORT_DEBUG}
-COPY --chown=node:node package*.json ./
-RUN npm ci
-COPY --chown=node:node . .
-CMD [ "npm", "run", "docker:dev" ]
+Two pieces have to line up. The container must start the process with the inspector listening on all interfaces, not just loopback, or it will not accept a connection from the host. The attach configuration must then map the editor's workspace folder to the path inside the container, or breakpoints silently never bind.
 
-FROM defradigital/node:${PARENT_VERSION} AS production
-ENV TZ="Europe/London"
-ARG PORT
-ENV PORT=${PORT}
-EXPOSE ${PORT}
-COPY --from=development --chown=root:root /home/node/package*.json ./
-COPY --from=development --chown=root:root /home/node/src ./src
-RUN npm ci --omit=dev && chmod -R a-w /home/node
-USER node
-CMD [ "node", "." ]
-```
+Neither is hard, but both are easy to get subtly wrong, and a developer who hits it once tends to fall back to logging rather than debug it. Work it out once and commit it, for every service in the repository.
 
-Points worth keeping:
+### Keep the development stage writable
 
-- extend the Defra base images and pin the full version, never `latest`
-- use `npm ci` rather than `npm install`, so the lockfile is authoritative
-- the production stage copies only what it needs, installs production dependencies, removes write permissions, and drops to a non-root user
-- include `curl` in the production image if your hosting platform's health check needs it
-- add a `.dockerignore` covering `node_modules`, `.git`, `coverage` and any local environment files, so build context stays small and secrets do not end up in layers
-
-### Bind mount source for reload
-
-Mount the source directory so a file save reaches the container without a rebuild. Do not mount over `node_modules`, because the host and the image can hold different platform binaries.
-
-```yaml
-services:
-  my-api:
-    build:
-      context: .
-      target: development
-    volumes:
-      - ./src:/home/node/src
-      - ./test:/home/node/test
-```
-
-A rebuild is still needed when dependencies change. That is the cost of this approach and it is worth being upfront about it.
-
-### Isolate projects so parallel work does not collide
-
-Compose derives network, volume and container names from the project name, which defaults to the directory name. On a CI agent running several builds, or a laptop running two branches, that causes collisions.
-
-```bash
-docker compose -p my-api-${BUILD_ID} up -d
-```
-
-Setting the project name explicitly gives each run its own network and volumes.
+The production stage should remove write permissions from application files and run as a non-root user. Do not carry that into the development stage: watch mode, test runs and coverage reports all need to write to the container filesystem, and a read-only development image breaks the inner loop.
 
 ### Keep database volumes out of the test teardown
 
 If tests and development share a compose project, tearing down after a test run destroys the database you were working with. Give the test run its own project name, or its own volume, so `docker compose down -v` after tests does not take your development data with it.
 
-### Make attaching a debugger work from a clean clone
+### Expect a rebuild when dependencies change
 
-This is the part that usually gets skipped, and it is why container-first developers stop using a debugger.
-
-Expose the inspector port and start the process listening on all interfaces, otherwise the container will not accept a connection from the host.
-
-```yaml
-services:
-  my-api:
-    ports:
-      - "3001:3001"
-      - "9229:9229"
-    command: npm run docker:dev:debug
-```
-
-```json
-{
-  "scripts": {
-    "docker:dev:debug": "node --inspect=0.0.0.0:9229 --watch --watch-path=./src src/index.js"
-  }
-}
-```
-
-Then commit the attach configuration.
-
-```json
-{
-  "name": "Docker: attach to my-api",
-  "type": "node",
-  "request": "attach",
-  "address": "localhost",
-  "port": 9229,
-  "localRoot": "${workspaceFolder}",
-  "remoteRoot": "/home/node",
-  "restart": true
-}
-```
-
-`localRoot` and `remoteRoot` are what map a breakpoint in your editor to a line inside the container. Get them wrong and breakpoints silently never bind.
-
-If you run several services together, give each one a distinct debug port, such as 9229, 9230 and 9231, and commit one attach configuration per service.
+Source changes reach the container through the bind mount, but a lockfile change does not. This is the recurring cost of the approach, and the main thing that makes the container-first loop slower than a host-native one.
 
 ## Orchestrating multiple services
 

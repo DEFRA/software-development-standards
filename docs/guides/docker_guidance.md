@@ -2,12 +2,9 @@
 
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably across multiple environments. Docker is a tool to build and run these containers.
 
-## Local development principles
+This guide covers how to build and run containers well: image construction, security, and Compose configuration. It applies wherever containers run, including CI.
 
-- Teams must not constrain their local development setup to a specific device or operating system to maintain developer mobility and agility.
-- Local development should maximise the use of emulation and avoid tight coupling to cloud services where possible.
-- Repositories should include full instructions for anyone to be able to easily run the service locally.
-- Keep the local setup lean. Favour a single Compose file per repository over many overlapping variants, and prefer built-in tooling (for example Node's native watch and `--env-file`) over extra dependencies.
+It does not tell you whether to run your service in a container while developing it. That is a separate decision, and the [local development patterns guide](local_development_patterns.md) sets out the options and our recommended defaults. The rules any approach has to satisfy are in the [local development standards](../standards/local_development_standards.md).
 
 ## More information
 
@@ -68,7 +65,7 @@ ENV TZ="Europe/London"
 USER root
 
 COPY --from=development --chown=root:root /home/node/package*.json ./
-COPY --from=development --chown=root:root /home/node/app/ ./app/
+COPY --from=development --chown=root:root /home/node/src/ ./src/
 
 RUN npm ci --omit=dev
 
@@ -81,7 +78,7 @@ ARG PORT
 ENV PORT=${PORT}
 EXPOSE ${PORT}
 
-CMD [ "node", "app" ]
+CMD [ "node", "." ]
 ```
 
 Notes on this example:
@@ -109,7 +106,7 @@ Security scanners such as SonarQube flag application files that the running user
 Because the `node` user neither owns the files nor has write permission, the application code is read-only at runtime. This is preferable to `chmod 755`, which still leaves the owner able to write.
 
 ```dockerfile
-COPY --from=development --chown=root:root /home/node/app/ ./app/
+COPY --from=development --chown=root:root /home/node/src/ ./src/
 RUN npm ci --omit=dev
 RUN chmod -R a-w /home/node
 USER node
@@ -145,7 +142,7 @@ services:
       redis:
         condition: service_healthy
     volumes:
-      - ./app:/home/node/app
+      - ./src:/home/node/src
     networks:
       - my-network
 
@@ -178,14 +175,18 @@ Gating the app behind `profiles: ["app"]` supports the common local workflow of 
 
 ### Layer environment variables
 
-Use `env_file` for developer-supplied values and `environment` for the few values that must differ inside Docker (typically service hostnames). The `environment` block takes precedence over `env_file`:
+Keep one set of developer values in `.env` and override only what has to change inside a container. Compose reads `env_file` first, then applies `environment`, which takes precedence:
 
 ```yaml
     env_file:
-      - .env                       # e.g. REDIS_HOST=localhost for host-native dev
+      - .env                       # every developer-supplied value, e.g. REDIS_HOST=localhost
     environment:
-      REDIS_HOST: redis            # inside Docker the dependency is on its service name
+      REDIS_HOST: redis            # overridden, because inside Docker the dependency is on its service name
 ```
+
+In practice only a handful of values need overriding, almost always hostnames and ports, because the same dependency is reached at `localhost` from the host and at its Compose service name from inside the network.
+
+The same `.env` serves both modes. When the application runs on the host, its runtime loads the file directly rather than Compose loading it, so there is a single place to set a value regardless of where the application runs.
 
 This removes the old pattern of duplicating every variable across a base file and an override file. Keep `.env` out of source control and out of images by listing it in both `.gitignore` and `.dockerignore`, and commit a `.env.example` instead.
 
@@ -218,6 +219,55 @@ services:
     container_name: my-service
 ```
 
+### Isolate projects to avoid collisions
+
+Compose derives network, volume and container names from the project name, which defaults to the directory name. On a build agent running several pipelines, or a machine running two branches of the same service, that causes collisions.
+
+Set the project name explicitly with `-p` so each run gets its own network and volumes:
+
+```bash
+docker compose -p my-service-${PR_NUMBER}-${BUILD_NUMBER} up -d
+```
+
+Use whatever unique values your CI platform provides. Container names interpolate the same variables if you set them explicitly:
+
+```yaml
+services:
+  my-service:
+    container_name: my-service-${PR_NUMBER}-${BUILD_NUMBER}
+```
+
+### Avoid port conflicts
+
+When running multiple services locally, each must bind to a unique host port. Map container ports to different host ports per service, and do the same for dependency containers:
+
+```yaml
+# service 1
+ports:
+  - "3000:3000"
+  - "9229:9229"
+
+# service 2
+ports:
+  - "3001:3000"
+  - "9230:9229"
+```
+
+Do not expose ports on containers used only in CI, as they may conflict with ports already in use on the build agent.
+
+### Bind mount source for reload
+
+Where the application itself runs in a container during development, mount the source you want watched so changes are picked up without a rebuild:
+
+```yaml
+volumes:
+  - ./src:/home/node/src
+```
+
+Bind only what needs watching. Do not bind `node_modules`, because the host and the image can hold different platform binaries, and there is no value in binding files such as a `README`.
+
+A rebuild is still needed when dependencies change. That is the main cost of running the application in a container, and it is worth being upfront about it when choosing an approach.
+
 ### Preserving database volumes
 
 Integration tests that run against a containerised database write and delete data. To keep test data separate from local development data, declare the persistent volume only where you want persistence rather than in a shared base definition. For most repositories, prefer [Testcontainers](#running-tests) for integration tests, which gives each run a fresh, isolated database with no volume management at all.
@@ -240,82 +290,23 @@ LICENCE
 README.md
 ```
 
-## Local development workflow
-
-The recommended inner loop runs the application with hot reload while its dependencies run in containers. Running the app itself on the host (rather than in a container) gives the fastest feedback and the simplest debugging, because there is no rebuild or bind-mount sync on each change and the debugger attaches to a local process.
-
-### Hot reload with Node's native watch
-
-Node 24 has built-in watch mode, so a separate tool such as nodemon is no longer needed. Use `node --watch` (restart on change) and `--watch-path` to scope what triggers a restart:
-
-```json
-"scripts": {
-    "dev": "node --watch --watch-path=./app --env-file-if-exists=.env app",
-    "dev:debug": "node --watch --watch-path=./app --inspect --env-file-if-exists=.env app",
-    "start": "node app",
-    "test": "node --test",
-    "test:watch": "node --test --watch"
-}
-```
-
-`--env-file-if-exists=.env` loads a local `.env` when present and is a no-op when it is absent, so the same script works locally and in deployed environments where platform environment variables are provided directly. Use the `-if-exists` variant so a missing file does not error.
-
-If you run the app inside a container instead, mount the source you want watched as a volume in the Compose file so changes are picked up without a rebuild:
-
-```yaml
-volumes:
-  - ./app:/home/node/app
-```
-
-Bind only what needs watching. It is not beneficial to bind `node_modules` or a `README`.
-
-### Avoiding port conflicts
-
-When running multiple services locally, each must bind to a unique host port. Map container ports to different host ports per service, and do the same for dependency containers:
-
-```yaml
-# service 1
-ports:
-  - "3000:3000"
-  - "9229:9229"
-
-# service 2
-ports:
-  - "3001:3000"
-  - "9230:9229"
-```
-
-Do not expose ports on containers used only in CI, as they may conflict with ports already in use on the build agent.
-
 ## Running tests
 
-Prefer running unit tests on the host for speed. For integration tests that need real infrastructure (a database, cache, or message broker), use [Testcontainers](https://testcontainers.com/) to start that infrastructure programmatically from within the test process. This replaces the older approach of maintaining separate `docker-compose.test*.yaml` files.
+For integration tests that need real infrastructure, prefer [Testcontainers](https://testcontainers.com/) over a test-specific Compose file. The test process starts and stops the container itself, so each run gets a fresh, isolated dependency and the same code path runs locally and in CI. There are no `docker-compose.test*.yaml` files to keep in sync and no shared volumes to reset.
 
-Testcontainers gives each test run a fresh, isolated dependency, and the same code path runs locally and in CI (GitHub-hosted runners provide a Docker daemon). Because there are no test-specific Compose files to keep in sync, and no shared volumes to reset, tests are both simpler and more reliable.
+Tests need a running Docker daemon, but do not need `docker compose up` first.
 
-```js
-import { GenericContainer, Wait } from 'testcontainers'
-
-const redis = await new GenericContainer('redis')
-  .withExposedPorts(6379)
-  .withWaitStrategy(Wait.forLogMessage('Ready to accept connections'))
-  .start()
-
-process.env.REDIS_HOST = redis.getHost()
-process.env.REDIS_PORT = String(redis.getMappedPort(6379))
-```
-
-Tests need a running Docker daemon but do not need `docker compose up` first.
+See the [local development patterns guide](local_development_patterns.md) for the full pattern, including container lifecycle, database migrations and wait strategies.
 
 ## Debugging in VS Code
 
-The simplest option is to run the app on the host and debug it directly with a normal launch configuration (inspector bound to `127.0.0.1`). Where you need to debug the process running inside a container, use an attach configuration.
+Where the application runs on the host, debug it directly with a normal launch configuration. Where you need to debug a process running inside a container, use an attach configuration.
 
-Add debug configurations to `.vscode/launch.json`.
+Commit debug configurations to `.vscode/launch.json` so they work from a clean clone. Working out an attach configuration individually is the main reason developers stop using a debugger on container-first services.
 
 ### Attach to a Node process in a running container
 
-The container must run the app with the inspector enabled (for example `node --inspect=0.0.0.0` on the debug port exposed in the Compose file).
+The container must run the app with the inspector enabled and bound to all interfaces (`node --inspect=0.0.0.0`) on the debug port exposed in the Compose file. Bound to `127.0.0.1`, it will not accept a connection from the host.
 
 ```json
 {
@@ -324,6 +315,7 @@ The container must run the app with the inspector enabled (for example `node --i
   "request": "attach",
   "restart": true,
   "port": 9229,
+  "localRoot": "${workspaceFolder}",
   "remoteRoot": "/home/node",
   "skipFiles": [
     "<node_internals>/**",
@@ -332,7 +324,7 @@ The container must run the app with the inspector enabled (for example `node --i
 }
 ```
 
-`restart: true` reattaches the debugger when watch mode restarts the app.
+`restart: true` reattaches the debugger when watch mode restarts the app. `localRoot` and `remoteRoot` map a breakpoint in the editor to a line inside the container; get them wrong and breakpoints silently never bind.
 
 When running several services together, give each a unique host debug port (for example 9229, 9230, 9231) mapped to the container's inspector port, so you can attach to more than one at a time.
 
@@ -410,8 +402,10 @@ docker() {
 
 ## References
 
+- [local development patterns](local_development_patterns.md) - choosing how to run and test a service locally
+- [local development standards](../standards/local_development_standards.md) - the rules any local setup must meet
+- [container standards](../standards/container_standards.md) - Defra container requirements
 - [defra-docker-node](https://github.com/DEFRA/defra-docker-node) - Defra Node.js base images
 - [defra-docker-dotnetcore](https://github.com/DEFRA/defra-docker-dotnetcore) - Defra .NET base images
-- [local development refactoring playbook](https://github.com/johnwatson484/local-dev-refactoring) - host-native inner loop with Testcontainers
 - [Docker Compose documentation](https://docs.docker.com/compose/)
 - [Testcontainers](https://testcontainers.com/)

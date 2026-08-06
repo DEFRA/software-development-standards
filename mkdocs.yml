@@ -62,7 +62,7 @@ nav:
       - Developer workflows: guides/developer_workflows.md
       - Cookie banner: guides/cookies-banner.md
       - Defra Identity: guides/defra-id.md
-      - Docker guidance: guides/docker_guidance.md
+      - Docker: guides/docker_guidance.md
       - Entra: guides/entra.md
       - GitHub Advanced Security: guides/github_advanced_security.md
       - GitHub Copilot: guides/github_copilot.md
