@@ -231,10 +231,10 @@ You have now published your package to npm.
 
 **6.2 Configuring Trusted Publishing**
 Open the [npmjs.org defra package list](https://www.npmjs.com/settings/defra/packages). This will show you a list of packages that you have uploaded.
-![Package List](/docs/img/npm_publish/landing_page.png)
+![Package List](../img/npm_publish/landing_page.png)
 
 Click on the package that you wish to configure, once loaded, click on settings. You will now be asked to choose your package publisher. Choose `GitHub Actions`
-![Publisher type](/docs/img/npm_publish/select_publisher.png)
+![Publisher type](../img/npm_publish/select_publisher.png)
 
 You will now need to enter the details of your repository and pipline.
 - The 'Organization Name' should always be `DEFRA`.
@@ -243,11 +243,11 @@ You will now need to enter the details of your repository and pipline.
 - The `Allowed actions` option should ideally be `Allow npm stage publish` but only choose this option if there will be a person in the package team able to approve these packages.
 
 Click on `Set up connection` when ready.
-![Publisher details](/docs/img/npm_publish/publisher_details.png)
+![Publisher details](../img/npm_publish/publisher_details.png)
 
 You will now need to provide a 2FA code to approve the connection. Once approved, you will now be returned to the settings section for your package.
-This will now show you the details of the new connection. You will need to double check that the `Publishing Access` is set to the recommended option.
-![Final connection details](/docs/img/npm_publish/finished.png)
+This will now show you the details of the new connection. You will need to double-check that the `Publishing Access` is set to the recommended option.
+![Final connection details](../img/npm_publish/finished.png)
 Finally click on `Update Package Settings` and you are now all set to publish direct from GitHub.
 
 ### NuGet
