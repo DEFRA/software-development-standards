@@ -65,6 +65,7 @@ nav:
       - Docker guidance: guides/docker_guidance.md
       - Entra: guides/entra.md
       - GitHub Advanced Security: guides/github_advanced_security.md
+      - GitHub Copilot: guides/github_copilot.md
       - Java auto-format with Eclipse: guides/java_auto_format_eclipse.md
       - Kubernetes: guides/kubernetes.md
       - Managing application credentials: guides/application_credentials.md
