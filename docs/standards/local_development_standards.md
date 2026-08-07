@@ -52,7 +52,7 @@ Shared environments are not used as a substitute for local development except wh
 
 ### A service is simple to start, ideally with a single documented command
 
-Starting a service, including whatever dependencies it needs should require as few commands as possible.  Ideally one that command is named consistently across the team's repositories and is stated in the README.
+Starting a service, including whatever dependencies it needs, should require as few commands as possible. Ideally one command is named consistently across the team's repositories and is stated in the README.
 
 If several services are normally run together, there is a documented way to start them all at once. That must not become the only way to run any individual service.
 

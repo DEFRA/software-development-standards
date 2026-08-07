@@ -627,14 +627,34 @@ For a port, poll it.
 ```bash
 #!/bin/sh
 # wait-for.sh host:port [-t timeout] [-- command args]
-for i in $(seq "$TIMEOUT"); do
-  if nc -z "$HOST" "$PORT" > /dev/null 2>&1; then
-    [ -n "$*" ] && exec "$@"
+set -eu
+
+target="${1:?host:port required}"
+shift
+
+host="${target%:*}"
+port="${target##*:}"
+timeout=30
+
+if [ "${1:-}" = "-t" ]; then
+  timeout="${2:?timeout value required}"
+  shift 2
+fi
+
+if [ "${1:-}" = "--" ]; then
+  shift
+fi
+
+i=0
+while [ "$i" -lt "$timeout" ]; do
+  if nc -z "$host" "$port" > /dev/null 2>&1; then
+    [ "$#" -gt 0 ] && exec "$@"
     exit 0
   fi
+  i=$((i + 1))
   sleep 1
 done
-echo "Timed out waiting for $HOST:$PORT" >&2
+echo "Timed out waiting for $host:$port" >&2
 exit 1
 ```
 

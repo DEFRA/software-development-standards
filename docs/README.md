@@ -85,6 +85,7 @@ These guides provide additional support for meeting and working with the standar
 - [GitHub Advanced Security](./guides/github_advanced_security.md)
 - [Java auto-format with Eclipse](./guides/java_auto_format_eclipse.md)
 - [Kubernetes](./guides/kubernetes.md)
+- [Local development patterns](./guides/local_development_patterns.md)
 - [Managing Application Credentials](./guides/application_credentials.md)
 - [Mobile application guidance](./guides/mobile_app_guidance.md)
 - [New starters](./guides/new_starters.md)
