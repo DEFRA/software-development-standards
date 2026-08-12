@@ -1,13 +1,20 @@
 # Developer Workflows
 
-When working with Git most teams use one of two different workflows depending on their preference.
+When working with Git there are two different workflows teams commonly use.
 
 - [Feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) (also known as [GitHub flow](https://guides.github.com/introduction/flow/))
 - [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-Though FBW is the simpler of the two, it should be used by teams that are confident whenever they change the **main** branch it still remains ready for production ([main is always shippable](https://github.com/DEFRA/software-development-standards/blob/main/docs/principles/coding_principles.md#main-is-always-shippable)).
+**GitHub flow is our preferred workflow**, and should be the default choice for teams. This is because it:
 
-Gitflow is useful for teams that like the space to combine multiple features, or are working on a large feature, before then shipping to production.
+- is simpler, with only two types of branch to manage (**main** and **Feature**)
+- creates less merge overhead, as there are fewer long-lived branches to keep in sync, so fewer conflicts
+- supports frequent, continuous delivery to production
+- aligns with our [main is always shippable](https://github.com/DEFRA/software-development-standards/blob/main/docs/principles/coding_principles.md#main-is-always-shippable) principle
+
+To use GitHub flow safely, teams need to be confident that whenever they change the **main** branch it still remains ready for production.
+
+Gitflow should only be used as an exception, where GitHub flow doesn't fit a team's needs. For example, where teams need to combine multiple features, or coordinate a large feature, before shipping to production.
 
 ## Feature branch workflow (GitHub flow)
 
