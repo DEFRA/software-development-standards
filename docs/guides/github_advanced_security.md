@@ -101,3 +101,20 @@ You can configure [GitHub notifications](https://docs.github.com/en/account-and-
 Only an **admin** can bypass push protection or dismiss a security alert. In all cases, post in [`#github-support`](https://defra-digital.slack.com/archives/C015VCNLKFE) on the defra-digital Slack with a link to the request and a brief reason.
 
 See the [resolving GitHub security alerts](../processes/github_security_alerts.md) process for full details.
+
+## Software Bill of Materials (SBOM)
+
+A Software Bill of Materials (SBOM) is a list of all the components in your software, including dependencies and their versions. It helps teams understand the supply chain of their software and identify potential vulnerabilities.
+
+In GitHub, you can generate an SBOM for your repository using the [GitHub Dependency Graph](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/establish-provenance-and-integrity/export-dependencies-as-sbom).
+
+The Dependency Graph automatically includes all dependencies in [supported ecosystems](https://docs.github.com/en/code-security/reference/supply-chain-security/dependency-graph-supported-package-ecosystems).
+
+It does not include dependencies from Docker images used by the repository.
+
+The Defra provided images update their own Dependency Graph with their in container dependencies on each release.
+
+- [Node.js](https://github.com/DEFRA/defra-docker-node)
+- [.Net](https://github.com/DEFRA/defra-docker-dotnetcore)
+
+To generate a more complete SBOM, teams can also update their own Dependency Graphs during CI similar to the examples in the Defra image repositories.

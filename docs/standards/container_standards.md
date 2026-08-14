@@ -9,19 +9,19 @@
 ## Defra base images
 Images are extended from a minimal Defra created parent image.  This allow us to benefit from improved security and more efficient builds as we will not have to repeat steps that are common to all Dockerfiles.
 
-Different parent images should be created in line with each framework's best practice.  Eg, Node.js, .Net Core, Ruby etc.
+Different parent images should be created in line with each framework's best practice.  Eg, Node.js, .Net, Ruby etc.
 
 Defra's Dockerfiles to build parent images can be found in the below GitHub repositories:
 
 - [Node.js](https://github.com/DEFRA/defra-docker-node)
-- [.Net Core](https://github.com/DEFRA/defra-docker-dotnetcore)
+- [.Net](https://github.com/DEFRA/defra-docker-dotnetcore)
 
 Each image is hosted in DockerHub and has an equivalent development and production image.  
 
 - [Node.js](https://hub.docker.com/repository/docker/defradigital/node)
 - [Node.js development](https://hub.docker.com/repository/docker/defradigital/node-development)
-- [.Net Core](https://hub.docker.com/repository/docker/defradigital/dotnetcore)
-- [.Net Core development](https://hub.docker.com/repository/docker/defradigital/dotnetcore-development)
+- [.Net](https://hub.docker.com/repository/docker/defradigital/dotnetcore)
+- [.Net development](https://hub.docker.com/repository/docker/defradigital/dotnetcore-development)
 
 ### Images are created using Docker
 Docker is the de facto industry standard in most enterprises.
@@ -32,7 +32,7 @@ Using a consistent containerisation tool will help enforce standards and better 
 ### Linux containers are used if the service to be containerised can run on Linux
 Underlying container hosts can only host either Linux or Windows containers.  A model of consistency would reduce the number of underlying hosts.  Windows containers can only be run on Windows hosts which typically have greater licensing costs vs Linux.
 
-*Note that services built using .Net Framework cannot be run using Linux containers, but services built using .Net Core can.  Defra's position is .Net Core should be preferred over .Net Framework but there may be some use cases if containerising legacy services*
+*Note that services built using .Net Framework cannot be run using Linux containers, but services built using .Net can.  Defra's position is .Net should be preferred over .Net Framework but there may be some use cases if containerising legacy services*
 
 ### Images are built using Defra base images (see above)
 ### Containers are not run using root user
