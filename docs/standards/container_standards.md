@@ -9,19 +9,19 @@
 ## Defra base images
 Images are extended from a minimal Defra created parent image.  This allow us to benefit from improved security and more efficient builds as we will not have to repeat steps that are common to all Dockerfiles.
 
-Different parent images should be created in line with each framework's best practice.  Eg, Node.js, .Net, Ruby etc.
+Different parent images should be created in line with each framework's best practice.  Eg, Node.js, .NET, Ruby etc.
 
 Defra's Dockerfiles to build parent images can be found in the below GitHub repositories:
 
 - [Node.js](https://github.com/DEFRA/defra-docker-node)
-- [.Net](https://github.com/DEFRA/defra-docker-dotnetcore)
+- [.NET](https://github.com/DEFRA/defra-docker-dotnetcore)
 
 Each image is hosted in DockerHub and has an equivalent development and production image.  
 
 - [Node.js](https://hub.docker.com/repository/docker/defradigital/node)
 - [Node.js development](https://hub.docker.com/repository/docker/defradigital/node-development)
-- [.Net](https://hub.docker.com/repository/docker/defradigital/dotnetcore)
-- [.Net development](https://hub.docker.com/repository/docker/defradigital/dotnetcore-development)
+- [.NET](https://hub.docker.com/repository/docker/defradigital/dotnetcore)
+- [.NET development](https://hub.docker.com/repository/docker/defradigital/dotnetcore-development)
 
 ### Images are created using Docker
 Docker is the de facto industry standard in most enterprises.
