@@ -5,16 +5,24 @@ When working with Git there are two different workflows teams commonly use.
 - [Feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) (also known as [GitHub flow](https://guides.github.com/introduction/flow/))
 - [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-**GitHub flow is our preferred workflow**, and should be the default choice for teams. This is because it:
+This guide sets out the pros and cons of each, to help teams choose the workflow that best fits their context.
 
-- is simpler, with only two types of branch to manage (**main** and **Feature**)
-- creates less merge overhead, as there are fewer long-lived branches to keep in sync, so fewer conflicts
-- supports frequent, continuous delivery to production
-- aligns with our [main is always shippable](https://github.com/DEFRA/software-development-standards/blob/main/docs/principles/coding_principles.md#main-is-always-shippable) principle
+## Choosing a workflow
 
-To use GitHub flow safely, teams need to be confident that whenever they change the **main** branch it still remains ready for production.
+Consider the following when choosing a workflow:
 
-Gitflow should only be used as an exception, where GitHub flow doesn't fit a team's needs. For example, where teams need to combine multiple features, or coordinate a large feature, before shipping to production.
+- how often you need, or want, to release to production
+- whether you need to combine or coordinate multiple features before releasing them together
+- your team's size and familiarity with Git
+- whether your hosting platform constrains your choice
+
+### Core Delivery Platform (CDP)
+
+Teams hosting their service on the [Core Delivery Platform (CDP)](https://portal.cdp-int.defra.cloud/documentation) must use GitHub flow, as CDP only supports this workflow.
+
+### Main is always shippable
+
+GitHub flow depends on the [main is always shippable](https://github.com/DEFRA/software-development-standards/blob/main/docs/principles/coding_principles.md#main-is-always-shippable) principle. To use it safely, teams need to be confident that whenever they change the **main** branch it still remains ready for production.
 
 ## Feature branch workflow (GitHub flow)
 
@@ -26,6 +34,23 @@ Using this workflow we only use two branches
 - **main** is the main branch developers work from. It represents the latest version of the code. The key principle is that main is always production ready. Anything merged in needs to have been peer reviewed, passed by CI, and ready for release.
 
 - A **Feature** branch is started each time we want to add to, update or fix something in the code. We branch off main when creating the feature, and once complete merge it back in
+
+**Pros**
+
+- simpler, with only two types of branch to manage (**main** and **Feature**)
+- creates less merge overhead, as there are fewer long-lived branches to keep in sync, so fewer conflicts
+- supports frequent, continuous delivery to production
+- easier to review, as changes tend to be small and frequent
+- simple for new starters, as there's only one branch type to learn
+- required if hosting on CDP
+
+**Cons**
+
+- relies on strong CI and review discipline, as main must always stay releasable
+- harder to batch or coordinate multiple features into a single release
+- offers no staging area separate from production
+- incomplete or risky work usually needs feature flags to keep main releasable
+- harder to support multiple versions in production at once, for example patching an older release while newer work continues
 
 ## All branches
 
@@ -47,6 +72,22 @@ Using this workflow it means our branches have specific uses
 - A **Feature** branch is started each time we want to add to, update or fix something in the code. We branch off Develop when creating the feature, and once complete merge it back into Develop
 
 - Once we have a set of features we want to put live, we create a **Release** branch. Last minute fixes and tidying up is done on this branch and then it is merged into main (put live) and back into Develop
+
+**Pros**
+
+- supports batching or coordinating multiple features into a single release
+- provides a staging area (**Develop**) separate from production
+- gives a clear, separate path for hotfixes to production
+- better suited where a formal release or sign-off process is needed before going live
+- easier to support multiple versions in production concurrently
+
+**Cons**
+
+- more branch types to manage, with more merge overhead and conflict risk
+- extra syncing needed between **Develop** and **main**
+- slower feedback, as work sits in **Develop** before reaching production
+- more for new starters to learn, with more branch types and rules
+- not supported on CDP
 
 ### Use of tools
 
