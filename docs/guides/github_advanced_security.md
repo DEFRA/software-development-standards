@@ -115,6 +115,6 @@ It does not include dependencies from Docker images used by the repository.
 The Defra provided images update their own Dependency Graph with their in container dependencies on each release.
 
 - [Node.js](https://github.com/DEFRA/defra-docker-node)
-- [.Net](https://github.com/DEFRA/defra-docker-dotnetcore)
+- [.NET](https://github.com/DEFRA/defra-docker-dotnetcore)
 
 To generate a more complete SBOM, teams can also update their own Dependency Graphs during CI similar to the examples in the Defra image repositories.
