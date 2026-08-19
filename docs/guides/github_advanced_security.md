@@ -108,13 +108,32 @@ A Software Bill of Materials (SBOM) is a list of all the components in your soft
 
 In GitHub, you can generate an SBOM for your repository using the [GitHub Dependency Graph](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/establish-provenance-and-integrity/export-dependencies-as-sbom).
 
-The Dependency Graph automatically includes all dependencies in [supported ecosystems](https://docs.github.com/en/code-security/reference/supply-chain-security/dependency-graph-supported-package-ecosystems).
+The Dependency Graph automatically includes all dependencies in [supported ecosystems](https://docs.github.com/en/code-security/reference/supply-chain-security/dependency-graph-supported-package-ecosystems) where GitHub can read a manifest directly from the repository (for example `package.json` and `.csproj`). Most repositories need no extra setup.
 
-It does not include dependencies from Docker images used by the repository.
+Automatic detection has gaps, though. The sections below cover common scenarios where teams need to submit to the Dependency Graph themselves.
 
-The Defra provided images update their own Dependency Graph with their in container dependencies on each release.
+### Container images
+
+Manifest scanning can't see what actually ends up inside a built Docker image, such as base image packages and OS-level dependencies. This is why it does not include dependencies from Docker images used by a repository.
+
+Defra-provided images generate an SBOM from the built image during CI and submit it to their own Dependency Graph on each release:
 
 - [Node.js](https://github.com/DEFRA/defra-docker-node)
 - [.NET](https://github.com/DEFRA/defra-docker-dotnetcore)
 
-To generate a more complete SBOM, teams can also update their own Dependency Graphs during CI similar to the examples in the Defra image repositories.
+Both use the [Anchore SBOM Action](https://github.com/marketplace/actions/anchore-sbom-action) against the built image. They need this CI-driven approach because each repository builds several supported versions from one workflow, so a single scan could not represent all of them; each version is submitted separately (see correlators, below). If your repository only builds a single image with no version matrix, a full CI pipeline like this may be more than you need - the simpler options below may be a better fit.
+
+### Other gaps in automatic detection
+
+Dependencies can fail to appear in the Dependency Graph automatically when packages come from private or internal feeds, when dependency data is vendored or generated in ways GitHub cannot parse, or when the ecosystem is outside GitHub's supported list. Rather than one prescribed tool, pick whichever fits your project:
+
+- [SPDX Dependency Submission Action](https://github.com/marketplace/actions/spdx-dependency-submission-action) - uses Microsoft's SBOM Tool, a good general-purpose default with broad ecosystem support.
+- [SBOM Dependency Submission Action](https://github.com/marketplace/actions/sbom-submission-action) - submits an existing CycloneDX SBOM, useful if your pipeline already produces one.
+- [Anchore SBOM Action](https://github.com/marketplace/actions/anchore-sbom-action) - also works standalone against a filesystem or image target, not just the container matrix case above.
+- [Export SBOM from the UI or REST API](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/establish-provenance-and-integrity/export-dependencies-as-sbom) - a one-off snapshot rather than a continuous submission, useful for ad hoc requests.
+
+### Submitting more than one component
+
+If a single repository or workflow submits dependencies for more than one component, such as a version matrix or several sub-projects, give each submission its own stable **correlator** so GitHub doesn't overwrite one component's entry with another's. Keep each correlator stable across routine version bumps (for example, key it off a major version rather than the full version string) so history and alerts stay attached to the right component.
+
+> **Retiring a component:** removing a matrix entry or sub-project from CI only stops future updates - GitHub keeps showing the last submitted snapshot for that correlator indefinitely, and Dependabot keeps alerting on it. To clear it, submit one final empty manifest for that correlator, as done by [`scripts/retire-version.sh`](https://github.com/DEFRA/defra-docker-node/blob/main/scripts/retire-version.sh) in the Node.js and .NET image repositories.
