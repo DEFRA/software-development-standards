@@ -10,6 +10,8 @@ This automated build can check several things, including:
 - code quality checks pass
 - security checks pass
 
+Your branching workflow should support integrating to a shared branch frequently and keeping **main** releasable at all times. In most cases this aligns with GitHub flow because it is simpler and supports continuous delivery. Teams should still assess their release cadence, team experience and ways of working when choosing a workflow, as described in the [developer workflows guide](../guides/developer_workflows.md).
+
 ## Branch protection
 
 `main` branches must be protected with [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) to ensure that all changes are reviewed and pass required checks before being merged.
