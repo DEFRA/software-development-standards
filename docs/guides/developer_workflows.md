@@ -7,14 +7,19 @@ When working with Git there are two different workflows teams commonly use.
 
 This guide sets out the pros and cons of each, to help teams choose the workflow that best fits their context.
 
+Teams should favour GitHub flow by default because it is simpler to operate and aligns well with continuous integration and the GOV.UK Service Standard expectation of frequent, low-risk delivery. Teams should still assess which workflow best fits their context before deciding.
+
 ## Choosing a workflow
 
 Consider the following when choosing a workflow:
 
-- how often you need, or want, to release to production
+- what release cadence the business can support, and how often you need or want to release to production
 - whether you need to combine or coordinate multiple features before releasing them together
-- your team's size and familiarity with Git
+- your team's size, experience and familiarity with Git and CI practices
+- your ways of working, for example release governance, sign-off or coordination across teams
 - whether your hosting platform constrains your choice
+
+As a rule, prefer GitHub flow where your service can release frequently and keep **main** shippable through strong CI and code review. Consider Gitflow where the business needs a lower release cadence or a formal process to batch and coordinate changes before release.
 
 ### Core Delivery Platform (CDP)
 
@@ -62,6 +67,8 @@ In all cases when the branch is created it should be pushed up to the **origin**
 <sub>[Source: Atlassian Tutorials - Comparing Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)</sub>
 
 Using this workflow it means our branches have specific uses
+
+This model can suit teams that need stronger release staging and coordination, at the cost of more branch management complexity.
 
 - **main** is the version of code that is in production (see the principle [main is always shippable](https://github.com/DEFRA/software-development-standards/blob/main/docs/principles/coding_principles.md#main-is-always-shippable))
 
