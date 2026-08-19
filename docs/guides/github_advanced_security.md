@@ -121,11 +121,11 @@ Defra-provided images generate an SBOM from the built image during CI and submit
 - [Node.js](https://github.com/DEFRA/defra-docker-node)
 - [.NET](https://github.com/DEFRA/defra-docker-dotnetcore)
 
-Both use the [Anchore SBOM Action](https://github.com/marketplace/actions/anchore-sbom-action) against the built image. They need this CI-driven approach because each repository builds several supported versions from one workflow, so a single scan could not represent all of them; each version is submitted separately (see correlators, below). If your repository only builds a single image with no version matrix, a full CI pipeline like this may be more than you need - the simpler options below may be a better fit.
+Both use the [Anchore SBOM Action](https://github.com/marketplace/actions/anchore-sbom-action) against the built image. They need this CI-driven approach because each repository builds several supported versions from one workflow, so a single scan could not represent all of them; each version is submitted with a separate correlator (see correlators, below). If your repository only builds a single image with no version matrix, a full CI pipeline like this may be more than you need - the simpler options below may be a better fit.
 
 ### Other gaps in automatic detection
 
-Dependencies can fail to appear in the Dependency Graph automatically when packages come from private or internal feeds, when dependency data is vendored or generated in ways GitHub cannot parse, or when the ecosystem is outside GitHub's supported list. Rather than one prescribed tool, pick whichever fits your project:
+Dependencies can fail to appear in the Dependency Graph automatically when packages come from private or internal feeds, when dependency data is formatted in ways GitHub cannot parse, or when the ecosystem is outside GitHub's supported list. There are several ways to submit dependencies to the Dependency Graph manually, depending on your needs:
 
 - [SPDX Dependency Submission Action](https://github.com/marketplace/actions/spdx-dependency-submission-action) - uses Microsoft's SBOM Tool, a good general-purpose default with broad ecosystem support.
 - [SBOM Dependency Submission Action](https://github.com/marketplace/actions/sbom-submission-action) - submits an existing CycloneDX SBOM, useful if your pipeline already produces one.
