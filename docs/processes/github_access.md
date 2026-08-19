@@ -68,7 +68,9 @@ If you will no longer be the administrator for a repository, you will need to id
 
 When a repository that you administer is no longer being maintained, you should request that it be archived. This can be done by contacting the relevant organisation owners.
 
-We typically archive repositories rather than deleting them, as the code they contain may still be of value.
+We archive repositories rather than deleting them, as the code they contain may still be of value.
+
+We do not change the visibility of archived repositories, so if your repository is public it will remain public after being archived.
 
 Repositories without an administrator will be archived by the organisation owners.
 
