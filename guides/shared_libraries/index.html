@@ -1,0 +1,3143 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://defra.github.io/software-development-standards/guides/shared_libraries/">
+      
+      
+        <link rel="prev" href="../sql_prompt_tool/">
+      
+      
+        <link rel="next" href="../style_guide_for_standards/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/brand.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Shared libraries - Defra Software Development Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Arial";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shared-libraries" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+
+<header class="md-header md-header--shadow" data-md-component="header">
+
+  <div class="md-header__brand">
+    <div class="md-header__brand-inner md-grid">
+      <a
+        href="../.."
+        title="Defra Software Development Standards"
+        class="md-header__button md-logo"
+        aria-label="Defra Software Development Standards"
+        data-md-component="logo"
+      >
+        <img src="../../img/brand.png" alt="Defra Software Development Standards" height="30" style="width: auto; display: block;">
+      </a>
+    </div>
+  </div>
+
+  <div class="md-header__nav-row">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <a href="../.." class="md-header__site-link">
+            <span class="md-ellipsis">Defra Software Development Standards</span>
+          </a>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Shared libraries
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    
+      
+    
+
+    
+
+    
+
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+
+  </nav>
+  </div>
+
+  
+
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Defra Software Development Standards" class="md-nav__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
+      
+  <img src="../../img/brand.png" alt="logo">
+
+    </a>
+    Defra Software Development Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Principles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/coding_principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/security_principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coding standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/common_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/continuous_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuous integration standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/csharp_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C# coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/development_language_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development languages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/javascript_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/logging_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/mobile_app_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile application standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/net_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/node_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/python_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/quality_assurance_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality assurance and test standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/security_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/uipath_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UiPath standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/version_control_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packaging and deployment standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packaging and deployment standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/container_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Container standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/deployment_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kubernetes_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/plsql_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PL/SQL coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/tsql_and_sqldb_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSQL and SQL Server database standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/readme_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    README standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards for non-strategic technologies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards for non-strategic technologies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/java_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/ruby_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ruby coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes and guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes and guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/credential_exposure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential exposure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/pull_requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pull requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_security_alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolving GitHub security alerts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mono_or_multi_repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing between a mono repo and a multi repo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choosing_packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookies-banner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookie banner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defra-id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Defra Identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github_advanced_security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Advanced Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github_copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java_auto_format_eclipse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java auto-format with Eclipse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application_credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing application credentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dead_letter_queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing dead letter queues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile_app_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile application guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new_starters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opening_private_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opening existing private code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plsql_auto_format_toad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PL/SQL auto-format with TOAD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_prompt_tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Prompt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared libraries
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared libraries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-shared-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a shared library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-a-shared-library-can-be-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When a shared library can be useful
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-not-to-use-a-shared-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When not to use a shared library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-host-a-shared-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to host a shared library
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where to host a shared library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#npm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="npm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-set-up-a-new-npm-package-with-trusted-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to set up a new npm package with Trusted Publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nuget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NuGet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NuGet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-set-up-a-new-nuget-package-with-trusted-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to set up a new NuGet package with Trusted Publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#npm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nuget_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NuGet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style_guide_for_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style guide for standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws_session_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using AWS session manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privileged_devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using devices with privileged access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version_control_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-shared-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a shared library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-a-shared-library-can-be-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When a shared library can be useful
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-not-to-use-a-shared-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When not to use a shared library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-host-a-shared-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to host a shared library
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where to host a shared library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#npm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="npm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-set-up-a-new-npm-package-with-trusted-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to set up a new npm package with Trusted Publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nuget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NuGet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NuGet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-set-up-a-new-nuget-package-with-trusted-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to set up a new NuGet package with Trusted Publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#npm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nuget_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NuGet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="shared-libraries">Shared libraries</h1>
+<h2 id="what-is-a-shared-library">What is a shared library</h2>
+<p>A shared library is code that is packaged, versioned and published to a package registry so that other projects can install it as a dependency. This avoids duplicating code across services, keeps shared logic in sync and provides a clear contract through versioning.</p>
+<p>Two package ecosystems align to Defra's primary technology choices.</p>
+<p><strong>npm</strong> packages are used in JavaScript projects. They are hosted on <a href="https://www.npmjs.com">npmjs.com</a> and installed using the <code>npm</code> command. Packages can be scoped to an organisation, such as <code>@defra/your-package</code>.</p>
+<p><strong>NuGet</strong> packages are used in .NET projects. They are hosted on <a href="https://www.nuget.org">nuget.org</a> and installed using the <code>dotnet add package</code> command. Packages are grouped under an organisation, such as <code>Defra.YourPackage</code>.</p>
+<h2 id="when-a-shared-library-can-be-useful">When a shared library can be useful</h2>
+<p>A shared library makes sense when the code genuinely needs to be used in more than one place and has a clear, stable purpose.</p>
+<p>Common use cases:</p>
+<ul>
+<li><strong>Public reuse.</strong> Sharing code openly so other teams, ALBs or the wider public can benefit from work already done.</li>
+<li><strong>Supporting integrations.</strong> Publishing a client library or SDK for a Defra API or platform service, so consumers do not need to implement the integration themselves.</li>
+<li><strong>Development kits.</strong> Bundling shared tooling such as linting configs, test utilities or scaffolding helpers that all teams can adopt consistently.</li>
+<li><strong>Reusable components and config.</strong> Packaging common UI components, shared configuration schemas or middleware so they stay in sync across services.</li>
+<li><strong>Abstracting sensitive code.</strong> Isolating code that contains sensitive logic into a private library, so the consuming service can remain open source without exposing sensitive code.</li>
+<li><strong>Cross-cutting concerns.</strong> Encapsulating common patterns such as audit publishing, messaging wrappers or authentication helpers that many services need but should not each implement independently.</li>
+</ul>
+<h2 id="when-not-to-use-a-shared-library">When not to use a shared library</h2>
+<p>A shared library adds maintenance overhead. It introduces a versioning contract and requires consumers to manage upgrades. Before creating one, consider whether the benefit justifies that cost.</p>
+<p>Avoid creating a shared library when:</p>
+<ul>
+<li>only one service will ever use the code. Copy it instead and revisit if a second consumer appears</li>
+<li>the code is tightly coupled to a specific service's business logic and would not make sense elsewhere</li>
+<li>you are sharing environment-specific configuration or secrets. Use environment variables or a secrets manager instead</li>
+<li>the package would be a utilities dumping ground with no single clear responsibility</li>
+<li>the code changes frequently in breaking ways, creating an ongoing upgrade burden for consumers</li>
+<li>the sole reason to extract it is to avoid making the consuming application open source. This is not sufficient justification on its own</li>
+</ul>
+<h2 id="where-to-host-a-shared-library">Where to host a shared library</h2>
+<p>Use the ecosystem's native registry by default. That means <a href="https://www.npmjs.com">npmjs.com</a> for npm packages and <a href="https://www.nuget.org">nuget.org</a> for NuGet packages. These registries are well supported, encourage good security practices and offer low-friction adoption for consumers. They also support Defra's commitment to working in the open and publishing code openly.</p>
+<p>For libraries containing sensitive or private code, use GitHub Packages instead.</p>
+<h3 id="npm">npm</h3>
+<p>Publish npm packages to <a href="https://www.npmjs.com">npmjs.com</a> under the <code>@defra</code> organisation scope.</p>
+<p>For onboarding, contact <a href="https://defra-digital.slack.com/archives/C0BA4SW20NS"><code>#npm-support</code></a> in Slack. Defra npm org admins can be found there.</p>
+<p>A Defra npm org admin must perform the first publish of any new <code>@defra</code>-scoped package. After that, your npm account can be made maintainer of the specific package. Teams can also be created within the organisation to manage access to one or more packages.</p>
+<p>Use <strong>Trusted Publishing</strong> to publish from GitHub Actions without storing a long-lived npm access token in GitHub secrets. This uses OpenID Connect (OIDC) so the registry can verify the publish came from a specific GitHub Actions workflow.</p>
+<p>See <a href="https://github.com/DEFRA/fcp-audit-publisher">fcp-audit-publisher</a> as a working example.</p>
+<h4 id="steps-to-set-up-a-new-npm-package-with-trusted-publishing">Steps to set up a new npm package with Trusted Publishing</h4>
+<p><strong>1. Create a repository</strong></p>
+<p>Create a new GitHub repository under the DEFRA organisation following the standard repository setup guidance.</p>
+<p><strong>2. Initialise the package</strong></p>
+<pre><code class="language-bash">npm init
+</code></pre>
+<p>Set the <code>name</code> field in <code>package.json</code> to use the <code>@defra</code> scope:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;@defra/your-package-name&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;
+}
+</code></pre>
+<p><strong>3. Add a CI workflow to check pull requests</strong></p>
+<p>Create <code>.github/workflows/check-pull-request.yml</code>. This workflow should build, test and enforce that the version in <code>package.json</code> has been incremented before a pull request can be merged.</p>
+<p>Key version check steps:</p>
+<pre><code class="language-yaml">- name: Get package version
+  id: package-version
+  run: echo &quot;version=$(node -p &quot;require('./package.json').version&quot;)&quot; &gt;&gt; $GITHUB_OUTPUT
+
+- name: Get base branch version
+  id: base-version
+  run: |
+    git fetch origin main --depth=1
+    echo &quot;version=$(git show origin/main:package.json | node -p &quot;JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).version&quot;)&quot; &gt;&gt; $GITHUB_OUTPUT
+
+- name: Check version incremented
+  run: |
+    PR_VERSION=&quot;${{ steps.package-version.outputs.version }}&quot;
+    BASE_VERSION=&quot;${{ steps.base-version.outputs.version }}&quot;
+    node -e &quot;
+      const [a, b] = ['$PR_VERSION', '$BASE_VERSION'].map(v =&gt; v.split('.').map(Number));
+      const isGreater = a[0] &gt; b[0] || (a[0] === b[0] &amp;&amp; a[1] &gt; b[1]) || (a[0] === b[0] &amp;&amp; a[1] === b[1] &amp;&amp; a[2] &gt; b[2]);
+      if (!isGreater) {
+        console.error('::error::Version in package.json ($PR_VERSION) must be greater than the base branch version ($BASE_VERSION)');
+        process.exit(1);
+      }
+    &quot;
+</code></pre>
+<p><strong>4. Add a publish workflow</strong></p>
+<p>Create <code>.github/workflows/publish.yml</code>. The workflow needs <code>id-token: write</code> permission for OIDC authentication with npmjs.com:</p>
+<pre><code class="language-yaml">name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: &quot;https://registry.npmjs.org&quot;
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+      - name: Get package version
+        id: package-version
+        run: echo &quot;version=$(node -p &quot;require('./package.json').version&quot;)&quot; &gt;&gt; $GITHUB_OUTPUT
+
+      - name: Check if version exists on npm
+        id: check-version
+        run: |
+          if npm view @defra/your-package-name@${{ steps.package-version.outputs.version }} version 2&gt;/dev/null; then
+            echo &quot;exists=true&quot; &gt;&gt; $GITHUB_OUTPUT
+          else
+            echo &quot;exists=false&quot; &gt;&gt; $GITHUB_OUTPUT
+          fi
+
+      - name: Publish to npm
+        if: steps.check-version.outputs.exists == 'false'
+        run: npm publish --access public
+</code></pre>
+<p>Replace <code>@defra/your-package-name</code> with your actual package name.</p>
+<p><strong>5. Contact <code>#npm-support</code> to request onboarding</strong></p>
+<p>Before the first publish, contact <code>#npm-support</code> in Slack with:</p>
+<ul>
+<li>your npm username</li>
+<li>the GitHub repository that will publish the package</li>
+<li>the proposed package name (for example <code>@defra/your-package-name</code>)</li>
+<li>confirmation the package is suitable for public publishing</li>
+</ul>
+<p>A Defra npm org admin will configure the Trusted Publishing policy on npmjs.com and perform the first publish.</p>
+<p><strong>6. First publish</strong></p>
+<p>The first publish of any <code>@defra</code>-scoped package must be done by a Defra npm org admin. Once published, your account can be made admin of the package. After that, publishing happens automatically whenever a pull request is merged to <code>main</code>.</p>
+<h3 id="nuget">NuGet</h3>
+<p>Publish NuGet packages to <a href="https://www.nuget.org">nuget.org</a> under the <a href="https://www.nuget.org/profiles/Defra">Defra NuGet organisation</a>.</p>
+<p>The <code>Defra</code> package ID prefix is reserved on NuGet.org for the <code>Defra</code> organisation and should be used for all packages.  Examples of valid package IDs include:</p>
+<pre><code class="language-text">Defra.YourPackage
+Defra.Team.Component
+</code></pre>
+<p>For onboarding, contact <a href="https://defra-digital.slack.com/archives/C0B9RF36WTH"><code>#nuget-support</code></a> in Slack. A Defra NuGet org admin will add you as a Collaborator to the Defra organisation on NuGet.org.</p>
+<p>Use <strong>Trusted Publishing</strong> via the <code>NuGet/login</code> GitHub Action. This allows GitHub Actions to publish to NuGet.org without storing a long-lived API key in GitHub secrets.</p>
+<p>See <a href="https://github.com/DEFRA/defra-nuget-example">defra-nuget-example</a> for a full working example and detailed guidance.</p>
+<h4 id="steps-to-set-up-a-new-nuget-package-with-trusted-publishing">Steps to set up a new NuGet package with Trusted Publishing</h4>
+<p><strong>1. Request access</strong></p>
+<p>Contact <code>#nuget-support</code> in Slack with:</p>
+<ul>
+<li>your NuGet.org username</li>
+<li>your team name</li>
+<li>the GitHub repository that will publish the package
+ the proposed package ID (for example <code>Defra.YourPackage</code>)</li>
+<li>confirmation the package is suitable for public publishing</li>
+</ul>
+<p>Make sure your NuGet.org account uses a secure Microsoft account with MFA enabled.</p>
+<p><strong>2. Create a repository and project</strong></p>
+<p>Create a new GitHub repository under the DEFRA organisation, then create a solution, class library and test project:</p>
+<pre><code class="language-bash">dotnet new sln --name Defra.YourPackage
+
+dotnet new classlib \
+  --name Defra.YourPackage \
+  --output Defra.YourPackage
+
+dotnet new xunit \
+  --name Defra.YourPackage.Tests \
+  --output Defra.YourPackage.Tests
+
+dotnet sln add Defra.YourPackage/Defra.YourPackage.csproj
+dotnet sln add Defra.YourPackage.Tests/Defra.YourPackage.Tests.csproj
+
+dotnet add Defra.YourPackage.Tests/Defra.YourPackage.Tests.csproj \
+  reference Defra.YourPackage/Defra.YourPackage.csproj
+</code></pre>
+<p>Replace <code>Defra.YourPackage</code> with your actual package ID.</p>
+<p><strong>3. Add package metadata to the <code>.csproj</code></strong></p>
+<pre><code class="language-xml">&lt;PackageId&gt;Defra.YourPackage&lt;/PackageId&gt;
+&lt;Version&gt;0.1.0&lt;/Version&gt;
+&lt;Authors&gt;Authors&lt;/Authors&gt;
+&lt;Company&gt;Defra&lt;/Company&gt;
+&lt;Description&gt;A short description of what the package does.&lt;/Description&gt;
+&lt;PackageTags&gt;defra;dotnet&lt;/PackageTags&gt;
+
+&lt;PackageProjectUrl&gt;https://github.com/DEFRA/your-repo&lt;/PackageProjectUrl&gt;
+&lt;RepositoryUrl&gt;https://github.com/DEFRA/your-repo&lt;/RepositoryUrl&gt;
+&lt;RepositoryType&gt;git&lt;/RepositoryType&gt;
+
+&lt;PackageLicenseFile&gt;LICENCE&lt;/PackageLicenseFile&gt;
+&lt;PackageReadmeFile&gt;README.md&lt;/PackageReadmeFile&gt;
+&lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;
+</code></pre>
+<p>Include the licence and README in the package:</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+  &lt;None Include=&quot;../LICENCE&quot; Pack=&quot;true&quot; PackagePath=&quot;\&quot; /&gt;
+  &lt;None Include=&quot;../README.md&quot; Pack=&quot;true&quot; PackagePath=&quot;\&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>NuGet package IDs are immutable once published. You cannot rename a package after publishing. You would need to publish a new package with a different ID.</p>
+<p><strong>4. Add a CI workflow to check pull requests</strong></p>
+<p>Create <code>.github/workflows/check-pull-request.yml</code>. This should build, test and verify the <code>&lt;Version&gt;</code> in the <code>.csproj</code> has been incremented before a pull request can be merged.</p>
+<p>Key version check steps:</p>
+<pre><code class="language-yaml">- name: Get current version
+  id: current-version
+  run: |
+    echo &quot;version=$(grep -oP '(?&lt;=&lt;Version&gt;)[^&lt;]+' Defra.YourPackage/Defra.YourPackage.csproj)&quot; &gt;&gt; $GITHUB_OUTPUT
+
+- name: Get main branch version
+  id: base-version
+  run: |
+    git fetch origin main --depth=1
+    echo &quot;version=$(git show origin/main:Defra.YourPackage/Defra.YourPackage.csproj | grep -oP '(?&lt;=&lt;Version&gt;)[^&lt;]+')&quot; &gt;&gt; $GITHUB_OUTPUT
+
+- name: Check version incremented
+  run: |
+    CURRENT=&quot;${{ steps.current-version.outputs.version }}&quot;
+    BASE=&quot;${{ steps.base-version.outputs.version }}&quot;
+    IFS='.' read -r -a CURRENT_PARTS &lt;&lt;&lt; &quot;$CURRENT&quot;
+    IFS='.' read -r -a BASE_PARTS &lt;&lt;&lt; &quot;$BASE&quot;
+    if [[ ${CURRENT_PARTS[0]} -gt ${BASE_PARTS[0]} ]] || \
+       [[ ${CURRENT_PARTS[0]} -eq ${BASE_PARTS[0]} &amp;&amp; ${CURRENT_PARTS[1]} -gt ${BASE_PARTS[1]} ]] || \
+       [[ ${CURRENT_PARTS[0]} -eq ${BASE_PARTS[0]} &amp;&amp; ${CURRENT_PARTS[1]} -eq ${BASE_PARTS[1]} &amp;&amp; ${CURRENT_PARTS[2]} -gt ${BASE_PARTS[2]} ]]; then
+      echo &quot;Version $CURRENT is greater than base $BASE&quot;
+    else
+      echo &quot;::error::Version in .csproj ($CURRENT) must be greater than the base branch version ($BASE)&quot;
+      exit 1
+    fi
+</code></pre>
+<p>Replace <code>Defra.YourPackage</code> with your package ID and project path.</p>
+<p><strong>5. Add a publish workflow</strong></p>
+<p>Create <code>.github/workflows/publish.yml</code>:</p>
+<pre><code class="language-yaml">name: Publish NuGet package
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - run: dotnet restore
+      - run: dotnet build --configuration Release --no-restore
+      - run: dotnet test --configuration Release --no-build
+
+      - name: Pack
+        run: dotnet pack Defra.YourPackage/Defra.YourPackage.csproj --configuration Release --no-build --output artifacts
+
+      - name: NuGet login
+        id: login
+        uses: NuGet/login-action@v1
+        with:
+          user: ${{ secrets.NUGET_USERNAME }}
+
+      - name: Push to NuGet.org
+        run: dotnet nuget push &quot;artifacts/*.nupkg&quot; --api-key &quot;${{ steps.login.outputs.NUGET_API_KEY }}&quot; --source https://api.nuget.org/v3/index.json --skip-duplicate
+</code></pre>
+<p>Replace <code>Defra.YourPackage</code> with your package ID and project path.</p>
+<p><strong>6. Add the <code>NUGET_USERNAME</code> secret</strong></p>
+<p>Add a GitHub Actions secret named <code>NUGET_USERNAME</code>. The value must be the NuGet.org username of the person who will create the Trusted Publishing policy. It should be a NuGet.org username, not an email address, Microsoft account login or GitHub username.</p>
+<p><strong>7. Set up Trusted Publishing on NuGet.org</strong></p>
+<p>Sign in to NuGet.org as the user whose username you set in <code>NUGET_USERNAME</code>:</p>
+<ol>
+<li>Go to <strong>Trusted Publishing</strong>.</li>
+<li>Add a new policy.</li>
+<li>Set the package owner to the <strong>Defra</strong> organisation.</li>
+<li>Enter the GitHub repository details.</li>
+<li>Enter the workflow file name. Use only the file name, not the full path.</li>
+</ol>
+<p>Example policy values:</p>
+<pre><code class="language-text">Package owner:      Defra
+Repository owner:   DEFRA
+Repository:         your-repo-name
+Workflow file:      publish.yml
+</code></pre>
+<p>Leave the environment field blank if the publish workflow does not specify a GitHub environment.</p>
+<p><strong>8. Merge to publish</strong></p>
+<p>Publishing happens automatically when a pull request is merged to <code>main</code>. Increment the <code>&lt;Version&gt;</code> in the <code>.csproj</code> in every pull request that should result in a new published version. The CI check will block the merge if you have not.</p>
+<h3 id="github-packages">GitHub Packages</h3>
+<p>Use <a href="https://docs.github.com/en/packages">GitHub Packages</a> when your library contains sensitive or private code that should not be published to a public registry.</p>
+<p>GitHub Packages supports both npm and NuGet. Access is controlled by GitHub repository permissions, so packages remain private to your organisation by default.</p>
+<h4 id="npm_1">npm</h4>
+<p>Add a <code>publishConfig</code> entry to <code>package.json</code> to point to the GitHub Packages registry:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;@DEFRA/your-package-name&quot;,
+  &quot;publishConfig&quot;: {
+    &quot;registry&quot;: &quot;https://npm.pkg.github.com&quot;
+  }
+}
+</code></pre>
+<p>In your publish workflow, configure <code>actions/setup-node</code> to use the GitHub Packages registry and authenticate with <code>GITHUB_TOKEN</code>:</p>
+<pre><code class="language-yaml">- uses: actions/setup-node@v4
+  with:
+    node-version: 24
+    registry-url: &quot;https://npm.pkg.github.com&quot;
+    scope: &quot;@DEFRA&quot;
+
+- run: npm publish
+  env:
+    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+</code></pre>
+<p>Consumers must authenticate to install the package. They will need a GitHub personal access token with <code>read:packages</code> scope configured in their local <code>.npmrc</code>:</p>
+<pre><code class="language-text">//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
+@DEFRA:registry=https://npm.pkg.github.com
+</code></pre>
+<h4 id="nuget_1">NuGet</h4>
+<p>In your publish workflow, push to the GitHub Packages NuGet registry using <code>GITHUB_TOKEN</code>:</p>
+<pre><code class="language-yaml">- name: Push to GitHub Packages
+  run: |
+    dotnet nuget push &quot;artifacts/*.nupkg&quot; \
+      --source &quot;https://nuget.pkg.github.com/DEFRA/index.json&quot; \
+      --api-key ${{ secrets.GITHUB_TOKEN }} \
+      --skip-duplicate
+</code></pre>
+<p>Consumers must add the GitHub Packages source before they can restore or install the package:</p>
+<pre><code class="language-bash">dotnet nuget add source \
+  --username YOUR_GITHUB_USERNAME \
+  --password YOUR_GITHUB_PAT \
+  --store-password-in-clear-text \
+  --name github \
+  &quot;https://nuget.pkg.github.com/DEFRA/index.json&quot;
+</code></pre>
+<p>Replace <code>YOUR_GITHUB_PAT</code> with a GitHub personal access token with <code>read:packages</code> scope.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

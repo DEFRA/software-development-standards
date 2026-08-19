@@ -1,0 +1,5102 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://defra.github.io/software-development-standards/guides/github_copilot/">
+      
+      
+        <link rel="prev" href="../github_advanced_security/">
+      
+      
+        <link rel="next" href="../java_auto_format_eclipse/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/brand.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>GitHub Copilot - Defra Software Development Standards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Arial";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#github-copilot-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+
+<header class="md-header md-header--shadow" data-md-component="header">
+
+  <div class="md-header__brand">
+    <div class="md-header__brand-inner md-grid">
+      <a
+        href="../.."
+        title="Defra Software Development Standards"
+        class="md-header__button md-logo"
+        aria-label="Defra Software Development Standards"
+        data-md-component="logo"
+      >
+        <img src="../../img/brand.png" alt="Defra Software Development Standards" height="30" style="width: auto; display: block;">
+      </a>
+    </div>
+  </div>
+
+  <div class="md-header__nav-row">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <a href="../.." class="md-header__site-link">
+            <span class="md-ellipsis">Defra Software Development Standards</span>
+          </a>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GitHub Copilot
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    
+      
+    
+
+    
+
+    
+
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+
+  </nav>
+  </div>
+
+  
+
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Defra Software Development Standards" class="md-nav__button md-logo" aria-label="Defra Software Development Standards" data-md-component="logo">
+      
+  <img src="../../img/brand.png" alt="logo">
+
+    </a>
+    Defra Software Development Standards
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DEFRA/software-development-standards" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Principles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/coding_principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/security_principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coding standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coding standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/common_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/continuous_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuous integration standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/csharp_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C# coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/development_language_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development languages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/javascript_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/logging_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/mobile_app_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile application standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/net_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/node_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/python_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/quality_assurance_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality assurance and test standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/security_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/uipath_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UiPath standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/version_control_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packaging and deployment standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packaging and deployment standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/container_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Container standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/deployment_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kubernetes_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/plsql_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PL/SQL coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/tsql_and_sqldb_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSQL and SQL Server database standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/readme_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    README standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards for non-strategic technologies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards for non-strategic technologies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/java_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/ruby_coding_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ruby coding standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes and guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes and guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/credential_exposure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential exposure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/pull_requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pull requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/github_security_alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolving GitHub security alerts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mono_or_multi_repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing between a mono repo and a multi repo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choosing_packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookies-banner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookie banner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defra-id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Defra Identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github_advanced_security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Advanced Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is GitHub Copilot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-use-github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to use GitHub Copilot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where to use GitHub Copilot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-your-editor-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In your editor (VS Code)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copilot-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copilot CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cloud-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cloud agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choosing-between-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing between them
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requesting-a-licence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requesting a licence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requesting a licence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defra-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defra developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-defra-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Defra developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-copilot-across-the-sdlc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Copilot across the SDLC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-most-from-the-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the most from the models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting the most from the models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-the-right-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose the right model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-plan-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Plan mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Plan mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-to-use-it-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to use it for
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-a-better-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting a better plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-context-do-not-paste-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference context, do not paste it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#giving-it-a-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Giving it a spec
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reducing-repeated-back-and-forth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reducing repeated back-and-forth
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reducing repeated back-and-forth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-a-prompt-that-leaves-less-to-guesswork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Write a prompt that leaves less to guesswork
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode-recurring-corrections-in-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encode recurring corrections in configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-conversation-history-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep conversation history clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agree-the-approach-before-writing-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agree the approach before writing code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-copilot-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Copilot code review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Copilot code review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requesting-a-review-on-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requesting a review on a pull request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatically-including-copilot-as-a-reviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatically including Copilot as a reviewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-help-the-reviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions help the reviewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-effective-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing effective instructions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing effective instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-kinds-of-instruction-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The kinds of instruction file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-put-in-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to put in them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-write-and-format-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to write and format them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencing-organisation-and-industry-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencing organisation and industry standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generating them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintaining-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintaining them
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-agents-skills-and-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom agents, skills and prompts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom agents, skills and prompts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choosing-between-them_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing between them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defra-examples-and-contributing-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defra examples and contributing back
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-tickets-backlog-items-and-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating tickets, backlog items and tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating tickets, backlog items and tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-copilot-can-draft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Copilot can draft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-ticket-worth-acting-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing a ticket worth acting on
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-ticket-is-a-brief-for-the-coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A ticket is a brief for the coding agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeping-tickets-consistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeping tickets consistent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supporting-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supporting testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supporting testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruct-it-to-write-meaningful-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instruct it to write meaningful tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-behaviour-not-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test behaviour, not implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-low-value-tests-that-reduce-agility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid low-value tests that reduce agility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name-tests-around-business-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Name tests around business context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-tests-as-behaviour-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating tests as behaviour changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#let-instructions-and-skills-carry-your-test-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let instructions and skills carry your test conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-copilot-for-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Copilot for security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Copilot for security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assessing-code-for-vulnerabilities-and-weaknesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assessing code for vulnerabilities and weaknesses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identifying-threat-vectors-and-threat-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifying threat vectors and threat modelling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supporting-an-it-health-check-ithc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supporting an IT Health Check (ITHC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carrying-security-standards-through-instructions-agents-and-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Carrying security standards through instructions, agents and skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-cautions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important cautions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rubber-ducking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rubber ducking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rubber ducking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-and-investigating-when-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnosing and investigating when stuck
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reading-unfamiliar-files-and-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading unfamiliar files and stacks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-a-useful-diagnosis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting a useful diagnosis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-with-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning with Copilot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Learning with Copilot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#not-just-for-juniors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not just for juniors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#let-copilot-teach-while-it-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let Copilot teach while it delivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-the-questions-you-would-hesitate-to-ask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask the questions you would hesitate to ask
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-accurate-mentoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting accurate mentoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stay-in-charge-of-your-own-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stay in charge of your own growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-responsibilities_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help-and-sharing-what-you-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting help and sharing what you learn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java_auto_format_eclipse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java auto-format with Eclipse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application_credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing application credentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dead_letter_queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing dead letter queues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile_app_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile application guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new_starters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New starters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opening_private_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opening existing private code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plsql_auto_format_toad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PL/SQL auto-format with TOAD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_prompt_tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Prompt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shared_libraries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared libraries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style_guide_for_standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style guide for standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws_session_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using AWS session manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privileged_devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using devices with privileged access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version_control_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control guidance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is GitHub Copilot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-use-github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to use GitHub Copilot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where to use GitHub Copilot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-your-editor-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In your editor (VS Code)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copilot-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copilot CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cloud-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cloud agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choosing-between-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing between them
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requesting-a-licence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requesting a licence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requesting a licence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defra-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defra developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-defra-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Defra developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-copilot-across-the-sdlc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Copilot across the SDLC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-most-from-the-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the most from the models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting the most from the models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choose-the-right-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choose the right model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-plan-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Plan mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Plan mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-to-use-it-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to use it for
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-a-better-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting a better plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-context-do-not-paste-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference context, do not paste it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#giving-it-a-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Giving it a spec
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reducing-repeated-back-and-forth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reducing repeated back-and-forth
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reducing repeated back-and-forth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-a-prompt-that-leaves-less-to-guesswork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Write a prompt that leaves less to guesswork
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode-recurring-corrections-in-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encode recurring corrections in configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep-conversation-history-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep conversation history clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agree-the-approach-before-writing-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agree the approach before writing code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-copilot-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Copilot code review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Copilot code review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requesting-a-review-on-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requesting a review on a pull request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatically-including-copilot-as-a-reviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatically including Copilot as a reviewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-help-the-reviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions help the reviewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-effective-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing effective instructions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing effective instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-kinds-of-instruction-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The kinds of instruction file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-put-in-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to put in them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-write-and-format-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to write and format them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencing-organisation-and-industry-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencing organisation and industry standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generating them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintaining-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintaining them
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-agents-skills-and-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom agents, skills and prompts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom agents, skills and prompts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choosing-between-them_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing between them
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defra-examples-and-contributing-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defra examples and contributing back
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-tickets-backlog-items-and-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating tickets, backlog items and tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating tickets, backlog items and tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-copilot-can-draft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Copilot can draft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-ticket-worth-acting-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing a ticket worth acting on
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-ticket-is-a-brief-for-the-coding-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A ticket is a brief for the coding agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeping-tickets-consistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeping tickets consistent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supporting-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supporting testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supporting testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruct-it-to-write-meaningful-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instruct it to write meaningful tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-behaviour-not-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test behaviour, not implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-low-value-tests-that-reduce-agility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid low-value tests that reduce agility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name-tests-around-business-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Name tests around business context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-tests-as-behaviour-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating tests as behaviour changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#let-instructions-and-skills-carry-your-test-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let instructions and skills carry your test conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-copilot-for-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Copilot for security
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Copilot for security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assessing-code-for-vulnerabilities-and-weaknesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assessing code for vulnerabilities and weaknesses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identifying-threat-vectors-and-threat-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifying threat vectors and threat modelling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supporting-an-it-health-check-ithc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supporting an IT Health Check (ITHC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carrying-security-standards-through-instructions-agents-and-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Carrying security standards through instructions, agents and skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-cautions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important cautions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rubber-ducking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rubber ducking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rubber ducking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-and-investigating-when-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnosing and investigating when stuck
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reading-unfamiliar-files-and-stacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading unfamiliar files and stacks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-a-useful-diagnosis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting a useful diagnosis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-with-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning with Copilot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Learning with Copilot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#not-just-for-juniors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not just for juniors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#let-copilot-teach-while-it-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let Copilot teach while it delivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-the-questions-you-would-hesitate-to-ask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask the questions you would hesitate to ask
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-accurate-mentoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting accurate mentoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stay-in-charge-of-your-own-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stay in charge of your own growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-responsibilities_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help-and-sharing-what-you-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting help and sharing what you learn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="github-copilot-guide">GitHub Copilot guide</h1>
+<p>This guide helps Defra developers get real value from <a href="https://github.com/features/copilot">GitHub Copilot</a> while using it responsibly, efficiently and sustainably.</p>
+<p>Copilot is an accelerator, not a replacement for your judgement. You remain accountable for every line you commit.</p>
+<blockquote>
+<p><strong>Sustainability note.</strong> Copilot now runs on usage-based billing, with AI credits drawn from a shared organisational pool. Every prompt consumes energy and cost. Throughout this guide, blockquotes like this one highlight choices that reduce waste. Keep usage high where it adds value, but be deliberate.</p>
+</blockquote>
+<p>The <a href="https://digital.defra.gov.uk/ai-toolkit/tools/github-copilot">Defra AI digital toolkit Copilot page</a> provides additional organisational level guidance for GitHub Copilot, whereas this guide focuses on practical usage and best practices for developers.</p>
+<h2 id="what-is-github-copilot">What is GitHub Copilot</h2>
+<p>GitHub Copilot is an AI pair programmer built into your editor and into GitHub. It uses large language models to suggest code, answer questions, and carry out multi-step tasks against your codebase.</p>
+<p>You will mostly use it in three ways:</p>
+<ul>
+<li><strong>Inline completions.</strong> Copilot suggests the next line or block as you type. This is the lightest-weight and lowest-cost way to use it.</li>
+<li><strong>Chat.</strong> You ask questions or request changes in a chat panel, with your files as context. Good for explaining code, drafting changes and answering "how do I" questions.</li>
+<li><strong>Agent mode.</strong> Copilot plans and carries out a multi-step task across several files, running tools on your behalf. The most powerful mode, and the most expensive, so reserve it for tasks that genuinely need it.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> Prefer the lightest mode that will do the job. Completions cost far less than a long agent session. Reach for agent mode only when a task really spans multiple steps or files.</p>
+</blockquote>
+<h2 id="where-to-use-github-copilot">Where to use GitHub Copilot</h2>
+<p>GitHub Copilot can be used in three places, and the same standards configuration applies in all of them:</p>
+<ul>
+<li><strong>In your editor</strong>, through Copilot Chat and completions in VS Code.</li>
+<li><strong>In your terminal</strong>, through the Copilot CLI.</li>
+<li><strong>In the cloud</strong>, through the Copilot coding agent that works on GitHub and opens pull requests.</li>
+</ul>
+<p>They share the same standards configuration, so your instruction files, skills and prompts apply wherever you work. See <a href="#writing-effective-instructions">writing effective instructions</a> and <a href="#custom-agents-skills-and-prompts">custom agents, skills and prompts</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>What it is</th>
+<th>Where it runs</th>
+<th>Interaction</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Editor (VS Code)</strong></td>
+<td>Chat, completions, agent and Plan mode inside your IDE</td>
+<td>Locally, on your machine, with your open workspace as context</td>
+<td>Synchronous, you stay in the loop and review as you go</td>
+<td>Everyday development where you want to see and steer each change</td>
+</tr>
+<tr>
+<td><strong>Copilot CLI</strong></td>
+<td>An agent you drive from the command line</td>
+<td>Locally in your terminal by default, with an optional cloud sandbox</td>
+<td>Interactive, or headless for scripting and automation</td>
+<td>Terminal-centric workflows, Git and <code>gh</code> operations, quick tasks without leaving the shell</td>
+</tr>
+<tr>
+<td><strong>Cloud agent</strong></td>
+<td>The Copilot coding agent working autonomously on GitHub</td>
+<td>In the cloud, on GitHub Actions, in an isolated environment</td>
+<td>Asynchronous, it works in the background and opens a pull request</td>
+<td>Well-defined, self-contained tasks you can hand off and review later</td>
+</tr>
+</tbody>
+</table>
+<h3 id="in-your-editor-vs-code">In your editor (VS Code)</h3>
+<p>Copilot Chat in VS Code is the surface you will use most. It runs locally with your open workspace as context, and it hosts all the modes in the section above: <a href="#what-is-github-copilot">inline completions</a>, chat, agent mode and <a href="#using-plan-mode">Plan mode</a>.</p>
+<p>Use it when you want to stay close to the work: exploring code, making changes and reviewing each edit as it happens. Because you are in the loop throughout, it is the right choice for anything where you want to guide the approach, understand the change, or iterate quickly against the running code.</p>
+<h3 id="copilot-cli">Copilot CLI</h3>
+<p>The Copilot CLI brings the same agent to your terminal, so you can ask it to make changes, run commands and interact with GitHub without leaving the shell. It runs locally against the directory you launch it from, and can also run in an isolated cloud sandbox when you want to keep work off your machine.</p>
+<p>It has two ways to run:</p>
+<ul>
+<li><strong>Interactively</strong>, where you hold a conversation, steer the work and approve tool use as it goes. It also has its own Plan mode for building an approach before it writes code.</li>
+<li><strong>Programmatically</strong>, by passing a single prompt (<code>copilot -p "..."</code>) so it completes a task and exits. This suits scripting and automation, though granting automatic tool approval carries real risk, so scope it carefully.</li>
+</ul>
+<p>Reach for the CLI when your workflow is already terminal-centric: performing Git and <code>gh</code> operations, wiring Copilot into a script, or making a quick change without opening the editor. It honours the same instruction files, skills and MCP configuration as the editor, and it applies the same safeguards, such as trusting only the directory you launch it from and asking before it runs or modifies files. Never enable blanket automatic approval in a directory you do not fully trust; see <a href="#your-responsibilities">your responsibilities</a>.</p>
+<h3 id="the-cloud-agent">The cloud agent</h3>
+<p>The Copilot coding agent works asynchronously in the cloud, on GitHub Actions, in its own isolated environment. Rather than pairing with you in real time, it takes a task, works in the background, and opens a pull request for you to review. You start it by assigning an issue to Copilot, mentioning <code>@copilot</code> on a pull request, or using the agents panel on GitHub.</p>
+<p>Use it to hand off well-defined, self-contained work so you can stay focused on more complex tasks. It is well suited to backlog items such as small features, test coverage, documentation and tidying technical debt. Because you delegate rather than supervise, the quality of the result depends almost entirely on the quality of the brief; see <a href="#a-ticket-is-a-brief-for-the-coding-agent">a ticket is a brief for the coding agent</a>.</p>
+<p>A few limits shape what to give it: each task works on one repository and one branch and produces one pull request, and a session has a fixed maximum runtime, so break large work into smaller, focused tasks. Review its pull request as you would any other, using <a href="#using-copilot-code-review">Copilot code review</a> as a first pass and a human review before merge, in line with the <a href="../../processes/pull_requests/">pull requests process</a>.</p>
+<h3 id="choosing-between-them">Choosing between them</h3>
+<ul>
+<li>Reach for the <strong>editor</strong> when you want to stay in the loop and review each change as it happens. It is the default for everyday development.</li>
+<li>Reach for the <strong>CLI</strong> when you are already working in the terminal, or when you want to drive Copilot from a script.</li>
+<li>Reach for the <strong>cloud agent</strong> when a task is well-defined enough to hand off, so you can delegate it and review the pull request later.</li>
+</ul>
+<p>They complement each other. You might plan a change in the editor, hand a couple of self-contained tickets to the cloud agent, and use the CLI to drive the Git operations that tie it together.</p>
+<blockquote>
+<p><strong>Sustainability note.</strong> Match the surface to the task. Delegating self-contained work to the cloud agent lets several tasks progress in parallel without a long interactive session, but each cloud run also spends GitHub Actions minutes and credits, so hand off work that is genuinely ready rather than exploratory.</p>
+</blockquote>
+<h2 id="requesting-a-licence">Requesting a licence</h2>
+<h3 id="defra-developers">Defra developers</h3>
+<p>Licences are available to all permanent Defra developers and Resource Augmentation contractors. To request a licence raise a request with your Resource Manager or Principal Developer.</p>
+<h3 id="non-defra-developers">Non-Defra developers</h3>
+<p>Licences are managed through the Cloud Centre of Excellence (CCoE) process, not by individual sign-up.</p>
+<p>At a high level a delivery team needs to:</p>
+<ol>
+<li>Request an Azure subscription service code.</li>
+<li>Raise a CCoE Non-Production Service Request in MyPortal so a GitHub cost centre can be created and linked to the service code.</li>
+<li>Include the Azure subscription service code and the GitHub handle of each person who needs a licence.</li>
+</ol>
+<p>Follow the current, detailed steps on the <a href="https://digital.defra.gov.uk/ai-toolkit/tools/github-copilot">Defra AI digital toolkit Copilot page</a>, as the process and billing model change over time.</p>
+<p>Copilot uses AI credits from a shared pool at organisation level. Unused credits from one person can be used by others, so efficient use directly benefits your colleagues.</p>
+<blockquote>
+<p>Organisations can use their own GitHub Copilot licence as long as they are not the free tier.</p>
+</blockquote>
+<h2 id="using-copilot-across-the-sdlc">Using Copilot across the SDLC</h2>
+<p>Copilot can support most stages of the software development lifecycle, for example:</p>
+<ul>
+<li><strong>Discovery and design:</strong> exploring options, drafting architecture decision records, summarising unfamiliar code.</li>
+<li><strong>Coding:</strong> completions, refactoring, boilerplate, and converting between patterns.</li>
+<li><strong>Testing:</strong> generating and extending tests, and suggesting edge cases.</li>
+<li><strong>Review:</strong> a first-pass review of your own changes before you raise a pull request.</li>
+<li><strong>Documentation:</strong> READMEs, code comments where they add value, and runbooks.</li>
+<li><strong>Delivery:</strong> drafting tickets, pull request descriptions and release notes.</li>
+</ul>
+<p>Use it deliberately to support delivery. It is not an unlimited exploratory tool, and it does not remove the need to understand what you ship.</p>
+<h2 id="getting-the-most-from-the-models">Getting the most from the models</h2>
+<p>Model choice and settings have a large effect on quality, speed and cost. Tuning them is the single biggest thing you can do to work efficiently.</p>
+<h3 id="choose-the-right-model">Choose the right model</h3>
+<p><strong>If in doubt, use "Auto".</strong> It automatically picks a suitable model for your task based on availability and complexity, and on paid plans it qualifies for a discount on model costs. It's a safe default for almost everything you do.</p>
+<p>For times you want to pick deliberately, here's what each model is best at:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Best for</th>
+<th>Avoid for (use instead)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Auto</strong></td>
+<td>Everyday tasks, or whenever you're unsure</td>
+<td>Nothing, it's always a safe choice</td>
+<td>Automatically balances quality, speed and cost; discounted credit usage on paid plans</td>
+</tr>
+<tr>
+<td><strong>Claude Opus</strong></td>
+<td>Deep reasoning, hard bugs, complex multi-file refactors, architecture decisions</td>
+<td>Trivial edits and quick questions (use Haiku, GPT mini or MAI Code 1 Flash)</td>
+<td>Anthropic's most capable model, but also the slowest and most expensive, so reserve it for genuinely hard problems</td>
+</tr>
+<tr>
+<td><strong>Claude Sonnet</strong></td>
+<td>General-purpose coding and agentic, multi-step tasks, balanced everyday work</td>
+<td>Very complex architecture-level reasoning (use Opus), trivial one-liners (use Haiku)</td>
+<td>A strong all-round default with a good balance of quality and cost</td>
+</tr>
+<tr>
+<td><strong>GPT Codex</strong></td>
+<td>Agentic software engineering: features, tests, debugging and refactors, especially work with heavy tool use</td>
+<td>Casual questions and documentation-only tasks</td>
+<td>Purpose-built for coding agent workflows</td>
+</tr>
+<tr>
+<td><strong>Claude Haiku</strong></td>
+<td>Fast, lightweight tasks: small functions, syntax questions, quick explanations, prototyping</td>
+<td>Complex reasoning and large refactors (use Opus or Sonnet)</td>
+<td>The fastest and cheapest Claude model, good for high-frequency small requests</td>
+</tr>
+<tr>
+<td><strong>GPT mini</strong></td>
+<td>A reliable default for everyday coding and writing, and lighter debugging or reasoning</td>
+<td>Deep architecture-level reasoning (use Opus or Sonnet), heavy multi-tool agent work (use Codex)</td>
+<td>Good cost and quality balance, works well across languages</td>
+</tr>
+<tr>
+<td><strong>MAI Code 1 Flash</strong></td>
+<td>Fast, adaptive everyday coding, strong instruction-following, multi-turn development workflows</td>
+<td>Long, complex reasoning chains and large-scale refactors (use Opus or Sonnet)</td>
+<td>Fast and concise, and continuously improving</td>
+</tr>
+</tbody>
+</table>
+<p>Model names and their exact strengths change often. The models made available to Defra are periodically reviewed by Principal Developers, who add new models and remove outdated ones as the landscape evolves. See <a href="https://docs.github.com/en/copilot/reference/ai-models/model-comparison">GitHub's AI model comparison</a> for the current, detailed picture. If a model you rely on has been removed, or you would like a new one made available, raise it in the <a href="https://defra-digital.slack.com/archives/C015VCNLKFE">#github-support</a> Slack channel.</p>
+<h3 id="other-settings">Other settings</h3>
+<ul>
+<li><strong>Match Thinking Effort to the task.</strong> Lower it for simple edits, raise it for hard reasoning problems.</li>
+<li><strong>Reduce Context Size for simple tasks.</strong> A large context window is rarely needed for a small, local change.</li>
+<li><strong>Attach only relevant files.</strong> More context is not better. It costs more and can dilute the answer.</li>
+<li><strong>Monitor context window usage.</strong> The chat input's context window control shows a visual fill indicator for how much of the model's context window is in use, and hovering over it reveals the exact token count and the session's credit cost. The window compacts automatically as it fills, or you can trigger compaction yourself with the <code>/compact</code> command or "Compact Conversation" in the control. See VS Code's guide to <a href="https://code.visualstudio.com/docs/chat/copilot-chat-context#_monitor-context-window-usage">monitoring context window usage</a>.</li>
+<li><strong>Check your own usage.</strong> Your GitHub profile settings (<a href="https://github.com/settings/copilot">github.com/settings/copilot</a>) show your individual premium request and usage figures, so you can see how your habits track over time.</li>
+<li><strong>Use instructions and skills</strong> (see below) so you do not have to re-explain your standards every time.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> Picking a lighter model, lowering Thinking Effort and trimming context are the most effective ways to cut token use. Using Opus for a one-line change wastes shared credits and delivers no better result than Haiku, GPT mini or MAI Code 1 Flash.</p>
+</blockquote>
+<h2 id="using-plan-mode">Using Plan mode</h2>
+<p>Plan mode gets Copilot to research the problem, ask clarifying questions and agree an approach with you <em>before</em> it writes any code.</p>
+<p>Use it for anything non-trivial:</p>
+<ol>
+<li>Describe the goal and point Copilot at the relevant code.</li>
+<li>Let it produce a plan and ask questions.</li>
+<li>Review and correct the plan.</li>
+<li>Only then let it implement.</li>
+</ol>
+<p>Agreeing the approach up front avoids Copilot confidently building the wrong thing and having to redo it.</p>
+<h3 id="what-to-use-it-for">What to use it for</h3>
+<p>Plan mode earns its keep on work that spans several steps or files, or where the right approach is not obvious. Good candidates include:</p>
+<ul>
+<li>Building a feature that touches several files or layers.</li>
+<li>Refactoring that is more than a rename, for example changing a pattern across a module.</li>
+<li>Investigating a bug where the cause is not yet clear.</li>
+<li>Making a change in an unfamiliar part of the codebase.</li>
+<li>Integrating a new library or external service.</li>
+<li>Designing an API, schema or data-model change before you commit to it.</li>
+<li>Breaking an epic or large ticket into smaller, deliverable tasks.</li>
+</ul>
+<p>For a trivial, local edit you do not need Plan mode. Just make the change.</p>
+<h3 id="getting-a-better-plan">Getting a better plan</h3>
+<p>The quality of the plan depends on what you give Copilot. A few habits produce a stronger plan that needs less correction later:</p>
+<ul>
+<li><strong>State the goal, constraints and definition of done</strong> in your first message, so the plan aims at the right target. See <a href="#reducing-repeated-back-and-forth">reducing repeated back-and-forth</a> for more on front-loading context.</li>
+<li><strong>Say what is out of scope.</strong> Naming non-goals stops the plan sprawling into changes you did not want.</li>
+<li><strong>Name the files and areas involved</strong>, so Copilot researches the right code rather than guessing.</li>
+<li><strong>Ask it to research first and to ask questions</strong> before proposing anything. A plan built on questions answered is better than one built on assumptions.</li>
+<li><strong>Ask for edge cases, risks and a verification approach</strong>, not just the happy path. This surfaces gaps while they are still cheap to fix.</li>
+<li><strong>Iterate on the plan, not the code.</strong> Correct the approach while it is still a plan. Adjusting a few bullet points is far cheaper than reworking a finished change.</li>
+<li><strong>Let instructions and skills carry your standards.</strong> If your repository has a <code>copilot-instructions.md</code> or scoped instruction files, they apply automatically during planning, so you do not need to repeat conventions in every prompt. See <a href="#writing-effective-instructions">writing effective instructions</a>.</li>
+</ul>
+<h3 id="reference-context-do-not-paste-it">Reference context, do not paste it</h3>
+<p>Copilot can read your workspace directly, so point it at context instead of pasting large blocks of code into the chat. Referencing is cheaper, stays current and keeps links intact.</p>
+<ul>
+<li><strong>Reference files, folders and symbols</strong> using the editor's attach and mention features, or ask Copilot to search the workspace or codebase for the relevant code.</li>
+<li><strong>Point at existing code that models the pattern to follow</strong>, so the plan matches your conventions.</li>
+<li><strong>Link issues, pull requests and documentation URLs</strong> rather than copying their contents.</li>
+<li><strong>Avoid pasting large blobs.</strong> They cost tokens, go stale as the code changes, and lose the links back to the real files.</li>
+<li><strong>Never paste secrets, credentials or personal data</strong>, in line with <a href="#your-responsibilities">your responsibilities</a>.</li>
+</ul>
+<h3 id="giving-it-a-spec">Giving it a spec</h3>
+<p>If you have a specification, use it to anchor the plan:</p>
+<ul>
+<li><strong>Point Copilot at a spec, ticket or architecture decision record</strong> already in the repository, so the plan is grounded in an agreed source.</li>
+<li><strong>Link the acceptance criteria and any design docs</strong>, and ask the plan to address each criterion.</li>
+<li><strong>Ask Copilot to restate the spec back to you</strong> before it plans, so you can catch any misreading early.</li>
+<li><strong>Keep the spec in the repository</strong> where it is versioned and easy to reference again, rather than living only in a chat message.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> A short planning step is cheap. Rewriting a large change that went the wrong way is not. Planning first, on referenced context rather than pasted blocks, usually means fewer total tokens.</p>
+</blockquote>
+<h2 id="reducing-repeated-back-and-forth">Reducing repeated back-and-forth</h2>
+<p>Long chains of "no, not like that" corrections waste your time and shared credits. Most back-and-forth traces back to one of three causes: a prompt that left too much to guesswork, a convention that should have been encoded in configuration rather than repeated in every prompt, or a thread that accumulated stale context from earlier in the conversation.</p>
+<h3 id="write-a-prompt-that-leaves-less-to-guesswork">Write a prompt that leaves less to guesswork</h3>
+<p>The more a prompt leaves open, the more Copilot has to infer, and the more likely it is to infer something different from what you wanted.</p>
+<ul>
+<li><strong>Front-load context.</strong> Give the goal, constraints, relevant files and the definition of done in your first message. Copilot cannot ask clarifying questions unless you ask it to, so put the information up front.</li>
+<li><strong>Be specific.</strong> "Add validation" invites guesswork. "Reject requests where <code>email</code> is missing or malformed, returning a 400 with the standard error shape from <code>src/errors.js</code>" does not.</li>
+<li><strong>Avoid ambiguity.</strong> Say <code>the createUser function</code>, not "this". Name the library or pattern you want; do not assume Copilot will infer it from context.</li>
+<li><strong>Give examples.</strong> For anything non-obvious, include a sample input and expected output, or point to an existing function that shows the pattern to follow.</li>
+<li><strong>Break large asks into steps.</strong> Asking for an entire feature in one prompt almost always produces something that needs substantial correction. Ask for one layer or concern at a time.</li>
+<li><strong>Refine the prompt, do not just retry.</strong> If the first answer misses, improve the instruction rather than sending "try again". A better prompt is cheaper than several rounds of correction.</li>
+</ul>
+<h3 id="encode-recurring-corrections-in-configuration">Encode recurring corrections in configuration</h3>
+<p>If you find yourself correcting the same things repeatedly, the right fix is to encode those rules so Copilot applies them automatically, not to repeat them in every prompt.</p>
+<p><a href="#writing-effective-instructions">Writing effective instructions</a> explains how to create instruction files that carry your project's conventions into every session. <a href="#custom-agents-skills-and-prompts">Custom agents, skills and prompts</a> goes further, covering reusable prompt templates and specialised agents that already know the right approach. These are the most sustainable fixes: a few lines of configuration, applied once, prevents corrections across the whole team.</p>
+<h3 id="keep-conversation-history-clean">Keep conversation history clean</h3>
+<p>Chat history shapes what Copilot does next. A long thread full of dead ends and failed attempts is noise that inflates cost and can steer the model in the wrong direction.</p>
+<ul>
+<li><strong>Delete stale or dead-end messages</strong> within a session. If a response went in completely the wrong direction, remove it so it does not pollute subsequent turns.</li>
+<li><strong>Start a fresh session for a new task.</strong> Long threads carry context from earlier work that has no relevance to your current ask.</li>
+</ul>
+<h3 id="agree-the-approach-before-writing-code">Agree the approach before writing code</h3>
+<p>The most expensive back-and-forth is whole-approach rework: Copilot builds something substantial and you realise it went the wrong way. <a href="#using-plan-mode">Using Plan mode</a> explains how to get Copilot to research, ask questions and agree an approach with you before it writes anything. Correcting a plan costs far less than rewriting finished code.</p>
+<blockquote>
+<p><strong>Sustainability note.</strong> Each correction round re-sends the entire conversation to the model. Five rounds of "not quite, try again" can cost several times more than a single well-formed prompt. Instructions and skills prevent those corrections team-wide, making them one of the highest-value investments you can make in sustainable credit use.</p>
+</blockquote>
+<h2 id="using-copilot-code-review">Using Copilot code review</h2>
+<p>Copilot can review changes and flag bugs, style issues and risks, both in your editor and on pull requests in GitHub.</p>
+<p>Use it to:</p>
+<ul>
+<li>Sanity-check your own diff before you request a human review.</li>
+<li>Catch obvious issues early so human reviewers can focus on design and intent.</li>
+</ul>
+<h3 id="requesting-a-review-on-a-pull-request">Requesting a review on a pull request</h3>
+<p>On the pull request page, find the "Reviewers" section in the right sidebar. Next to "Copilot", click "Request". The review is usually ready within 30 seconds.</p>
+<p>Copilot leaves a "Comment" review, not an "Approve" or "Request Changes" review, so its feedback does not count toward required approvals and will not block merging. It flags issues inline and, where possible, includes a one-click suggested fix you can apply directly.</p>
+<p>You can also request a review through the GitHub CLI: <code>gh pr create --reviewer @copilot</code> when opening a new pull request, or <code>gh pr edit PR-NUMBER --add-reviewer @copilot</code> on an existing one.</p>
+<h3 id="automatically-including-copilot-as-a-reviewer">Automatically including Copilot as a reviewer</h3>
+<p>To add Copilot automatically to every pull request in a repository, set up a branch ruleset:</p>
+<ol>
+<li>Go to the repository's <strong>Settings &gt; Rules &gt; Rulesets</strong> and click <strong>New branch ruleset</strong>.</li>
+<li>Choose your target branches, for example "Include default branch".</li>
+<li>Under "Branch rules", enable <strong>Automatically request Copilot code review</strong>.</li>
+<li>Optionally enable <strong>Review new pushes</strong> so Copilot re-reviews on each subsequent commit, or <strong>Review draft pull requests</strong> to catch issues before a human reviewer is involved.</li>
+<li>Click <strong>Create</strong>.</li>
+</ol>
+<p>The Copilot code review feature must be enabled in the organisation's Copilot policy settings before it appears as a reviewer option. Contact a GitHub organisation admin if it is not visible.</p>
+<h3 id="credits">Credits</h3>
+<p>Copilot code reviews draw from the shared organisational AI credits pool. Attribution follows a simple rule: for automatic reviews, the credits are charged to the pull request author; for manually requested reviews, they are charged to whoever clicked "Request". Each review consumes a meaningful number of credits, so enabling automatic re-review on every push should be a deliberate choice.</p>
+<h3 id="instructions-help-the-reviewer">Instructions help the reviewer</h3>
+<p>Your repository's instruction files apply automatically during code review, so Copilot checks your changes against your project's own conventions rather than generic defaults. A <code>copilot-instructions.md</code> file can direct it to apply your security checklist, enforce specific patterns, or focus on the areas that matter most to your team. Path-specific <code>*.instructions.md</code> files apply only when reviewing files that match their scope.</p>
+<p>See <a href="#writing-effective-instructions">Writing effective instructions</a> for guidance on creating and structuring them.</p>
+<p>During a pull request review, Copilot reads instructions from the head branch (your feature branch), not the base branch. This means you can test changes to your instruction files in the same pull request without merging them first.</p>
+<p>Copilot review supplements human review, it does not replace it. A person is still accountable for approving and merging, in line with the <a href="../../processes/pull_requests/">pull requests process</a>.</p>
+<blockquote>
+<p><strong>Sustainability note.</strong> Run automated review on focused diffs rather than re-reviewing an entire codebase. Smaller, well-scoped changes are cheaper to review and easier for humans to approve.</p>
+</blockquote>
+<h2 id="writing-effective-instructions">Writing effective instructions</h2>
+<p>Instruction files let Copilot follow your project's standards automatically, so you do not repeat them in every prompt. They are committed to the repository, apply to everyone on the team, and take effect the moment you save them. Good instructions mean Copilot produces compliant code first time, which reduces corrective prompting.</p>
+<h3 id="the-kinds-of-instruction-file">The kinds of instruction file</h3>
+<p>There are three kinds, and you can use them together:</p>
+<ul>
+<li><strong>Repository-wide instructions.</strong> A single <code>.github/copilot-instructions.md</code> file, written in Markdown, that applies to every request in the repository. Use it for standards that hold everywhere: language, formatting, security expectations and how to build and test.</li>
+<li><strong>Path-specific instructions.</strong> One or more <code>NAME.instructions.md</code> files under <code>.github/instructions/</code>. Each starts with a frontmatter block containing an <code>applyTo</code> glob so it only loads for matching files. Separate multiple patterns with commas. Use these for rules that apply to one language, folder or layer.</li>
+<li><strong>Agent instructions.</strong> One or more <code>AGENTS.md</code> files, placed anywhere in the tree, where the nearest file takes precedence. These are read by coding agents and are a good home for build, test and repository-layout facts.</li>
+</ul>
+<pre><code class="language-markdown">---
+applyTo: &quot;**/*.ts,**/*.tsx&quot;
+---
+</code></pre>
+<p>When more than one file applies, all of them are provided to Copilot. Personal instructions take priority, then repository instructions, then organisation instructions. Avoid writing rules that contradict each other, because conflicting instructions produce unpredictable results.</p>
+<blockquote>
+<p>On GitHub.com, path-specific instructions currently apply only to Copilot code review and the Copilot coding agent. In your editor they apply across chat and agent sessions.</p>
+</blockquote>
+<h3 id="what-to-put-in-them">What to put in them</h3>
+<p>Encode the things you would otherwise explain in every prompt, or correct in every review:</p>
+<ul>
+<li><strong>How to build, test and lint</strong>, including the exact commands and any required setup steps.</li>
+<li><strong>Conventions</strong> for naming, structure, error handling and logging.</li>
+<li><strong>Patterns to follow</strong>, ideally by pointing at an existing file that models the approach rather than describing it in prose.</li>
+<li><strong>Security expectations</strong>, such as parameterised queries, input validation and the checks from your security standards.</li>
+<li><strong>Non-negotiables</strong>, the rules you never want broken, stated plainly.</li>
+</ul>
+<p>Leave out anything Copilot can already infer from the code, and anything that changes often enough to go stale.</p>
+<h3 id="how-to-write-and-format-them">How to write and format them</h3>
+<p>Instructions work best when they read like a good standard: short, specific and testable. Follow the same principles as our <a href="../style_guide_for_standards/">style guide for standards</a>:</p>
+<ul>
+<li><strong>Write one rule per line</strong> in plain Markdown. Whitespace between rules is ignored, so short, separate statements are easy to scan.</li>
+<li><strong>Be specific and testable.</strong> "Validate input at the boundary and return the standard error shape from <code>src/errors.js</code>" is enforceable; "write good code" is not.</li>
+<li><strong>Give an example</strong> for anything non-obvious, or reference a function that shows the pattern.</li>
+<li><strong>Keep the file lean.</strong> A long instruction file dilutes the important rules and costs more tokens on every request. Cut anything that is not pulling its weight.</li>
+</ul>
+<p>A compact repository-wide file might look like this:</p>
+<pre><code class="language-markdown"># Project instructions
+
+- Use British English spelling in code comments and documentation.
+- Format with the project's Prettier config; do not hand-format.
+- Validate all external input at the boundary and reject with a 400 and the
+  error shape in `src/errors.js`.
+- Use parameterised queries only; never build SQL by string concatenation.
+- Add or update tests for every behaviour change; run `npm test` before finishing.
+</code></pre>
+<p>A scoped file that applies only to test files:</p>
+<pre><code class="language-markdown">---
+applyTo: &quot;**/*.test.js&quot;
+---
+
+- Use the existing `describe`/`it` structure; do not introduce new test frameworks.
+- Assert on behaviour, not implementation detail.
+- Cover the failure path, not just the happy path.
+</code></pre>
+<h3 id="referencing-organisation-and-industry-standards">Referencing organisation and industry standards</h3>
+<p>Instructions are a natural place to anchor Copilot to agreed standards rather than restating them:</p>
+<ul>
+<li><strong>Link to standards already in the repository or across Defra</strong>, so Copilot applies the agreed rule and you maintain it in one place. For example, point at our <a href="../../standards/common_coding_standards/">common coding standards</a> or <a href="../../standards/security_standards/">security standards</a>.</li>
+<li><strong>Reference industry standards</strong> such as the <a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a> where they apply, so reviews and generated code are checked against them.</li>
+<li><strong>Prefer a link over a paste.</strong> A reference stays current as the standard evolves; a pasted copy goes stale.</li>
+</ul>
+<p>Because your instruction files apply automatically, this is what makes Copilot's plans, implementations and reviews follow your standards without being told each time. During planning they steer the approach, during implementation they shape the code, and during code review Copilot checks the diff against them. See <a href="#using-plan-mode">Using Plan mode</a> and <a href="#instructions-help-the-reviewer">Instructions help the reviewer</a>.</p>
+<h3 id="generating-them">Generating them</h3>
+<p>You do not have to start from a blank file:</p>
+<ul>
+<li>In your editor, run <code>/init</code> in chat to generate a <code>.github/copilot-instructions.md</code> file tailored to your codebase, or <code>/create-instruction</code> to scaffold a scoped instructions file.</li>
+<li>On GitHub, you can ask the Copilot coding agent to onboard a repository and open a pull request that adds a <code>copilot-instructions.md</code> file for you.</li>
+<li>Start from the Defra examples, which already encode our standards. See <a href="#custom-agents-skills-and-prompts">Custom agents, skills and prompts</a>.</li>
+</ul>
+<p>Always review generated instructions. They are a starting point, not a finished standard, and you own what lands in the repository.</p>
+<h3 id="maintaining-them">Maintaining them</h3>
+<p>Instructions are living configuration, so treat them like code:</p>
+<ul>
+<li><strong>Encode recurring corrections.</strong> When you find yourself fixing the same thing repeatedly, add a rule instead of repeating the correction.</li>
+<li><strong>Prune as you go.</strong> Remove rules that are obsolete, unused or contradicted by newer ones. A lean file is more likely to be followed.</li>
+<li><strong>Test changes in the pull request that makes them.</strong> During a review, Copilot reads instructions from the head branch, so you can change an instruction file and see the effect in the same pull request without merging first.</li>
+<li><strong>Check they are being applied.</strong> In chat, expand the references on a response to confirm the instructions file was used.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> A few lines of good instructions, loaded once, prevent many rounds of correction across the whole team. Each avoided correction is an entire conversation not re-sent to the model, so well-maintained instructions are one of the highest-value ways to reduce shared credit use. Keep them lean: an oversized instruction file adds tokens to every single request.</p>
+</blockquote>
+<h2 id="custom-agents-skills-and-prompts">Custom agents, skills and prompts</h2>
+<p>Instructions carry your standards into every session. Agents, skills and prompts go further: they package a role, a body of knowledge or a repeatable task into a file you commit once and reuse across the team. All three are plain Markdown with a small frontmatter block, they live in your repository under <code>.github/</code>, and they apply to everyone who clones it.</p>
+<p>Use this table to pick the right one:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>What it is</th>
+<th>Where it lives</th>
+<th>When it loads</th>
+<th>How you invoke it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agent</strong></td>
+<td>A persona with a defined role, workflow and boundaries</td>
+<td><code>.github/agents/*.agent.md</code></td>
+<td>When you select it</td>
+<td>Choose it in the chat agent picker</td>
+</tr>
+<tr>
+<td><strong>Skill</strong></td>
+<td>A capability package of focused knowledge</td>
+<td><code>.github/skills/{name}/SKILL.md</code></td>
+<td>Automatically, when its description matches your work</td>
+<td>No action; Copilot loads it for you</td>
+</tr>
+<tr>
+<td><strong>Prompt</strong></td>
+<td>A reusable template for a repeated task</td>
+<td><code>.github/prompts/*.prompt.md</code></td>
+<td>When you run it</td>
+<td>Type <code>/prompt-name</code> in chat</td>
+</tr>
+</tbody>
+</table>
+<p>They complement instructions rather than replace them. Instructions are always-on rules; an agent sets a mindset for a task; a skill supplies knowledge on demand; a prompt runs a task the same way every time.</p>
+<h3 id="custom-agents">Custom agents</h3>
+<p>An agent is a persona you select in Copilot Chat to give it a specific role and workflow, for example a code reviewer, a tester or an accessibility advisor. Once selected, the agent shapes every reply in that session until you switch away.</p>
+<p>An agent file has a frontmatter block and a body. The frontmatter sets the description and the tools the agent may use; the body defines the role, a numbered workflow, boundaries and the output format. A compact Defra code-reviewer agent looks like this:</p>
+<pre><code class="language-markdown">---
+description: Systematic code reviewer using Defra quality criteria
+tools: [read, search, usages, changes, findTestFiles, githubRepo]
+---
+
+# Code Reviewer
+
+You are an experienced reviewer on a Defra digital service. Review changes
+against our standards. Do not change code; report findings only.
+
+## Workflow
+1. Read the diff and the PR description.
+2. Work through each category: correctness, tests, security, readability.
+3. Flag anything that leaks PII in logs (names, addresses, NI numbers).
+
+## Output
+For each finding give the file and line, a severity (Blocking, Recommended,
+Nit) and a suggested fix. End with a summary and a merge recommendation.
+
+## References
+- [Security standards](https://github.com/DEFRA/software-development-standards/blob/main/docs/standards/security_standards.md)
+</code></pre>
+<p><strong>Creating and using them.</strong> Add a <code>*.agent.md</code> file under <code>.github/agents/</code>, or generate a scaffold with <code>/create-agent</code> in chat. To use it, open Copilot Chat, pick the agent from the agent picker, and give it the change or task to work on.</p>
+<p>Best practice:</p>
+<ul>
+<li><strong>Give the agent one clear role and explicit boundaries.</strong> A reviewer that also rewrites code does neither job well. State what it must <em>not</em> do.</li>
+<li><strong>Reference instruction files and standards, do not restate them.</strong> Link to the standard so there is a single source of truth and the agent stays lean.</li>
+<li><strong>Define the workflow as a numbered sequence</strong>, so the agent is repeatable rather than improvising each time.</li>
+<li><strong>Limit the tools to what the role needs.</strong> A reviewer needs to read and search, not to run or edit.</li>
+<li><strong>Specify the output format</strong>, so findings are consistent and easy to act on.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> Scoping an agent's tools and role keeps each turn focused, which uses fewer tokens than an open-ended session. Because the agent is committed once and reused by everyone, that saving repeats across the whole team.</p>
+</blockquote>
+<h3 id="skills">Skills</h3>
+<p>A skill is a package of focused knowledge that Copilot discovers and loads automatically, without you naming it. It reads the <code>description</code> in each skill's frontmatter and pulls the skill in only when your work matches. This is progressive disclosure: the knowledge is there when relevant and out of the way when it is not.</p>
+<p>Each skill is a folder under <code>.github/skills/</code> containing a <code>SKILL.md</code> file. The <code>description</code> is the most important line, because it decides when the skill activates. A compact Defra standards skill looks like this:</p>
+<pre><code class="language-markdown">---
+name: defra-standards
+description: Defra coding standards for Node.js and .NET government services. Use when writing, reviewing or refactoring code in a Defra service, especially Hapi or CDP platform projects.
+license: OGL-UK-3.0
+metadata:
+  author: defra-digital
+  version: &quot;1.0&quot;
+---
+
+# Defra Standards
+
+Apply these when generating or reviewing code in a Defra service.
+
+- Use Node.js Active LTS and vanilla JavaScript; TypeScript needs an approved exception.
+- Use Hapi for HTTP servers, not Express, Fastify or Koa.
+- Use parameterised queries only; never build SQL by string concatenation.
+- Keep controllers thin: validate input, call a service, render a view.
+</code></pre>
+<p>A skill is not limited to prose knowledge. It can also package procedural know-how, such as the non-obvious steps to run a test suite, and bundle a script alongside <code>SKILL.md</code> in the same folder. For example, <code>.github/skills/integration-test-runner/SKILL.md</code> might look like this:</p>
+<pre><code class="language-markdown">---
+name: integration-test-runner
+description: Run this service's integration tests correctly. Use when asked to run, debug or fix integration tests, or when tests fail with connection errors.
+license: OGL-UK-3.0
+metadata:
+  author: defra-digital
+  version: &quot;1.0&quot;
+---
+
+# Integration test runner
+
+`npm test` only runs the unit tests. The integration tests need Postgres and
+Redis running and the test database seeded first, or every test fails with a
+connection error that looks unrelated to the actual change.
+
+## Steps
+1. Start dependencies: `docker compose -f docker-compose.test.yml up -d`
+2. Wait for Postgres to accept connections, then seed the test database
+   using `run-tests.sh` in this folder: `./run-tests.sh --seed-only`
+3. Run the suite: `npm run test:integration`
+4. Tear down: `docker compose -f docker-compose.test.yml down`
+
+## Common failures
+- `ECONNREFUSED` on port 5432: dependencies are not up yet, or step 2 was skipped.
+- Tests pass locally but fail in CI: the seed script did not run; check step 2.
+</code></pre>
+<p>The folder's <code>run-tests.sh</code> holds the seed-and-run logic so <code>SKILL.md</code> can stay short:</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -euo pipefail
+
+until docker compose -f docker-compose.test.yml exec -T db pg_isready -q; do
+  sleep 1
+done
+
+npm run db:seed:test
+
+if [[ &quot;${1:-}&quot; != &quot;--seed-only&quot; ]]; then
+  npm run test:integration
+fi
+</code></pre>
+<p>Skills need to be enabled once in VS Code by adding <code>"chat.agent.skills": true</code> to your user settings.</p>
+<p><strong>Creating and using them.</strong> Add a <code>.github/skills/{name}/SKILL.md</code> file with a precise description. You do not invoke it: once enabled, Copilot loads it whenever your request matches the description, in both chat and agent sessions.</p>
+<p>Best practice:</p>
+<ul>
+<li><strong>Write the description as the trigger.</strong> Say plainly when the skill applies, because that text is what Copilot matches against. A vague description will not load when you need it.</li>
+<li><strong>Keep each skill lean and single-topic.</strong> One skill for standards, one for accessibility, one for security. Aim to stay under about 200 lines.</li>
+<li><strong>Scope activation to reduce noise.</strong> A skill that activates only for Defra services will not clutter unrelated projects that share the same configuration.</li>
+<li><strong>Point at the canonical standard</strong> rather than copying it, so the skill does not drift out of date.</li>
+<li><strong>Bundle scripts and resources for procedural tasks.</strong> Where a skill's value is a repeatable sequence of commands, put the logic in a script in the same folder and keep <code>SKILL.md</code> to the trigger, the steps and the failure modes.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> A skill is loaded only when its description matches, so its content does not sit in the context of every unrelated request. For large bodies of knowledge this is cheaper than an always-on instruction file, which adds tokens to every prompt whether relevant or not.</p>
+</blockquote>
+<h3 id="prompts">Prompts</h3>
+<p>A prompt is a saved template for a task you do repeatedly, such as writing an architecture decision record, drafting a pull request description or running a security review. Instead of retyping the instructions each time, you run the prompt and provide the specifics.</p>
+<p>Each prompt is a <code>*.prompt.md</code> file under <code>.github/prompts/</code>, with a description and a body that says what to produce, in what format and where to save it. A compact Defra ADR prompt looks like this:</p>
+<pre><code class="language-markdown">---
+description: Generate an Architecture Decision Record from a design discussion
+---
+
+# Write ADR
+
+Generate an ADR for the decision described in the chat. Save it as
+`docs/ADRs/NNNN-title-in-kebab-case.md`, using the next sequence number.
+
+Include: Context, Decision (one clear sentence), Consequences (positive and
+negative), and at least two Alternatives considered.
+
+## Rules
+- Write in plain English and active voice.
+- Be honest about trade-offs; do not list only the benefits.
+- Reference a Defra standard where the decision relates to one, and note if an
+  exception is needed.
+</code></pre>
+<p><strong>Creating and using them.</strong> Add a <code>.prompt.md</code> file under <code>.github/prompts/</code>, then run it in chat by typing <code>/</code> followed by the file name, for example <code>/write-adr</code>. Attach or describe the specific context, such as the decision or the code, when you run it.</p>
+<p>Best practice:</p>
+<ul>
+<li><strong>State the output up front:</strong> what to produce, the format, and where to save it.</li>
+<li><strong>Reference instruction files and standards</strong> so the output is compliant without repeating the rules in the prompt.</li>
+<li><strong>Use variables for the parts that change</strong>, so the template stays reusable across tasks.</li>
+<li><strong>Keep the prompt to one task.</strong> A prompt that tries to do everything is harder to run and reason about than several focused ones.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> A saved prompt captures a well-formed instruction once, so you avoid re-explaining the task, and the corrective rounds that vague asks cause, every time you need it.</p>
+</blockquote>
+<h3 id="choosing-between-them_1">Choosing between them</h3>
+<ul>
+<li>Reach for <strong>instructions</strong> for always-on rules that should apply to every request. See <a href="#writing-effective-instructions">writing effective instructions</a>.</li>
+<li>Reach for an <strong>agent</strong> when you want Copilot to adopt a role and workflow for a task.</li>
+<li>Reach for a <strong>skill</strong> when you want a body of knowledge available on demand, loaded only when relevant.</li>
+<li>Reach for a <strong>prompt</strong> when you repeat the same task and want a consistent result each time.</li>
+</ul>
+<p>They work together. An agent can draw on skills and follow your instructions, and you can run a prompt within an agent session.</p>
+<h3 id="defra-examples-and-contributing-back">Defra examples and contributing back</h3>
+<p>Defra maintains ready-to-use agents, skills and prompts that encode our software development standards, so you do not start from a blank file:</p>
+<ul>
+<li>Browse them on the <a href="https://defra.github.io/defra-ai-config-examples/">Defra AI config examples site</a>.</li>
+<li>Get the source from the <a href="https://github.com/DEFRA/defra-ai-config-examples">defra-ai-config-examples repository</a>.</li>
+</ul>
+<p>Copy the files that fit your project into the matching <code>.github/</code> directory and adapt them to your context.</p>
+<p><strong>Please contribute back.</strong> This resource is still growing, and it becomes more useful as teams add and refine examples. If you build an agent, skill or prompt that others would benefit from, or you improve an existing one, raise a pull request on the <a href="https://github.com/DEFRA/defra-ai-config-examples">defra-ai-config-examples repository</a> so the whole community gains.</p>
+<h2 id="creating-tickets-backlog-items-and-tasks">Creating tickets, backlog items and tasks</h2>
+<p>Copilot can turn a rough idea, a conversation, a set of logs or a diff into well-formed delivery artefacts. A good ticket is not only a brief for the person who picks it up, it is also the brief you hand to the Copilot coding agent. The clearer the ticket, the better the result, whoever or whatever acts on it.</p>
+<h3 id="what-copilot-can-draft">What Copilot can draft</h3>
+<ul>
+<li><strong>User stories with clear acceptance criteria</strong>, from a short description or a conversation.</li>
+<li><strong>An epic broken into smaller, deliverable tasks.</strong> This overlaps with <a href="#using-plan-mode">Plan mode</a>, which is well suited to decomposing large or unclear work before you commit to it.</li>
+<li><strong>A reproducible bug ticket</strong> from logs, a stack trace or a diff, including steps to reproduce and expected versus actual behaviour.</li>
+</ul>
+<h3 id="writing-a-ticket-worth-acting-on">Writing a ticket worth acting on</h3>
+<p>The same habits that produce a good prompt produce a good ticket. Leave less to guesswork and the ticket needs less rework later.</p>
+<ul>
+<li><strong>Front-load the context.</strong> State the goal, the constraints and the definition of done, so the ticket aims at the right target. See <a href="#reducing-repeated-back-and-forth">reducing repeated back-and-forth</a>.</li>
+<li><strong>Make the acceptance criteria explicit and testable.</strong> "Reject requests where <code>email</code> is missing or malformed, returning a 400 with the standard error shape" is actionable; "improve validation" is not.</li>
+<li><strong>Say what is out of scope</strong>, so the work does not sprawl beyond what you intended.</li>
+<li><strong>Reference files, issues and documentation rather than paste them.</strong> Linking stays current and keeps the trail back to the real code. See <a href="#reference-context-do-not-paste-it">reference context, do not paste it</a>.</li>
+<li><strong>Never paste secrets, credentials or personal data</strong> into a prompt to generate a ticket.</li>
+</ul>
+<h3 id="a-ticket-is-a-brief-for-the-coding-agent">A ticket is a brief for the coding agent</h3>
+<p>On GitHub you can assign a well-formed issue to Copilot, and the coding agent will plan the work, implement it and open a pull request for review. The quality of that pull request depends almost entirely on the quality of the ticket:</p>
+<ul>
+<li><strong>Clear acceptance criteria</strong> tell the agent when it is done.</li>
+<li><strong>Referenced files and areas</strong> point it at the right code instead of leaving it to guess.</li>
+<li><strong>A stated definition of done</strong> stops it stopping short or over-reaching.</li>
+<li><strong>Your instruction files apply automatically</strong> while the agent works, so your standards carry through without being restated. See <a href="#writing-effective-instructions">writing effective instructions</a>.</li>
+</ul>
+<p>Review the resulting pull request as you would any other, using <a href="#using-copilot-code-review">Copilot code review</a> as a first pass and a human review before merge, in line with the <a href="../../processes/pull_requests/">pull requests process</a>. A person remains accountable for what merges.</p>
+<h3 id="keeping-tickets-consistent">Keeping tickets consistent</h3>
+<p>If your team writes tickets to a set shape, encode that shape once rather than re-describing it each time:</p>
+<ul>
+<li><strong>Use a prompt template</strong> so every ticket comes out in the same format. See <a href="#prompts">Prompts</a> for how to create a <code>*.prompt.md</code> file and run it with <code>/</code>.</li>
+<li><strong>Point at your repository's issue template</strong> so generated tickets match the fields your board expects.</li>
+<li><strong>Let instructions carry the conventions</strong>, such as the wording of acceptance criteria or the labels you use, so you do not repeat them per ticket.</li>
+</ul>
+<h3 id="your-responsibilities">Your responsibilities</h3>
+<p>Always review the output. You are responsible for the accuracy, priority and scope of what lands in the backlog, and for what merges if you hand a ticket to the coding agent.</p>
+<blockquote>
+<p><strong>Sustainability note.</strong> Draft a ticket for a specific change with the context to hand, rather than asking Copilot to "generate all the tickets for this project". Focused requests use fewer tokens and produce sharper, more useful tickets. A well-formed ticket also means fewer corrective rounds later, whether a person or the coding agent picks it up.</p>
+</blockquote>
+<h2 id="supporting-testing">Supporting testing</h2>
+<p>Copilot is well suited to testing work across the whole lifecycle of a test suite:</p>
+<ul>
+<li><strong>Create</strong> unit and integration tests for existing code.</li>
+<li><strong>Extend</strong> a suite with edge cases and failure modes you may have missed.</li>
+<li><strong>Update</strong> tests when behaviour changes, so they keep pace with the code.</li>
+</ul>
+<p>Used well, this speeds up the parts of testing that are mechanical and frees you to think about risk and coverage. Used carelessly, it produces a suite that looks thorough but proves little. The difference is almost entirely in how you direct it.</p>
+<p>Copilot is an aid, not an assurance. You remain accountable for the test strategy, and Copilot does not change the shape of it: keep following the testing pyramid from our <a href="../../standards/quality_assurance_standards/">quality assurance and test standards</a>, aiming to catch most defects cheaply at the unit and API level rather than through slower user-interface tests.</p>
+<h3 id="instruct-it-to-write-meaningful-tests">Instruct it to write meaningful tests</h3>
+<p>A vague request produces vague tests. Give Copilot the behaviour you want proven, not just the code to point at.</p>
+<ul>
+<li><strong>Front-load the behaviour and the acceptance criteria</strong>, not only the function name. "Write tests for <code>calculateFee</code>" invites guesswork; "test that <code>calculateFee</code> applies the reduced rate below the threshold, the standard rate above it, and rejects a negative amount" does not.</li>
+<li><strong>Point at the acceptance criteria or ticket</strong> for the code under test, so the tests check the behaviour the story actually promised.</li>
+<li><strong>Give a worked example.</strong> For anything non-obvious, provide a sample input and the expected output, or point at an existing test that models the pattern to follow.</li>
+<li><strong>Ask for one unit or module at a time.</strong> A focused request produces better tests than "write all the tests for this repo", and avoids the corrective rounds covered in <a href="#reducing-repeated-back-and-forth">reducing repeated back-and-forth</a>.</li>
+</ul>
+<h3 id="test-behaviour-not-implementation">Test behaviour, not implementation</h3>
+<p>The most useful tests describe what the code should do for a user, so they still pass after a safe refactor and fail only when real behaviour breaks.</p>
+<ul>
+<li><strong>Assert on observable behaviour and outputs</strong>, not on internal calls or private state. Tests coupled to implementation detail break on every refactor and slow you down.</li>
+<li><strong>Ask for the negative and edge cases explicitly.</strong> Our QA standards treat negative scenarios as being as important as positive ones: if "an admin can export data" then "a standard user cannot" is just as worth testing.</li>
+<li><strong>Tie tests back to user needs and acceptance criteria</strong>, so each one maps to behaviour someone actually cares about rather than to a line of code that happened to exist.</li>
+</ul>
+<h3 id="avoid-low-value-tests-that-reduce-agility">Avoid low-value tests that reduce agility</h3>
+<p>Copilot can generate a large volume of tests quickly. Volume is not the goal, and a bloated suite is a liability: it is slow to run, noisy to read, and expensive to maintain when requirements change.</p>
+<ul>
+<li><strong>Do not chase a coverage percentage.</strong> A test written only to raise a number rarely proves anything and still has to be maintained forever.</li>
+<li><strong>Reject tests that restate the framework or library.</strong> You do not need a test that proves the language assigns a variable or that a well-known library does its job.</li>
+<li><strong>Watch for near-duplicate tests.</strong> Copilot may produce several cases that exercise the same path with trivially different data. Keep the ones that add a distinct scenario and prune the rest.</li>
+<li><strong>Avoid brittle tests tied to internals.</strong> A test that must be rewritten every time the code is tidied discourages refactoring and makes the codebase harder to change.</li>
+</ul>
+<h3 id="name-tests-around-business-context">Name tests around business context</h3>
+<p>A good test name is documentation. Our QA standards expect the automated suite to be readable by non-technical colleagues, and the test names carry most of that meaning.</p>
+<ul>
+<li><strong>Name by scenario and expected behaviour</strong>, for example "rejects an application with no email address", not "test 3" or "testValidate".</li>
+<li><strong>Use the language of the domain</strong>, so the name reads as a statement about the service rather than about the code.</li>
+<li><strong>Ask Copilot to follow the suite's existing naming convention</strong>, ideally by encoding it in instructions (see below) so you do not restate it each time.</li>
+</ul>
+<h3 id="updating-tests-as-behaviour-changes">Updating tests as behaviour changes</h3>
+<p>When you change behaviour, the tests must move with it, and this is where careless prompting does the most damage.</p>
+<ul>
+<li><strong>Update the tests alongside the change</strong>, so the suite always describes the current behaviour.</li>
+<li><strong>Never let Copilot weaken or delete an assertion just to make a failing test pass.</strong> A red test is often reporting a real regression. Understand why it failed before changing it.</li>
+<li><strong>Use <a href="#using-plan-mode">Plan mode</a> for larger test changes</strong>, such as reworking a suite after a design change, so you agree the approach before any tests are rewritten.</li>
+</ul>
+<h3 id="let-instructions-and-skills-carry-your-test-conventions">Let instructions and skills carry your test conventions</h3>
+<p>The most reliable way to get consistent, meaningful tests is to encode your testing conventions once rather than repeat them in every prompt.</p>
+<ul>
+<li>Put naming, structure, framework and coverage expectations in an instruction file, so they apply automatically to generated and reviewed tests. See <a href="#writing-effective-instructions">writing effective instructions</a>.</li>
+<li>Package deeper testing knowledge, for example how your team approaches contract or integration tests, in a skill that loads only when relevant. See <a href="#custom-agents-skills-and-prompts">skills</a>.</li>
+</ul>
+<p>Treat generated tests critically. A test that passes but asserts the wrong thing is worse than no test. Check that each test proves the behaviour you actually care about, in line with our <a href="../../standards/quality_assurance_standards/">quality assurance and test standards</a>.</p>
+<blockquote>
+<p><strong>Sustainability note.</strong> Ask for tests on a specific function or module rather than "write all the tests for this repo". Focused requests use fewer tokens, produce better and more relevant tests, and avoid a bloated suite that costs time and credits to run and maintain.</p>
+</blockquote>
+<h2 id="using-copilot-for-security">Using Copilot for security</h2>
+<p>Copilot can help you find, understand and fix security issues across the lifecycle, from design through to remediating an assessment finding. It is an aid, not an assurance. It does not replace <a href="../github_advanced_security/">GitHub Advanced Security</a>, your review gates, or a professional security assessment, and it does not change who is accountable: you still own every line you ship. Used well, it shortens the distance between a weakness and its fix; used carelessly, it produces plausible-looking code that is quietly insecure.</p>
+<p>Security is everyone's concern and works best woven into everyday practice, in line with our <a href="../../principles/security_principles/">security principles</a>. The most reliable way to make Copilot apply that thinking is to encode your security expectations once, so they steer every generation and review rather than being restated in each prompt. See <a href="#carrying-security-standards-through-instructions-agents-and-skills">carrying security standards through instructions, agents and skills</a> below.</p>
+<h3 id="assessing-code-for-vulnerabilities-and-weaknesses">Assessing code for vulnerabilities and weaknesses</h3>
+<p>Copilot can review code for security weaknesses and explain what it finds in context, which is often faster to act on than a raw scanner alert.</p>
+<ul>
+<li><strong>Review against agreed standards, not generic advice.</strong> Ask it to check a change against the <a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a>, the <a href="https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/">OWASP Secure Coding Practices</a> that our <a href="../../standards/security_standards/">security standards</a> adopt, and any rules in your own instruction files. Naming the standard grounds the review in our rules rather than the model's assumptions.</li>
+<li><strong>Focus on the common weakness classes.</strong> Injection, broken access control, weak authentication, insecure deserialisation, secrets in code, missing input validation and unsafe output handling are all things Copilot can spot and explain in a diff.</li>
+<li><strong>Ask it to explain, not just flag.</strong> Have it describe why something is exploitable and what the impact would be, so you can judge severity rather than taking the finding on trust.</li>
+<li><strong>Use it to draft the fix and the secure default.</strong> Parameterised queries instead of string-built SQL, validation at the boundary, output encoding, and least-privilege authorisation checks are all good candidates. Verify the fix; do not assume it is correct because Copilot suggested it.</li>
+<li><strong>Run it as a first pass, on a focused diff.</strong> <a href="#using-copilot-code-review">Copilot code review</a> applies your instruction files automatically, so it can check changes against your security checklist before a human reviewer looks. For a larger remediation, agree the approach in <a href="#using-plan-mode">Plan mode</a> first.</li>
+</ul>
+<p>Copilot complements <a href="../github_advanced_security/">GitHub Advanced Security</a>, it does not replace it. Code scanning, Dependabot and secret scanning remain the automated backbone; Copilot is most useful for triaging those alerts, explaining a vulnerable dependency or code path, and drafting the fix. If Copilot ever surfaces a real secret in the code, treat it as exposed and follow the <a href="../../processes/credential_exposure/">credential exposure process</a>.</p>
+<h3 id="identifying-threat-vectors-and-threat-modelling">Identifying threat vectors and threat modelling</h3>
+<p>Beyond reading code line by line, Copilot can help you reason about how a feature could be attacked, which is most valuable early, while the design is still cheap to change.</p>
+<ul>
+<li><strong>Map the attack surface.</strong> Ask Copilot to enumerate entry points, trust boundaries and data flows for a feature, so you can see where untrusted input crosses into trusted code.</li>
+<li><strong>Run a lightweight threat model.</strong> Point it at a design or the relevant code and ask for a STRIDE-style pass (spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege), then draft a short threat model you keep in the repository.</li>
+<li><strong>Do it at design time.</strong> <a href="#using-plan-mode">Plan mode</a> is a natural place to surface threats and mitigations before any code is written, in the spirit of the "plan for security flaws" <a href="../../principles/security_principles/">security principle</a>.</li>
+<li><strong>Prioritise by realistic risk.</strong> Ask for likelihood and impact so you spend effort on the vectors that matter, not a flat list of theoretical ones.</li>
+</ul>
+<p>Treat the output as a prompt for your own analysis, not a complete or authoritative threat assessment. Copilot will miss context it cannot see, and can assert risks that do not apply. A person validates the model and decides what to mitigate.</p>
+<h3 id="supporting-an-it-health-check-ithc">Supporting an IT Health Check (ITHC)</h3>
+<p>Copilot can help both before and after a formal IT Health Check, the independent assessment many Defra services must pass. It does not replace the assessment, and the assessors' report remains authoritative.</p>
+<ul>
+<li><strong>Prepare before assessors arrive.</strong> Ask Copilot to review code and configuration against common ITHC finding categories, for example missing security headers, weak TLS or cookie settings, verbose error messages, outdated dependencies and unauthenticated endpoints, so you fix the obvious issues first. Combine this with the full <a href="../github_advanced_security/">GitHub Advanced Security</a> checks.</li>
+<li><strong>Understand a finding.</strong> Paste a finding's description (never any live credential or exploit detail that is sensitive) and ask Copilot to explain the weakness and where in your codebase it is likely to apply.</li>
+<li><strong>Draft prioritised remediation.</strong> Have it propose fixes ordered by the report's severity ratings, and turn them into well-formed tickets. See <a href="#creating-tickets-backlog-items-and-tasks">creating tickets, backlog items and tasks</a>.</li>
+<li><strong>Re-check before retest.</strong> After remediating, use <a href="#using-copilot-code-review">Copilot code review</a> and GitHub Advanced Security to confirm the fixes hold and no regression was introduced, before you go back for the retest.</li>
+</ul>
+<h3 id="carrying-security-standards-through-instructions-agents-and-skills">Carrying security standards through instructions, agents and skills</h3>
+<p>The techniques in this guide are what make security consistent rather than ad hoc. Encoding your expectations once means Copilot applies them to every generation and review, not only when someone remembers to ask.</p>
+<ul>
+<li><strong>Instruction files carry your security rules.</strong> Put non-negotiables such as parameterised queries only, validate all external input at the boundary, and check against the <a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a> into your instruction files, so they shape generated code and are enforced during <a href="#using-copilot-code-review">Copilot code review</a>. See <a href="#writing-effective-instructions">writing effective instructions</a>.</li>
+<li><strong>A security-review agent gives a consistent role.</strong> A read-only reviewer agent that references our <a href="../../standards/security_standards/">security standards</a> and reports findings by severity produces repeatable reviews without rewriting your code. See <a href="#custom-agents">custom agents</a>.</li>
+<li><strong>A security skill supplies knowledge on demand.</strong> Package OWASP checks or your team's threat patterns in a skill that loads only when relevant, pointing at the canonical standard rather than copying it. See <a href="#skills">skills</a>.</li>
+<li><strong>Start from the Defra examples.</strong> The <a href="https://defra.github.io/defra-ai-config-examples/">Defra AI config examples</a> include security-focused configuration you can adopt and contribute back to.</li>
+</ul>
+<h3 id="important-cautions">Important cautions</h3>
+<ul>
+<li><strong>Never paste secrets, credentials, keys or personal data into a prompt</strong>, in line with <a href="#your-responsibilities">your responsibilities</a>.</li>
+<li><strong>Do not assume generated code is secure.</strong> Verify it, and keep using <a href="../github_advanced_security/">GitHub Advanced Security</a> and your normal review gates.</li>
+<li><strong>Copilot can produce insecure or outdated patterns.</strong> Your <a href="../../standards/security_standards/">security standards</a> and the OWASP references remain the source of truth.</li>
+<li><strong>Copilot supplements, it does not certify.</strong> It does not replace a professional security assessment, penetration test or ITHC.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> Point security reviews at a focused diff or feature rather than asking Copilot to "audit the whole codebase". Focused requests use fewer tokens and give sharper findings, and encoding your security rules in instructions prevents the same weaknesses recurring, which is cheaper than catching them again in every review.</p>
+</blockquote>
+<h2 id="rubber-ducking">Rubber ducking</h2>
+<p>Rubber duck debugging is the long-standing practice of explaining a problem, line by line, to an inanimate rubber duck. The act of articulating it out loud often surfaces the answer before you finish. Copilot is a rubber duck that talks back: it listens to your explanation, asks clarifying questions, offers hypotheses and points you at the next thing to check. When you are stuck and no colleague is free, it is a judgement-free place to think out loud and get unblocked.</p>
+<p>Use it to work through the problem, not to hand the problem over. The goal is to reach an understanding you could explain to someone else, in the same spirit as <a href="#learning-with-copilot">learning with Copilot</a>.</p>
+<h3 id="diagnosing-and-investigating-when-stuck">Diagnosing and investigating when stuck</h3>
+<p>The value of a duck is that describing the problem forces you to structure it. Copilot adds a duck that reasons back, so lean into the conversation:</p>
+<ul>
+<li><strong>Describe the problem in plain language</strong>, including what you expected to happen, what actually happened and what you have already tried. Articulating it is often half the fix.</li>
+<li><strong>Share the evidence, not secrets.</strong> Paste the error message, stack trace, failing test output or log excerpt, with any credentials, tokens or personal data removed first, in line with <a href="#your-responsibilities">your responsibilities</a>.</li>
+<li><strong>Ask for hypotheses, ranked by likelihood</strong>, rather than a single answer. A list of plausible causes gives you somewhere to start when you have no lead.</li>
+<li><strong>Ask for the next diagnostic step</strong>, for example what to log, inspect or test to confirm or rule out a cause, so you narrow the problem down rather than guessing.</li>
+<li><strong>Work in small steps you can follow</strong>, checking each hypothesis before moving on, instead of accepting a large speculative fix you cannot reason about.</li>
+<li><strong>It works for any tech stack</strong>, not only the languages Copilot writes most fluently. Diagnosis is reasoning about behaviour, symptoms and data flow, so it is just as useful for a failing pipeline, a database script or an automation workflow as for application code.</li>
+</ul>
+<p>For a knottier investigation where the cause is not yet clear, <a href="#using-plan-mode">Plan mode</a> is well suited to researching the problem and agreeing an approach before any change is made.</p>
+<h3 id="reading-unfamiliar-files-and-stacks">Reading unfamiliar files and stacks</h3>
+<p>Copilot can read the files in your workspace directly, so it can reason about a stack even when you are not working in that stack's usual specialist tool. Whatever the file format, if it is text on disk, Copilot can open it, explain it and help you investigate it.</p>
+<ul>
+<li><strong>Open the folder in VS Code</strong> and let Copilot read the files as context, or <strong>point the Copilot CLI at the directory</strong> from your terminal. Either surface can reason about the contents without you leaving it. See <a href="#where-to-use-github-copilot">where to use GitHub Copilot</a>.</li>
+<li><strong>You do not need the stack's normal IDE open to think about the problem.</strong> A UiPath workflow is stored as <code>.xaml</code>, which is XML underneath, so Copilot can read the activities, arguments and logic and help you trace a fault without opening UiPath Studio. A SQL script, a stored procedure, a Terraform file, a YAML pipeline definition or a config file is all just text it can read and explain in the same way.</li>
+<li><strong>Ask it to explain an unfamiliar file</strong> before you change anything, so you understand what a script or workflow does and where the problem is likely to be.</li>
+<li><strong>Reference the files, do not paste them.</strong> Let Copilot read them from the workspace rather than copying large blocks into the chat, which stays current and costs fewer tokens. See <a href="#reference-context-do-not-paste-it">reference context, do not paste it</a>.</li>
+</ul>
+<p>This makes Copilot a useful first port of call when you are handed a fault in a technology you do not use every day: open the files, ask it to walk you through them, and reason about the problem together.</p>
+<h3 id="getting-a-useful-diagnosis">Getting a useful diagnosis</h3>
+<p>Copilot can be confidently wrong, so how you ask shapes how much you can trust the answer:</p>
+<ul>
+<li><strong>Give it enough context to reason well:</strong> the symptoms, the relevant files, the environment and what you have already ruled out.</li>
+<li><strong>Ask "why", not just "what".</strong> Have it explain why a cause would produce the symptoms you see, so you can judge whether the explanation holds rather than taking it on trust.</li>
+<li><strong>Ask for a way to verify</strong> each suggested cause or fix, so you confirm the diagnosis against reality rather than assuming it is right because it sounds plausible.</li>
+<li><strong>Cross-check against official documentation and our <a href="../standards/README.md">standards</a></strong>, which remain the source of truth when Copilot and a standard disagree.</li>
+<li><strong>Never paste secrets, credentials or personal data</strong> into a prompt while investigating, even under time pressure. If Copilot surfaces a real secret in a file, treat it as exposed and follow the <a href="../../processes/credential_exposure/">credential exposure process</a>.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> Rubber ducking is a light, conversational use that costs little and often saves hours of being stuck. Keep the exchange focused on the problem in front of you, sharing the specific error and files rather than the whole codebase, and prefer referencing files over pasting them, so you get to the answer with the fewest tokens.</p>
+</blockquote>
+<h2 id="learning-with-copilot">Learning with Copilot</h2>
+<p>Copilot is a powerful learning aid, not just a code generator. Directed well, it can explain as it works, so you finish a task understanding it rather than just having completed it. Treat it as an augmented mentor: one that is always available, never impatient, and often, but not always, right.</p>
+<p>The risk is the opposite habit. If you let Copilot do the thinking and simply accept what it produces, you ship code you do not understand and your own skill stops growing. The goal is to use it to build your understanding, not to bypass it.</p>
+<h3 id="not-just-for-juniors">Not just for juniors</h3>
+<p>Learning is continuous, so this applies to anyone stretching beyond what they already know, not only to developers early in their careers. Copilot is a useful mentor when you are:</p>
+<ul>
+<li><strong>Working with unfamiliar technology</strong>, such as a new framework, tool or cloud service.</li>
+<li><strong>Joining a new team and codebase</strong>, and finding your way around conventions and history you did not write.</li>
+<li><strong>Picking up a new language</strong>, and learning its idioms rather than translating from one you already know.</li>
+<li><strong>Tackling a genuinely complicated task</strong>, where you want to understand the approach before you commit to it.</li>
+</ul>
+<h3 id="let-copilot-teach-while-it-delivers">Let Copilot teach while it delivers</h3>
+<p>The most valuable learning workflow is to have Copilot educate as well as do, so understanding is a by-product of the work rather than a separate exercise:</p>
+<ul>
+<li><strong>Ask it to explain its reasoning as it works</strong>, not just to hand you the result. For example: "Explain the approach and the trade-offs before you change anything, then walk me through the change."</li>
+<li><strong>Ask it to narrate the concepts behind the code</strong>, so you learn the pattern and not only this instance of it.</li>
+<li><strong>Turn a delivery ticket into a guided tutorial.</strong> Ask Copilot to break the ticket into steps, explain the concept behind each one, and let you attempt a step yourself before it shows you its version. You get the delivery and the learning from the same piece of work.</li>
+<li><strong>Use <a href="#using-plan-mode">Plan mode</a> to learn the shape of a task</strong> before any code is written, so you understand the approach while it is still cheap to question.</li>
+</ul>
+<h3 id="ask-the-questions-you-would-hesitate-to-ask">Ask the questions you would hesitate to ask</h3>
+<p>Copilot is a judgement-free place to ask the "obvious" question, explore a concept, or get unblocked when no colleague is free:</p>
+<ul>
+<li><strong>Ask the basic question</strong> you might feel awkward raising in a review or a team channel. There is no wrong question to ask it.</li>
+<li><strong>Get unblocked when no one is available</strong>, for example out of hours or when your team is heads-down, instead of staying stuck.</li>
+<li><strong>Use it to prepare</strong>, for example to understand a concept well enough to then have a sharper conversation with a human mentor.</li>
+</ul>
+<p>It complements human mentoring and code review, it does not replace them. Some questions are still best answered by a colleague who knows your service, your users and your history.</p>
+<h3 id="getting-accurate-mentoring">Getting accurate mentoring</h3>
+<p>Copilot can be confidently wrong, so how you ask shapes how much you can trust the answer:</p>
+<ul>
+<li><strong>Ask "why" and "what are the trade-offs"</strong>, not just "how", so you learn the reasoning and can judge it.</li>
+<li><strong>Ask it to cite official documentation or point at the code</strong> it is basing an answer on, so you can check the source yourself.</li>
+<li><strong>Ask for the explanation before the change</strong>, so you understand what is coming rather than reverse-engineering it afterwards.</li>
+<li><strong>Work in small steps you can follow</strong>, rather than accepting a large change you would have to unpick to understand.</li>
+<li><strong>Cross-check against official documentation and our <a href="../standards/README.md">standards</a></strong>, which remain the source of truth when Copilot and a standard disagree.</li>
+<li><strong>Treat a confident tone as no guarantee of accuracy.</strong> Verify anything you intend to rely on.</li>
+</ul>
+<h3 id="stay-in-charge-of-your-own-growth">Stay in charge of your own growth</h3>
+<p>Use Copilot to build your skill, not to skip building it:</p>
+<ul>
+<li><strong>Understand every change before you accept it</strong>, so you could have written it yourself.</li>
+<li><strong>Notice when you are leaning on it instead of learning from it</strong>, and switch back to asking it to explain.</li>
+<li><strong>You own the output</strong>, so you are accountable for code you commit whether you wrote it or Copilot did. See <a href="#your-responsibilities">your responsibilities</a>.</li>
+</ul>
+<blockquote>
+<p><strong>Sustainability note.</strong> Asking Copilot to explain as it works adds little cost over asking it to just do the task, and it saves the far larger cost of reworking code no one understood. Learning from focused questions on the task in front of you is cheaper, and more effective, than long open-ended exploration.</p>
+</blockquote>
+<h2 id="your-responsibilities_1">Your responsibilities</h2>
+<ul>
+<li><strong>You own the output.</strong> Review and understand everything before you commit it.</li>
+<li><strong>Protect data.</strong> Do not put secrets, credentials or personal or sensitive information into prompts. Follow the <a href="https://defra.github.io/ai-sdlc-tool-guidance/">AI tool guidance</a> on privacy and data handling.</li>
+<li><strong>Verify claims and code.</strong> Copilot can hallucinate APIs, facts and behaviour.</li>
+<li><strong>Use shared credits responsibly.</strong> They come from a common pool that your colleagues also rely on.</li>
+</ul>
+<h2 id="getting-help-and-sharing-what-you-learn">Getting help and sharing what you learn</h2>
+<ul>
+<li>Contact the Defra AI Capability and Enablement team at <a href="mailto:AICapabilityAndEnablement@defra.gov.uk">AICapabilityAndEnablement@defra.gov.uk</a>.</li>
+<li>Share tips and patterns through the developer Community of Practice and the common Teams and Slack channels.</li>
+<li>We are all still learning how to use these tools well. Sharing what works, and what does not, helps everyone improve.</li>
+</ul>
+<h2 id="related-resources">Related resources</h2>
+<ul>
+<li><a href="https://digital.defra.gov.uk/ai-toolkit/tools/github-copilot">Defra AI digital toolkit: GitHub Copilot</a></li>
+<li><a href="https://defra.github.io/defra-ai-config-examples/">Defra AI config examples</a> and its <a href="https://github.com/DEFRA/defra-ai-config-examples">repository</a></li>
+<li><a href="https://defra.github.io/defra-ai-sdlc/">Defra AI in the SDLC playbook</a></li>
+<li><a href="https://defra.github.io/ai-sdlc-tool-guidance/">Defra AI tool guidance</a></li>
+<li><a href="https://docs.github.com/en/copilot/customizing-copilot">GitHub Copilot customisation docs</a></li>
+<li><a href="https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli">About GitHub Copilot CLI</a></li>
+<li><a href="https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent">About the GitHub Copilot coding agent</a></li>
+<li><a href="../../standards/security_standards/">Defra security standards</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
