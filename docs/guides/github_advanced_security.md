@@ -102,15 +102,17 @@ Only an **admin** can bypass push protection or dismiss a security alert. In all
 
 See the [resolving GitHub security alerts](../processes/github_security_alerts.md) process for full details.
 
-## Software Bill of Materials (SBOM)
-
-A Software Bill of Materials (SBOM) is a list of all the components in your software, including dependencies and their versions. It helps teams understand the supply chain of their software and identify potential vulnerabilities.
-
-In GitHub, you can generate an SBOM for your repository using the [GitHub Dependency Graph](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/establish-provenance-and-integrity/export-dependencies-as-sbom).
+## Dependency Graph
 
 The Dependency Graph automatically includes all dependencies in [supported ecosystems](https://docs.github.com/en/code-security/reference/supply-chain-security/dependency-graph-supported-package-ecosystems) where GitHub can read a manifest directly from the repository (for example `package.json` and `.csproj`). Most repositories need no extra setup.
 
 Automatic detection has gaps, though. The sections below cover common scenarios where teams need to submit to the Dependency Graph themselves.
+
+### Software Bill of Materials (SBOM)
+
+A Software Bill of Materials (SBOM) is a list of all the components in your software, including dependencies and their versions. It helps teams understand the supply chain of their software and identify potential vulnerabilities.
+
+In GitHub, you can generate an SBOM for your repository [using the Dependency Graph](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/establish-provenance-and-integrity/export-dependencies-as-sbom).
 
 ### Container images
 
