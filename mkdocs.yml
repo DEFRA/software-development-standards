@@ -1,6 +1,6 @@
 site_name: Defra Software Development Standards
 site_url: https://defra.github.io/software-development-standards
-theme: 
+theme:
   name: material
   custom_dir: overrides
   logo: img/brand.png
