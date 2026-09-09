@@ -23,6 +23,7 @@ nav:
   - Standards:
     - Coding standards:
       - Common coding standards: standards/common_coding_standards.md
+      - AI-generated code standards: standards/ai_generated_code_standards.md
       - Continuous integration standards: standards/continuous_integration.md
       - C# coding standards: standards/csharp_coding_standards.md
       - Development languages: standards/development_language_standards.md
