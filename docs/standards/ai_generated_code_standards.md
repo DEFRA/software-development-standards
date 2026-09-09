@@ -24,7 +24,7 @@ Prompts and attached context may be sent to a third-party service. Never paste s
 
 ### Only use organisationally sanctioned AI tools and licences
 
-Use only AI tools and licences provided or approved by Defra for work on Defra codebases. Do not use personal accounts or unapproved tools.
+Follow the latest guidance from the Defra AI Digital Toolkit - [Tools | AI digital toolkit](https://digital.defra.gov.uk/ai-toolkit/tools)
 
 ### Check the licensing and provenance of suggested code
 
