@@ -23,6 +23,14 @@ In these cases, your manager will have arranged for you to be given additional, 
 
 If you do not know whether or not you are in this group, ask your manager.
 
+### How do I get local admin access?
+Local admin access is requested through ServiceNow/MyIT rather than granted automatically, so you will need to raise a request yourself.
+
+1. Raise the [Local Admin Rights](https://defragroup.service-now.com/esc?id=sc_cat_item&table=sc_cat_item&sys_id=1b11931d2b780f10ce42f4f0de91bf79&recordUrl=com.glideapp.servicecatalog_cat_item_view.do%3Fv%3D1&sysparm_id=1b11931d2b780f10ce42f4f0de91bf79) catalogue item in ServiceNow/MyIT.
+1. Provide a business justification explaining why you need local admin rights, for example that your role involves software development and you need to install and configure developer tooling that requires admin privileges.
+1. Once approved, the **MakeMeAdmin** app will become available to install from the Company Portal.
+1. Install MakeMeAdmin from the Company Portal. Running it grants your user account admin privileges on the device.
+
 ### Can I use my own device?
 We do not allow people to use their own devices for official work.
 
