@@ -35,6 +35,9 @@ You should provide:
 - a link to the alert dismissal request
 - a brief explanation of why the alert can be dismissed
 
+Dismissing an alert does not affect dependency scanners that run in your build.
+See [CI dependency scanners](../guides/github_advanced_security.md#ci-dependency-scanners).
+
 ## Approval
 
 You'll receive a response on the Slack channel as soon as possible.

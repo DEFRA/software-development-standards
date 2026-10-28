@@ -69,6 +69,34 @@ Include:
 
 See the [resolving GitHub security alerts](../processes/github_security_alerts.md) process for full details.
 
+### CI dependency scanners
+
+Many repositories also run a dependency scanner in their build, such as `npm audit` or `dotnet list package --vulnerable`. These are separate from Dependabot.
+
+Dismissing a Dependabot alert does not change what a CI scanner reports. The two use different data sources and know nothing about each other. When you accept a risk you need to do both: record the dismissal in GitHub, and handle the finding in CI.
+
+### Suppressing an accepted finding in CI
+
+Suppress only the advisory you assessed. Do not lower the severity threshold, and do not remove the scanner step. A blanket change hides every future advisory, including ones with a simple fix.
+
+Record against every suppression:
+
+- the advisory ID
+- why the risk is accepted
+- who accepted it
+- an expiry date (maximum 1 month)
+
+Without an expiry, a temporary suppression becomes a permanent one.
+
+For npm, [audit-ci](https://github.com/IBM/audit-ci#allowlisting) supports an allowlist entry per advisory, with notes and an expiry.
+
+### Saying why a risk is accepted
+
+Pick a reason from GitHub's dismissal options rather than writing your own. Using the same wording in the Security tab and in your CI suppression keeps the two consistent and makes auditing easier. See [dismissing Dependabot alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/viewing-and-updating-dependabot-alerts#dismissing-dependabot-alerts).
+
+"Vulnerable code is not actually used" is the most common reason.
+
+
 ## Code scanning
 
 [Code scanning](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning) uses [CodeQL](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql) to perform static analysis on your code and surface potential security vulnerabilities. Alerts appear in the **Security and Quality** tab of your repository.
