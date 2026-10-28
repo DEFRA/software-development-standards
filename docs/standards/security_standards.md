@@ -42,6 +42,16 @@ This means you do not need to wait for a build to run to discover a vulnerabilit
 
 Snyk has been assessed alongside [GitHub Advanced Security](../guides/github_advanced_security.md). As GitHub Advanced Security provides largely equivalent capability and is already available to all Defra teams, teams should look to maximise usage of GitHub Advanced Security rather than relying on Snyk.
 
+### Third party licensed data APIs
+
+These standards apply to any third party API serving licensed or premium data, such as the Ordnance Survey APIs. See the [Using Ordnance Survey APIs guide](../guides/ordnance_survey_apis.md) for how to apply them.
+
+- Credentials for APIs that can return premium or licensed data must never be exposed to a client, including browser code, mobile application bundles and configuration served to the client. Requests must be proxied through a server-side component that injects the credential.
+- Where a credential must be available to a client, it must be scoped to open data APIs only and to the minimum set of APIs the client requires. Short-lived tokens issued server-side are preferred over long-lived keys.
+- API projects must be segregated so that a credential's scope never grants access to a higher tier of data than the component using it needs, and live and non-live environments must use separate projects and credentials.
+- Premium or licensed data consumed by a public service must be protected against automated harvesting, or placed behind user authentication.
+- Keys must be obtained from and owned by the organisation's account owner, stored in a secret store, and rotated.
+
 ### Significant changes
 
 GitHub Advanced Security integration added 1 May 2026.
