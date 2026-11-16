@@ -165,7 +165,9 @@ Remember that commit history is published too. Removing sensitive data in a late
 
 If a secret or credential is published, follow the [credential exposure process](../processes/credential_exposure.md). Always treat the secret as compromised and rotate it.
 
-If personal data is published, treat it as a personal data breach. Report it immediately through Defra's data protection incident process. Some breaches must be reported to the ICO within 72 hours, so do not delay. Read the ICO guidance on [personal data breaches](https://ico.org.uk/for-organisations/report-a-breach/).
+If personal data is published, treat it as a personal data breach. Report it immediately using Defra's [incident reporting process](https://defra.sharepoint.com/sites/Defraintranet/SitePages/Incident-reporting.aspx) (internal link). Defra Security will assess the breach and decide whether it must be reported to the ICO. Some breaches must be reported to the ICO within 72 hours, so do not delay.
+
+Do not report the breach to the ICO yourself.
 
 Making a repository private or deleting it does not fix the problem. The data may already have been cached, cloned or forked.
 
