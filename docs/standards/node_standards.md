@@ -32,6 +32,7 @@ Create an `.npmrc` file at the root of each repository with the following settin
 
 ```ini
 save-exact=true
+yes=false
 ignore-scripts=true
 min-release-age=7
 ```
@@ -39,6 +40,7 @@ min-release-age=7
 | Setting | Purpose |
 |---|---|
 | `save-exact=true` | Saves exact dependency versions rather than version ranges. Prevents version-range drift from silently pulling in a later, potentially vulnerable release. |
+| `yes=false` | Automatically answers "no" to npm confirmation prompts. This stops `npx` silently installing and running packages that are not already installed in the project, whether run locally or in CI. If a package genuinely needs to be fetched on demand, pass `--yes` to the relevant `npx` command after vetting the package. |
 | `ignore-scripts=true` | Prevents npm from running lifecycle scripts such as `preinstall` and `postinstall` during package installation. This blocks a common vector for arbitrary code execution from malicious or compromised packages. Note: some packages that compile native bindings require lifecycle scripts to function. If any packages genuinely need it, then `--ignore-scripts=false` can be passed to the relevant `npm install` command. |
 | `min-release-age=7` | Refuses to install packages published fewer than 7 days ago. This provides a window to detect package takeover or typosquatting attacks before they reach your codebase. Studies have shown that most malicious packages are detected within this timeframe. |
 
@@ -48,11 +50,12 @@ To apply these settings you must also configure them globally across all project
 
 ```sh
 npm config set save-exact=true
+npm config set yes=false
 npm config set ignore-scripts=true
 npm config set min-release-age=7
 ```
 
-Or add the three lines directly to your global npm configuration file at `~/.npmrc`.
+Or add the four lines directly to your global npm configuration file at `~/.npmrc`.
 
 > There may be scenarios where it would be advantageous to bypass the seven day release age requirement, such as when you need to immediately patch a vulnerability. In these cases, you should do appropriate due diligence on the package and its publisher before installing it, and consider temporarily disabling the setting if necessary. You can bypass the setting for a single install command with `--min-release-age=0`.
 
@@ -97,4 +100,5 @@ This standard was formally adopted on 8 January 2020.
 - Clarification on preference between CommonJS and ESM added 29 July 2024.
 - Add `.npmrc` security settings added 1 May 2026.
 - Clarification on use of other package management tools added 18 June 2026.
+- Add `yes=false` to `.npmrc` security settings added 14 October 2026.
 
