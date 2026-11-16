@@ -6,7 +6,7 @@ Coding in the open only works if we keep personal data, secrets and other sensit
 
 ## Rationale
 
-- Meets the GOV.UK Service Standard and Technology Code of Practice requirements to [code in the open](https://gds.blog.gov.uk/2012/10/12/coding-in-the-open/)
+- Meets the GOV.UK Service Standard and Technology Code of Practice requirements to [code in the open](https://www.gov.uk/service-manual/service-standard/point-12-make-new-source-code-open)
 - Protects the people and businesses who use our services
 - Supports our obligations under UK GDPR and the Data Protection Act 2018
 - Public repositories are scanned by automated tools within minutes of a push, so anything published must be treated as compromised
