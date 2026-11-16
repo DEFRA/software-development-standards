@@ -45,6 +45,8 @@ The default test technologies for new projects are:
 
 Use GitHub to publish test code in the open, but **never** publish any passwords or other sensitive data. Passwords can be stored in private files or repositories (for example hiding a file using `.gitignore`), or via local environment variables.
 
+Never use real customer data in tests. Follow the [open code and data protection standards](open_code_data_protection_standards.md#never-use-real-customer-data-in-development-or-testing) for using synthetic test data.
+
 ## Browser testing
 
 Test services on the [GOV.UK set of required browsers](https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices).

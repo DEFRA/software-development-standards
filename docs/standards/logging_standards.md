@@ -67,6 +67,8 @@ This includes, but is not limited to:
 
 Be aware of any logging third party libraries may do with this data to avoid any unexpected leaks.
 
+The same applies to log extracts shared in issues, pull requests or documentation. See the [open code and data protection standards](open_code_data_protection_standards.md).
+
 ## Logs should be written to a centralised logging system
 
 This allows logs to be aggregated and searched in one place. Examples of centralized logging systems include:

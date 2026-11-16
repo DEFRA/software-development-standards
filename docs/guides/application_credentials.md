@@ -2,7 +2,7 @@
 
 Following good security practice, you must never store credentials in your application code.
 
-This guide provides some best practice to help you manage credentials safely and securely.
+This guide provides some best practice to help you manage credentials safely and securely. It supports the [open code and data protection standards](../standards/open_code_data_protection_standards.md).
 
 ## Accessing credentials from your application
 

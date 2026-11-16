@@ -10,6 +10,8 @@ Use the [OWASP Secure coding practices - quick reference guide](https://www.owas
 
 **Important note.** We are using version 2
 
+Follow the [open code and data protection standards](open_code_data_protection_standards.md) for keeping secrets, credentials and personal data out of code.
+
 ## GitHub Advanced Security
 
 Defra has GitHub Advanced Security enabled across its organisation. Teams should maximise use of these built-in features rather than relying on third-party tools. See the [GitHub Advanced Security guide](../guides/github_advanced_security.md) for a full explanation of the features and how to use them.
