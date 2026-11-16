@@ -8,7 +8,7 @@ However, you may sometimes inherit code that is not open - these steps are inten
 
 ## Review the code
 
-- Check for sensitive information: ensure there are no credentials, API keys, or sensitive data in your code. Tools such as gitLeaks can be used for this purpose. You must check your entire commit history, not just the latest code.
+- Check for sensitive information: ensure there are no credentials, API keys, or sensitive data in your code. Tools such as gitLeaks can be used for this purpose. You must check your entire commit history, not just the latest code. See the [open code and data protection standards](../standards/open_code_data_protection_standards.md) for what must not be published.
 
 - Security flaws: identify and fix any security vulnerabilities. You should analyse your code using SonarQube Cloud to identify security issues in the code and use a tool such as Dependabot or npm audit to check your dependencies for known vulnerabilities.
 

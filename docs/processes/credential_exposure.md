@@ -4,6 +4,8 @@ Credentials are things like passwords or API keys. They are any values you would
 
 We haven't settled on a specific standard for how we handle them e.g. [12 factor app](https://12factor.net/config). But the one thing we are all agreed on is that they should not be committed with your project's source code.
 
+The [open code and data protection standards](../standards/open_code_data_protection_standards.md) set out how to keep secrets out of code.
+
 Yet mistakes happen and sometimes these secrets become exposed.
 
 This process will take you through what to do if that happens. The key point is

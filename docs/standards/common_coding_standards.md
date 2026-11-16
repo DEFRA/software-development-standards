@@ -14,6 +14,8 @@ Mostly these follow common [programming principles](https://en.wikipedia.org/wik
 
 Whilst we acknowledge that there are cases where it may be necessary for code to not be open, this standard ensures that those cases are managed as exceptions.
 
+Follow the [open code and data protection standards](open_code_data_protection_standards.md) to keep personal data, secrets and other sensitive information out of open code.
+
 ### All coding is done on a branch
 
 No code changes are made directly to the main branch.
