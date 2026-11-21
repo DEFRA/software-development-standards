@@ -50,3 +50,7 @@ They will not have the understanding and context you do at the time of writing i
 - Provides confidence in the implementation
 - Enables safe refactoring and code improvements
 - Catches bugs early when they're cheaper to fix
+
+### We are responsible for AI generated code
+
+> Using an AI assistant doesn't change accountability for the code that we commit
