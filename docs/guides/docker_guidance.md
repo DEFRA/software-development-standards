@@ -10,13 +10,51 @@ A container is a standard unit of software that packages up code and all its dep
 `Image` - a constructed set of layered docker instructions  
 `Container` - a running instance of an image
 
+## Security best practices
+
+### File ownership in COPY commands
+
+When using `COPY` commands in Dockerfiles, it's critical to avoid assigning write permissions to copied resources. SonarCloud and other security scanning tools will flag this as a security vulnerability. See [Allowing non-root users to modify resources copied to an image is security-sensitive
+](https://rules.sonarsource.com/docker/type/Security%20Hotspot/RSPEC-6504/) for an applicable SonarCloud rule.
+
+#### The problem
+Using `COPY --chown=node:node` gives the running user ownership of the files, which means they have write permissions by default. This creates unnecessary security risks.
+
+#### The solution
+Files should be owned by `root:root` while the container runs as a non-root user. This ensures the running user cannot modify application files.
+
+**Secure approach:**
+```dockerfile
+COPY --chown=root:root package*.json ./
+COPY --chown=root:root app/ ./app/
+USER node
+```
+
+**Why this works:**
+- Files are owned by `root:root`
+- The container runs as the `node` user (non-root) via `USER node`
+- Since the `node` user doesn't own the files, it has no write permissions by default
+- Using chmod -R a-w removes write permissions for all users, including the running user, ensuring files are read-only at runtime.
+- This satisfies security scanning requirements in tools like Sonarqube without needing explicit `chmod` commands
+
+**Approaches to avoid:**
+- `COPY --chown=node:node` - gives write permissions to the running user
+- `RUN chmod 755` after `COPY` - still allows owner write access
+- Running as root user - creates major security vulnerabilities
+
+The root ownership approach is more secure than using `--chmod=755` because the running user has zero write access, whereas `--chmod=755` would still allow the owner to write.
+
+**Note:** While this guidance strongly favors no write permissions for application files, there may be scenarios where the running process legitimately needs to write data (e.g., to a mounted tmp directory or a cache directory such as `node_modules/.cache`). Readers should carefully consider their application's requirements and hosting environment when following this guide, ensuring that any writable locations are explicitly defined and secured.
+
 ## Multi stage builds
 Dockerfiles should implement multi stage builds to allow different build stages to be targeted for specific purposes.  For example, a final production image does not need all the unit test files and a unit test running image would use a different running command than the application.
 
 Below is an example multi stage build which is intended to use the Defra Node.js base image.
 
+> **Note:** Removing write permissions from application files (e.g., `RUN chmod -R a-w /home/node`) is only recommended for the production stage. Do **not** use this step in the development stage, as it will prevent tools like nodemon, tests, and other development workflows from functioning correctly. SonarCloud or similar tools may flag the absence of this step in development images, but this is acceptable for local development. If running tests in a container with no write permissions is required, operations such as writing coverage reports to the container filesystem will not be possible.
+
 ```
-ARG PARENT_VERSION=1.0.0-node12.16.0
+ARG PARENT_VERSION=1.0.0-node22.21.1
 ARG PORT=3000
 ARG PORT_DEBUG=9229
 
@@ -29,9 +67,9 @@ ARG PORT
 ENV PORT ${PORT}
 ARG PORT_DEBUG
 EXPOSE ${PORT} ${PORT_DEBUG}
-COPY --chown=node:node package*.json ./
+COPY --chown=root:root package*.json ./
 RUN npm install
-COPY --chown=node:node app/ ./app/
+COPY --chown=root:root app/ ./app/
 RUN npm run build
 CMD [ "npm", "run", "start:watch" ]
 
@@ -43,9 +81,12 @@ LABEL uk.gov.defra.parent-image=defradigital/node:${PARENT_VERSION}
 ARG PORT
 ENV PORT ${PORT}
 EXPOSE ${PORT}
-COPY --from=development /home/node/app/ ./app/
-COPY --from=development /home/node/package*.json ./
+COPY --chown=root:root --from=development /home/node/app/ ./app/
+COPY --chown=root:root --from=development /home/node/package*.json ./
 RUN npm ci
+# Remove write permissions from all files for extra security in production only
+RUN chmod -R a-w /home/node
+USER node
 CMD [ "node", "app" ]
 ```
 
