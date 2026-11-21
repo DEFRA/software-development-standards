@@ -38,9 +38,9 @@ Avoid creating a shared library when:
 
 ## Where to host a shared library
 
-Use the ecosystem's native registry by default. That means [npmjs.com](https://www.npmjs.com) for npm packages and [nuget.org](https://www.nuget.org) for NuGet packages. These registries are well supported, encourage good security practices and offer low-friction adoption for consumers. They also support Defra's commitment to working in the open and publishing code openly.
+Use the ecosystem's native registry by default. That means using [npmjs.com](https://www.npmjs.com) for npm packages and [nuget.org](https://www.nuget.org) for NuGet packages. These registries are well supported, encourage good security practices and offer low-friction adoption for consumers. They also support Defra's commitment to working in the open and publishing code openly.
 
-For libraries containing sensitive or private code, use GitHub Packages instead.
+Use [github.com](https://github.com/orgs/DEFRA/packages) for libraries containing sensitive or private code, use GitHub Packages instead.
 
 ### npm
 
@@ -171,11 +171,84 @@ Before the first publish, contact `#npm-support` in Slack with:
 - the proposed package name (for example `@defra/your-package-name`)
 - confirmation the package is suitable for public publishing
 
-A Defra npm org admin will configure the Trusted Publishing policy on npmjs.com and perform the first publish.
+A Defra npm org admin will then create an `npm` team and add you to this team as a member. You will receive to your registered email address an invitation to join the team. Make sure you follow the instructions in that email.
 
-**6. First publish**
+**6. Publishing your package**
+To be able to publish a package, you will need to do this manually the first time. Once completed, you will be able to configure a `Truster publisher` route for future releases.
 
-The first publish of any `@defra`-scoped package must be done by a Defra npm org admin. Once published, your account can be made admin of the package. After that, publishing happens automatically whenever a pull request is merged to `main`.
+**6.1 Manual Publishing**
+From a terminal window run the following command.
+```text
+npm login
+```
+You should now see something along these lines. Press the enter key to open the browser.
+```text
+npm notice Log in on https://registry.npmjs.org/
+npm notice npm tokens that bypass 2FA are being restricted for account changes and direct publishing. Learn how to prepare: https://gh.io/npm-gat-bypass2fa-deprecation
+Login at:
+https://www.npmjs.com/login?next=/login/cli/99999999-aaaa-bbbb-cccc-dddddddddddd
+Press ENTER to open in the browser...
+```
+Follow the prompt on the npm website to complete the login process. Once logged in the terminal window will be updated to show that you are logged in.
+```text
+Logged in on https://registry.npmjs.org/.
+npm notice
+npm notice New major version of npm available! 11.16.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+```
+
+The next step is to publish your package.
+```bash
+npm publish --access public
+```
+You should then see something along these lines displayed to show success.
+```bash
+npm notice
+npm notice 📦  @defra/your-package-name@0.1.0
+npm notice Tarball Contents
+npm notice 136B README.md
+npm notice 1.6kB package.json
+npm notice 41B src/index.js
+npm notice Tarball Details
+npm notice name: @defra/your-package-name
+npm notice version: 0.1.0
+npm notice filename: your-package-name-0.1.0.tgz
+npm notice package size: 5.0 kB
+npm notice unpacked size: 15.2 kB
+npm notice shasum: 7c3f9999d412d651699997a29fd8f2414edc12b4
+npm notice integrity: sha512-cV+gqctmZPrIi[...]SV67n3Qg0qGlQ==
+npm notice total files: 3
+npm notice
+npm notice npm tokens that bypass 2FA are being restricted for account changes and direct publishing. Learn how to prepare: https://gh.io/npm-gat-bypass2fa-deprecation
+npm notice Publishing to https://registry.npmjs.org/ with tag latest and default access
+npm notice publish Signed provenance statement with source and build information from GitHub Actions
+npm notice publish Provenance statement published to transparency log: https://search.sigstore.dev/?logIndex=2349495965
++ @defra/your-package-name@0.1.0
+```
+You have now published your package to npm.
+
+**6.2 Configuring Trusted Publishing**
+Open the [npmjs.org defra package list](https://www.npmjs.com/settings/defra/packages). This will show you a list of packages that you have uploaded.
+![Package List](../img/npm_publish/landing_page.png)
+
+Click on the package that you wish to configure, once loaded, click on settings. You will now be asked to choose your package publisher. Choose `GitHub Actions`
+![Publisher type](../img/npm_publish/select_publisher.png)
+
+You will now need to enter the details of your repository and pipline.
+- The 'Organization Name' should always be `DEFRA`.
+- The 'Repository Name' should be the name of the repository that contains the package.
+- The `Workflow filename` should be the name of the workflow that publishes the package.
+- The `Allowed actions` option should ideally be `Allow npm stage publish` but only choose this option if there will be a person in the package team able to approve these packages.
+
+Click on `Set up connection` when ready.
+![Publisher details](../img/npm_publish/publisher_details.png)
+
+You will now need to provide a 2FA code to approve the connection. Once approved, you will now be returned to the settings section for your package.
+This will now show you the details of the new connection. You will need to double-check that the `Publishing Access` is set to the recommended option.
+![Final connection details](../img/npm_publish/finished.png)
+Finally click on `Update Package Settings` and you are now all set to publish direct from GitHub.
 
 ### NuGet
 
